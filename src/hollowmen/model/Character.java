@@ -6,7 +6,7 @@ import java.util.Collection;
  * -be moved in two {@link Direction},<br>
  * -perform action (as jump, attack...),<br>
  * <br>
- * A Character has some {@link Parameter} that be modified due {@link Modifier}
+ * A Character has some {@link Parameter}
  * @author pigio
  *
  */
@@ -31,25 +31,11 @@ public interface Character extends RoomEntity{
 	
 	//state pattern per le TypeAction
 	/**
-	 * This method make the Character do something specified by action.
+	 * This method make the {@code Character} do something specified by action.
 	 * @param action {@link TypeAction}
 	 * @throws NullPointerException
 	 */
 	public void performAction(TypeAction action) throws NullPointerException;
-	
-	/**
-	 * This method <u>add</u> a {@link Modifier} to the Character
-	 * @param mod {@link Modifier}
-	 */
-	public void addModifier(Modifier mod) throws NullPointerException;
-	
-	/**
-	 * This method <u>remove</u> a {@link Modifier} to the Character
-	 * @param mod {@link Modifier}
-	 * @throws IllegalArgumentException If the Character hasn't the passed {@link Modifier}
-	 * @throws NullPointerException
-	 */
-	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException;
 	
 	/**
 	 * This method give all the {@link Parameter} of the Character

@@ -22,8 +22,8 @@ public interface SkillNode extends Information{
 	
 	/**
 	 * This method check the availability of this {@code SkillNode}
-	 * @return {@code true} if the level of this {@code SkillNode}
-	 *  *3 is >= of the points spent to the {@link SkillBranch}, {@code false} otherwise
+	 * @return {@code true} if there are enough skill point in this 
+	 * {@link SkillBranch}, {@code false} otherwise
 	 */
 	public boolean isAvaiable();
 	

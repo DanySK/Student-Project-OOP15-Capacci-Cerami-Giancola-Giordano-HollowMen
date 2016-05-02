@@ -24,8 +24,9 @@ public interface HeroClass extends Information{
 	public Collection<Parameter> getBaseParam();
 	
 	/**
-	 * This method give the {@code HeroClass}'s {@code Achievement}
-	 * @return {@link Collection}<{@link Achievement}>
+	 * This method give the {@code HeroClass}'s {@code Challenge}
+	 * @return {@link Challenge}
 	 */
-	public Collection<Achievement> getAchievements();
+	
+	public Challenge getChallenge();
 }

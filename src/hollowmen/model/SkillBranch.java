@@ -21,6 +21,6 @@ public interface SkillBranch {
 	 * This method give all the {@code SkillNode} in this {@code SkillBranch}
 	 * @return {@link Collection}<{@link SkillNode}>
 	 */
-	Collection<SkillNode> getSkillNodes();
+	public Collection<SkillNode> getSkillNodes();
 	
 }

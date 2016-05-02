@@ -39,7 +39,7 @@ public interface Item extends Information{
 	 * This method give the {@code Item}'s sellValue
 	 * @return {@code int} represents the sellValue
 	 */
-	public int getSellValure();
+	public int getSellValue();
 	
 	/**
 	 * This method give the {@code Item}'s rarity
@@ -48,14 +48,15 @@ public interface Item extends Information{
 	public int getRarity();
 	
 	/**
-	 * This method give a {@code String} represent where this {@code Item} can be equipped
-	 * @return {@link String} represent where this {@code Item} can be equipped
+	 * This method give a {@code Information} represent where this {@code Item} can be equipped
+	 * @return {@link Information} represent where this {@code Item} can be equipped
 	 */
-	public String getSlot();
+	public Information getSlot();
 	
 	/**
-	 * This method give a {@code String} represent on which {@code HeroClass} this {@code Item} can be equipped
-	 * @return {@link String} represent on which {@link HeroClass} this {@code Item} can be equipped
+	 * This method give a {@code Information} represent on which {@code HeroClass} this {@code Item} can be equipped
+	 * @return {@link Information} represent on which {@link HeroClass} this {@code Item} can be equipped
 	 */
-	public String getHeroClassEquippable();
+	public Information getHeroClassEquippable();
+	
 }

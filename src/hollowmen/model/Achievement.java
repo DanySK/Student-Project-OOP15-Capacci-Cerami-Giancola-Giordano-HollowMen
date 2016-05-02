@@ -6,11 +6,11 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Achievement extends Lootable{
+public interface Achievement{
 
 	/**
 	 * This method check if the conditions for looting are met, if so the
-	 * {@code Achievement} become lootable
+	 * {@code Challenge} become lootable
 	 */
 	public void check();
 	
@@ -18,4 +18,11 @@ public interface Achievement extends Lootable{
 	 * @return {@code true} if this can be looted, {@code false} otherwise
 	 */
 	public boolean isLootable();
+	
+	/**
+	 * 
+	 * @return {@link Lootable} reward
+	 * @throws IllegalStateException If {@code isLootable} return false
+	 */
+	public Lootable getLoot() throws IllegalStateException;
 }
