@@ -1,7 +1,6 @@
 package hollowmen.model;
 
 import java.util.Collection;
-import java.util.Optional;
 
 /**
  * This interface represent a {@code Room} intended as a container for {@link RoomEntity}<br>
@@ -26,9 +25,8 @@ public interface Room {
 	public int getChildRoomNumber();
 	
 	/**
-	 * 
 	 * This method give the selected child{@code Room}
-	 * @param choice {@code int} counting from left to right (<u>starting from 0</u>)
+	 * @param choice {@code int} counting from left to right (<u>starting from 1</u>)
 	 * @return {@link Room}
 	 * @throws IllegalArgumentException If <b>choice</b> > childRoomNumber, or negative
 	 */
@@ -57,4 +55,11 @@ public interface Room {
 	 * @return {@code int}
 	 */
 	public int getRoomNumber();
+	
+	/**
+	 * This method give the {@code RoomSpace}
+	 * @return {@link RoomSpace}
+	 */
+	public RoomSpace getRoomSpace();
+	
 }
