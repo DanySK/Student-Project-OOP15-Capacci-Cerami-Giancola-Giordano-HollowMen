@@ -8,9 +8,9 @@ package hollowmen.model;
 public interface RoomEntity extends Information{
 	
 	/**
-	 * This method give the {@code Position} of this {@code RoomEntity}
-	 * @return {@link Position}
+	 * This method give the {@code Size} of this {@code RoomEntity}
+	 * @return {@link Size}
 	 */
-	public Position getPosition();
+	public Size getSize();
 	
 }

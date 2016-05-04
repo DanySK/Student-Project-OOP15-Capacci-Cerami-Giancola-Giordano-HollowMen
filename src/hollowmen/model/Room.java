@@ -57,9 +57,9 @@ public interface Room {
 	public int getRoomNumber();
 	
 	/**
-	 * This method give the {@code RoomSpace}
-	 * @return {@link RoomSpace}
+	 * This method give the {@code Size} of the {@code Room}
+	 * @return {@link Size}
 	 */
-	public RoomSpace getRoomSpace();
+	public Size getRoomSize();
 	
 }
