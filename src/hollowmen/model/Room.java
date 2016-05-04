@@ -28,9 +28,9 @@ public interface Room {
 	/**
 	 * 
 	 * This method give the selected child{@code Room}
-	 * @param choice {@code int} counting from left to right
+	 * @param choice {@code int} counting from left to right (<u>starting from 0</u>)
 	 * @return {@link Room}
-	 * @throws IllegalArgumentException If <b>choice</b> > childRoomNumber, or zero, or negative
+	 * @throws IllegalArgumentException If <b>choice</b> > childRoomNumber, or negative
 	 */
 	public Room getChildRoom(int choice) throws IllegalArgumentException;
 	
@@ -42,15 +42,15 @@ public interface Room {
 	
 	/**
 	 * This method give all the {@code Enemy} in this {@code Room}
-	 * @return {@link Optional}<{@link Collection}<{@link Enemy}>>
+	 * @return {@link Collection}<{@link Enemy}>
 	 */
-	public Optional<Collection<Enemy>> getEnemies();
+	public Collection<Enemy> getEnemies();
 	
 	/**
 	 * This method give all the {@code Interactable} in this {@code Room}
-	 * @return {@link Optional}<{@link Collection}<{@link Interactable}>>
+	 * @return {@link Collection}<{@link Interactable}>
 	 */
-	public Optional<Collection<Interactable>> getInteractable();
+	public Collection<Interactable> getInteractable();
 	
 	/**
 	 * This method give the number of this {@code Room} inside the {@code Floor}
