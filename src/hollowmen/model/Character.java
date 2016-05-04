@@ -42,4 +42,10 @@ public interface Character extends RoomEntity{
 	 * @return {@link Collection}<{@link Parameter}> associated to the Character
 	 */
 	public Collection<Parameter> getParameters();
+	
+	/**
+	 * 
+	 * @return {@code true} if this {@code Character} is facing right, {@code false} if facing left
+	 */
+	public boolean isFacingRight();
 }
