@@ -1,36 +1,48 @@
 package hollowmen.model.character;
 
-import hollowmen.model.Position;
+import hollowmen.model.Point2D;
+import hollowmen.model.Size;
+import hollowmen.model.utilities.ExceptionThrower;
+import hollowmen.utilities.Pair;
 
-public class SettablePosition implements Position{
+public class SettablePosition implements Size{
 	
-	private double x;
+	private SettablePoint2D topLeft;
 	
-	private double y;
+	private SettablePoint2D downRight;
 	
-	public SettablePosition(){
-		x = 0;
-		y = 0;
+
+	public SettablePosition(Point2D topLeft, Point2D downRight) throws IllegalArgumentException{
+		ExceptionThrower.<Pair<Point2D,Point2D>>checkIllegalArgument(new Pair<>(topLeft,downRight), 
+				p -> p.getX().getX() - p.getY().getX() <= 0 || p.getX().getY() - p.getY().getY() <= 0);
+		this.topLeft = new SettablePoint2D(topLeft);
+		this.downRight = new SettablePoint2D(downRight);
 	}
 	
-	public SettablePosition(final double x, final double y){
-		this.x = x;
-		this.y = y;
+	public SettablePosition(final double topLeftX, final double topLeftY,
+			final double downRightX, final double downRightY) throws IllegalArgumentException {
+		this(new SettablePoint2D(topLeftX, topLeftY), new SettablePoint2D(downRightX, downRightY));
+	}
+	@Override
+	public Point2D getTopLeft() {
+		return this.topLeft;
 	}
 
 	@Override
-	public double getX() {
-		return x;
+	public Point2D getDownRight() {
+		return this.downRight;
 	}
 
-	@Override
-	public double getY() {
-		return y;
+	
+	public void setPosition(Point2D newTopLeft) {
+		double xMove = newTopLeft.getX() - this.topLeft.getX();
+		double yMove = newTopLeft.getY() - this.topLeft.getY();
+		this.topLeft.setPoint(this.topLeft.getX() + xMove, this.topLeft.getY() + yMove);
+		this.downRight.setPoint(this.downRight.getX() + xMove, this.downRight.getY() + yMove);
 	}
-
-	public void setPosition(final double x, final double y){
-		this.x = x;
-		this.y = y;
+	
+	public void setPosition(final double newTopLeftX, final double newTopLeftY) {
+		this.setPosition(new SettablePoint2D(newTopLeftX, newTopLeftY));
 	}
-
+	
 }
