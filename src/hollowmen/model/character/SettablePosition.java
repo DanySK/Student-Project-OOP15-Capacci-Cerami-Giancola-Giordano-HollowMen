@@ -2,7 +2,7 @@ package hollowmen.model.character;
 
 import hollowmen.model.Point2D;
 import hollowmen.model.Size;
-import hollowmen.model.utilities.ExceptionThrower;
+import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
 public class SettablePosition implements Size{

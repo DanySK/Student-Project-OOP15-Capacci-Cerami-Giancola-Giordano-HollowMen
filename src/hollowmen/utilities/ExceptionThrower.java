@@ -1,4 +1,4 @@
-package hollowmen.model.utilities;
+package hollowmen.utilities;
 
 import java.util.function.Predicate;
 
