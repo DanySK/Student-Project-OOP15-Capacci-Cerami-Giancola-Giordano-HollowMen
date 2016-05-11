@@ -27,6 +27,7 @@ public interface Size {
 	public default double getHeight() {
 		return this.getTopLeft().getY()-this.getDownRight().getY();
 	}
+	
 	/**
 	 * 
 	 * @return {@code double} Lenght for this rectangular

@@ -11,7 +11,7 @@ import java.util.Collection;
  * @author pigio
  *
  */
-public interface Item extends Information{
+public interface Item extends InformationUser{
 
 	/**
 	 * This {@link Enum} represent all the possible {@code ItemState}<br>
@@ -58,5 +58,6 @@ public interface Item extends Information{
 	 * @return {@link Information} represent on which {@link HeroClass} this {@code Item} can be equipped
 	 */
 	public Information getHeroClassEquippable();
+	
 	
 }

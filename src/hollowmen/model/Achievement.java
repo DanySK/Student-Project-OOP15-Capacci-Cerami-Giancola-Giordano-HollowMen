@@ -6,7 +6,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Achievement{
+public interface Achievement extends InformationUser{
 
 	/**
 	 * This method check if the conditions for looting are met, if so the

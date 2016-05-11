@@ -6,7 +6,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface SkillNode extends Information{
+public interface SkillNode extends InformationUser{
 	
 	/**
 	 * This method give how many point are spent on this {@code SkillNode}
