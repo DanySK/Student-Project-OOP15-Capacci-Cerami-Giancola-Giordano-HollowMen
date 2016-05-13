@@ -35,4 +35,20 @@ public interface Size {
 	public default double getLenght() {
 		return this.getDownRight().getX()-this.getTopLeft().getX();
 	}
+	
+	/**
+	 * 
+	 * @return the Center on axis X
+	 */
+	public default double getCenterX() {
+		return this.getLenght()/2 + this.getTopLeft().getX();
+	}
+	
+	/**
+	 * 
+	 * @return the Center on axis Y
+	 */
+	public default double getCenterY() {
+		return this.getHeight()/2 + this.getDownRight().getY();
+	}
 }
