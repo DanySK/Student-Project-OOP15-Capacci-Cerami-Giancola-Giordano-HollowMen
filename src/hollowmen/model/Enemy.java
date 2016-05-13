@@ -5,7 +5,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Enemy extends Character, Lootable, Information{
+public interface Enemy extends Character, Lootable{
 		
 	/**
 	 * This method give an integer value that summarizes the {@code Enemy} power
