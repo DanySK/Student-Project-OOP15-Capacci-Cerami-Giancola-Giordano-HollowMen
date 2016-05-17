@@ -49,15 +49,15 @@ public interface Item extends InformationUser{
 	
 	/**
 	 * This method give a {@code Information} represent where this {@code Item} can be equipped
-	 * @return {@link Information} represent where this {@code Item} can be equipped
+	 * @return {@code String} represent where this {@code Item} can be equipped
 	 */
-	public Information getSlot();
+	public String getSlot();
 	
 	/**
 	 * This method give a {@code Information} represent on which {@code HeroClass} this {@code Item} can be equipped
-	 * @return {@link Information} represent on which {@link HeroClass} this {@code Item} can be equipped
+	 * @return {@code String} represent on which {@link HeroClass} this {@code Item} can be equipped
 	 */
-	public Information getHeroClassEquippable();
+	public String getHeroClassEquippable();
 	
 	
 }
