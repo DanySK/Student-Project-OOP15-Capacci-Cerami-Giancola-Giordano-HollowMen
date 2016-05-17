@@ -12,4 +12,16 @@ public interface InformationUser {
 	 * @return {@link Information}
 	 */
 	public Information getInfo();
+	
+	public default boolean equals(String s) {
+		return this.getInfo().getName().equals(s);
+	}
+	
+	public default boolean equals(Information info) {
+		return this.getInfo().equals(info);
+	}
+	
+	public default boolean equals(InformationUser infoUser) {
+		return this.getInfo().equals(infoUser.getInfo());
+	}
 }
