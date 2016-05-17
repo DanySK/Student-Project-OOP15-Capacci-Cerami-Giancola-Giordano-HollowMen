@@ -28,6 +28,10 @@ public interface Item extends InformationUser{
 		BUYABLE;
 	}
 	
+	/**
+	 * This method give the {@code ItemState}
+	 * @return {@link ItemState} 
+	 */
 	public ItemState getState();
 	/**
 	 * This method give all the {@code Item}'s{@code Modifier}
