@@ -10,7 +10,7 @@ import java.util.Collection;
  * @author pigio
  *
  */
-public interface Character extends RoomEntity{
+public interface Actor extends RoomEntity{
 
 	/**
 	 * RIGHT, LEFT.
