@@ -2,6 +2,8 @@ package hollowmen.model;
 
 import java.util.Collection;
 
+import hollowmen.utilities.Pair;
+
 /**
  * This interface represents the {@code Dungeon} intended as the Entry Point of the Model.<br>
  * <br>
@@ -46,20 +48,21 @@ public interface Dungeon {
 	public Hero getHero();
 	
 	/**
-	 * This method give all the {@code Floor} inside the Dungeon
+	 * This method give a {@code Colelction} of {@code Pair} represent the number of the
+	 * {@code Floor} and his avaiability
 	 * 
-	 * @return {@link Collection}<{@link Floor}>
+	 * @return {@link Collection}<{@link Pair}<{@code Integer}, {@code Boolean}>>
 	 */
-	public Collection<Floor> getFloors();
+	public Collection<Pair<Integer, Boolean>> getFloorsNumber();
 	
 	/**
 	 * This method set the {@code Floor} where the player will play
 	 * 
-	 * @param floor {@link Floor} where the player will play
+	 * @param floorNumber where the player will play
 	 * @throws IllegalStateException If the {@code Floor} is locked
 	 * @throws NullPointerException
 	 */
-	public void goTo(Floor floor) throws IllegalStateException, NullPointerException;
+	public void goTo(int floorNumber) throws IllegalStateException, NullPointerException;
 	
 	/**
 	 * This method return the current {@code Floor} selected

@@ -39,10 +39,10 @@ public interface Room {
 	public Collection<RoomEntity> getAllEntities();
 	
 	/**
-	 * This method give all the {@code Enemy} in this {@code Room}
-	 * @return {@link Collection}<{@link Enemy}>
+	 * This method give all the {@code Character} in this {@code Room}
+	 * @return {@link Collection}<{@link Actor}>
 	 */
-	public Collection<Enemy> getEnemies();
+	public Collection<Actor> getCharacter();
 	
 	/**
 	 * This method give all the {@code Interactable} in this {@code Room}

@@ -1,11 +1,11 @@
 package hollowmen.model;
 
 /**
- * This interface represents all the {@code Enemy} intended as {@link Character} that will fight the {@link Hero}
+ * This interface represents all the {@code Enemy} intended as {@link Actor} that will fight the {@link Hero}
  * @author pigio
  *
  */
-public interface Enemy extends Character, Lootable{
+public interface Enemy extends Actor, Lootable{
 		
 	/**
 	 * This method give an integer value that summarizes the {@code Enemy} power

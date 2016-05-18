@@ -1,7 +1,7 @@
 package hollowmen.model;
 
 /**
- * This interface represents the {@code Hero} intended as the {@link Character} controlled by the player<br>
+ * This interface represents the {@code Hero} intended as the {@link Actor} controlled by the player<br>
  * <br>
  * The {@code Hero} can equip, unequip, sell and buy {@link Item}<br>
  * <br>
@@ -17,7 +17,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Hero extends Character{
+public interface Hero extends Actor{
 
 	/**
 	 * This method equip the <b>item</b> adding it's {@link Modifier} to the {@code Hero}'s {@link Parameter} <br>
