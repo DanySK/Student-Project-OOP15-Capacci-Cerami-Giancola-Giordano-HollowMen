@@ -154,6 +154,45 @@ public class ItemImpl implements Item{
 		return this.heroClassEquippable;
 	}
 
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((heroClassEquippable == null) ? 0 : heroClassEquippable.hashCode());
+		result = prime * result + ((info == null) ? 0 : info.hashCode());
+		result = prime * result + rarity;
+		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemImpl other = (ItemImpl) obj;
+		if (heroClassEquippable == null) {
+			if (other.heroClassEquippable != null)
+				return false;
+		} else if (!heroClassEquippable.equals(other.heroClassEquippable))
+			return false;
+		if (info == null) {
+			if (other.info != null)
+				return false;
+		} else if (!info.equals(other.info))
+			return false;
+		if (rarity != other.rarity)
+			return false;
+		if (slot == null) {
+			if (other.slot != null)
+				return false;
+		} else if (!slot.equals(other.slot))
+			return false;
+		return true;
+	}
 	
 }
