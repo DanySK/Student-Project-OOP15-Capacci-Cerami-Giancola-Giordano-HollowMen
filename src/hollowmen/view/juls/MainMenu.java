@@ -11,22 +11,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.view.SingletonFrame;
+
 /**
  * A really SIMPLE and BASIC version of the MainMenu.
  * This will be improved and cleaned.
  * (Need to be "smarter"...)
  * 
  * @author Juls
- * @version 1.2
+ * @version 2.0
  * @since 11/05
  * 
- * Last Update: 12/05 19:25
+ * Last Update: 16/05 11:40
  */
 public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = 3001623152687149057L;
 	
-	private JFrame frame = new JFrame("HOLLOW MEN");
 	private JPanel buttonsContainer = new JPanel(); // will contain the buttons (no surprise)
 
 	private PaintedButton newGame = new PaintedButton("NEW GAME");
@@ -38,25 +39,23 @@ public class MainMenu extends JFrame {
 	private final JLabel label = new JLabel();
 	private final JLabel title = new JLabel();
 	
-	/* NOTE: these two (for now lazily init) fields are needed to call frame.setSize() */
-	private int width = 800;
-	private int height = 600;
-		
+
 	private MainMenu() {
 		
-		frame.setSize(width, height); // will be soon arranged with the dimension decided by the Model
-		frame.setResizable(false); // because I don't want to mess up with the dimension
-
+		// obtaining a reference to the only instance of the SingletonFrame class
+		SingletonFrame frame = SingletonFrame.getInstance();
+		
 		// loading of the images (background and title)
 		try {
-			label.setIcon(new ImageIcon(ImageIO.read(new File("res/castle.jpg"))));
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/title.png"))));			
+			label.setIcon(new ImageIcon(ImageIO.read(new File("res/images/castle.jpg"))));
+			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/title.png"))));			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		// setting "label" as background image
 		frame.setContentPane(label);
-	
+		
+		// NOTE FOR ME: change the parameters to avoid MAGIC NUMBERS
 		title.setBounds(30, 50, 270, 190);
 		
 		buttonsContainer.setOpaque(false);	// lets see the background under the component
@@ -76,6 +75,8 @@ public class MainMenu extends JFrame {
 
 	/* This main is here just for me, will be deleted once everything works... */
 	public static void main(String args[]) {
+		SingletonFrame.setWidth(800);
+		SingletonFrame.setHeight(600);
 		new MainMenu();
 	}
 
