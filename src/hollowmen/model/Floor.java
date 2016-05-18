@@ -15,12 +15,6 @@ package hollowmen.model;
 public interface Floor {
 	
 	/**
-	 * This method give information about the {@code Floor} state
-	 * @return {@code true} if is unlocked, {@code false} otherwise
-	 */
-	public boolean isUnlocked();
-	
-	/**
 	 * This method give the {@code Floor} number, it's number influence the {@link Enemy} found in each {@link Room}
 	 * @return {@code int} that indicates the {@code Floor} number
 	 */
