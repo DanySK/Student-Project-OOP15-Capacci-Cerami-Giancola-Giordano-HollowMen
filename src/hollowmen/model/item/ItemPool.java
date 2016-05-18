@@ -1,7 +1,7 @@
 package hollowmen.model.item;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import hollowmen.model.Item;
@@ -19,7 +19,7 @@ import hollowmen.utilities.RandomSelector;
  */
 public class ItemPool {
 	
-	private List<Item> itemInGame = new LinkedList<>();
+	private Set<Item> itemInGame = new HashSet<>();
 	
 	private ItemPool(){};
 	
@@ -43,7 +43,7 @@ public class ItemPool {
 	 */
 	public void addItem(Item item) throws IllegalArgumentException, NullPointerException{
 		ExceptionThrower.checkNullPointer(item);
-		ExceptionThrower.checkIllegalArgument(new Pair<List<Item>, Item>(itemInGame, item), p -> p.getX().contains(p.getY()));
+		ExceptionThrower.checkIllegalArgument(new Pair<Set<Item>, Item>(itemInGame, item), p -> p.getX().contains(p.getY()));
 		itemInGame.add(item);
 	}
 	
