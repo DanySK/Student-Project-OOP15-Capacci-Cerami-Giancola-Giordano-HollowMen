@@ -25,6 +25,12 @@ public interface Room {
 	public int getChildRoomNumber();
 	
 	/**
+	 * This method give the Collection of Child
+	 * @return
+	 */
+	public Collection<Room> getAllChildRoom();
+	
+	/**
 	 * This method give the selected child{@code Room}
 	 * @param choice {@code int} counting from left to right (<u>starting from 1</u>)
 	 * @return {@link Room}
