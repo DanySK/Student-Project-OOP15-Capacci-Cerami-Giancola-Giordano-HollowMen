@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
 import hollowmen.model.Point2D;
 import hollowmen.utilities.Pair;
+import hollowmen.view.ale.Game;
 
 /**
  * The ViewImpl class, that implements {@link View}, is used to draw application on screen.
@@ -17,11 +18,13 @@ import hollowmen.utilities.Pair;
 
 public class ViewImpl implements View {
 	
-	ViewObserver observer;
+	private ViewObserver observer;
+	private Game game;
 	
 	public ViewImpl(int x, int y){
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
+		game=new Game(x,y);
 	}
 	
 	/**
@@ -38,7 +41,7 @@ public class ViewImpl implements View {
 	 */
 	public void getFile(List<Pair<String, byte[]>> fileList) {
 		List<Pair<String,ImageIcon>> storage=new LinkedList<Pair<String,ImageIcon>>();
-		for(Pair<String,byte[]> elem:fileList){
+		for(Pair<String,byte[]> elem: fileList){
 			storage.add(new Pair<String,ImageIcon>(elem.getX(),new ImageIcon(elem.getY())));
 	}
 }
@@ -46,7 +49,7 @@ public class ViewImpl implements View {
 	 * The method {@code drawGame} is used to draw all the components on screen.
 	 */ 
 	public void drawGame(List<Pair<String, Point2D>> componentList) {
-		
+		game.draw(componentList);
 	}
 
 	/**
