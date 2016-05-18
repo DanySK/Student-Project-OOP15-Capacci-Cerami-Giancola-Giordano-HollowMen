@@ -2,12 +2,15 @@ package hollowmen.view.juls;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+
 
 /**
  * The {@link PaintedButton} Class creates customized buttons.
@@ -19,7 +22,7 @@ import javax.swing.JButton;
  * 
  * Last Update: 12/05 19:25
  */
-public class PaintedButton extends JButton {
+public class PaintedButton extends JButton implements CustomButton, ActionListener {
 	
 	private static final long serialVersionUID = -4128202845780339156L;
 	private BufferedImage buttonBG;
@@ -29,36 +32,35 @@ public class PaintedButton extends JButton {
 		setPreferences();
 	}
 	
-	/**
-	 * The {@code setPreferences()} method determines the look&feel of 
-	 * the {@link PaintedButton}'s buttons.
-	 */
-	private void setPreferences() {
+	@Override
+	public void setPreferences() {
 		setContentAreaFilled(false);
         setOpaque(false);
         setBorderPainted(false);
         setForeground(Color.WHITE);
+        addActionListener(this);
 	}
 	
-	/**
-	 * The {@code loadImages()} method loads the images that the constructor
-	 * of the {@code PaintedButton} class will use as background for the buttons.
-	 * <br>
-	 * It catches IOException.
-	 */
-	private void loadImages() {
+	public void loadImages() {
 		try {
-			buttonBG = ImageIO.read(new File("res/littleButton.png"));
+			buttonBG = ImageIO.read(new File("res/images/littleButton.png"));
 		} catch (IOException e){
 			e.printStackTrace();
 		}
 	}
+
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		loadImages();
 		g.drawImage(buttonBG, 0, 8, null);
 		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.println(this.getText());
+		
 	}
 
 }
