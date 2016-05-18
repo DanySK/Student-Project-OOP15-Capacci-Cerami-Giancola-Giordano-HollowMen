@@ -26,10 +26,4 @@ public interface Floor {
 	 */
 	public Room getCurrentRoom();
 	
-	/**
-	 * This method change the current {@link Room} with the <b>newRoom</b>, this allow the player to move through the {@code Room}
-	 * @param newRoom {@link Room} where the player will move
-	 * @throws NullPointerException
-	 */
-	public void changeRoom(Room newRoom) throws NullPointerException;
 }
