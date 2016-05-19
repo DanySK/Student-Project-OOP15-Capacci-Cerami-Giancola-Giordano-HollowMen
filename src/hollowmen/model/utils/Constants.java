@@ -1,7 +1,7 @@
 package hollowmen.model.utils;
 
 import hollowmen.model.Size;
-import hollowmen.model.character.SizeImpl;
+import hollowmen.model.dungeon.SizeImpl;
 
 public class Constants {
 

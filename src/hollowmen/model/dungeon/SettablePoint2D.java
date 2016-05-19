@@ -1,4 +1,4 @@
-package hollowmen.model.character;
+package hollowmen.model.dungeon;
 
 import hollowmen.model.Point2D;
 
