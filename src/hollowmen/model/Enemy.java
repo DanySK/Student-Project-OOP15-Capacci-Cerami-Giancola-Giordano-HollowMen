@@ -5,7 +5,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Enemy extends Actor, Lootable{
+public interface Enemy extends Actor{
 		
 	/**
 	 * This method give an integer value that summarizes the {@code Enemy} power
@@ -13,4 +13,9 @@ public interface Enemy extends Actor, Lootable{
 	 */
 	public int getCombatPower();
 
+	/**
+	 * This method give the {@code Lootable} object for this {@code Enemy}
+	 * @return {@link Lootable}
+	 */
+	public Lootable getLoot();
 }
