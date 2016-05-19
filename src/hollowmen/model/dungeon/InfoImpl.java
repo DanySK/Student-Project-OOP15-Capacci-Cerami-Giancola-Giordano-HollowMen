@@ -1,4 +1,4 @@
-package hollowmen.model.utils;
+package hollowmen.model.dungeon;
 
 import java.util.Optional;
 

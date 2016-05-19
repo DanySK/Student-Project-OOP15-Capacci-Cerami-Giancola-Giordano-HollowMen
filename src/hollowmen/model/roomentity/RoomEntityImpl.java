@@ -1,4 +1,4 @@
-package hollowmen.model.dungeon;
+package hollowmen.model.roomentity;
 
 import hollowmen.model.Information;
 import hollowmen.model.RoomEntity;
@@ -12,6 +12,14 @@ public class RoomEntityImpl implements RoomEntity{
 	
 	private int id;
 	
+	protected RoomEntityImpl(Information info, Size size) {
+		this.info = info;
+		this.size = size;
+	}
+
+	public void setID(int id) {
+		this.id = id;
+	}
 	
 	@Override
 	public Information getInfo() {
