@@ -13,12 +13,13 @@ import java.util.Collection;
 public interface Actor extends RoomEntity{
 
 	/**
-	 * RIGHT, LEFT.
+	 * RIGHT, LEFT, STOP.
 	 * @author pigio
 	 *
 	 */
 	public enum Direction{
 		RIGHT,
+		STOP,
 		LEFT;
 	}
 	
