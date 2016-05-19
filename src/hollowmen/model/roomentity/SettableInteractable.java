@@ -1,8 +1,16 @@
-package hollowmen.model.dungeon;
+package hollowmen.model.roomentity;
 
+import hollowmen.model.Information;
 import hollowmen.model.Interactable;
+import hollowmen.model.Size;
 
 public abstract class SettableInteractable extends RoomEntityImpl implements Interactable{
+
+	
+	protected SettableInteractable(Information info, Size size) {
+		super(info, size);
+		// TODO Auto-generated constructor stub
+	}
 
 	private boolean can;
 	

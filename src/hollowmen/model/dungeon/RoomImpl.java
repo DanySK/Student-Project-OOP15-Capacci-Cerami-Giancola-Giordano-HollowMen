@@ -7,6 +7,7 @@ import java.util.List;
 import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
+import hollowmen.model.roomentity.Door;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.RandomSelector;

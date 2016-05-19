@@ -13,12 +13,13 @@ import java.util.Collection;
 public interface Actor extends RoomEntity{
 
 	/**
-	 * RIGHT, LEFT.
+	 * RIGHT, LEFT, STOP.
 	 * @author pigio
 	 *
 	 */
 	public enum Direction{
 		RIGHT,
+		STOP,
 		LEFT;
 	}
 	
@@ -32,10 +33,10 @@ public interface Actor extends RoomEntity{
 	//state pattern per le TypeAction
 	/**
 	 * This method make the {@code Character} do something specified by action.
-	 * @param action {@link TypeAction}
+	 * @param action string represents what action will be perform
 	 * @throws NullPointerException
 	 */
-	public void performAction(TypeAction action) throws NullPointerException;
+	public void performAction(String action) throws NullPointerException;
 	
 	/**
 	 * This method give all the {@link Parameter} of the Character

@@ -3,6 +3,7 @@ package hollowmen.model.utils;
 import java.util.LinkedList;
 
 import hollowmen.model.Item;
+import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.item.ItemImpl;
 
 public class Cloner {
