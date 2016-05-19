@@ -43,8 +43,8 @@ public class ViewImpl implements View {
 		List<Pair<String,ImageIcon>> storage=new LinkedList<Pair<String,ImageIcon>>();
 		for(Pair<String,byte[]> elem: fileList){
 			storage.add(new Pair<String,ImageIcon>(elem.getX(),new ImageIcon(elem.getY())));
+		}
 	}
-}
 	/**
 	 * The method {@code drawGame} is used to draw all the components on screen.
 	 */ 
@@ -58,6 +58,8 @@ public class ViewImpl implements View {
 	 */
 	public void setObserver(ViewObserver observer) {
 		this.observer=observer;
+		this.game.setObserver(observer);
+		
 	}
 
 }
