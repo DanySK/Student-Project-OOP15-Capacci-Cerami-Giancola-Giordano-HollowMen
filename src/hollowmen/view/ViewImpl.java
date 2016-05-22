@@ -39,7 +39,7 @@ public class ViewImpl implements View {
 	 * The method {@code getFile} is used to take from the controller a list
 	 * of all the files that the view needs.
 	 */
-	public void getFile(List<Pair<String, byte[]>> fileList) {
+	public void takeFile(List<Pair<String, byte[]>> fileList) {
 		List<Pair<String,ImageIcon>> storage=new LinkedList<Pair<String,ImageIcon>>();
 		for(Pair<String,byte[]> elem: fileList){
 			storage.add(new Pair<String,ImageIcon>(elem.getX(),new ImageIcon(elem.getY())));

@@ -18,19 +18,25 @@ import hollowmen.utilities.Pair;
 public class Game extends JPanel implements GameInterface{
 	
 	private static final long serialVersionUID = -5081282343965245780L;
-	private int x=0;
-	private int y=0;
+	private static final int GAP=200;
 	private ViewObserver observer;
+	private JLabel panelGame;
+	private Bar bars;
 	private LinkedList <Pair<String,JLabel>> storage;
 	
 	
 	public Game(int x,int y){//INCOMPLETO... da aggiungere i vari label
-		this.x=x;
-		this.y=y;
-		this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
-		this.setBounds(0,0,x,y);
-		addKeyListener(new KeyInput(this));
 		
+		this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
+		this.setBounds(0,0,x,y+GAP);
+		panelGame=new JLabel();
+                panelGame.setLayout(null);
+                panelGame.setBounds(0, GAP/2, x, y);
+                this.add(panelGame);
+                bars=new Bar();
+                bars.setLayout(null);
+                bars.setBounds(x/7*5, y/38, this.getWidth(), this.getHeight());//?????????????????
+		addKeyListener(new KeyInput(this));
 	}
 	
 	public void setObserver(ViewObserver observer){
@@ -53,7 +59,7 @@ public class Game extends JPanel implements GameInterface{
 	}
 	
 	private void addComponent(){//TODO
-	//	this.add(lifeBar);
+	    	this.add(bars);
 				
 	}
 	
@@ -67,7 +73,7 @@ public class Game extends JPanel implements GameInterface{
 			labTmp=this.storage.get(c).getY();
 			labTmp.setBounds((int)elem.getY().getX(), (int)elem.getY().getY(), 
 							labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-			this.add(labTmp);//in realtà è da agg al pannello ''giochino''
+			panelGame.add(labTmp);
 		}
 	}
 	
