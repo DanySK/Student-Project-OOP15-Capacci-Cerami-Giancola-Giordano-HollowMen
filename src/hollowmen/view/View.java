@@ -19,7 +19,7 @@ public interface View {
 	 *
 	 * @param fileList
 	 */
-	public void getFile(List<Pair<String, byte[]>> fileList);
+	public void takeFile(List<Pair<String, byte[]>> fileList);
 	
 	/**
 	 * TODO

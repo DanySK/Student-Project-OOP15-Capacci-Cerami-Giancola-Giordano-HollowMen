@@ -18,7 +18,6 @@ import hollowmen.view.ale.Game;
 
 public class ViewImpl implements View {
 	
-	private ViewObserver observer;
 	private Game game;
 	
 	public ViewImpl(int x, int y){
@@ -39,7 +38,7 @@ public class ViewImpl implements View {
 	 * The method {@code getFile} is used to take from the controller a list
 	 * of all the files that the view needs.
 	 */
-	public void getFile(List<Pair<String, byte[]>> fileList) {
+	public void takeFile(List<Pair<String, byte[]>> fileList) {
 		List<Pair<String,ImageIcon>> storage=new LinkedList<Pair<String,ImageIcon>>();
 		for(Pair<String,byte[]> elem: fileList){
 			storage.add(new Pair<String,ImageIcon>(elem.getX(),new ImageIcon(elem.getY())));
@@ -57,9 +56,7 @@ public class ViewImpl implements View {
 	 * to process inputs.
 	 */
 	public void setObserver(ViewObserver observer) {
-		this.observer=observer;
 		this.game.setObserver(observer);
 		
 	}
-
 }
