@@ -9,6 +9,7 @@ import java.util.function.BinaryOperator;
  *
  */
 public interface Modifier {
+	
 	/**
 	 * This method give the target {@code Parameter} and the value
 	 * @return {@link Parameter} target

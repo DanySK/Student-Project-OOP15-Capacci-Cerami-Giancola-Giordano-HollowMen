@@ -8,13 +8,27 @@ package hollowmen.model;
 public interface Enemy extends Actor{
 		
 	/**
-	 * This method give an integer value that summarizes the {@code Enemy} power
+	 * This method gives an integer value that summarizes the {@code Enemy} power
 	 * @return {@code int} for the power of this {@code Enemy}
 	 */
 	public int getCombatPower();
 
 	/**
-	 * This method give the {@code Lootable} object for this {@code Enemy}
+	 * This method gives the title of this {@code Enemy}<br>
+	 * ex. "boss", "commander", "ordinary"
+	 * @return {@code String}
+	 */
+	public String getTitle();
+	
+	/**
+	 * This method gives the habitat of this {@code Enemy}<br>
+	 * ex. "ground", "fly"
+	 * @return
+	 */
+	public String getHabitat();
+	
+	/**
+	 * This method gives the {@code Lootable} object for this {@code Enemy}
 	 * @return {@link Lootable}
 	 */
 	public Lootable getLoot();

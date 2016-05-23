@@ -1,12 +1,7 @@
 package hollowmen.model;
 
-import java.util.Collection;
-
-import hollowmen.utilities.Pair;
 
 /**
- * This interface represents the {@code Dungeon} intended as the Entry Point of the Model.<br>
- * <br>
  * A {@code Dungeon} has a sequence of {@link Floor}, a single {@code Floor} can be selected if it's unlocked.
  * For unlock a {@code Floor} the player has to complete the previous {@code Floor}.<br>
  * <br>
@@ -39,22 +34,7 @@ public interface Dungeon {
 	 * @param deltaTime the time elapsed from the last update.
 	 */
 	public void update(long deltaTime);
-	
-	/**
-	 * This method give a reference to {@code Hero}
-	 * 
-	 * @return {@link Hero}
-	 */
-	public Hero getHero();
-	
-	/**
-	 * This method give a {@code Colelction} of {@code Pair} represent the number of the
-	 * {@code Floor} and his avaiability
-	 * 
-	 * @return {@link Collection}<{@link Pair}<{@code Integer}, {@code Boolean}>>
-	 */
-	public Collection<Pair<Integer, Boolean>> getFloorsNumber();
-	
+
 	/**
 	 * This method set the {@code Floor} where the player will play
 	 * 
@@ -65,11 +45,25 @@ public interface Dungeon {
 	public void goTo(int floorNumber) throws IllegalStateException, NullPointerException;
 	
 	/**
+	 * This method gives a {@code LimitedValue} which value is the reached floor's number
+	 * and the limit is the total floors in this {@code Dungeon}
+	 * @return {@link LimitedValue}
+	 */
+	public LimitedValue<Integer> getFloorReached();
+	
+	/**
 	 * This method return the current {@code Floor} selected
 	 * @return {@link Floor} current selected
 	 */
 	public Floor getCurrentFloor();
 	
+	/**
+	 * This method will set the current {@code Floor}'s number to 0,
+	 * this {@code Floor} has the lobby {@code Room}<br>
+	 * Increase the reached floor's number if this method is called when the {@code Hero}
+	 * pass the last {@code Room} of the current {@code Floor}
+	 */
+	public void endRun();
 	/**
 	 * This method give the currently setted {@code Difficulty} for the {@code Dungeon}
 	 * @return {@link Difficulty} currently setted

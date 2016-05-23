@@ -11,29 +11,16 @@ import java.util.Collection;
 public interface SkillTree {
 
 	/**
-	 * This method give all the {@code SkillBranch} from this tree
+	 * This method gives all the {@code SkillBranch} from this tree
 	 * @return {@link Collection}<{@link SkillBranch}>
 	 */
 	public Collection<SkillBranch> getSkillBranch();
 	
 	/**
-	 * This method add a skill point on the <b>node</b>
-	 * @param node {@link SkillNode} where add a point
-	 * @throws IllegalStateException If the <b>node</b> isn't available
-	 * @throws NullPointerException
+	 * This method gives the {@code TargetPointSystem} based on this {@code SkillTree}'s
+	 * {@code SkillNode}
+	 * @return {@link TargetPointSystem}<{@link SkillNode}>
 	 */
-	public void spendSkillPointOn(SkillNode node) throws IllegalStateException, NullPointerException;
-	
-	/**
-	 * This method give a {@code int} represents how many points are unspent
-	 * @return {@code int} how many points are unspent
-	 */
-	public int getUnspentSkillPoint();
-	
-	/**
-	 * This method retrieve all the spent points from the {@code SkillNode}s
-	 * all the points are now unspent and can be respent
-	 */
-	public void reset();
+	public TargetPointSystem<SkillNode> getUpgradableNodes();
 	
 }

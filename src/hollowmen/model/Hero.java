@@ -58,11 +58,18 @@ public interface Hero extends Actor{
 	public boolean buyItem(Item item) throws IllegalStateException, NullPointerException;
 	
 	/**
-	 * This method give the {@code Hero}'s {@code Level}
+	 * This method gives a {@code LimitedValue} which value is the current exp
+	 * and limit is the max exp to accumulate for level up
 	 * 
-	 * @return {@link Level}
+	 * @return {@link LimitedValue}
 	 */
-	public Level getLevel();
+	public LimitedValue<Integer> getExp();
+	
+	/**
+	 * This method gives the {@code Hero}'s level
+	 * @return {@code int}
+	 */
+	public int getLevel();
 	
 	/**
 	 * This method give the {@code Hero}'s gold
@@ -96,16 +103,8 @@ public interface Hero extends Actor{
 	public void pick(Lootable loot) throws NullPointerException;
 	
 	/**
-	 * This method add a {@link Modifier} on the {@code Hero}'s <b>param</b><br>
-	 * @param param {@link Parameter} to add a stat point
-	 * @throws IllegalArgumentException If the Hero hasn't the passed {@link Parameter}
-	 * @throws NullPointerException
+	 * This method gives a {@code TargetPointSystem} based on the {@code Parameter} of this {@code Hero} 
+	 * @return {@link TargetPointSystem}<{@link Parameter}>
 	 */
-	public void spendStatPointOn(Parameter param) throws IllegalArgumentException, NullPointerException;
-	
-	/**
-	 * This method give the Hero's unspent stat point
-	 * @return {@code int} that represents the Hero's unspent stat point
-	 */
-	public int getUnspentStatPoint();
+	public TargetPointSystem<Parameter> getUpgradableParameter();
 }

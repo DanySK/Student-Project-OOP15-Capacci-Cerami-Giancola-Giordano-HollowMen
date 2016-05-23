@@ -2,6 +2,8 @@ package hollowmen.model;
 
 import java.util.Collection;
 
+import hollowmen.utilities.Pair;
+
 /**
  * This interface represents the {@code Inventory} intended as an object that
  * holds {@link Item}<br>
@@ -24,14 +26,16 @@ public interface Inventory {
 	public void removeItem(Item item);
 	
 	/**
-	 * This method give all the {@link Item} currently stored in the {@code Inventory}
-	 * @return {@link Collection}<{@link Item}> currently stored in the {@code Inventory}
+	 * This method give all the {@code Item} currently stored in the {@code Inventory}
+	 * @return {@link Collection}<{@link Item}> currently stored in the {@code Inventory}<br>
+	 * NOTE: unmodifiable Collection
 	 */
-	public Collection<Item> getAllItem();
+	public Collection<Pair<Item, Integer>> getAllItem();
 	
 	/**
-	 * This method give all the {@link Item} that has had stored in the {@code Inventory}
-	 * @return {@link Collection}<{@link Item}> has had stored in the {@code Inventory}
+	 * This method give all the {@code Item} that has had stored in the {@code Inventory}
+	 * @return {@link Collection}<{@link Item}> has had stored in the {@code Inventory}<br>
+	 * NOTE: unmodifiable Collection
 	 */
 	public Collection<Item> getAllItemFound();
 	

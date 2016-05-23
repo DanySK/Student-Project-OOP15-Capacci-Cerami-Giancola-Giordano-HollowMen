@@ -8,7 +8,7 @@ import java.util.Collection;
  * @author pigio
  *
  */
-public interface HeroClass extends Information{
+public interface HeroClass extends InformationUser{
 	
 	/**
 	 * This method give the Hero's {@code SkillTree}

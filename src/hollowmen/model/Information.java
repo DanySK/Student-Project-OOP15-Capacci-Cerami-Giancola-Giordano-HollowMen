@@ -33,4 +33,7 @@ public interface Information {
 		return this.getName().equals(obj.getName());
 	}
 	
+	public default boolean equals(String s) {
+		return this.getName().equals(s);
+	}
 }

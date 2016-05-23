@@ -26,4 +26,11 @@ public interface Floor {
 	 */
 	public Room getCurrentRoom();
 	
+	/**
+	 * This method change the current {@code Room} with one of its child OR to its parent if
+	 * <b>choice</b> equals to any negative number
+	 * @param choice 
+	 */
+	public void changeRoom(int choice);
+	
 }

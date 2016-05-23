@@ -8,7 +8,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Parameter extends Information{
+public interface Parameter extends InformationUser{
 	
 	/**
 	 * This method give the final value for this {@code Parameter}

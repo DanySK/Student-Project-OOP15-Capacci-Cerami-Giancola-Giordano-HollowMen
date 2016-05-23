@@ -19,5 +19,4 @@ public interface Shop {
 	 */
 	public Collection<Item> getShopItem();
 	
-	
 }

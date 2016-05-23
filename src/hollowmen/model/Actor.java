@@ -49,4 +49,23 @@ public interface Actor extends RoomEntity{
 	 * @return {@code true} if this {@code Character} is facing right, {@code false} if facing left
 	 */
 	public boolean isFacingRight();
+	
+	/**
+	 * This method gives a {@code String} represents the state of this {@code Actor}<br>
+	 * ex. "attack", "jump", "stand", "move"
+	 * @return {@code String} represents the state of this {@code Actor}
+	 */
+	public String getState();
+	
+	/**
+	 * This method changes the current state of this {@code Actor} with <b>state</b>
+	 * @param state
+	 */
+	public void changeState(String state);
+	
+	/**
+	 * This method gives all the {@code Status} that are affecting this {@code Actor}
+	 * @return {@link Collection}<{@link Status}> that are affecting this {@code Actor}
+	 */
+	public Collection<Status> getStatus();
 }

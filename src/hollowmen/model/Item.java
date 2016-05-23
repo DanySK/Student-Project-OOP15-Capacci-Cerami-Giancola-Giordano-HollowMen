@@ -33,6 +33,12 @@ public interface Item extends InformationUser{
 	 * @return {@link ItemState} 
 	 */
 	public ItemState getState();
+	
+	/**
+	 * This method set the state of this {@code Item} with <b>state</b>
+	 */
+	public void setState(ItemState state);
+	
 	/**
 	 * This method give all the {@code Item}'s{@code Modifier}
 	 * @return {@link Collection}<{@link Modifier}>

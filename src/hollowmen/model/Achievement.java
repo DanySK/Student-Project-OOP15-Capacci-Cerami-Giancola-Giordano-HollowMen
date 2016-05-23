@@ -15,9 +15,11 @@ public interface Achievement extends InformationUser{
 	public void check();
 	
 	/**
-	 * @return {@code true} if this can be looted, {@code false} otherwise
+	 * This method gives a {@code LimitedValue} which value is the progress and
+	 * the limit is when this {@code Achievement} can be looted
+	 * @return {@link LimitedValue}
 	 */
-	public boolean isLootable();
+	public LimitedValue<Integer> getProgress();
 	
 	/**
 	 * 

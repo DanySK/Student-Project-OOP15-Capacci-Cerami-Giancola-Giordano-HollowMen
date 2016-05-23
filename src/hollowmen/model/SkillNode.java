@@ -9,18 +9,6 @@ package hollowmen.model;
 public interface SkillNode extends InformationUser{
 	
 	/**
-	 * This method give how many point are spent on this {@code SkillNode}
-	 * @return {@code int}
-	 */
-	public int getSkillPointSpent();
-	
-	/**
-	 * This method give how many points can be spent on this {@code SkillNode}
-	 * @return {@code int}
-	 */
-	public int getMaxSkillPoint();
-	
-	/**
 	 * This method check the availability of this {@code SkillNode}
 	 * @return {@code true} if there are enough skill point in this 
 	 * {@link SkillBranch}, {@code false} otherwise
@@ -32,4 +20,11 @@ public interface SkillNode extends InformationUser{
 	 * @return {@code int}
 	 */
 	public int getLevel();
+	
+	/**
+	 * This method give {@code LimitedValue} which value is the skill points
+	 * spent on this node and limit the max skill points to spend on this node 
+	 * @return {@link LimitedValue}
+	 */
+	public LimitedValue<Integer> getPointsSpent();
 }

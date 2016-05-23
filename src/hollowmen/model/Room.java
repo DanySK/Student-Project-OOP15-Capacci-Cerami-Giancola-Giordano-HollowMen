@@ -19,18 +19,6 @@ public interface Room {
 	public Room getParentRoom();
 	
 	/**
-	 * This method give the number of "next" {@code Room} from this one
-	 * @return {@code int}
-	 */
-	public int getChildRoomNumber();
-	
-	/**
-	 * This method give the Collection of Child
-	 * @return
-	 */
-	public Collection<Room> getAllChildRoom();
-	
-	/**
 	 * This method give the selected child{@code Room}
 	 * @param choice {@code int} counting from left to right (<u>starting from 1</u>)
 	 * @return {@link Room}
@@ -45,10 +33,22 @@ public interface Room {
 	public Collection<RoomEntity> getAllEntities();
 	
 	/**
-	 * This method give all the {@code Character} in this {@code Room}
-	 * @return {@link Collection}<{@link Actor}>
+	 * This method give all the {@code Enemy} in this {@code Room}
+	 * @return {@link Collection}<{@link Enemy}>
 	 */
-	public Collection<Actor> getCharacter();
+	public Collection<Enemy> getEnemies();
+	
+	/**
+	 * This method give all the {@code Bullet} in this {@code Room}
+	 * @return {@link Collection}<{@link Bullet}>
+	 */
+	public Collection<Bullet> getBullets();
+	
+	/**
+	 * This method gives the {@code Hero}!
+	 * @return {@link Hero}
+	 */
+	public Hero getHero();
 	
 	/**
 	 * This method give all the {@code Interactable} in this {@code Room}
