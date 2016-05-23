@@ -18,7 +18,6 @@ import hollowmen.view.ale.Game;
 
 public class ViewImpl implements View {
 	
-	private ViewObserver observer;
 	private Game game;
 	
 	public ViewImpl(int x, int y){
@@ -57,9 +56,7 @@ public class ViewImpl implements View {
 	 * to process inputs.
 	 */
 	public void setObserver(ViewObserver observer) {
-		this.observer=observer;
 		this.game.setObserver(observer);
 		
 	}
-
 }
