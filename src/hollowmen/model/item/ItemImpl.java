@@ -110,10 +110,10 @@ public class ItemImpl implements Item{
 			ExceptionThrower.checkIllegalState(super.getInfo(), i -> !i.getDescription().isPresent());
 //			ExceptionThrower.checkIllegalState(super.getModifiers(), m -> m.isEmpty());
 			ExceptionThrower.checkIllegalState(super.getRarity(), i -> i <= 0);
-			ExceptionThrower.checkIllegalState(super.getSellValue(), i -> i <= 0);
+			ExceptionThrower.checkIllegalState(super.getGoldValue(), i -> i <= 0);
 			
 			return new ItemImpl(super.getInfo(), 
-					super.getState(), super.getModifiers(), super.getSellValue(), 
+					super.getState(), super.getModifiers(), super.getGoldValue(), 
 					super.getRarity(), super.getSlot(), super.getHeroClassEquippable());
 		}
 		
@@ -140,7 +140,7 @@ public class ItemImpl implements Item{
 	}
 
 	@Override
-	public int getSellValue() {
+	public int getGoldValue() {
 		return this.sellValue;
 	} 
 
@@ -159,7 +159,6 @@ public class ItemImpl implements Item{
 		return this.heroClassEquippable;
 	}
 
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -167,7 +166,9 @@ public class ItemImpl implements Item{
 		result = prime * result + ((heroClassEquippable == null) ? 0 : heroClassEquippable.hashCode());
 		result = prime * result + ((info == null) ? 0 : info.hashCode());
 		result = prime * result + rarity;
+		result = prime * result + sellValue;
 		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		return result;
 	}
 
@@ -192,14 +193,16 @@ public class ItemImpl implements Item{
 			return false;
 		if (rarity != other.rarity)
 			return false;
+		if (sellValue != other.sellValue)
+			return false;
 		if (slot == null) {
 			if (other.slot != null)
 				return false;
 		} else if (!slot.equals(other.slot))
 			return false;
+		if (state != other.state)
+			return false;
 		return true;
 	}
-
-	
 	
 }
