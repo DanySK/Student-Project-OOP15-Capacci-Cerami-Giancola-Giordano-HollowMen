@@ -1,13 +1,20 @@
 package hollowmen.view;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
 import java.util.List;
+import java.util.Optional;
+
 import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
 import hollowmen.model.Point2D;
 import hollowmen.utilities.Pair;
+
 import hollowmen.view.ale.Game;
+import hollowmen.view.juls.BasicMenuImpl;
+import hollowmen.view.juls.ComplexMenuImpl;
+import hollowmen.view.juls.MenuType;
 
 /**
  * The ViewImpl class, that implements {@link View}, is used to draw application on screen.
@@ -18,6 +25,7 @@ import hollowmen.view.ale.Game;
 
 public class ViewImpl implements View {
 	
+	private ViewObserver observer;
 	private Game game;
 	
 	public ViewImpl(int x, int y){
@@ -27,11 +35,23 @@ public class ViewImpl implements View {
 	}
 	
 	/**
+	 * The {@code drawMenu} method draws the menu on screen when needed.
+	 * @param text - distinguishes the two kinds of menu (Basic or Complex)
+	 * @param name - represents the menu to draw
+	 * @param collection - (Optional) represents the pool of Items/Mobs/Skill Nodes/Achievements
+	 * 						to add to the menu
 	 * 
+	 * @author Juls
+	 * NOTE FOR ME: change this stupid "?" (Damn Object, you pineapple head)
 	 */
-	public void drawMenu() {
-		
-
+	public void drawMenu(String text, MenuType name, Optional<Collection<?>> collection) {
+		BasicMenuImpl basic = new BasicMenuImpl();
+		ComplexMenuImpl complex = new ComplexMenuImpl();
+		if (text.equalsIgnoreCase("basic")) {
+			basic.drawBasicMenu(name);
+		} else {
+			complex.drawComplexMenu(name, collection.get());
+		}
 	}
 
 	/**
@@ -56,6 +76,7 @@ public class ViewImpl implements View {
 	 * to process inputs.
 	 */
 	public void setObserver(ViewObserver observer) {
+		this.observer=observer;
 		this.game.setObserver(observer);
 		
 	}

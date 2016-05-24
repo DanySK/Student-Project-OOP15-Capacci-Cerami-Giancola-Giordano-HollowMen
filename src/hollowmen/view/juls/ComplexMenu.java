@@ -10,15 +10,15 @@ import java.util.Collection;
  * @param <X> a collection of unmodifiable Objects, such as
  * Items or Mobs.
  */
-public interface ComplexMenu<X> {
+public interface ComplexMenu {
 	
 	/**
-	 * The method draws a complex menu taking as argument
-	 * a Collection of unmodifiable Generics.
+	 * The method draws a Complex Menu.
 	 * 
+	 * @param name - the name of the menu that must be drawn on screen
 	 * @param collection - the collection that must be added
 	 * to the Menu and graphically represented on screen.
 	 */
-	public void drawComplexMenu(Collection<X> collection);
+	public void drawComplexMenu(MenuType name, Collection<?> collection);
 
 }

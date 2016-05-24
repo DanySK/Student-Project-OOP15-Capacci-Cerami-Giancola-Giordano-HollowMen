@@ -1,7 +1,8 @@
 package hollowmen.view.juls;
 
 import java.awt.GridLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.controller.ViewObserver;
 import hollowmen.view.SingletonFrame;
 
 /**
@@ -22,11 +24,15 @@ import hollowmen.view.SingletonFrame;
  * @version 2.0
  * @since 11/05
  * 
- * Last Update: 16/05 11:40
+ * Last Update: 19/05 14:40
  */
 public class MainMenu extends JFrame {
 
 	private static final long serialVersionUID = 3001623152687149057L;
+	private static final int TITLE_X = 30;
+	private static final int TITLE_Y = 50;
+	private static final int TITLE_WIDTH = 270;
+	private static final int TITLE_HEIGHT = 190;
 	
 	private JPanel buttonsContainer = new JPanel(); // will contain the buttons (no surprise)
 
@@ -39,8 +45,10 @@ public class MainMenu extends JFrame {
 	private final JLabel label = new JLabel();
 	private final JLabel title = new JLabel();
 	
+	private ViewObserver observer; //needed to tell Controller what happens
+	
 
-	private MainMenu() {
+	protected MainMenu() {
 		
 		// obtaining a reference to the only instance of the SingletonFrame class
 		SingletonFrame frame = SingletonFrame.getInstance();
@@ -55,8 +63,7 @@ public class MainMenu extends JFrame {
 		// setting "label" as background image
 		frame.setContentPane(label);
 		
-		// NOTE FOR ME: change the parameters to avoid MAGIC NUMBERS
-		title.setBounds(30, 50, 270, 190);
+		title.setBounds(TITLE_X, TITLE_Y, TITLE_WIDTH, TITLE_HEIGHT);
 		
 		buttonsContainer.setOpaque(false);	// lets see the background under the component
 		buttonsContainer.setLayout(new GridLayout(5,1,8,0)); // GridLayout it's great for a menu
@@ -66,6 +73,38 @@ public class MainMenu extends JFrame {
 		buttonsContainer.add(credits);
 		buttonsContainer.add(exit);
 		buttonsContainer.setBounds(90, 240, 150, 300);
+		
+		newGame.setEnabled(false);
+		
+		newGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CustomDialog(frame, "<html>You are going to start a New Adventure. <br> Are you ready?<html>");
+			}
+		});
+		
+		loadGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		help.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		credits.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		frame.add(title);
 		frame.add(buttonsContainer);
