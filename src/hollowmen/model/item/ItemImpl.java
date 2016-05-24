@@ -128,7 +128,12 @@ public class ItemImpl implements Item{
 	public ItemState getState() {
 		return this.state;
 	}
-
+	
+	@Override
+	public void setState(ItemState state) {
+		// TODO Auto-generated method stub
+		
+	}
 	@Override
 	public Collection<Modifier> getModifiers() {
 		return this.mod;
@@ -194,5 +199,7 @@ public class ItemImpl implements Item{
 			return false;
 		return true;
 	}
+
+	
 	
 }

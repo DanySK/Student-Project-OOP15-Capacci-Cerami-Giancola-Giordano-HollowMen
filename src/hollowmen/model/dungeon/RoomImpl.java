@@ -11,7 +11,9 @@ import hollowmen.model.roomentity.Door;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.RandomSelector;
-import hollowmen.model.Actor;
+import hollowmen.model.Bullet;
+import hollowmen.model.Enemy;
+import hollowmen.model.Hero;
 
 public class RoomImpl implements Room{
 	
@@ -21,9 +23,11 @@ public class RoomImpl implements Room{
 	
 	private List<Room> childRoom = new ArrayList<>();
 	
-	private Collection<Interactable> interactableEntity;
+	private Collection<Interactable> interactables;
 	
-	private Collection<Actor> characterEntity;
+	private Collection<Enemy> enemies;
+	
+	private Collection<Bullet> bullets;
 	
 	private List<RoomEntity> list;
 	
@@ -45,10 +49,10 @@ public class RoomImpl implements Room{
 	};
 	
 	private void createDoor() {
-		for(int i = 0; i < this.getChildRoomNumber(); i++) {
-			this.interactableEntity.add(new Door(i));
+		for(int i = 0; i < this.childNumber; i++) {
+			this.interactables.add(new Door(i));
 		}
-		this.interactableEntity.add(new Door(-1));
+		this.interactables.add(new Door(-1));
 	}
 
 	@Override
@@ -56,24 +60,20 @@ public class RoomImpl implements Room{
 		return this.parentRoom;
 	}
 
-	@Override
-	public int getChildRoomNumber() {
-		return this.childNumber;
-	}
 
 	@Override
 	public Room getChildRoom(int choice) throws IllegalArgumentException {
-		ExceptionThrower.<Integer>checkIllegalArgument(choice-1, i -> i < 0 || i > this.getChildRoomNumber());
-		if(childRoom.get(choice-1) == null) {
+		ExceptionThrower.<Integer>checkIllegalArgument(choice, i -> i < 0 || i > this.childNumber);
+		if(childRoom.get(choice) == null) {
 			return generateRoom(choice);
 		}
-		return childRoom.get(choice - 1);
+		return childRoom.get(choice);
 	}
 
 	
 	private Room generateRoom(int choice) {
 		RoomImpl roomToRet;
-		if(choice-1 == roomNumberWithChild) {
+		if(choice == roomNumberWithChild) {
 			roomToRet = new RoomImpl(this, Constants.CHILDROOMQUANTITY, this.getRoomNumber() + 1);
 		} else {
 			roomToRet = new RoomImpl(this, 0, this.getRoomNumber() + 1);
@@ -87,14 +87,10 @@ public class RoomImpl implements Room{
 		return list;
 	}
 
-	@Override
-	public Collection<Actor> getCharacter() {
-		return characterEntity;
-	}
 
 	@Override
 	public Collection<Interactable> getInteractable() {
-		return interactableEntity;
+		return interactables;
 	}
 
 	@Override
@@ -103,9 +99,20 @@ public class RoomImpl implements Room{
 	}
 
 	@Override
-	public Collection<Room> getAllChildRoom() {
-		return childRoom;
+	public Collection<Enemy> getEnemies() {
+		return this.enemies;
 	}
+
+	@Override
+	public Collection<Bullet> getBullets() {
+		return bullets;
+	}
+
+	@Override
+	public Hero getHero() {
+		return null;//TODO
+	}
+
 	
 
 }
