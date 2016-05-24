@@ -64,6 +64,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 				item.setState(ItemState.EQUIPPED);
 				item.getModifiers().stream()
 					.forEach(m -> super.addModifier(m));
+				this.inventory.removeItem(item);
 				return;
 			}
 		}
@@ -85,6 +86,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 				temp.setState(ItemState.UNEQUIPPED);
 				temp.getModifiers().stream()
 					.forEach(m -> super.removeModifier(m));
+				this.inventory.addItem(item);
 				s.setItem(Optional.empty());
 			}
 		}
@@ -106,6 +108,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 	public void buyItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> (i.getGoldValue() - this.getGold()) < 0);
+		item.setState(ItemState.UNEQUIPPED);
 		this.inventory.addItem(item);
 		this.gold -= item.getGoldValue();
 	}

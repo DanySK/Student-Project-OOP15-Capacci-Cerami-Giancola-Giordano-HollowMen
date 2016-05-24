@@ -13,7 +13,7 @@ public class Cloner {
 		return ItemImpl.builder().info(new InfoImpl(itemToClone.getInfo()))
 				.state(itemToClone.getState())
 				.modifier(new LinkedList<>(itemToClone.getModifiers()))
-				.value(itemToClone.getSellValue())
+				.value(itemToClone.getGoldValue())
 				.rarity(itemToClone.getRarity())
 				.slot(itemToClone.getSlot())
 				.heroClass(itemToClone.getHeroClassEquippable())
