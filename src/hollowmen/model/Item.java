@@ -23,8 +23,6 @@ public interface Item extends InformationUser{
 	public enum ItemState{
 		EQUIPPED,
 		UNEQUIPPED,
-		SELLABLE,
-		UNSELLABLE,
 		BUYABLE;
 	}
 	
@@ -49,7 +47,7 @@ public interface Item extends InformationUser{
 	 * This method give the {@code Item}'s sellValue
 	 * @return {@code int} represents the sellValue
 	 */
-	public int getSellValue();
+	public int getGoldValue();
 	
 	/**
 	 * This method give the {@code Item}'s rarity

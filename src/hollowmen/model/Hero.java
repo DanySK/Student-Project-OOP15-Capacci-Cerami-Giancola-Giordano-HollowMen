@@ -50,12 +50,12 @@ public interface Hero extends Actor{
 	public void sellItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException;
 	
 	/**
-	 * This method buy an <b>item</b> adding it to the {@link Inventory} and subtract his sellValue*2 to the Hero's gold
-	 * @param item the {@link Item} to sell
-	 * @throws IllegalStateException If the {@code Hero} has less gold than the <b>item</b>'s sellValue*2
+	 * This method buy an <b>item</b> adding it to the {@link Inventory} and subtract his sellValue to the Hero's gold
+	 * @param item the {@link Item} to buy
+	 * @throws IllegalStateException If the {@code Hero} has less gold than the <b>item</b>'s sellValue
 	 * @throws NullPointerException
 	 */
-	public boolean buyItem(Item item) throws IllegalStateException, NullPointerException;
+	public void buyItem(Item item) throws IllegalStateException, NullPointerException;
 	
 	/**
 	 * This method gives a {@code LimitedValue} which value is the current exp
