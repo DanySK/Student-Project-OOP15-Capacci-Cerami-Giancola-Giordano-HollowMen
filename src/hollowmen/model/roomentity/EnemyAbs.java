@@ -7,7 +7,6 @@ import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Lootable;
 import hollowmen.model.Parameter;
-import hollowmen.model.Status;
 import hollowmen.model.dungeon.LootableImpl;
 
 public abstract class EnemyAbs extends ActorAbs implements Enemy{
@@ -52,17 +51,6 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		return loot;
 	}
 
-	@Override
-	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getHabitat() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 }

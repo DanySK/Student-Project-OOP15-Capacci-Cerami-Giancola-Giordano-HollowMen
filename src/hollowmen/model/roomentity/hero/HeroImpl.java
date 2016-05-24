@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 import hollowmen.model.Hero;
 import hollowmen.model.HeroClass;
@@ -18,13 +17,11 @@ import hollowmen.model.Lootable;
 import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Slot;
-import hollowmen.model.Status;
 import hollowmen.model.TargetPointSystem;
 import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
-import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
