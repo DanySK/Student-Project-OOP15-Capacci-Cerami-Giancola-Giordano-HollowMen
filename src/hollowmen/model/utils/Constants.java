@@ -13,6 +13,7 @@ public class Constants {
 	
 	public static final int STATPOINTSONLEVELUP = 2;
 	
+	public static final int SKILLPOINTSFORUPGRADE = 3;
 	
 	public static final Rectangle DOORSIZE = new Rectangle(50, 100);
 

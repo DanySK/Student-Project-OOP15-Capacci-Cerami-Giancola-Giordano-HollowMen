@@ -4,35 +4,38 @@ package hollowmen.model;
  * This interface represents any value that has a upper limit that can't exceed<br>
  * @author pigio
  *
- * @param <T> anything that extends {@link Number}
  */
-public interface LimitedValue<T extends Number> {
+public interface LimitedCounter{
 	
 	/**
 	 * This method give the current value
-	 * @return T value
+	 * @return {@code double} value
 	 */
-	public T getValue();
+	public double getValue();
 	
 	/**
 	 * This method give the limit the value can't exceed
-	 * @return T limit
+	 * @return {@code double} limit
 	 */
-	public T getLimit();
+	public double getLimit();
 	
 	/**
 	 * This method add <b>value</b> to current value
 	 * @param value
 	 * @throws IllegalArgumentException If <b>value</b> less than 0
-	 * @throws IllegalStateException If the limit is reached
+	 * @throws IllegalStateException If the limit is reached<br>
+	 * NOTE: If currentValue + <b>value</b> would exceed the limit the current value
+	 * is set equals to limit
 	 */
-	public void addToValue(T value) throws IllegalArgumentException, IllegalStateException;
+	public void addToValue(double value) throws IllegalArgumentException, IllegalStateException;
 	
 	/**
 	 * This method subtract <b>value</b> to current value
 	 * @param value
 	 * @throws IllegalArgumentException If <b>value</b> less than 0
 	 * @throws IllegalStateException If current value sub <b>value</b> would become negative
+	 * NOTE: If currentValue - <b>value</b> would drop below 0 the current value
+	 * is set equals to 0
 	 */
-	public void subToValue(T value) throws IllegalArgumentException, IllegalStateException;
+	public void subToValue(double value) throws IllegalArgumentException, IllegalStateException;
 }
