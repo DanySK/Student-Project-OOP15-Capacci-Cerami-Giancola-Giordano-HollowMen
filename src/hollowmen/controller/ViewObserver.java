@@ -1,6 +1,8 @@
 package hollowmen.controller;
 
-import hollowmen.model.Information;
+import hollowmen.enumerators.ClassType;
+import hollowmen.enumerators.InputCommand;
+import hollowmen.enumerators.InputMenu;
 
 /**
  * Interface used to notify controller about input
@@ -12,17 +14,33 @@ public interface ViewObserver {
 	
 	/**
 	 * The method {@code addInput} notify a simple input
+	 * related to the hero or to an item
 	 * 
-	 * @param command
+	 * @param input
 	 */
-	public void addInput(String command);
+	public void addInput(InputCommand input);
+	
+	/**
+	 * The method {@code addInput} notify a simple input
+	 * related to a menu
+	 * 
+	 * @param menu
+	 */
+	public void addInput(InputMenu menu);
 	
 	/**
 	 * The method {@code addInput} notify an input and the 
 	 * {@link Information} on which the input is used
 	 * 
-	 * @param command
+	 * @param input
 	 * @param info
 	 */
-	public void addInput(String command, Information info);
+	public void addInput(InputCommand input, ImmutableItem item);
+	
+	/**
+	 * The method {@code addInput} notify which class player choose
+	 * 
+	 * @param classType
+	 */
+	public void addInput(ClassType classType);
 }

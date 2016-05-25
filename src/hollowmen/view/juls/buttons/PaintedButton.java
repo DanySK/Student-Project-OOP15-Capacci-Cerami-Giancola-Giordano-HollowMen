@@ -1,4 +1,4 @@
-package hollowmen.view.juls;
+package hollowmen.view.juls.buttons;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,17 +8,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-
-
 /**
  * The {@link PaintedButton} Class creates customized buttons.
- * The background of the buttons is loaded from the "res" folder.
+ * It represents the button's type most used for the menus in the app. 
  * 
  * @author Juls
- * @version 3.0
- * @since 12/05
- * 
- * Last Update: 23/05 15:30
  */
 public class PaintedButton extends TranslucentButton {
 	
@@ -55,6 +49,4 @@ public class PaintedButton extends TranslucentButton {
 		}
 		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
 	}
-
-
 }

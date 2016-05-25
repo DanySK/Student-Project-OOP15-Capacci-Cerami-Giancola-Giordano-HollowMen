@@ -1,4 +1,4 @@
-package hollowmen.view.juls;
+package hollowmen.view.juls.buttons;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,6 +7,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The {@code AssassinButton} class it's one of the concrete classes 
+ * that extends {@link TranslucentButton}. It consists into a custom button that is used
+ * in the ClassChoiceMenu.
+ * 
+ * @author Juls
+ *
+ */
 public class AssassinButton extends TranslucentButton {
 
 	private static final long serialVersionUID = -2065236498744095705L;

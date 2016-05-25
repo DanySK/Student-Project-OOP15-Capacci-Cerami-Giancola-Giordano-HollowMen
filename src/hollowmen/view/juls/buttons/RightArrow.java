@@ -1,4 +1,4 @@
-package hollowmen.view.juls;
+package hollowmen.view.juls.buttons;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,6 +7,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The {@code RightArrow} class it's a specialization of
+ * {@link TranslucentButton}. It represents an arrow facing right.
+ * @author Juls
+ *
+ */
 public class RightArrow extends TranslucentButton {
 
 	private static final long serialVersionUID = 722229785119111280L;

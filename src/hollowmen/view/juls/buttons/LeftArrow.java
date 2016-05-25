@@ -1,4 +1,4 @@
-package hollowmen.view.juls;
+package hollowmen.view.juls.buttons;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,6 +7,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The {@code LeftArrow} class it's one of the specialization of the
+ * {@link TranslucentButton} abstract class. It represents an arrow facing left.
+ * 
+ * @author Juls
+ *
+ */
 public class LeftArrow extends TranslucentButton {
 
 	private static final long serialVersionUID = 583129785119111280L;
@@ -37,7 +44,7 @@ public class LeftArrow extends TranslucentButton {
 		if(!isAvailable) {
 			g.drawImage(lArrowNA, 0, 8, null);
 		}
-		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
+		super.paintComponent(g);
 	}
 
 }

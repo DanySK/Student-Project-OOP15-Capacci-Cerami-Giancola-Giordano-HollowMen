@@ -14,17 +14,22 @@ import javax.swing.JPanel;
 
 import hollowmen.controller.ViewObserver;
 import hollowmen.view.SingletonFrame;
+import hollowmen.view.juls.buttons.PaintedButton;
+import hollowmen.view.juls.dialog.CreditsMenu;
+import hollowmen.view.juls.dialog.ExitDialog;
+import hollowmen.view.juls.dialog.NewGameDialog;
+import hollowmen.view.juls.dialog.PauseMenu;
 
 /**
- * A really SIMPLE and BASIC version of the MainMenu.
- * This will be improved and cleaned.
- * (Need to be "smarter"...)
+ * The {@code MainMenu} class it's a visual representation
+ * of the Main Menu of the app. From here, the user can start using
+ * the software.
  * 
  * @author Juls
- * @version 2.0
+ * @version 2.2
  * @since 11/05
  * 
- * Last Update: 19/05 14:40
+ * Last Update: 24/05 21:40
  */
 public class MainMenu extends JFrame {
 
@@ -48,7 +53,7 @@ public class MainMenu extends JFrame {
 	private ViewObserver observer; //needed to tell Controller what happens
 	
 
-	protected MainMenu() {
+	public MainMenu() {
 		
 		// obtaining a reference to the only instance of the SingletonFrame class
 		SingletonFrame frame = SingletonFrame.getInstance();
@@ -74,11 +79,9 @@ public class MainMenu extends JFrame {
 		buttonsContainer.add(exit);
 		buttonsContainer.setBounds(90, 240, 150, 300);
 		
-		newGame.setEnabled(false);
-		
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CustomDialog(frame, "<html>You are going to start a New Adventure. <br> Are you ready?<html>");
+				new NewGameDialog(frame);
 			}
 		});
 		
@@ -96,13 +99,13 @@ public class MainMenu extends JFrame {
 		
 		credits.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new CreditsMenu(frame);
 			}
 		});
 		
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new ExitDialog(frame);
 			}
 		});
 		

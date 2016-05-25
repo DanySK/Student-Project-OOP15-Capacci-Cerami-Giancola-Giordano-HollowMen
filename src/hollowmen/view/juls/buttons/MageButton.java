@@ -1,4 +1,4 @@
-package hollowmen.view.juls;
+package hollowmen.view.juls.buttons;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,6 +7,12 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The {@code MageButton} class it's one of the concrete classes 
+ * that extend {@link TranslucentButton} abstract class. It is used in the ClassChoiceMenu.
+ * @author Juls
+ *
+ */
 public class MageButton extends TranslucentButton {
 
 	private static final long serialVersionUID = -2065213613244095705L;

@@ -1,9 +1,15 @@
-package hollowmen.view.juls;
+package hollowmen.view.juls.buttons;
 
 import java.awt.Color;
 
 import javax.swing.Icon;
 
+/**
+ * The {@code IconButton} abstract class determines a specialization
+ * of {@link CustomButton}. It represents a button with icon.
+ * @author Juls
+ *
+ */
 public abstract class IconButton extends CustomButton {
 
 	private static final long serialVersionUID = -1151945739902849112L;
