@@ -32,8 +32,9 @@ public interface Dungeon {
 	 * resolve Collision.
 	 * 
 	 * @param deltaTime the time elapsed from the last update.
+	 * @throws GameOverException If the time is over or If Hero's death
 	 */
-	public void update(long deltaTime);
+	public void update(long deltaTime) throws GameOverException;
 
 	/**
 	 * This method set the {@code Floor} where the player will play
