@@ -11,10 +11,11 @@ package hollowmen.model;
 public interface Time {
 
 	/**
-	 * This method adds the given <b>time</b> simulating the flow of time
-	 * @param time 
+	 * This method gives a {@code LimitedValue} which value is the time passed
+	 * and limit is the max time until game over
+	 * @return {@link LimitedValue}
 	 */
-	public void addTime(long time);
+	public LimitedValue<Long> getTimeProgress();
 	
 	/**
 	 * This method adds the given <b>event</b> to this {@code Time} and when
