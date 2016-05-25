@@ -1,5 +1,11 @@
 package hollowmen.enumerators;
 
+/**
+ * Contains the list of the game values
+ * 
+ * @author Giordo
+ *
+ */
 public enum Values {
 	
 	LIFE,
