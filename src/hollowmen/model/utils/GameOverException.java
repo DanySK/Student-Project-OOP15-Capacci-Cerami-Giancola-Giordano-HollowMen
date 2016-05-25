@@ -1,4 +1,4 @@
-package hollowmen.model;
+package hollowmen.model.utils;
 
 /**
  * This exception is thrown to alert someone outside the Model
