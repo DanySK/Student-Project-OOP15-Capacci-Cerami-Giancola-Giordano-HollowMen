@@ -61,7 +61,7 @@ public interface Actor extends RoomEntity{
 	 * This method changes the current state of this {@code Actor} with <b>state</b>
 	 * @param state
 	 */
-	public void changeState(String state);
+	public void setState(String state);
 	
 	/**
 	 * This method gives all the {@code Status} that are affecting this {@code Actor}

@@ -86,7 +86,7 @@ public abstract class ActorAbs extends RoomEntityImpl implements Actor{
 	}
 
 	@Override
-	public void changeState(String state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 
