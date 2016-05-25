@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import hollowmen.controller.ViewObserver;
+import hollowmen.enumerators.InputCommand;
+import hollowmen.enumerators.InputMenu;
 import hollowmen.utilities.Pair;
 
 /**
@@ -18,10 +20,27 @@ import hollowmen.utilities.Pair;
 public class ScreenButton extends JButton{
 	private static final long serialVersionUID = -4490819627872969413L;
 	
-	public ScreenButton(ViewObserver observer, String command,List<Pair<String,JLabel>> storage){
+	public ScreenButton(ViewObserver observer, InputCommand command ,List<Pair<String,JLabel>> storage){
 		
 		for(Pair<String,JLabel> elem: storage){
-			if(elem.getX()==command){
+			if(elem.getX()==command.getString()){
+				this.setIcon(elem.getY().getIcon());
+				break;
+			}
+		}
+		this.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				observer.addInput(command);
+			}
+		});
+		
+	}
+	
+	public ScreenButton(ViewObserver observer, InputMenu command ,List<Pair<String,JLabel>> storage){
+		
+		for(Pair<String,JLabel> elem: storage){
+			if(elem.getX()==command.getString()){
 				this.setIcon(elem.getY().getIcon());
 				break;
 			}
@@ -33,5 +52,6 @@ public class ScreenButton extends JButton{
 			}
 		});
 	}
+	
 	
 }

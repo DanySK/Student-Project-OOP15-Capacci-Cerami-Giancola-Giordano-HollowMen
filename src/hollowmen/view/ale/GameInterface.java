@@ -20,12 +20,6 @@ import hollowmen.utilities.Pair;
 public interface GameInterface {
 	
 	/**
-	 * The method {@code setObserver} is used to set a {@link ViewObserver}.
-	 * @param observer
-	 */
-	public void setObserver(ViewObserver observer);
-	
-	/**
 	 * The method {@code draw} is used to draw all the components on screen.
 	 * 
 	 * @param componentList

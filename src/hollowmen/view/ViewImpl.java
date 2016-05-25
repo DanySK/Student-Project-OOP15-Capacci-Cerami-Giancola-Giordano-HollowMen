@@ -25,13 +25,12 @@ import hollowmen.view.juls.MenuType;
 
 public class ViewImpl implements View {
 	
-	private ViewObserver observer;
 	private Game game;
 	
-	public ViewImpl(int x, int y){
+	public ViewImpl(int x, int y, ViewObserver observer){
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
-		game=new Game(x,y);
+		game=new Game(x,y,observer);
 	}
 	
 	/**
@@ -71,13 +70,4 @@ public class ViewImpl implements View {
 		game.draw(componentList);
 	}
 
-	/**
-	 * The method {@code setObserver} to set a ViewObserver used 
-	 * to process inputs.
-	 */
-	public void setObserver(ViewObserver observer) {
-		this.observer=observer;
-		this.game.setObserver(observer);
-		
-	}
 }

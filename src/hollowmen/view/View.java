@@ -44,10 +44,4 @@ public interface View {
 	 */
 	public void drawGame(List<Pair<String,Point2D>> componentList);
 	
-	/**
-	 * The method {@code setObserver} to set a ViewObserver used 
-	 * to process inputs.
-	 */
-	public void setObserver(ViewObserver observer);
-	
 }

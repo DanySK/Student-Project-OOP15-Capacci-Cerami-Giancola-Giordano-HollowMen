@@ -1,5 +1,6 @@
 package hollowmen.view.ale;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import hollowmen.controller.ViewObserver;
+import hollowmen.enumerators.InputCommand;
+import hollowmen.enumerators.InputMenu;
+import hollowmen.enumerators.Values;
 import hollowmen.model.Point2D;
 import hollowmen.utilities.Pair;
 /**
@@ -19,6 +23,11 @@ public class Game extends JPanel implements GameInterface{
 	
 	private static final long serialVersionUID = -5081282343965245780L;
 	private static final int GAP=200;
+	private static final int ALIGNMENTX=480;
+	private static final int ALIGNMENTY=20;
+	private static final int POSITIONX=300;
+	private static final int POSITIONY=100;
+	private static final int ALIGNMENT=10;
 	private ViewObserver observer;
 	private JLabel panelGame;
 	private Bar bars;
@@ -28,37 +37,48 @@ public class Game extends JPanel implements GameInterface{
 	private ScreenButton btnConsumable;
 	private ScreenButton btnSkillTree;
 	private ScreenButton btnInventory;
+	private InputChooser inputChooser;
+	private ValueManager levelValue;
+	private ValueManager goldValue;
+	private ValueManager floorValue;
 	private LinkedList <Pair<String,JLabel>> storage;
 	
 	
-	public Game(int x,int y){//INCOMPLETO... da aggiungere i vari label
-		
+	public Game(int x, int y, ViewObserver observer){//INCOMPLETO... da aggiungere i vari label
+		this.observer=observer;
+		inputChooser=new InputChooser(this.observer);
 		this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
 		this.setBounds(0,0,x,y+GAP);
-		panelGame=new JLabel();
-		panelGame.setLayout(null);
-		panelGame.setBounds(0, GAP/2, x, y);
-		this.add(panelGame);
-        bars=new Bar();
-        bars.setLayout(null);
-        bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
-        btnAbility1=new ScreenButton(this.observer,"Ability1",this.storage);
-        btnAbility1.setBounds(0, 0, 0, 0);
-        btnAbility2=new ScreenButton(this.observer,"Ability2",this.storage);
-        btnAbility2.setBounds(0, 0, 0, 0);
-        btnAbility3=new ScreenButton(this.observer,"Ability3",this.storage);
-        btnAbility3.setBounds(0, 0, 0, 0);
-        btnConsumable=new ScreenButton(this.observer,"Consumable",this.storage);
-        btnConsumable.setBounds(0, 0, 0, 0);
-        btnSkillTree=new ScreenButton(this.observer,"SkillTree",this.storage);
-        btnSkillTree.setBounds(0, 0, 0, 0);
-        btnInventory=new ScreenButton(this.observer,"Inventory",this.storage);
-        btnInventory.setBounds(0, 0, 0, 0);
+		initialSetup(x,y);
 		addKeyListener(new KeyInput(this));
 	}
 	
-	public void setObserver(ViewObserver observer){
-		this.observer=observer;
+	private void initialSetup(int x, int y){
+		panelGame=new JLabel();
+		panelGame.setLayout(null);
+		panelGame.setBounds(0, GAP/2, x, y);
+		levelValue=new ValueManager("Level: ", Color.WHITE);
+		levelValue.setBounds(0, ALIGNMENT, 150, 40);
+		goldValue=new ValueManager("Gold: ", Color.YELLOW);
+		goldValue.setBounds(0, ALIGNMENT*5, 150, 40);
+		floorValue=new ValueManager("Floor: ", Color.WHITE);
+		floorValue.setBounds(700, ALIGNMENT*40, 150, 40);
+        bars=new Bar();
+        bars.setLayout(null);
+        bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento
+        //bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
+        btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storage);
+        btnAbility1.setBounds(0, 0, 0, 0);
+        btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storage);
+        btnAbility2.setBounds(0, 0, 0, 0);
+        btnAbility3=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storage);
+        btnAbility3.setBounds(0, 0, 0, 0);
+        btnConsumable=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storage);
+        btnConsumable.setBounds(0, 0, 0, 0);
+        btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storage);
+        btnSkillTree.setBounds(0, 0, 0, 0);
+        btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storage);
+        btnInventory.setBounds(0, 0, 0, 0);
 	}
 	
 	public void draw(List<Pair<String, Point2D>> componentList){	
@@ -77,6 +97,7 @@ public class Game extends JPanel implements GameInterface{
 	}
 	
 	private void addComponent(){//TODO
+		this.add(panelGame);
 		this.add(bars);
 		this.add(btnAbility1);
 		this.add(btnAbility2);
@@ -84,6 +105,9 @@ public class Game extends JPanel implements GameInterface{
 		this.add(btnConsumable);
 		this.add(btnSkillTree);
 		this.add(btnInventory);
+		levelValue.updateValue(Values.LEVEL.getValue());
+		levelValue.updateValue(Values.GOLD.getValue());
+		
 	}
 	
 	private void addDynamicComponent(List<Pair<String, Point2D>> componentList){
@@ -100,45 +124,10 @@ public class Game extends JPanel implements GameInterface{
 		}
 	}
 	
-	//Switch-case improve performance. It's a flexible instruction used to control.
 	public void keyPressed(KeyEvent e){
 		
 		int key=e.getKeyCode();
+		inputChooser.chooser(key);//calls the method of the InputChooser class
 		
-		switch (key){
-		
-			case KeyEvent.VK_W:{ this.observer.addInput("Up");
-								break;}
-			case KeyEvent.VK_A:{ this.observer.addInput("Left");
-								break;}
-			case KeyEvent.VK_S:{ this.observer.addInput("Down");
-								break;}
-			case KeyEvent.VK_D:{ this.observer.addInput("Right");
-								break;}
-			case KeyEvent.VK_E:{ this.observer.addInput("Equip");
-								break;}
-			case KeyEvent.VK_F:{ this.observer.addInput("Skill Tree");
-								break;}
-			case KeyEvent.VK_Q:{ this.observer.addInput("Interact");
-								break;}
-			case KeyEvent.VK_SPACE:{ this.observer.addInput("Attack Base");
-								break;}
-			case KeyEvent.VK_B:{ this.observer.addInput("Pokedex");
-								break;}
-			case KeyEvent.VK_V:{ this.observer.addInput("Achievement");
-								break;}
-			case KeyEvent.VK_H:{ this.observer.addInput("Help");
-								break;}
-			case KeyEvent.VK_P:{ this.observer.addInput("Ability1");
-								break;}
-			case KeyEvent.VK_O:{ this.observer.addInput("Ability2");
-								break;}
-			case KeyEvent.VK_I:{ this.observer.addInput("Ability3");
-								break;}
-			case KeyEvent.VK_ESCAPE:{ this.observer.addInput("Pause");
-								break;}
-			case KeyEvent.VK_0:{ this.observer.addInput("Consumable");
-								break;}
-		}
 	}			
 }

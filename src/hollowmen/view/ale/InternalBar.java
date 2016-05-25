@@ -11,6 +11,8 @@ public abstract class InternalBar extends JLabel{
     private static final long serialVersionUID = -3814942016648716113L;
     protected double proportion;
     protected double width;
+    protected int value;
+    protected int maxValue;
     
     public InternalBar(){}
     
@@ -21,8 +23,9 @@ public abstract class InternalBar extends JLabel{
      * @param maxValue
      */
     public void proportion(int value,int maxValue){
-        this.proportion=value*100/maxValue;
-        this.width=this.getWidth()/100*this.proportion;
+    	this.value=value;
+    	this.maxValue=maxValue;
+        this.width=(this.getWidth()*value)/maxValue;
         this.removeAll();
         barFilling();
     }
