@@ -40,8 +40,7 @@ public interface TargetPointSystem<T> {
 	/**
 	 * This method retrieves one point from the <b>target</b>
 	 * @param target
-	 * @throws IllegalStateException If <b>target</b> hasn't points spent on it
 	 * @throws IllegalArgumentException If <b>target</b> isn't in this system
 	 */
-	public void retrievePointFrom(T target) throws IllegalStateException, IllegalArgumentException;
+	public void retrievePointFrom(T target) throws IllegalArgumentException;
 }

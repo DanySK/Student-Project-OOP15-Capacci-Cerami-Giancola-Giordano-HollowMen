@@ -21,7 +21,7 @@ public class ItemImpl implements Item{
 	
 	private Collection<Modifier> mod;
 	
-	private int sellValue;
+	private int goldValue;
 	
 	private int rarity;
 	
@@ -34,7 +34,7 @@ public class ItemImpl implements Item{
 		this.info = info;
 		this.state = state;
 		this.mod = mod;
-		this.sellValue = sellValue;
+		this.goldValue = sellValue;
 		this.rarity = rarity;
 		this.slot = slot;
 		this.heroClassEquippable = heroClassEquippable;
@@ -78,7 +78,7 @@ public class ItemImpl implements Item{
 
 		@Override
 		public ItemBuilder value(int i) {
-			super.sellValue = i;
+			super.goldValue = i;
 			return this;
 		}
 
@@ -141,7 +141,7 @@ public class ItemImpl implements Item{
 
 	@Override
 	public int getGoldValue() {
-		return this.sellValue;
+		return this.goldValue;
 	} 
 
 	@Override
@@ -166,7 +166,7 @@ public class ItemImpl implements Item{
 		result = prime * result + ((heroClassEquippable == null) ? 0 : heroClassEquippable.hashCode());
 		result = prime * result + ((info == null) ? 0 : info.hashCode());
 		result = prime * result + rarity;
-		result = prime * result + sellValue;
+		result = prime * result + goldValue;
 		result = prime * result + ((slot == null) ? 0 : slot.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		return result;
@@ -193,14 +193,10 @@ public class ItemImpl implements Item{
 			return false;
 		if (rarity != other.rarity)
 			return false;
-		if (sellValue != other.sellValue)
-			return false;
 		if (slot == null) {
 			if (other.slot != null)
 				return false;
 		} else if (!slot.equals(other.slot))
-			return false;
-		if (state != other.state)
 			return false;
 		return true;
 	}

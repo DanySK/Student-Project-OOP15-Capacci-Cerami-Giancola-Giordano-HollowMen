@@ -2,25 +2,20 @@ package hollowmen.model;
 
 import java.util.Collection;
 
+
 /**
  * This interface represent an object that has {@link SkillBranch} and
  * can spend point on the {@link SkillNode}
  * @author pigio
  *
  */
-public interface SkillTree {
+public interface SkillTree extends TargetPointSystem<SkillNode>{
 
 	/**
-	 * This method gives all the {@code SkillBranch} from this tree
-	 * @return {@link Collection}<{@link SkillBranch}>
+	 * This method gives all the {@code SkillNode} from this tree
+	 * @return {@link Collection}<><br>
+	 * NOTE : unmodifiable Collection
 	 */
-	public Collection<SkillBranch> getSkillBranch();
-	
-	/**
-	 * This method gives the {@code TargetPointSystem} based on this {@code SkillTree}'s
-	 * {@code SkillNode}
-	 * @return {@link TargetPointSystem}<{@link SkillNode}>
-	 */
-	public TargetPointSystem<SkillNode> getUpgradableNodes();
+	public Collection<SkillNode> getSkillNodes();
 	
 }

@@ -12,7 +12,7 @@ import hollowmen.model.Information;
 import hollowmen.model.Inventory;
 import hollowmen.model.Item;
 import hollowmen.model.Item.ItemState;
-import hollowmen.model.LimitedValue;
+import hollowmen.model.LimitedCounter;
 import hollowmen.model.Lootable;
 import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
@@ -22,12 +22,11 @@ import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
+import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
-	
-
-	private LimitedValue<Integer> exp;
+	private LimitedCounter exp;
 	
 	private int level;
 	
@@ -111,8 +110,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 	}
 
 	@Override
-	public LimitedValue<Integer> getExp() {
-		return this.exp;
+	public Pair<Integer, Integer> getExp() {
+		return new Pair<Integer, Integer>((int)this.exp.getValue(), (int)this.exp.getLimit());
 	}
 
 	@Override
@@ -159,12 +158,13 @@ public class HeroImpl extends ActorAbs implements Hero{
 		//this.exp = new LimitedValueImpl(0, previousLimit);
 		this.level ++;
 		this.uppableParam.addPoint(Constants.STATPOINTSONLEVELUP);
-		this.heroClass.getSkillTree().getUpgradableNodes().addPoint(Constants.SKILLPOINTSONLEVELUP);
+		this.heroClass.getSkillTree().addPoint(Constants.SKILLPOINTSONLEVELUP);;
 	}
 
 	@Override
 	public TargetPointSystem<Parameter> getUpgradableParameter() {
 		return this.uppableParam;
 	}
+
 
 }
