@@ -1,5 +1,7 @@
 package hollowmen.model;
 
+import hollowmen.utilities.Pair;
+
 /**
  * This interface represents the {@code Hero} intended as the {@link Actor} controlled by the player<br>
  * <br>
@@ -58,12 +60,9 @@ public interface Hero extends Actor{
 	public void buyItem(Item item) throws IllegalStateException, NullPointerException;
 	
 	/**
-	 * This method gives a {@code LimitedValue} which value is the current exp
-	 * and limit is the max exp to accumulate for level up
-	 * 
-	 * @return {@link LimitedValue}
+	 * @return {@link Pair} X current exp, Y exp to reach for level up
 	 */
-	public LimitedValue<Integer> getExp();
+	public Pair<Integer, Integer> getExp();
 	
 	/**
 	 * This method gives the {@code Hero}'s level

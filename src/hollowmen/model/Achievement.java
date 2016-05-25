@@ -1,5 +1,7 @@
 package hollowmen.model;
 
+import hollowmen.utilities.Pair;
+
 /**
  * This interface represents an object that can be looted after
  * meet some condition
@@ -15,12 +17,10 @@ public interface Achievement extends InformationUser{
 	public void check();
 	
 	/**
-	 * This method gives a {@code LimitedValue} which value is the progress and
-	 * the limit is when this {@code Achievement} can be looted
-	 * @return {@link LimitedValue}
+	 * This method gives the current state of this {@code Achievement}
+	 * @return {@link Pair} X reached progress, Y limit progress
 	 */
-	public LimitedValue<Integer> getProgress();
-	
+	public Pair<Integer, Integer> getProgress();
 	/**
 	 * 
 	 * @return {@link Lootable} reward

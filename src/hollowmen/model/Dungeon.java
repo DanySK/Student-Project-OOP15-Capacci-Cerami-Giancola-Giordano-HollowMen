@@ -1,5 +1,7 @@
 package hollowmen.model;
 
+import hollowmen.model.utils.GameOverException;
+import hollowmen.utilities.Pair;
 
 /**
  * A {@code Dungeon} has a sequence of {@link Floor}, a single {@code Floor} can be selected if it's unlocked.
@@ -46,11 +48,9 @@ public interface Dungeon {
 	public void goTo(int floorNumber) throws IllegalStateException, NullPointerException;
 	
 	/**
-	 * This method gives a {@code LimitedValue} which value is the reached floor's number
-	 * and the limit is the total floors in this {@code Dungeon}
-	 * @return {@link LimitedValue}
+	 * @return {@link Pair} X floor's number reached, Y max floor's number
 	 */
-	public LimitedValue<Integer> getFloorReached();
+	public Pair<Integer, Integer> getFloors();
 	
 	/**
 	 * This method return the current {@code Floor} selected

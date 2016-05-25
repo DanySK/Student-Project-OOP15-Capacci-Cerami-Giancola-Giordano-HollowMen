@@ -8,15 +8,8 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Time {
+public interface Time  extends LimitedCounter{
 
-	/**
-	 * This method gives a {@code LimitedValue} which value is the time passed
-	 * and limit is the max time until game over
-	 * @return {@link LimitedValue}
-	 */
-	public LimitedValue<Long> getTimeProgress();
-	
 	/**
 	 * This method adds the given <b>event</b> to this {@code Time} and when
 	 * its duration finished {@code trigger()} will be invoked 
