@@ -19,6 +19,7 @@ public class SingletonFrame extends JFrame {
 	// constructor, must be private
 	private SingletonFrame() {
 		this.setSize(getWidth(), getHeight());
+		this.setLocationRelativeTo(null);
 		this.setResizable(false);// because I don't want to mess up with the dimension
 		this.setTitle("HOLLOW MEN");
 	}
