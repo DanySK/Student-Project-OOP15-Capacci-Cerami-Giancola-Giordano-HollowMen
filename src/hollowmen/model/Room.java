@@ -29,18 +29,21 @@ public interface Room {
 	/**
 	 * This method give all the {@code RoomEntity} in this {@code Room}
 	 * @return {@link Collection}<{@link RoomEntity}>
+	 * NOTE: unmodifiableCollection
 	 */
 	public Collection<RoomEntity> getAllEntities();
 	
 	/**
 	 * This method give all the {@code Enemy} in this {@code Room}
 	 * @return {@link Collection}<{@link Enemy}>
+	 * NOTE: unmodifiableCollection
 	 */
 	public Collection<Enemy> getEnemies();
 	
 	/**
 	 * This method give all the {@code Bullet} in this {@code Room}
 	 * @return {@link Collection}<{@link Bullet}>
+	 * NOTE: unmodifiableCollection
 	 */
 	public Collection<Bullet> getBullets();
 	
@@ -53,6 +56,7 @@ public interface Room {
 	/**
 	 * This method give all the {@code Interactable} in this {@code Room}
 	 * @return {@link Collection}<{@link Interactable}>
+	 * NOTE: unmodifiableCollection
 	 */
 	public Collection<Interactable> getInteractable();
 	
@@ -62,4 +66,16 @@ public interface Room {
 	 */
 	public int getRoomNumber();
 	
+	/**
+	 * This method adds the given <b>roomEntity</b> to the right Collection
+	 * @param roomEntity {@link RoomEntity} to add at this {@code Room}
+	 */
+	public void addEntity(RoomEntity roomEntity);
+	
+	/**
+	 * This method remove the given <b>roomEntity</b> to the right Collection
+	 * @param roomEntity {@link RoomEntity} to remove at this {@code Room}
+	 * @throws IllegalArgumentException If the given <b>roomEntity</b> isn't present
+	 */
+	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException;
 }
