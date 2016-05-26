@@ -36,7 +36,6 @@ public class DifficultyMenu  extends MessageDialog {
 	private PaintedButton hard = new PaintedButton("HARD");
 	private PaintedButton confirm = new PaintedButton("CONFIRM");
 	private String name;
-	private List<PaintedButton> buttonList = new ArrayList<>();
 	private JPanel buttonsC = PanelBuilder.getBuilder()
 							.layout(1, 3, 10, 0)
 							.bound(15, 110, 470, 58)
@@ -78,6 +77,8 @@ public class DifficultyMenu  extends MessageDialog {
 	}
 	
 	private void addToList() {
+		List<PaintedButton> buttonList = new ArrayList<>();
+		
 		buttonList.add(easy);
 		buttonList.add(normal);
 		buttonList.add(hard);
