@@ -2,6 +2,7 @@ package hollowmen.model.dungeon;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import hollowmen.model.Interactable;
@@ -84,13 +85,28 @@ public class RoomImpl implements Room{
 	
 	@Override
 	public Collection<RoomEntity> getAllEntities() {
-		return list;
+		return Collections.unmodifiableList(list);
 	}
 
 
 	@Override
 	public Collection<Interactable> getInteractable() {
-		return interactables;
+		return Collections.unmodifiableCollection(interactables);
+	}
+	
+	@Override
+	public Collection<Enemy> getEnemies() {
+		return Collections.unmodifiableCollection(enemies);
+	}
+
+	@Override
+	public Collection<Bullet> getBullets() {
+		return Collections.unmodifiableCollection(bullets);
+	}
+
+	@Override
+	public Hero getHero() {
+		return null;//TODO
 	}
 
 	@Override
@@ -98,19 +114,17 @@ public class RoomImpl implements Room{
 		return roomNumber;
 	}
 
+
 	@Override
-	public Collection<Enemy> getEnemies() {
-		return this.enemies;
+	public void addEntity(RoomEntity roomEntity) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public Collection<Bullet> getBullets() {
-		return bullets;
-	}
-
-	@Override
-	public Hero getHero() {
-		return null;//TODO
+	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	
