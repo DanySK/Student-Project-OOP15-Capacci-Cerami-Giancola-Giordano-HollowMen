@@ -10,4 +10,9 @@ public enum ClassType {
 	WARRIOR,
 	ASSASSIN,
 	MAGE;
+	
+	@Override
+	public String toString(){
+		return this.name().toLowerCase();
+	}
 }
