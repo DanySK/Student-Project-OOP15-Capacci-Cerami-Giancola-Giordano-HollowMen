@@ -20,7 +20,7 @@ public interface Room {
 	
 	/**
 	 * This method give the selected child{@code Room}
-	 * @param choice {@code int} counting from left to right (<u>starting from 1</u>)
+	 * @param choice {@code int} counting from left to right (<u>starting from 0</u>)
 	 * @return {@link Room}
 	 * @throws IllegalArgumentException If <b>choice</b> > childRoomNumber, or negative
 	 */

@@ -29,7 +29,7 @@ public interface Floor {
 	/**
 	 * This method change the current {@code Room} with one of its child OR to its parent if
 	 * <b>choice</b> equals to any negative number
-	 * @param choice 
+	 * @param choice (<u>starting from 0</u>) for select the child, or any negative value for parent
 	 */
 	public void changeRoom(int choice);
 	
