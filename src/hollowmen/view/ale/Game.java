@@ -41,6 +41,7 @@ public class Game extends JPanel implements GameInterface{
 	private ValueManager levelValue;
 	private ValueManager goldValue;
 	private ValueManager floorValue;
+	private ValueManager timerValue;
 	private LinkedList <Pair<String,JLabel>> storage;
 	
 	
@@ -63,6 +64,8 @@ public class Game extends JPanel implements GameInterface{
 		goldValue.setBounds(0, ALIGNMENT*5, 150, 40);
 		floorValue=new ValueManager("Floor: ", Color.WHITE);
 		floorValue.setBounds(700, ALIGNMENT*40, 150, 40);
+		timerValue=new ValueManager("Timer", Color.WHITE);
+		timerValue.setBounds(350, 0, 150, 80);
         bars=new Bar();
         bars.setLayout(null);
         bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento
@@ -85,6 +88,10 @@ public class Game extends JPanel implements GameInterface{
 		removeAll(); /*At first I remove all the components from the screen 
 					 then I'll add the component(addComponent),that are all the static components
 					 (lifeBar, expBar) and the dynamicComponents too (which are the various mob)*/
+		if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
+			this.timerValue=new ValueManager("Timer: ", Color.RED);
+			this.timerValue.setBounds(350, 0, 150, 80);
+		}
 		addComponent();//static components
 		addDynamicComponent(componentList);
 	}
@@ -106,7 +113,9 @@ public class Game extends JPanel implements GameInterface{
 		this.add(btnSkillTree);
 		this.add(btnInventory);
 		levelValue.updateValue(Values.LEVEL.getValue());
-		levelValue.updateValue(Values.GOLD.getValue());
+		goldValue.updateValue(Values.GOLD.getValue());
+		floorValue.updateValue(Values.FLOOR.getValue());
+		timerValue.updateValue(Values.TIMER.getValue());
 		
 	}
 	

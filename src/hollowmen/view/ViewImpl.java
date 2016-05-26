@@ -65,6 +65,7 @@ public class ViewImpl implements View {
 	}
 	/**
 	 * The method {@code drawGame} is used to draw all the components on screen.
+	 * It's linked to {@link Game} class.
 	 */ 
 	public void drawGame(List<Pair<String, Point2D>> componentList) {
 		game.draw(componentList);
