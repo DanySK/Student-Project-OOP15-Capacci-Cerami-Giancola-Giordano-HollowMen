@@ -28,9 +28,9 @@ public class PaintedButton extends TranslucentButton {
 	
 	public void loadImages() {
 		try {
-			buttonBG = ImageIO.read(new File("res/images/littleButton.png"));
-			buttonOver = ImageIO.read(new File("res/images/littleButtonPressed.png"));
-			buttonNA = ImageIO.read(new File("res/images/littleButtonNOTAvailable.png"));
+			buttonBG = ImageIO.read(new File("res/images/buttons/pButton.png"));
+			buttonOver = ImageIO.read(new File("res/images/buttons/pButtonOver.png"));
+			buttonNA = ImageIO.read(new File("res/images/buttons/pButtonNA.png"));
 			
 		} catch (IOException e){
 			e.printStackTrace();

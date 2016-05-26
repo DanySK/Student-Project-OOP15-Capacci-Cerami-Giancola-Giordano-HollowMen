@@ -3,6 +3,7 @@ package hollowmen.view.juls.dialog;
 import java.awt.Color;
 import java.awt.Frame;
 
+import javax.swing.BorderFactory;
 
 import hollowmen.view.SingletonFrame;
 
@@ -26,6 +27,8 @@ public abstract class MessageDialog extends CustomDialog {
 		this.setUndecorated(true);
 		this.setLocationRelativeTo(SingletonFrame.getInstance());
 		this.setModal(true);
+		getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		
 	}
 	
 	protected void setTextForeground(Color color) {

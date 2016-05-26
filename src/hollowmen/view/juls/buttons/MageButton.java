@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 public class MageButton extends TranslucentButton {
 
 	private static final long serialVersionUID = -2065213613244095705L;
-	private BufferedImage mage, mageOver, mageSelected, mageNA;
+	private BufferedImage mage, mageOver, mageNA;
 	
 	public MageButton() {
 		super.setPreferences();
@@ -26,7 +26,6 @@ public class MageButton extends TranslucentButton {
 	public void loadImages() {
 		try {
 			mage = ImageIO.read(new File(""));
-			mageSelected = ImageIO.read(new File(""));
 			mageNA = ImageIO.read(new File(""));
 			mageOver = ImageIO.read(new File(""));
 		} catch (IOException e){
@@ -40,9 +39,6 @@ public class MageButton extends TranslucentButton {
 		g.drawImage(mage, 0, 0, null);
 		if(isOver) {
 			g.drawImage(mageOver, 0, 0, null);
-		}
-		if(isClicked) {
-			g.drawImage(mageSelected, 0, 0, null);
 		}
 		if(!isAvailable) {
 			g.drawImage(mageNA, 0, 0, null);

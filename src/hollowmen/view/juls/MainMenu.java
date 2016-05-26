@@ -17,6 +17,7 @@ import hollowmen.view.SingletonFrame;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.dialog.CreditsMenu;
 import hollowmen.view.juls.dialog.ExitDialog;
+import hollowmen.view.juls.dialog.HelpMenu;
 import hollowmen.view.juls.dialog.NewGameDialog;
 import hollowmen.view.juls.dialog.PauseMenu;
 
@@ -87,13 +88,13 @@ public class MainMenu extends JFrame {
 		
 		loadGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new PauseMenu(frame);
 			}
 		});
 		
 		help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new HelpMenu(frame);
 			}
 		});
 		

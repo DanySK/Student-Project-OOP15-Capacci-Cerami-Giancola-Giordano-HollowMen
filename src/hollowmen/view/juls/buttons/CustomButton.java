@@ -48,11 +48,15 @@ public abstract class CustomButton  extends JButton {
 	
 	@Override
 	public void setEnabled(boolean b) {
-		if( b==false ) {
+		if( b ) {
+			isAvailable = true;
+		} else {
 			isAvailable = false;
 		}
 		super.setEnabled(b);;
 	}
+	
+	
 	
 	/**
 	 * The {@code MyMouseAdapter} inner class implements some of the methods

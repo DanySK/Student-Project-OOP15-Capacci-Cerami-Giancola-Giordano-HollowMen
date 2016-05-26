@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import hollowmen.view.juls.buttons.PaintedButton;
@@ -29,7 +28,7 @@ public class NewGameDialog extends MessageDialog {
 		super(frame);
 		super.addMessage("<html>You are going to start a New Adventure. <br> Are you ready?<html>");
 		super.setTextForeground(Color.WHITE);
-		getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		
 		
 		messagePanel.setLayout(new GridLayout(1, 0, 0, 0));
 		messagePanel.setBounds(60, 50, 340, 50);
@@ -52,7 +51,8 @@ public class NewGameDialog extends MessageDialog {
 		
 		yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Sono il SI del NEW GAME");
+				new DifficultyMenu(frame);
+				dispose();
 			}
 		});
 		

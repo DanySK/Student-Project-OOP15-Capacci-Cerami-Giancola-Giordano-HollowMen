@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
 public class AssassinButton extends TranslucentButton {
 
 	private static final long serialVersionUID = -2065236498744095705L;
-	private BufferedImage assassin, assassinOver, assassinSelected, assassinNA;
+	private BufferedImage assassin, assassinOver, assassinNA;
 	
 	public AssassinButton() {
 		super.setPreferences();
@@ -28,7 +28,6 @@ public class AssassinButton extends TranslucentButton {
 	public void loadImages() {
 		try {
 			assassin = ImageIO.read(new File(""));
-			assassinSelected = ImageIO.read(new File(""));
 			assassinNA = ImageIO.read(new File(""));
 			assassinOver = ImageIO.read(new File(""));
 		} catch (IOException e){
@@ -42,9 +41,6 @@ public class AssassinButton extends TranslucentButton {
 		g.drawImage(assassin, 0, 0, null);
 		if(isOver) {
 			g.drawImage(assassinOver, 0, 0, null);
-		}
-		if(isClicked) {
-			g.drawImage(assassinSelected, 0, 0, null);
 		}
 		if(!isAvailable) {
 			g.drawImage(assassinNA, 0, 0, null);

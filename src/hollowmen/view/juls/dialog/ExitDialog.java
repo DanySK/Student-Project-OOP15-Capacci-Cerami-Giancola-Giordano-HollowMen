@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import hollowmen.view.juls.buttons.PaintedButton;
@@ -27,7 +26,6 @@ public class ExitDialog extends MessageDialog {
 		super(frame);
 		super.addMessage("Are you sure you want to quit the game?");
 		super.setTextForeground(Color.WHITE);
-		getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		
 		messagePanel.setLayout(new GridLayout(1, 0, 0, 0));
 		messagePanel.setBounds(60, 50, 340, 50);
