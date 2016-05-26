@@ -7,14 +7,14 @@ import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Lootable;
 import hollowmen.model.Parameter;
-import hollowmen.model.dungeon.LootableImpl;
+import hollowmen.model.dungeon.LootableCreatorSingleton;
 
 public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
 	
 	private MovePattern pattern;
 	private int combatPower;
-	private Lootable loot = LootableImpl.create(100, 100, 0.15);
+	private Lootable loot = LootableCreatorSingleton.createFromEnemy(100, 100, 0.15);
 	
 	private EnemyAbs(Information info, Rectangle size, ActionAllowed aA, Collection<Parameter> param) {
 		super(info, size, aA, param);
@@ -42,7 +42,7 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
 
 	@Override
-	public int getCombatPower() {
+	public int getLevel() {
 		return this.combatPower;
 	}
 

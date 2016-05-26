@@ -8,10 +8,10 @@ package hollowmen.model;
 public interface Enemy extends Actor{
 		
 	/**
-	 * This method gives an integer value that summarizes the {@code Enemy} power
-	 * @return {@code int} for the power of this {@code Enemy}
+	 * This method gives an integer value represent his level
+	 * @return {@code int} for the level of this {@code Enemy}
 	 */
-	public int getCombatPower();
+	public int getLevel();
 
 	/**
 	 * This method gives the title of this {@code Enemy}<br>
@@ -19,13 +19,6 @@ public interface Enemy extends Actor{
 	 * @return {@code String}
 	 */
 	public String getTitle();
-	
-	/**
-	 * This method gives the habitat of this {@code Enemy}<br>
-	 * ex. "ground", "fly"
-	 * @return
-	 */
-	public String getHabitat();
 	
 	/**
 	 * This method gives the {@code Lootable} object for this {@code Enemy}
