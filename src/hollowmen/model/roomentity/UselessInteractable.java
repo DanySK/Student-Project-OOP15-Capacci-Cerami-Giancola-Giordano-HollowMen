@@ -29,4 +29,6 @@ public class UselessInteractable extends RoomEntityImpl implements Interactable{
 	public void interact() throws IllegalStateException {
 		ExceptionThrower.checkIllegalState(this, d -> !d.isInteractAllowed());
 	}; 
+	
+	
 }
