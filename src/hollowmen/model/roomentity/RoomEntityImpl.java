@@ -8,12 +8,13 @@ import hollowmen.model.RoomEntity;
 public class RoomEntityImpl implements RoomEntity{
 
 	private Information info;
-	
+	private int ID;
 	private Rectangle size;
 	
-	protected RoomEntityImpl(Information info, Rectangle size) {
+	protected RoomEntityImpl(Information info, Rectangle size, int ID) {
 		this.info = info;
 		this.size = size;
+		this.ID = ID;
 	}
 	
 	@Override
@@ -55,6 +56,11 @@ public class RoomEntityImpl implements RoomEntity{
 		} else if (!size.equals(other.size))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int getID() {
+		return this.ID;
 	}
 
 	

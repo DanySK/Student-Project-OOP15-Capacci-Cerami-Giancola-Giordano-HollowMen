@@ -12,8 +12,8 @@ public class Door extends UselessInteractable{
 	private int roomNumber;
 	
 	
-	public Door(int doorNumber) {
-		super(new InfoImpl("door"), new Rectangle(Constants.DOOR_SIZE));
+	public Door(int doorNumber, int ID) {
+		super(new InfoImpl("door"), new Rectangle(Constants.DOOR_SIZE), ID);
 		this.roomNumber = doorNumber;
 	}
 	

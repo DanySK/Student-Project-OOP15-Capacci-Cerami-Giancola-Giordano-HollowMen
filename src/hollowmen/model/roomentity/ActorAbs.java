@@ -23,13 +23,9 @@ public abstract class ActorAbs extends RoomEntityImpl implements Actor{
 	private Map<String, Parameter> parameters;
 	private Collection<Status> status;
 	
-	public ActorAbs(Information info, Rectangle size) {
-		super(info, size);
-		// TODO Auto-generated constructor stub
-	}
 	
-	public ActorAbs(Information info, Rectangle size, ActionAllowed aA, Collection<Parameter> param) {
-		this(info, size);
+	public ActorAbs(Information info, Rectangle size, int ID, ActionAllowed aA, Collection<Parameter> param) {
+		super(info, size, ID);
 		this.actionAllowed = aA;
 		this.parameters = new HashMap<>();
 		param.stream().forEach(p -> parameters.put(p.getInfo().getName(), p));

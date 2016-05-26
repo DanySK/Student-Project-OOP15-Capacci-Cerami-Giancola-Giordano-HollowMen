@@ -14,8 +14,8 @@ public class TreasureChest extends UselessInteractable{
 	private Lootable loot;
 	
 	//TODO improve the choose of the Item
-	public TreasureChest(int rarity) {
-		super(new InfoImpl("treasure"), Constants.TREASURE_SIZE);
+	public TreasureChest(int rarity, int ID) {
+		super(new InfoImpl("treasure"), Constants.TREASURE_SIZE, ID);
 		int floorNum = FloorSingleton.getInstance().getFloorNumber();
 		int roomNum = FloorSingleton.getInstance().getCurrentRoom().getRoomNumber();
 		int expAndGold = floorNum * Constants.TREASURE_FLATFLOOR + roomNum * Constants.TREASURE_FLATROOM;

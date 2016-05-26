@@ -22,6 +22,8 @@ public class RoomImpl implements Room{
 	
 	private int childNumber;
 	
+	private int IDCounter;
+	
 	private List<Room> childRoom = new ArrayList<>();
 	
 	private Collection<Interactable> interactables;
@@ -51,9 +53,9 @@ public class RoomImpl implements Room{
 	
 	private void createDoor() {
 		for(int i = 0; i < this.childNumber; i++) {
-			this.interactables.add(new Door(i));
+			this.interactables.add(new Door(i, this.getIDCounter()));
 		}
-		this.interactables.add(new Door(-1));
+		this.interactables.add(new Door(-1, this.getIDCounter()));
 	}
 
 	@Override
@@ -117,16 +119,38 @@ public class RoomImpl implements Room{
 
 	@Override
 	public void addEntity(RoomEntity roomEntity) {
-		// TODO Auto-generated method stub
-		
+		list.add(roomEntity);
+		if(roomEntity instanceof Bullet) {
+			bullets.add((Bullet) roomEntity);
+		}
+		if(roomEntity instanceof Enemy) {
+			enemies.add((Enemy) roomEntity);
+		}
+		if(roomEntity instanceof Interactable) {
+			interactables.add((Interactable)roomEntity);
+		}
+		//CollisionManager add((casting) roomEntity)
 	}
 
 	@Override
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
+		ExceptionThrower.checkIllegalArgument(roomEntity, x -> this.list.contains(x));
+		list.remove(roomEntity);
+		if(roomEntity instanceof Bullet) {
+			bullets.remove((Bullet) roomEntity);
+		}
+		if(roomEntity instanceof Enemy) {
+			enemies.remove((Enemy) roomEntity);
+		}
+		if(roomEntity instanceof Interactable) {
+			interactables.remove((Interactable)roomEntity);
+		}
+		//CollisionManager remove((casting) roomEntity)
 	}
 
-	
+	private int getIDCounter() {
+		this.IDCounter++;
+		return this.IDCounter;
+	}
 
 }

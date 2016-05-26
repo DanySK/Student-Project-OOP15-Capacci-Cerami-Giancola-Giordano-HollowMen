@@ -14,9 +14,9 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 	private String title;
 	
 	
-	public EnemyAbs(Information info, Rectangle size, ActionAllowed aA, 
+	public EnemyAbs(Information info, Rectangle size, int ID, ActionAllowed aA, 
 			Collection<Parameter> param, MovePattern movP, int power, String title) {
-		super(info, size, aA, param);
+		super(info, size, ID, aA, param);
 		this.pattern = movP;
 		this.combatLevel = power;
 		this.title = title;

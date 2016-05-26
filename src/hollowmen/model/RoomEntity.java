@@ -15,4 +15,10 @@ public interface RoomEntity extends InformationUser{
 	 */
 	public Rectangle getSize();
 	
+	/**
+	 * This is an univocal value that is given by the {@code Room}
+	 * @return {@code int}
+	 */
+	public int getID();
+	
 }

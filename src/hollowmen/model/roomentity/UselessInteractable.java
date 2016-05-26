@@ -11,8 +11,8 @@ public class UselessInteractable extends RoomEntityImpl implements Interactable{
 	private boolean canInteract = false;
 	
 	
-	public UselessInteractable(Information info, Rectangle size) {
-		super(info, size);
+	public UselessInteractable(Information info, Rectangle size, int ID) {
+		super(info, size, ID);
 	}
 	
 	@Override

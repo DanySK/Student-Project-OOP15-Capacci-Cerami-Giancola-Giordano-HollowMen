@@ -42,8 +42,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 	
 	private Map<String, List<Slot>> slots;
 	
-	public HeroImpl(Information info, Rectangle size, ActionAllowed aA, Collection<Parameter> param) {
-		super(info, size, aA, param);
+	public HeroImpl(Information info, Rectangle size, int ID, ActionAllowed aA, Collection<Parameter> param) {
+		super(info, size, ID, aA, param);
 		// TODO Auto-generated constructor stub
 	}
 	
