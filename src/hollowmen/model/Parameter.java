@@ -19,13 +19,16 @@ public interface Parameter extends InformationUser{
 	/**
 	 * This method <u>add</u> a {@link Modifier} to the Character
 	 * @param mod {@link Modifier}
+	 * @throws IllegalArgumentException If <b>mod</b> doesn't target this {@code Parameter}
+	 * @throws NullPointerException
 	 */
 	public void addModifier(Modifier mod) throws NullPointerException;
 	
 	/**
 	 * This method <u>remove</u> a {@link Modifier} to the Character
 	 * @param mod {@link Modifier}
-	 * @throws IllegalArgumentException If the Character hasn't the passed {@link Modifier}
+	 * @throws IllegalArgumentException If <b>mod</b> doesn't target this {@code Parameter}<br>
+	 * OR If the Character hasn't the passed {@link Modifier}
 	 * @throws NullPointerException
 	 */
 	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException;
