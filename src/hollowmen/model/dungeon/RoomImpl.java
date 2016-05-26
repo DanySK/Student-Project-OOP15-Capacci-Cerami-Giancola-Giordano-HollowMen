@@ -148,7 +148,7 @@ public class RoomImpl implements Room{
 		//CollisionManager remove((casting) roomEntity)
 	}
 
-	private int getIDCounter() {
+	public int getIDCounter() {
 		this.IDCounter++;
 		return this.IDCounter;
 	}

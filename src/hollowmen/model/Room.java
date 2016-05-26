@@ -67,15 +67,23 @@ public interface Room {
 	public int getRoomNumber();
 	
 	/**
+	 * This method gives the number of this {@code Room}'s next univocal ID
+	 * @return
+	 */
+	public int getIDCounter();
+	
+	/**
 	 * This method adds the given <b>roomEntity</b> to the right Collection
 	 * @param roomEntity {@link RoomEntity} to add at this {@code Room}
+	 * @throws IllegalArgumentException If <b>roomEntity</b>'s ID exists already
 	 */
-	public void addEntity(RoomEntity roomEntity);
+	public void addEntity(RoomEntity roomEntity) throws IllegalArgumentException;
 	
 	/**
 	 * This method remove the given <b>roomEntity</b> to the right Collection
 	 * @param roomEntity {@link RoomEntity} to remove at this {@code Room}
-	 * @throws IllegalArgumentException If the given <b>roomEntity</b> isn't present
+	 * @throws IllegalArgumentException If the given <b>roomEntity</b> isn't present OR 
+	 * If <b>roomEntity</b>'s ID exists already
 	 */
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException;
 }
