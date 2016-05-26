@@ -4,21 +4,22 @@ package hollowmen.model.dungeon;
 import hollowmen.model.Floor;
 import hollowmen.model.Room;
 
-public class FloorImpl implements Floor{
+public class FloorSingleton implements Floor{
 
+	private Room lobby;
 	
-	private int floorNumber;
+	private int floorNumber = 0;
 	
 	private Room currentRoom;
 	
 	
-	private FloorImpl() {};
+	private FloorSingleton() {};
 	
     private static class Holder{
-        private static final FloorImpl INSTANCE = new FloorImpl();
+        private static final FloorSingleton INSTANCE = new FloorSingleton();
     }
      
-    public static FloorImpl getInstance(){
+    public static FloorSingleton getInstance(){
         return Holder.INSTANCE;
     }
 	
@@ -29,7 +30,7 @@ public class FloorImpl implements Floor{
 
 	@Override
 	public Room getCurrentRoom() {
-		return this.currentRoom;
+		return (this.floorNumber == 0)?this.lobby:this.currentRoom;
 	}
 
 	public void changeRoom(int newRoomNumber) {
@@ -40,7 +41,7 @@ public class FloorImpl implements Floor{
 		}
 	}
 
-	public void inizialize(int floorNumber) {
+	public void setFloor(int floorNumber) {
 		this.floorNumber = floorNumber;
 	}
 	
