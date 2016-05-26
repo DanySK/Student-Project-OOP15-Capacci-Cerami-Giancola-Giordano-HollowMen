@@ -25,8 +25,8 @@ public class InventoryImpl implements Inventory{
 
 	@Override
 	public void removeItem(Item item) throws IllegalArgumentException{
-		ExceptionThrower.checkIllegalArgument(storage, m -> m.containsKey(item.getInfo().getName()) 
-															&& m.get(item.getInfo().getName()).getY() > 0);
+		ExceptionThrower.checkIllegalArgument(storage, m -> !(m.containsKey(item.getInfo().getName()) 
+															&& m.get(item.getInfo().getName()).getY() > 0));
 		
 		Pair<Item, Integer> temp = storage.get(item.getInfo().getName());
 		storage.put(item.getInfo().getName(),

@@ -67,5 +67,4 @@ public interface Item extends InformationUser{
 	 */
 	public String getHeroClassEquippable();
 	
-	
 }

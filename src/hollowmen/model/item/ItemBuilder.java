@@ -65,6 +65,7 @@ public interface ItemBuilder {
 	 */
 	public ItemBuilder heroClass(String className);
 	
+	
 	/**
 	 * This method will create the constructed {@link Item}
 	 * @throws IllegalStateException If any of the underlined previous method 

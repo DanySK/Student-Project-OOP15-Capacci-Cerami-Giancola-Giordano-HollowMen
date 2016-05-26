@@ -53,8 +53,6 @@ public class ItemImpl implements Item{
 		return new Builder();
 	}
 	
-
-
 	private static class Builder extends ItemImpl implements ItemBuilder {
 
 		
@@ -116,6 +114,7 @@ public class ItemImpl implements Item{
 					super.getState(), super.getModifiers(), super.getGoldValue(), 
 					super.getRarity(), super.getSlot(), super.getHeroClassEquippable());
 		}
+
 		
 	}
 	
@@ -200,5 +199,5 @@ public class ItemImpl implements Item{
 			return false;
 		return true;
 	}
-	
+
 }
