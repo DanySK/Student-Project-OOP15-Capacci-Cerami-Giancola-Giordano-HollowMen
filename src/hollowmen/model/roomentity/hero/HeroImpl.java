@@ -157,8 +157,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 		//int previousLimit = this.exp.getLimit()
 		//this.exp = new LimitedValueImpl(0, previousLimit);
 		this.level ++;
-		this.uppableParam.addPoint(Constants.STATPOINTSONLEVELUP);
-		this.heroClass.getSkillTree().addPoint(Constants.SKILLPOINTSONLEVELUP);;
+		this.uppableParam.addPoint(Constants.STATPOINTS_ONLEVELUP);
+		this.heroClass.getSkillTree().addPoint(Constants.SKILLPOINTS_ONLEVELUP);;
 	}
 
 	@Override

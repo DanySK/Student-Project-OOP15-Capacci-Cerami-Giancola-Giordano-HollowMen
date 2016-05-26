@@ -70,7 +70,7 @@ public class SkillTreeImpl implements SkillTree{
 	
 	
 	private void checkMaxValueIntegrity(String tag, int change) {
-		int previousLevel = (this.pointsOnBranch.get(tag).getCount() + change) / Constants.SKILLPOINTSFORUPGRADE;
+		int previousLevel = (this.pointsOnBranch.get(tag).getCount() + change) / Constants.SKILLPOINTS_FORUPGRADE;
 		if(previousLevel > this.maxLevelForTag(tag)) {
 			this.removeTargetLevel(keyGen(tag, previousLevel));
 		}
@@ -86,7 +86,7 @@ public class SkillTreeImpl implements SkillTree{
 				.filter(x -> x.getKey().getY() <= target.getLevel())
 				.map(x -> x.getKey().getY())
 				.reduce((x,y) -> x + y).orElse(0);
-		if(sumPreviousNodePoints < (target.getLevel()+1) * Constants.SKILLPOINTSFORUPGRADE ) {
+		if(sumPreviousNodePoints < (target.getLevel()+1) * Constants.SKILLPOINTS_FORUPGRADE ) {
 			this.removeAllPointsFromLevelToLimit(keyGen(target));
 		}
 		
@@ -129,7 +129,7 @@ public class SkillTreeImpl implements SkillTree{
 	
 	
 	private void checkNewTargets(SkillNode target) {
-		if(this.pointsOnBranch.get(target.getTag()).getCount() % Constants.SKILLPOINTSFORUPGRADE == 0) {
+		if(this.pointsOnBranch.get(target.getTag()).getCount() % Constants.SKILLPOINTS_FORUPGRADE == 0) {
 			int levelToUnlock = this.maxLevelForTag(target.getTag());
 			this.branchLevelNodes.get(keyGen(target.getTag(), levelToUnlock)).stream()
 				.forEach(s -> allTargets.put(s.getInfo().getName(), s));
@@ -137,7 +137,7 @@ public class SkillTreeImpl implements SkillTree{
 	}
 	
 	private int maxLevelForTag(String tag) {
-		return this.pointsOnBranch.get(tag).getCount() / Constants.SKILLPOINTSFORUPGRADE;
+		return this.pointsOnBranch.get(tag).getCount() / Constants.SKILLPOINTS_FORUPGRADE;
 	}
 	
 	private Pair<String, Integer> keyGen(String s, Integer i) {
