@@ -7,13 +7,16 @@ public class Constants {
 
 	public static final Rectangle WORLDSIZE = new Rectangle(800, 600);
 	
-	public static final int CHILDROOMQUANTITY = 3;
+	//Counting also the zero so 0-1-2 = 3 child rooms;
+	public static final int CHILDROOMQUANTITY = 2;
 	
 	public static final int SKILLPOINTSONLEVELUP = 1;
 	
 	public static final int STATPOINTSONLEVELUP = 2;
 	
 	public static final int SKILLPOINTSFORUPGRADE = 3;
+	
+	public static final Rectangle TREASURESIZE = new Rectangle(60, 80);
 	
 	public static final Rectangle DOORSIZE = new Rectangle(50, 100);
 

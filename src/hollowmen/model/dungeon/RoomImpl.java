@@ -7,7 +7,7 @@ import java.util.List;
 import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
-import hollowmen.model.roomentity.Door;
+import hollowmen.model.roomentity.interactable.Door;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.RandomSelector;
@@ -34,7 +34,7 @@ public class RoomImpl implements Room{
 	private int roomNumber;
 	
 	//TODO migliorare l'intervallo dei numeri mettendo numeri interi che vanno da 0 a Constants...
-	private final int roomNumberWithChild = RandomSelector.getFrom(new Integer[]{0, 1, 2}); 
+	private final int roomNumberWithChild = RandomSelector.getIntFromRange(0, Constants.CHILDROOMQUANTITY); 
 	
 	/**
 	 * @param parentRoom {@link Room} that is this one's parents
