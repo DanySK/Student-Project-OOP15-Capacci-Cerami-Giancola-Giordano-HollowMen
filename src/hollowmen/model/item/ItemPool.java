@@ -68,7 +68,7 @@ public class ItemPool {
 	 * @returna <u>copy</u> of an {@code Item} inside the Pool
 	 */
 	public Item getCompletelyRandom() {
-		return (Item) RandomSelector.getFrom(itemInGame.toArray());
+		return (Item) RandomSelector.getAnyFrom(itemInGame.toArray());
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class ItemPool {
 	 * @return <u>copy</u> of an {@code Item} inside the Item's Pool that meet the <b>func</b>
 	 */
 	public Item getRandom(Predicate<Item> func) {
-		return (Item) RandomSelector.getFrom(itemInGame.stream().filter(func).toArray());
+		return (Item) RandomSelector.getAnyFrom(itemInGame.stream().filter(func).toArray());
 	}
 	
 }
