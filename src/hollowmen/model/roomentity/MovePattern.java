@@ -9,7 +9,6 @@ import hollowmen.model.Actor.Direction;
  */
 public interface MovePattern {
 
-	
 	public Direction getDirection();
 	
 }
