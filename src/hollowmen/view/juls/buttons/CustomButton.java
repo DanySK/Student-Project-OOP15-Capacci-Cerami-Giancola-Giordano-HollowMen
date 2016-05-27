@@ -15,8 +15,7 @@ import javax.swing.JButton;
 public abstract class CustomButton  extends JButton {
 	
 	private static final long serialVersionUID = -1680309409986913252L;
-	protected boolean isOver;
-	protected boolean isClicked;
+	protected boolean isOver, isClicked, isUnlocked;
 	protected boolean isAvailable = true;
 	protected MyMouseAdapter ma = new MyMouseAdapter();
 
