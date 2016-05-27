@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.Point2D;
+import hollowmen.model.facade.InformationDealer;
 import hollowmen.utilities.Pair;
 
 import hollowmen.view.ale.Game;
@@ -37,7 +38,7 @@ public class ViewImpl implements View {
 	
 	/**
 	 * The {@code drawMenu} method draws the menu on screen when needed.
-	 * @param text - distinguishes the two kinds of menu (Basic or Complex)
+	 * @param type - distinguishes the two kinds of menu (Basic or Complex)
 	 * @param name - represents the menu to draw
 	 * @param collection - (Optional) represents the pool of Items/Mobs/Skill Nodes/Achievements
 	 * 						to add to the menu
@@ -45,10 +46,10 @@ public class ViewImpl implements View {
 	 * @author Juls
 	 * NOTE FOR ME: change this stupid "?" (Damn Object, you pineapple head)
 	 */
-	public void drawMenu(String text, InputMenu name, Optional<Collection<?>> collection) {
+	public void drawMenu(InputMenu type, InputMenu name, Optional<Collection<InformationDealer>> collection) {
 		BasicMenuImpl basic = new BasicMenuImpl();
 		ComplexMenuImpl complex = new ComplexMenuImpl();
-		if (text.equalsIgnoreCase("basic")) {
+		if (type.getType().equals("basic")) {
 			basic.drawBasicMenu(name);
 		} else {
 			complex.drawComplexMenu(name, collection.get());

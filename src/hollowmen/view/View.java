@@ -8,6 +8,7 @@ import java.util.Optional;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.Point2D;
+import hollowmen.model.facade.InformationDealer;
 import hollowmen.utilities.Pair;
 
 /**
@@ -28,14 +29,14 @@ public interface View {
 	
 	/**
 	 * The {@code drawMenu} method draws the menu on screen when needed.
-	 * @param text - distinguishes the two kinds of menu (Basic or Complex)
+	 * @param type - distinguishes the two kinds of menu (Basic or Complex)
 	 * @param name - represents the menu to draw
 	 * @param collection - (Optional) represents the pool of Items/Mobs/Skill Nodes/Achievements
 	 * 						to add to the menu
 	 * 
 	 * @author Juls
 	 */
-	public void drawMenu(String text, InputMenu name, Optional<Collection<?>> collection);
+	public void drawMenu(InputMenu type, InputMenu name, Optional<Collection<InformationDealer>> collection);
 	
 	/**
 	 * The method {@code drawGame} is used to take from the controller a list
