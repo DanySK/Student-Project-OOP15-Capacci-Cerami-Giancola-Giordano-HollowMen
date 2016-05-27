@@ -1,15 +1,12 @@
 package hollowmen.view;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
-import hollowmen.model.Point2D;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.utilities.Pair;
+import hollowmen.model.facade.Point2D;
 
 /**
  * The View interface allows to draw application on screen.
@@ -44,6 +41,6 @@ public interface View {
 	 * 
 	 * @param componentList 
 	 */
-	public void drawGame(List<Pair<String,Point2D>> componentList);
+	public void drawGame(Map<String,Point2D> componentList);
 	
 }

@@ -1,13 +1,9 @@
 package hollowmen.view.ale;
 
 import java.awt.event.KeyEvent;
-import java.util.List;
-
+import java.util.Map;
 import javax.swing.ImageIcon;
-
-import hollowmen.controller.ViewObserver;
-import hollowmen.model.Point2D;
-import hollowmen.utilities.Pair;
+import hollowmen.model.facade.Point2D;
 
 /**
  * The GameInterface interface makes some methods available in order to 
@@ -24,17 +20,17 @@ public interface GameInterface {
 	 * 
 	 * @param componentList
 	 */
-	public void draw(List<Pair<String, Point2D>> componentList);
+	public void draw(Map<String, Point2D> componentList);
 	
 	/**
 	 * The method{@code setStorage} id used to create a list of JLabel with the associated {@link ImageIcon}.
 	 * 
 	 * @param storage
 	 */
-	public void setStorage(List<Pair<String,ImageIcon>> storage);
+	public void setStorage(Map<String,ImageIcon> storage);
 	
 	/**
 	 * The method {@code keyPressed} is used to read all the gamer's inputs.
 	 */
-	public void keyPressed(KeyEvent e);
+	public void keyManager(KeyEvent e);
 }

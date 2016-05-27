@@ -2,19 +2,13 @@ package hollowmen.view;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
-
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
-import hollowmen.model.Point2D;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.utilities.Pair;
-
+import hollowmen.model.facade.Point2D;
 import hollowmen.view.ale.Game;
 import hollowmen.view.juls.BasicMenuImpl;
 import hollowmen.view.juls.ComplexMenuImpl;
@@ -73,7 +67,7 @@ public class ViewImpl implements View {
 	 * The method {@code drawGame} is used to draw all the components on screen.
 	 * It's linked to {@link Game} class.
 	 */ 
-	public void drawGame(List<Pair<String, Point2D>> componentList) {
+	public void drawGame(Map<String, Point2D> componentList) {
 		game.draw(componentList);
 	}
 }

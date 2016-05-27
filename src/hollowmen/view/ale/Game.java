@@ -3,10 +3,7 @@ package hollowmen.view.ale;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,8 +11,8 @@ import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.enumerators.Values;
-import hollowmen.model.Point2D;
-import hollowmen.utilities.Pair;
+import hollowmen.model.facade.Point2D;
+
 /**
  * The {@code Game} class implements {@link GameInterface}. It is the game panel and give some functionality.
  * 
@@ -87,7 +84,7 @@ public class Game extends JPanel implements GameInterface{
         btnInventory.setBounds(0, 0, 0, 0);
 	}
 	
-	public void draw(List<Pair<String, Point2D>> componentList){	
+	public void draw(Map<String, Point2D> componentList){	
 		removeAll(); /*At first I remove all the components from the screen 
 					 then I'll add the component(addComponent),that are all the static components
 					 (lifeBar, expBar) and the dynamicComponents too (which are the various mob)*/
@@ -122,17 +119,19 @@ public class Game extends JPanel implements GameInterface{
 		
 	}
 	
-	private void addDynamicComponent(List<Pair<String, Point2D>> componentList){
-		int c=0;
+	private void addDynamicComponent(Map<String, Point2D> componentList){
 		JLabel labTmp;
-		for(Pair<String,Point2D> elem: componentList){
-			while(elem.getX()!=this.storage.get(c).getX()){
-				c++;
+		for(Map.Entry<String,Point2D> elem: componentList.entrySet()){
+			for(Map.Entry<String,JLabel> element: storage.entrySet()){
+				if(elem.getKey()==element.getKey()){
+					labTmp=element.getValue();
+					labTmp.setBounds((int)elem.getValue().getX(), (int)elem.getValue().getY(), 
+									labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+					panelGame.add(labTmp);
+					break;
+				}
 			}
-			labTmp=this.storage.get(c).getY();
-			labTmp.setBounds((int)elem.getY().getX(), (int)elem.getY().getY(), 
-							labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-			panelGame.add(labTmp);
+			
 		}
 	}
 	
