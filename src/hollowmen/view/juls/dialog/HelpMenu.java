@@ -32,51 +32,44 @@ public class HelpMenu extends OptionDialog {
 	private RightArrow right = new RightArrow(); // on panel1
 	private PaintedButton close = new PaintedButton("CLOSE");
 	
+	private JPanel buttonC = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(240, 430, 150, 58)
+							.addTo(close)
+							.build();
+	private JPanel panelSheet1 = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(150, 80, 350, 350)
+							.addTo(sheet1)
+							.build();
+	private JPanel arrowC1 = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(500, 430, 40, 40)
+							.addTo(right)
+							.build();
+	private JPanel  panelSheet2 = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(150, 80, 350, 350)
+							.addTo(sheet2)
+							.build();
+	private JPanel arrowC2 = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(500, 435, 40, 40)
+							.addTo(left)
+							.build();
+	
+	
 
 	public HelpMenu(Frame frame) {
 		super(frame);
-		loadImages();
-		
-		JPanel panel = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(250, 15, 145, 70)
-				.addTo(title)
-				.build();
-				add(panel);
-		
-		JPanel buttonC = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(240, 430, 150, 58)
-				.addTo(close)
-				.build();
-				add(buttonC);	
-		
-		JPanel panelSheet1 = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(150, 80, 350, 350)
-				.addTo(sheet1)
-				.build();
-				add(panelSheet1);
+		this.loadImages();
+				
+		title.setBounds(250, 15, 145, 70);
+		this.add(title);
+		this.add(buttonC);	
+		this.add(panelSheet1);
+		this.add(arrowC1);
 
-		JPanel arrowC1 = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(500, 430, 40, 40)
-				.addTo(right)
-				.build();
-				add(arrowC1);
-		
-		JPanel panelSheet2 = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(150, 80, 350, 350)
-				.addTo(sheet2)
-				.build();
-		
-		JPanel arrowC2 = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(500, 435, 40, 40)
-				.addTo(left)
-				.build();	
-		
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

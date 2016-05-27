@@ -20,7 +20,6 @@ public class RightArrow extends TranslucentButton {
 	
 	public RightArrow() {
 		super.setPreferences();
-		super.addMouseListener(ma);
 	}
 	
 	public void loadImages() {
@@ -45,5 +44,4 @@ public class RightArrow extends TranslucentButton {
 		}
 		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
 	}
-
 }

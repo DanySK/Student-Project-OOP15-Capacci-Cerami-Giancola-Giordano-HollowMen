@@ -22,7 +22,6 @@ public class PaintedButton extends TranslucentButton {
 	public PaintedButton(String text) {
 		super(text);
 		super.setPreferences();
-		super.addMouseListener(ma);
 		this.setForeground(Color.WHITE);
 	}
 	
@@ -31,7 +30,6 @@ public class PaintedButton extends TranslucentButton {
 			buttonBG = ImageIO.read(new File("res/images/buttons/pButton.png"));
 			buttonOver = ImageIO.read(new File("res/images/buttons/pButtonOver.png"));
 			buttonNA = ImageIO.read(new File("res/images/buttons/pButtonNA.png"));
-			
 		} catch (IOException e){
 			e.printStackTrace();
 		}

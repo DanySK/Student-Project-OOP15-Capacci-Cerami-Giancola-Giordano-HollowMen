@@ -1,7 +1,6 @@
 package hollowmen.view.juls.dialog;
 
 import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -13,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.view.juls.buttons.PaintedButton;
+import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
  * The {@code CreditsMenu} class shows all information about 
@@ -24,26 +24,24 @@ public class CreditsMenu extends OptionDialog {
 
 	private static final long serialVersionUID = -7385165484666077280L;
 	private JLabel credits = new JLabel();
-	private JPanel panel = new JPanel();
-	private JPanel buttonC = new JPanel();
-	private PaintedButton close = new PaintedButton("CLOSE");
+	private PaintedButton close = new PaintedButton("CLOSE");	
+	private JPanel panel = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(0, 0, 680, 500)
+							.addTo(credits)
+							.build();
+	private JPanel buttonC = PanelBuilder.getBuilder()
+							.layout(1, 0, 0, 0)
+							.bound(270, 415, 150, 58)
+							.addTo(close)
+							.build();
+
 
 	public CreditsMenu(Frame frame) {
 		super(frame);
-		loadImages();
-		
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
-		panel.setBounds(0, 0, 680, 500);
-		panel.setOpaque(false);
-		panel.add(credits);
-		
-		buttonC.setLayout(new GridLayout(1, 0, 0, 0));
-		buttonC.setBounds(270, 415, 150, 58);
-		buttonC.setOpaque(false);
-		buttonC.add(close);
-		
-		add(panel);
-		add(buttonC);
+		this.loadImages();
+		this.add(panel);
+		this.add(buttonC);
 		
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,7 +58,5 @@ public class CreditsMenu extends OptionDialog {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
-
 }

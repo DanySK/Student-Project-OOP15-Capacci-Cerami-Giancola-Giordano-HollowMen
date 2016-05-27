@@ -8,13 +8,13 @@ import java.util.Optional;
 
 import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
+import hollowmen.enumerators.InputMenu;
 import hollowmen.model.Point2D;
 import hollowmen.utilities.Pair;
 
 import hollowmen.view.ale.Game;
 import hollowmen.view.juls.BasicMenuImpl;
 import hollowmen.view.juls.ComplexMenuImpl;
-import hollowmen.view.juls.MenuType;
 
 /**
  * The ViewImpl class, that implements {@link View}, is used to draw application on screen.
@@ -43,7 +43,7 @@ public class ViewImpl implements View {
 	 * @author Juls
 	 * NOTE FOR ME: change this stupid "?" (Damn Object, you pineapple head)
 	 */
-	public void drawMenu(String text, MenuType name, Optional<Collection<?>> collection) {
+	public void drawMenu(String text, InputMenu name, Optional<Collection<?>> collection) {
 		BasicMenuImpl basic = new BasicMenuImpl();
 		ComplexMenuImpl complex = new ComplexMenuImpl();
 		if (text.equalsIgnoreCase("basic")) {

@@ -22,7 +22,6 @@ public class WarriorButton extends TranslucentButton {
 	
 	public WarriorButton() {
 		super.setPreferences();
-		super.addMouseListener(ma);
 	}
 	
 	public void loadImages() {
@@ -41,7 +40,7 @@ public class WarriorButton extends TranslucentButton {
 		if(isOver) {
 			g.drawImage(warriorOver, 0, 0, null);
 		}
-		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
+		super.paintComponent(g);
 	}
 
 }
