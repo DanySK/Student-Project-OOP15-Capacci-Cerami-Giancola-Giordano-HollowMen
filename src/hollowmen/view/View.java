@@ -2,13 +2,13 @@ package hollowmen.view;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.Point2D;
 import hollowmen.utilities.Pair;
-import hollowmen.view.juls.MenuType;
 
 /**
  * The View interface allows to draw application on screen.
@@ -24,7 +24,7 @@ public interface View {
 	 *
 	 * @param fileList
 	 */
-	public void takeFile(List<Pair<String, byte[]>> fileList);
+	public void takeFile(Map<String, byte[]> fileList);
 	
 	/**
 	 * The {@code drawMenu} method draws the menu on screen when needed.

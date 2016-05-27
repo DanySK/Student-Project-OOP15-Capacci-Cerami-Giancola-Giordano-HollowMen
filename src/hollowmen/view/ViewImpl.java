@@ -1,9 +1,11 @@
 package hollowmen.view;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.swing.ImageIcon;
@@ -57,10 +59,10 @@ public class ViewImpl implements View {
 	 * The method {@code getFile} is used to take from the controller a list
 	 * of all the files that the view needs.
 	 */
-	public void takeFile(List<Pair<String, byte[]>> fileList) {
-		List<Pair<String,ImageIcon>> storage=new LinkedList<Pair<String,ImageIcon>>();
-		for(Pair<String,byte[]> elem: fileList){
-			storage.add(new Pair<String,ImageIcon>(elem.getX(),new ImageIcon(elem.getY())));
+	public void takeFile(Map<String, byte[]> fileList) {
+		Map<String,ImageIcon> storage=new HashMap<String,ImageIcon>();
+		for(Map.Entry<String,byte[]> elem: fileList.entrySet()){
+			storage.put(elem.getKey(),new ImageIcon(elem.getValue()));
 		}
 	}
 	/**
