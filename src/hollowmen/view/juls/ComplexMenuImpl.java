@@ -2,13 +2,20 @@ package hollowmen.view.juls;
 
 import java.util.Collection;
 
+import hollowmen.enumerators.InputMenu;
+
+/**
+ * The {@code ComplexMenuImpl} class represents the concrete
+ * implementation of {@link ComplexMenu}. It allows to draw "complex" menus on screen.
+ * @author Juls
+ */
 public class ComplexMenuImpl implements ComplexMenu{
 
 	public ComplexMenuImpl() {
 	}
 	
 	@Override
-	public void drawComplexMenu(MenuType name, Collection<?> collection) {
+	public void drawComplexMenu(InputMenu name, Collection<?> collection) {
 		switch (name) {
 		
 		case INVENTORY:

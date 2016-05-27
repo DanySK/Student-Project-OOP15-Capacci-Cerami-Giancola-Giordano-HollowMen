@@ -1,5 +1,7 @@
 package hollowmen.view.juls;
 
+import hollowmen.enumerators.InputMenu;
+
 /**
  * The interface {@code BasicMenu} allows to draw 
  * really simple game menus.
@@ -8,10 +10,6 @@ package hollowmen.view.juls;
  * Help Menu.
  * 
  * @author Juls
- * @since 09/05
- * 
- * Last Update: 18/05 20:40
- *
  */
 public interface BasicMenu {
 	/**
@@ -20,6 +18,6 @@ public interface BasicMenu {
 	 * 
 	 * @param name - the name of the menu that must be drawn
 	 */
-	public void drawBasicMenu(MenuType name);
+	public void drawBasicMenu(InputMenu name);
 
 }

@@ -2,6 +2,8 @@ package hollowmen.model.utils;
 
 import java.awt.Rectangle;
 
+import hollowmen.model.Modifier.Operation;
+
 
 public class Constants {
 
@@ -12,13 +14,19 @@ public class Constants {
 	
 	public static final int SKILLPOINTS_ONLEVELUP = 1;
 	
-	public static final int STATPOINTS_ONLEVELUP = 2;
-	
 	public static final int SKILLPOINTS_FORUPGRADE = 3;
 	
 	public static final Rectangle DOOR_SIZE = new Rectangle(50, 100);
 
 	public static final Rectangle HERO_SIZE = new Rectangle(80, 100);
+	
+	//STATPOINT STUFFS
+	
+	public static final int STATPOINTS_ONLEVELUP = 2;
+	
+	public static final double STAT_INCREASE = 5;
+	
+	public static final Operation DEFAULT_OP = Operation.ADD;
 	
 	
 	//TRESURE CHEST

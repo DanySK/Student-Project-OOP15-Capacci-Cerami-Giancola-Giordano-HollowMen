@@ -15,7 +15,10 @@ public interface Time  extends LimitedCounter{
 	/**
 	 * This method adds the given <b>event</b> to this {@code Time} and when
 	 * its duration finished {@code trigger()} will be invoked 
-	 * @param event {@link TimeEvent}
+	 * 
+	 * @param subj who will be consumed by the action
+	 * @param duration after this time
+	 * @param action the action
 	 */
 	public <T> void register(T subj, double duration, Consumer<T> action);
 }

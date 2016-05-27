@@ -1,6 +1,6 @@
-	package hollowmen.model.utils;
+package hollowmen.model.utils;
 
-import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import hollowmen.model.Item;
 import hollowmen.model.dungeon.InfoImpl;
@@ -12,7 +12,9 @@ public class Cloner {
 	public static Item item(Item itemToClone) {
 		return ItemImpl.builder().info(new InfoImpl(itemToClone.getInfo()))
 				.state(itemToClone.getState())
-				.modifier(new LinkedList<>(itemToClone.getModifiers()))
+				.modifier(itemToClone.getModifiers().entries().stream()
+						.map(e -> e.getValue())
+						.collect(Collectors.toList()))
 				.value(itemToClone.getGoldValue())
 				.rarity(itemToClone.getRarity())
 				.slot(itemToClone.getSlot())
