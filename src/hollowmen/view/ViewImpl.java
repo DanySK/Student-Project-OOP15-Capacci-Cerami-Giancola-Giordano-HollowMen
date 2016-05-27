@@ -29,6 +29,7 @@ import hollowmen.view.juls.ComplexMenuImpl;
 public class ViewImpl implements View {
 	
 	private Game game;
+	private Map<String,ImageIcon> storage;
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 		SingletonFrame.setWidth(x);
@@ -60,12 +61,14 @@ public class ViewImpl implements View {
 	 * The method {@code getFile} is used to take from the controller a list
 	 * of all the files that the view needs.
 	 */
-	public void takeFile(Map<String, byte[]> fileList) {
-		Map<String,ImageIcon> storage=new HashMap<String,ImageIcon>();
-		for(Map.Entry<String,byte[]> elem: fileList.entrySet()){
-			storage.put(elem.getKey(),new ImageIcon(elem.getValue()));
+	public void takeFile(Map<String, byte[]> fileMap){
+		this.storage=new HashMap<String,ImageIcon>();
+		for(Map.Entry<String,byte[]> elem: fileMap.entrySet()){
+			this.storage.put(elem.getKey(),new ImageIcon(elem.getValue()));
 		}
+		this.game.setStorage(this.storage);
 	}
+	
 	/**
 	 * The method {@code drawGame} is used to draw all the components on screen.
 	 * It's linked to {@link Game} class.
@@ -73,5 +76,4 @@ public class ViewImpl implements View {
 	public void drawGame(List<Pair<String, Point2D>> componentList) {
 		game.draw(componentList);
 	}
-
 }
