@@ -1,6 +1,8 @@
 package hollowmen.model;
 
-import java.util.Collection;
+import java.util.Map;
+
+import com.google.common.collect.Multimap;
 
 /**
  * This interface represent {@code Item} intended as an Object that has:<br>
@@ -39,9 +41,10 @@ public interface Item extends InformationUser{
 	
 	/**
 	 * This method give all the {@code Item}'s{@code Modifier}
-	 * @return {@link Collection}<{@link Modifier}>
+	 * @return {@link Map} KEY: param's Name -> VALUE: {@link Modifier} with KEY as
+	 * target parameter
 	 */
-	public Collection<Modifier> getModifiers();
+	public Multimap<String, Modifier> getModifiers();
 	
 	/**
 	 * This method give the {@code Item}'s sellValue

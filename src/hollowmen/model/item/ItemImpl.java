@@ -2,6 +2,9 @@ package hollowmen.model.item;
 
 import java.util.Collection;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
 import hollowmen.model.Information;
 import hollowmen.model.Item;
 import hollowmen.model.Modifier;
@@ -19,7 +22,7 @@ public class ItemImpl implements Item{
 	
 	private ItemState state;
 	
-	private Collection<Modifier> mod;
+	private Multimap<String, Modifier> mod = ArrayListMultimap.create();
 	
 	private int goldValue;
 	
@@ -33,7 +36,7 @@ public class ItemImpl implements Item{
 			String slot, String heroClassEquippable) {
 		this.info = info;
 		this.state = state;
-		this.mod = mod;
+		mod.stream().forEach(m -> this.mod.put(m.getParameter().getInfo().getName(), m));
 		this.goldValue = sellValue;
 		this.rarity = rarity;
 		this.slot = slot;
@@ -55,6 +58,7 @@ public class ItemImpl implements Item{
 	
 	private static class Builder extends ItemImpl implements ItemBuilder {
 
+		private Collection<Modifier> mod;
 		
 		@Override
 		public ItemBuilder info(Information info) {
@@ -70,7 +74,7 @@ public class ItemImpl implements Item{
 
 		@Override
 		public ItemBuilder modifier(Collection<Modifier> coll) {
-			super.mod = coll;
+			this.mod = coll;
 			return this;
 		}
 
@@ -111,7 +115,7 @@ public class ItemImpl implements Item{
 			ExceptionThrower.checkIllegalState(super.getGoldValue(), i -> i <= 0);
 			
 			return new ItemImpl(super.getInfo(), 
-					super.getState(), super.getModifiers(), super.getGoldValue(), 
+					super.getState(), this.mod, super.getGoldValue(), 
 					super.getRarity(), super.getSlot(), super.getHeroClassEquippable());
 		}
 
@@ -134,7 +138,7 @@ public class ItemImpl implements Item{
 		
 	}
 	@Override
-	public Collection<Modifier> getModifiers() {
+	public Multimap<String, Modifier> getModifiers() {
 		return this.mod;
 	}
 

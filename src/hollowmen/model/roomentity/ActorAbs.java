@@ -5,11 +5,9 @@ import java.awt.Rectangle;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import hollowmen.model.Actor;
 import hollowmen.model.Information;
-import hollowmen.model.Modifier;
 import hollowmen.model.Parameter;
 import hollowmen.model.Status;
 import hollowmen.model.TypeAction;
@@ -59,10 +57,8 @@ public abstract class ActorAbs extends RoomEntityImpl implements Actor{
 	}
 	
 	@Override
-	public Collection<Parameter> getParameters() {
-		return this.parameters.entrySet().stream()
-										.map(e -> e.getValue())
-										.collect(Collectors.toList());
+	public Map<String, Parameter> getParameters() {
+		return this.parameters;
 	}
 
 	
@@ -89,17 +85,6 @@ public abstract class ActorAbs extends RoomEntityImpl implements Actor{
 	@Override
 	public Collection<Status> getStatus() {
 		return this.status;
-	}
-	
-	
-	public void addModifier(Modifier mod) throws IllegalArgumentException {
-		ExceptionThrower.checkIllegalArgument(parameters, p -> !p.containsKey(mod));
-		parameters.get(mod.getParameter().getInfo().getName()).addModifier(mod);
-	}
-	
-	public void removeModifier(Modifier mod) throws IllegalArgumentException {
-		ExceptionThrower.checkIllegalArgument(parameters, p -> !p.containsKey(mod));
-		parameters.get(mod.getParameter().getInfo().getName()).removeModifier(mod);
 	}
 	
 }

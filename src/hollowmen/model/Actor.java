@@ -1,6 +1,8 @@
 package hollowmen.model;
 
 import java.util.Collection;
+import java.util.Map;
+
 /**
  * This interface represents the Character as an Object that can:<br>
  * -be moved in two {@link Direction},<br>
@@ -40,9 +42,10 @@ public interface Actor extends RoomEntity{
 	
 	/**
 	 * This method give all the {@link Parameter} of the Character
-	 * @return {@link Collection}<{@link Parameter}> associated to the Character
+	 * @return {@link Map} associated to the Character<br>
+	 * KEY: parameter's Name VALUE: {@link Parameter}
 	 */
-	public Collection<Parameter> getParameters();
+	public Map<String, Parameter> getParameters();
 	
 	/**
 	 * 

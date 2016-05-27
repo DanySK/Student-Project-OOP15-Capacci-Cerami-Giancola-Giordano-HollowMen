@@ -20,6 +20,7 @@ import hollowmen.model.Slot;
 import hollowmen.model.TargetPointSystem;
 import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
+import hollowmen.model.utils.Actors;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
@@ -58,8 +59,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 			} else {
 				s.setItem(Optional.of(item));
 				item.setState(ItemState.EQUIPPED);
-				item.getModifiers().stream()
-					.forEach(m -> super.addModifier(m));
+				item.getModifiers().entries().stream()
+					.forEach(e -> Actors.addModifier(this, e.getValue()));
 				this.inventory.removeItem(item);
 				return;
 			}
@@ -80,8 +81,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 			}
 			if(temp.equals(item)) {
 				temp.setState(ItemState.UNEQUIPPED);
-				temp.getModifiers().stream()
-					.forEach(m -> super.removeModifier(m));
+				temp.getModifiers().entries().stream()
+					.forEach(e -> Actors.removeModifier(this, e.getValue()));
 				this.inventory.addItem(item);
 				s.setItem(Optional.empty());
 			}
