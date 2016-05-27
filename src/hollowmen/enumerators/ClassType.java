@@ -1,18 +1,26 @@
 package hollowmen.enumerators;
 
 /**
- * Contains the list of the game class.
+ * Contains the list of the hero classes.
  * 
  * @author Giordo
  *
  */
 public enum ClassType {
-	WARRIOR,
-	ASSASSIN,
-	MAGE;
+	WARRIOR("warrior"),
+	ASSASSIN("assassin"),
+	MAGE("mage");
 	
-	@Override
-	public String toString(){
-		return this.name().toLowerCase();
+	private String s;
+	
+	private ClassType(String s){
+		this.s=s;
+	}
+	
+	/**
+	 * @return String that represent the hero class
+	 */
+	public String getString(){
+		return this.s;
 	}
 }
