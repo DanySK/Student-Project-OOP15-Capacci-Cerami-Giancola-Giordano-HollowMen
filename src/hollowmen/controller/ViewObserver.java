@@ -3,6 +3,7 @@ package hollowmen.controller;
 import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.model.facade.InformationDealer;
 
 /**
  * Interface used to notify controller about input
@@ -35,7 +36,7 @@ public interface ViewObserver {
 	 * @param input
 	 * @param info
 	 */
-	public void addInput(InputCommand input, ImmutableItem item);
+	public void addInput(InputCommand input, InformationDealer item);
 	
 	/**
 	 * The method {@code addInput} notify which class player choose
