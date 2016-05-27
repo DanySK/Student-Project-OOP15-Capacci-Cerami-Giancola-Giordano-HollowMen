@@ -45,7 +45,7 @@ public class AssassinButton extends TranslucentButton {
 		if(!isAvailable) {
 			g.drawImage(assassinNA, 0, 0, null);
 		}
-		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
+		super.paintComponent(g);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import hollowmen.controller.ViewObserver;
+import hollowmen.enumerators.InputMenu;
 import hollowmen.model.Point2D;
 import hollowmen.utilities.Pair;
 import hollowmen.view.juls.MenuType;
@@ -34,7 +35,7 @@ public interface View {
 	 * 
 	 * @author Juls
 	 */
-	public void drawMenu(String text, MenuType name, Optional<Collection<?>> collection);
+	public void drawMenu(String text, InputMenu name, Optional<Collection<?>> collection);
 	
 	/**
 	 * The method {@code drawGame} is used to take from the controller a list

@@ -1,7 +1,6 @@
 package hollowmen.view.juls.dialog;
 
 import java.awt.Frame;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
 
 import hollowmen.view.juls.MainMenu;
 import hollowmen.view.juls.buttons.PaintedButton;
+import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
  * The {@code PauseMenu} class pauses the game. It allows to go back to
@@ -28,42 +28,42 @@ public class PauseMenu extends MessageDialog {
 	private PaintedButton lobby = new PaintedButton("TO LOBBY");
 	private PaintedButton main = new PaintedButton("TO MAIN");
 	private PaintedButton resume = new PaintedButton("RESUME");
-	private JPanel buttonContainer = new JPanel();
-	private JPanel titleContainer = new JPanel();
+	private JPanel buttonContainer = PanelBuilder.getBuilder()
+									.layout(1, 3, 10, 0)
+									.bound(15, 110, 470, 58)
+									.addTo(lobby)
+									.addTo(main)
+									.addTo(resume)
+									.build();
 
 	public PauseMenu(Frame frame) {
 		super(frame);
 		loadImage();
-
-		titleContainer.setLayout(new GridLayout(1, 0, 0, 0));
-		titleContainer.setBounds(115, 30, 270, 70);
-		titleContainer.setOpaque(false);
-		titleContainer.add(title);
-		add(titleContainer);
 		
-		buttonContainer.setLayout(new GridLayout(1, 3, 10, 0));
-		buttonContainer.setBounds(15, 110, 470, 58);
-		buttonContainer.setOpaque(false);
-		buttonContainer.add(lobby);
-		buttonContainer.add(main);
-		buttonContainer.add(resume);
-		add(buttonContainer);
+		title.setBounds(115, 30, 270, 70);
+		this.add(title);
+		this.add(buttonContainer);
 		
-		main.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new MainMenu();
-			}
-		});
-		
-		resume.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
+		main.addActionListener(listener);
+		resume.addActionListener(listener);
+		lobby.addActionListener(listener);
 		
 		setVisible(true);
 	}
+	
+	ActionListener listener = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			name = ((PaintedButton) e.getSource()).getText();
+			if(name.equals("TO MAIN")) {
+				dispose();
+				new MainMenu();
+			} else if (name.equals("RESUME")) {
+				dispose();
+			} else {
+				
+			}
+		}
+	};
 	
 	private void loadImage() {
 		try {

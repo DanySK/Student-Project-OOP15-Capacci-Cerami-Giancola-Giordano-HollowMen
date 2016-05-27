@@ -46,6 +46,6 @@ public class NodeButton extends TranslucentButton {
 		} else if (!isAvailable) { // nodo non disponibile
 			g.drawImage(nodeNA, 0, 8, null);
 		}
-		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
+		super.paintComponent(g);
 	}
 }
