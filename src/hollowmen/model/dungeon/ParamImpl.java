@@ -9,12 +9,11 @@ import java.util.function.BinaryOperator;
 import hollowmen.model.Information;
 import hollowmen.model.Modifier;
 import hollowmen.model.Parameter;
+import hollowmen.model.utils.InformationUserImpl;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
-public class ParamImpl implements Parameter{
-
-	private Information info;
+public class ParamImpl extends InformationUserImpl implements Parameter{
 	
 	private Map<Pair<BinaryOperator<Double>, Double>, List<Modifier>> modifiersMap = new HashMap<>();
 	
@@ -25,15 +24,10 @@ public class ParamImpl implements Parameter{
 	
 	
 	public ParamImpl(Information info, double baseValue) {
+		super(info);
 		this.baseValue = baseValue;
-		this.info = info;
 	}
 	
-	@Override
-	public Information getInfo() {
-		return info;
-	}
-
 	@Override
 	public double getValue() {
 		return (baseValue + sum) * mul;
