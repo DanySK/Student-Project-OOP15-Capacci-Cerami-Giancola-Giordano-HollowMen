@@ -136,7 +136,7 @@ public class Game extends JPanel implements GameInterface{
 		}
 	}
 	
-	public void keyPressed(KeyEvent e){
+	public void keyManager(KeyEvent e){
 		
 		int key=e.getKeyCode();
 		inputChooser.chooser(key);//calls the method of the InputChooser class
