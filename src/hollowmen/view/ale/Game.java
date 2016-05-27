@@ -2,8 +2,11 @@ package hollowmen.view.ale;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,7 +45,7 @@ public class Game extends JPanel implements GameInterface{
 	private ValueManager goldValue;
 	private ValueManager floorValue;
 	private ValueManager timerValue;
-	private LinkedList <Pair<String,JLabel>> storage;
+	private Map<String,JLabel> storage;
 	
 	
 	public Game(int x, int y, ViewObserver observer){//INCOMPLETO... da aggiungere i vari label
@@ -96,10 +99,10 @@ public class Game extends JPanel implements GameInterface{
 		addDynamicComponent(componentList);
 	}
 	
-	public void setStorage(List<Pair<String,ImageIcon>> storage){
-		this.storage=new LinkedList<Pair<String,JLabel>>();
-		for(Pair<String,ImageIcon> elem: storage){
-			this.storage.add(new Pair<String,JLabel>(elem.getX(),new JLabel(elem.getY())));
+	public void setStorage(Map<String,ImageIcon> storage){
+		this.storage=new HashMap<String,JLabel>();
+		for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
+			this.storage.put(elem.getKey(),new JLabel(elem.getValue()));
 		}
 	}
 	
