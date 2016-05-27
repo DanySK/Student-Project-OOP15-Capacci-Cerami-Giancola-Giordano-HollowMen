@@ -2,13 +2,12 @@ package hollowmen.view.ale;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
-import hollowmen.utilities.Pair;
 
 /**
  * The ScreenButton class is used to show on screen all the buttons that
@@ -20,11 +19,11 @@ import hollowmen.utilities.Pair;
 public class ScreenButton extends JButton{
 	private static final long serialVersionUID = -4490819627872969413L;
 	
-	public ScreenButton(ViewObserver observer, InputCommand command ,List<Pair<String,JLabel>> storage){
+	public ScreenButton(ViewObserver observer, InputCommand command , Map<String,JLabel> storage){
 		
-		for(Pair<String,JLabel> elem: storage){
-			if(elem.getX()==command.getString()){
-				this.setIcon(elem.getY().getIcon());
+		for(Map.Entry<String,JLabel> elem: storage.entrySet()){
+			if(elem.getKey()==command.getString()){
+				this.setIcon(elem.getValue().getIcon());
 				break;
 			}
 		}
@@ -37,11 +36,11 @@ public class ScreenButton extends JButton{
 		
 	}
 	
-	public ScreenButton(ViewObserver observer, InputMenu command ,List<Pair<String,JLabel>> storage){
+	public ScreenButton(ViewObserver observer, InputMenu command , Map<String,JLabel> storage){
 		
-		for(Pair<String,JLabel> elem: storage){
-			if(elem.getX()==command.getString()){
-				this.setIcon(elem.getY().getIcon());
+		for(Map.Entry<String,JLabel> elem: storage.entrySet()){
+			if(elem.getKey()==command.getString()){
+				this.setIcon(elem.getValue().getIcon());
 				break;
 			}
 		}

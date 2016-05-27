@@ -3,9 +3,10 @@ package hollowmen.controller;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import hollowmen.utilities.Pair;
+import java.util.Map;
 
 /**
  * {@code LoaderClass} is a Singleton used to load images
@@ -32,8 +33,8 @@ public class LoaderClass {
 	 * @return {@code List<Pair<String, byte[]>>} the list of pair of
 	 * name and image (as {@code byte[]})
 	 */
-	public static List<Pair<String, byte[]>> load(){
-		List<Pair<String, byte[]>> imageList=new LinkedList<>();
+	public static Map<String,byte[]> load(){
+		Map<String,byte[]> imageMap=new HashMap<>();
 		BufferedInputStream bf;
 		List<String> nameList=nameList();
 		try{
@@ -49,11 +50,11 @@ public class LoaderClass {
 				for(int i=0;i<a.length;i++){
 					b[i]=a[i].byteValue();
 				}
-				imageList.add(new Pair<String,byte[]>(elem,b));
+				imageMap.put(elem, b);
 			}
 		}catch(Exception e){
 			System.out.println("ERRORE CARICAMENTO IMMAGINI!!!");
 		}
-		return imageList;
+		return imageMap;
 	}
 }

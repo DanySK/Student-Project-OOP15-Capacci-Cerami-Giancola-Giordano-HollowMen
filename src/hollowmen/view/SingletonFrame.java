@@ -6,9 +6,6 @@ import javax.swing.JFrame;
  * in order to create just one instance of this Class. It's thread-safe.
  * 
  * @author Juls
- * @version 2.0
- * @since 16/05
- * Last Update: 18/05 15:15
  */
 public class SingletonFrame extends JFrame {
 	
@@ -16,11 +13,10 @@ public class SingletonFrame extends JFrame {
 	private static int width;
 	private static int height;
 	
-	// constructor, must be private
 	private SingletonFrame() {
 		this.setSize(getWidth(), getHeight());
 		this.setLocationRelativeTo(null);
-		this.setResizable(false);// because I don't want to mess up with the dimension
+		this.setResizable(false);
 		this.setTitle("HOLLOW MEN");
 	}
 	
