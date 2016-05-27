@@ -36,7 +36,9 @@ public interface Actor extends RoomEntity{
 		ABILITY1,
 		ABILITY2,
 		ABILITY3,
-		CONSUMABLE;
+		CONSUMABLE,
+		INTERACT,
+		BACK;
 		
 		@Override
 		public String toString(){
