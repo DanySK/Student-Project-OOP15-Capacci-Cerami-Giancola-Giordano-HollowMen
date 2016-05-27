@@ -7,21 +7,22 @@ package hollowmen.enumerators;
  *
  */
 public enum InputMenu {
-	MAIN("main"),
-	CLASS("class"),
-	DIFFICULTY("difficulty"),
-	HELP("help"),
-	PAUSE("pause"),
-	INVENTORY("inventory"),
-	SKILL_TREE("skillTree"),
-	POKEDEX("pokedex"),
-	SHOP("shop"),
-	ACHIEVEMENTS("achievements");
+	MAIN("main", "basic"),
+	CLASS("class", "basic"),
+	DIFFICULTY("difficulty", "basic"),
+	HELP("help", "basic"),
+	PAUSE("pause", "basic"),
+	INVENTORY("inventory", "complex"),
+	SKILL_TREE("skillTree", "complex"),
+	POKEDEX("pokedex", "complex"),
+	SHOP("shop", "complex"),
+	ACHIEVEMENTS("achievements", "complex");
 	
-	private String s;
+	private String s, type;
 	
-	private InputMenu(String s){
+	private InputMenu(String s, String type){
 		this.s=s;
+		this.type = type;
 	}
 	
 	/**
@@ -29,5 +30,12 @@ public enum InputMenu {
 	 */
 	public String getString(){
 		return this.s;
+	}
+	
+	/**
+	 * @return String representing menu's type
+	 */
+	public String getType() {
+		return this.type;
 	}
 }
