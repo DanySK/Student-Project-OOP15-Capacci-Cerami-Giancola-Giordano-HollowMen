@@ -19,10 +19,29 @@ public interface Actor extends RoomEntity{
 	 * @author pigio
 	 *
 	 */
-	public enum Direction{
+	public enum Direction {
 		RIGHT,
 		STOP,
 		LEFT;
+		
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
+	}
+	
+	public enum Action {
+		ATTACK,
+		JUMP,
+		ABILITY1,
+		ABILITY2,
+		ABILITY3,
+		CONSUMABLE;
+		
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
 	}
 	
 	/**
