@@ -6,7 +6,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Status extends InformationUser, TimeEvent{
+public interface Status extends InformationUser{
 
 	/**
 	 * This method attaches this {@code Status} to 

@@ -1,5 +1,7 @@
 package hollowmen.model;
 
+import java.util.function.Consumer;
+
 /**
  * This interface represents the time inside the game,
  * since there are many time-dependent-event internally <br>
@@ -15,5 +17,5 @@ public interface Time  extends LimitedCounter{
 	 * its duration finished {@code trigger()} will be invoked 
 	 * @param event {@link TimeEvent}
 	 */
-	public void register(TimeEvent event);
+	public <T> void register(T subj, double duration, Consumer<T> action);
 }
