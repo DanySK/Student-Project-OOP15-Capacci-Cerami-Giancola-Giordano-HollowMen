@@ -3,23 +3,16 @@ package hollowmen.view.juls.dialog;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.view.ViewImpl;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -29,16 +22,7 @@ public class Inventory extends TabbedDialog {
 	private static final long serialVersionUID = 1157519982974148320L;
 	private JLabel body = new JLabel();
 	private ImageIcon s1, s2, s3;
-	
-	private JLabel statsBox = new JLabel();
-	private String nameF;
 
-	private Icon icon;
-
-	private ViewImpl view;
-	private Optional<Map<String, Integer>> stats;
-
-	private PaintedButton close = new PaintedButton("CLOSE"); //dentro buttonC
 	private PaintedButton equip = new PaintedButton("EQUIP"); //dentro buttonC
 	private PaintedButton unequip = new PaintedButton("UNEQUIP"); //dentro buttonC
 	private IconButton head = new IconButton(); //dentro bodyPNorth
@@ -89,7 +73,7 @@ public class Inventory extends TabbedDialog {
 	public Inventory(Frame frame, Collection<InformationDealer> collection) {
 		super(frame);
 		this.loadImages();
-		this.addTitle(title);
+		super.addTitle(title);
 		body.setBounds(420, 40, 130, 350);
 		this.add(body);
 		statsBox.setBounds(570, 270, 130, 140);
@@ -102,7 +86,7 @@ public class Inventory extends TabbedDialog {
 		equip.addActionListener(paintedL);		
 		unequip.addActionListener(paintedL);
 		close.addActionListener(paintedL);
-		this.addMouseListener(dialogL);
+		super.addMouseListener(dialogL);
 
 		this.populateTab(collection, "head", headP);
 		this.populateTab(collection, "chest", chestP);
@@ -198,12 +182,6 @@ public class Inventory extends TabbedDialog {
 			} else {
 				dispose();
 			}
-		}
-	};
-	
-	MouseListener dialogL = new MouseAdapter() {
-		public void mouseClicked(MouseEvent e) {
-			setButtonState(false, false);
 		}
 	};
 }
