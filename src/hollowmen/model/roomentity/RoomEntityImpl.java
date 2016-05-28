@@ -23,7 +23,7 @@ public class RoomEntityImpl implements RoomEntity{
 	}
 
 	@Override
-	public Rectangle getSize() {
+	public Rectangle getBody() {
 		return size;
 	}
 
