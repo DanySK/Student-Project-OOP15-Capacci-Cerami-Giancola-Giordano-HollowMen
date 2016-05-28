@@ -2,12 +2,18 @@ package hollowmen.model.utils;
 
 import java.awt.Rectangle;
 
+import org.jbox2d.common.Vec2;
+
 import hollowmen.model.Modifier.Operation;
 import hollowmen.utilities.Pair;
 
 
 public class Constants {
 
+	public static final double ATTACK_DURATION = 0.783;
+	
+	public static final Vec2 JUMPFORCE = new Vec2(0, 100f);
+	
 	public static final float MAXSPEED = 5;
 	
 	public static final float FLATSPEED = 20;

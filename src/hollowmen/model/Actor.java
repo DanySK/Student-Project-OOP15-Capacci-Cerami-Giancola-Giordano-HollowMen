@@ -90,5 +90,5 @@ public interface Actor extends RoomEntity{
 	 * This method gives all the {@code Status} that are affecting this {@code Actor}
 	 * @return {@link Collection}<{@link Status}> that are affecting this {@code Actor}
 	 */
-	public Collection<Status> getStatus();
+	public Collection<Information> getStatus();
 }
