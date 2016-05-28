@@ -2,6 +2,8 @@ package hollowmen.model;
 
 import java.util.Collection;
 
+import org.jbox2d.dynamics.World;
+
 /**
  * This interface represent a {@code Room} intended as a container for {@link RoomEntity}<br>
  * {@code Room}s compose a single {@link Floor} and every {@code Room} has a "parent" {@code Room}
@@ -12,6 +14,12 @@ import java.util.Collection;
  */
 public interface Room {
 
+	/**
+	 * This method gives the {@code World}
+	 * @return {@link World}
+	 */
+	public World getWorld();
+	
 	/**
 	 * This method give the {@code Room} "before" this
 	 * @return {@link Room}
@@ -65,12 +73,6 @@ public interface Room {
 	 * @return {@code int}
 	 */
 	public int getRoomNumber();
-	
-	/**
-	 * This method gives the number of this {@code Room}'s next univocal ID
-	 * @return
-	 */
-	public int getIDCounter();
 	
 	/**
 	 * This method adds the given <b>roomEntity</b> to the right Collection

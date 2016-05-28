@@ -3,7 +3,7 @@ package hollowmen.model;
 import org.jbox2d.dynamics.Body;
 
 /**
- * This interface represents any actor in the {@link Room}, it has a {@link Rectangular} and is an {@link InformationUser}
+ * This interface represents any actor in the {@link Room}, it has a {@link Body} and is an {@link InformationUser}
  * @author pigio
  *
  */
