@@ -2,12 +2,8 @@ package hollowmen.view.ale;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< local
-import java.util.List;
 import javax.swing.BorderFactory;
-=======
 import java.util.Map;
->>>>>>> other
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
@@ -31,6 +27,7 @@ public class ScreenButton extends JButton{
 		for(Map.Entry<String,JLabel> elem: storage.entrySet()){
 			if(elem.getKey()==command.getString()){
 				this.setIcon(elem.getValue().getIcon());
+				this.setBorder(border);
 				break;
 			}
 		}

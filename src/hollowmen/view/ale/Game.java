@@ -1,5 +1,6 @@
 package hollowmen.view.ale;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,10 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import hollowmen.controller.ViewObserver;
-<<<<<<< working copy
-import hollowmen.model.Point2D;
-import hollowmen.utilities.Pair;
-=======
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.enumerators.Values;
@@ -30,6 +27,7 @@ public class Game extends JPanel implements GameInterface{
         private static final int ALIGNMENTY=20;
         private static final int POSITIONX=300;
         private static final int POSITIONY=100;
+        private static final int ALIGNMENT=10;
 	private ViewObserver observer;
 	private JLabel panelGame;
 	private Bar bars;
@@ -119,7 +117,7 @@ public class Game extends JPanel implements GameInterface{
 		levelValue.updateValue(Values.LEVEL.getValue());
 		goldValue.updateValue(Values.GOLD.getValue());
 		floorValue.updateValue(Values.FLOOR.getValue());
-		timerValue.updateValue(Values.TIMER.getValue())
+		timerValue.updateValue(Values.TIMER.getValue());
 		
 	}
 	
@@ -136,11 +134,6 @@ public class Game extends JPanel implements GameInterface{
 				}
 			}
 		}
-		labTmp=this.storage.get(c).getY();
-		labTmp.setBounds((int)elem.getY().getX(), (int)elem.getY().getY(), 
-						labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-		panelGame.add(labTmp);
-	    }
 	}
 	
 	public void keyManager(KeyEvent e){
