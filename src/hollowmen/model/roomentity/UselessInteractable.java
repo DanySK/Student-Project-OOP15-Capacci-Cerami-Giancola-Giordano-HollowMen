@@ -1,16 +1,20 @@
 package hollowmen.model.roomentity;
 
+import org.jbox2d.dynamics.Filter;
+
 import hollowmen.model.Information;
 import hollowmen.model.Interactable;
+import hollowmen.model.collision.Utils;
+import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.utilities.ExceptionThrower;
 
-public abstract class UselessInteractable extends RoomEntityImpl implements Interactable{
+public abstract class UselessInteractable extends RoomEntityAbs implements Interactable{
 
 	private boolean canInteract = false;
 	
 	
-	public UselessInteractable(Information info) {
-		super(info);
+	public UselessInteractable(Information name) {
+		super(name);
 	}
 	
 	@Override
@@ -28,5 +32,11 @@ public abstract class UselessInteractable extends RoomEntityImpl implements Inte
 		ExceptionThrower.checkIllegalState(this, d -> !d.isInteractAllowed());
 	}
 
-	
+	public Filter standardFilter(){
+		return Utils.filterBuilder()
+				.addCategory(FilterType.LOOTABLE.getValue())
+				.addMask(FilterType.GROUND.getValue())
+				.addMask(FilterType.HERO.getValue())
+				.build();
+	}
 }

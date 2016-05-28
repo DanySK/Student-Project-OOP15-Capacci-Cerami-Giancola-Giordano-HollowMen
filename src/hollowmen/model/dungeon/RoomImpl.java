@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.jbox2d.dynamics.World;
+
 import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
@@ -12,6 +14,7 @@ import hollowmen.model.roomentity.interactable.Door;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.RandomSelector;
+import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Bullet;
 import hollowmen.model.Enemy;
 import hollowmen.model.Hero;
@@ -53,9 +56,9 @@ public class RoomImpl implements Room{
 	
 	private void createDoor() {
 		for(int i = 0; i < this.childNumber; i++) {
-			this.interactables.add(new Door(i, this.getIDCounter()));
+			this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
 		}
-		this.interactables.add(new Door(-1, this.getIDCounter()));
+		this.interactables.add(new Door(RoomEntityName.DOOR_BACK.toString(), -1));
 	}
 
 	@Override
@@ -129,7 +132,6 @@ public class RoomImpl implements Room{
 		if(roomEntity instanceof Interactable) {
 			interactables.add((Interactable)roomEntity);
 		}
-		//CollisionManager add((casting) roomEntity)
 	}
 
 	@Override
@@ -145,12 +147,6 @@ public class RoomImpl implements Room{
 		if(roomEntity instanceof Interactable) {
 			interactables.remove((Interactable)roomEntity);
 		}
-		//CollisionManager remove((casting) roomEntity)
-	}
-
-	public int getIDCounter() {
-		this.IDCounter++;
-		return this.IDCounter;
 	}
 
 }

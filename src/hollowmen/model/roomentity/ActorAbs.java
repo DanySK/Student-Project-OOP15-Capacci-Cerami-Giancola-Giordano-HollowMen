@@ -15,7 +15,7 @@ import hollowmen.model.TypeAction;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 
-public abstract class ActorAbs extends RoomEntityImpl implements Actor{
+public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
 	private String state;
 	private boolean facingRight;

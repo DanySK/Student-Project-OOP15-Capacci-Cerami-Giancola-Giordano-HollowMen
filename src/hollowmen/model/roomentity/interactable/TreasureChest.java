@@ -1,6 +1,14 @@
 package hollowmen.model.roomentity.interactable;
 
+import java.util.Collection;
+
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
+
+import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Lootable;
+import hollowmen.model.collision.Utils;
 import hollowmen.model.dungeon.FloorSingleton;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.dungeon.LootableImpl;
@@ -14,8 +22,8 @@ public class TreasureChest extends UselessInteractable{
 	private Lootable loot;
 	
 	//TODO improve the choose of the Item
-	public TreasureChest(int rarity, int ID) {
-		super(new InfoImpl("treasure"), Constants.TREASURE_SIZE, ID);
+	public TreasureChest(int rarity) {
+		super(new InfoImpl(RoomEntityName.TREASURE.toString()));
 		int floorNum = FloorSingleton.getInstance().getFloorNumber();
 		int roomNum = FloorSingleton.getInstance().getCurrentRoom().getRoomNumber();
 		int expAndGold = floorNum * Constants.TREASURE_FLATFLOOR + roomNum * Constants.TREASURE_FLATROOM;
@@ -57,6 +65,16 @@ public class TreasureChest extends UselessInteractable{
 		} else if (!loot.equals(other.loot))
 			return false;
 		return true;
+	}
+
+	@Override
+	public BodyDef defBody() {
+		return Utils.bodyDefBuilder().fixRotation(true).type(BodyType.DYNAMIC).build();
+	}
+
+	@Override
+	public Collection<FixtureDef> defFixture() {
+		return this.generateRectangleFix(Constants.TREASURE_SIZE, this.standardFilter(), true);
 	}
 
 }
