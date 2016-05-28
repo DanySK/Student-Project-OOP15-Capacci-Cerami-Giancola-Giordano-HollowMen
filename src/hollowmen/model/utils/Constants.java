@@ -20,6 +20,7 @@ public class Constants {
 
 	public static final Rectangle HERO_SIZE = new Rectangle(80, 100);
 	
+	public static final int HERO_ID = 0;
 	//STATPOINT STUFFS
 	
 	public static final int STATPOINTS_ONLEVELUP = 2;

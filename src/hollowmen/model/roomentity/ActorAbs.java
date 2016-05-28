@@ -42,16 +42,14 @@ public abstract class ActorAbs extends RoomEntityImpl implements Actor{
 		}
 	}
 
-	public final void move(Direction d) {
+	public final void move(String d) {
 		changeFacing(d);
-		if(!d.equals(Direction.STOP)) {
 			//CollisionManager.move(this);
-		}
 	}
 	
-	private void changeFacing(Direction d) {
-		if(d.equals(Direction.RIGHT) && !this.isFacingRight() 
-				|| d.equals(Direction.LEFT) && this.isFacingRight()) {
+	private void changeFacing(String d) {
+		if(d.equals(Direction.RIGHT.toString()) && !this.isFacingRight() 
+				|| d.equals(Direction.LEFT.toString()) && this.isFacingRight()) {
 			this.setFacingRight(!this.isFacingRight());
 		}
 	}
