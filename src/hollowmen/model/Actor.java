@@ -15,13 +15,12 @@ import java.util.Map;
 public interface Actor extends RoomEntity{
 
 	/**
-	 * RIGHT, LEFT, STOP.
+	 * RIGHT, LEFT.
 	 * @author pigio
 	 *
 	 */
 	public enum Direction {
 		RIGHT,
-		STOP,
 		LEFT;
 		
 		@Override
@@ -51,7 +50,7 @@ public interface Actor extends RoomEntity{
 	 * @param d {@link Direction} where the Character will move.
 	 * @throws NullPointerException
 	 */
-	public void move(Direction d) throws NullPointerException;
+	public void move(String d) throws NullPointerException;
 	
 	//state pattern per le TypeAction
 	/**

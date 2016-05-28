@@ -22,16 +22,4 @@ public class EnemyEn {
 			return this.name().toLowerCase();
 		}
 	}
-	
-	public static enum Name {
-		SLIME,
-		BAT,
-		PUPPET;
-		
-		@Override
-		public String toString(){
-			return this.name().toLowerCase();
-		}
-	}
-	
 }

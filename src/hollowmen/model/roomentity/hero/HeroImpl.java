@@ -2,10 +2,12 @@ package hollowmen.model.roomentity.hero;
 
 import java.awt.Rectangle;
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ListMultimap;
+
+import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Hero;
 import hollowmen.model.HeroClass;
 import hollowmen.model.Information;
@@ -18,6 +20,7 @@ import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Slot;
 import hollowmen.model.TargetPointSystem;
+import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Actors;
@@ -41,10 +44,12 @@ public class HeroImpl extends ActorAbs implements Hero{
 	
 	private TargetPointSystem<Parameter> uppableParam;
 	
-	private Map<String, List<Slot>> slots;
+	private ListMultimap<String, Slot> slots = ArrayListMultimap.create();
 	
 	public HeroImpl(Information info, Rectangle size, int ID, ActionAllowed aA, Collection<Parameter> param) {
-		super(info, size, ID, aA, param);
+		super(new InfoImpl(RoomEntityName.HERO.toString()),
+				Constants.HERO_SIZE,
+				Constants.HERO_ID, aA, param);
 		// TODO Auto-generated constructor stub
 	}
 	
