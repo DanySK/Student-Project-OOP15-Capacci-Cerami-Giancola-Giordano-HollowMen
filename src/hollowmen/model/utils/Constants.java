@@ -7,6 +7,10 @@ import hollowmen.model.Modifier.Operation;
 
 public class Constants {
 
+	public static final float MAXSPEED = 5;
+	
+	public static final float FLATSPEED = 20;
+	
 	public static final Rectangle WORLD_SIZE = new Rectangle(800, 600);
 	
 	//Counting also the zero so 0-1-2 = 3 child rooms;

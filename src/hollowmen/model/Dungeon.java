@@ -1,7 +1,5 @@
 package hollowmen.model;
 
-import org.jbox2d.dynamics.World;
-
 import hollowmen.model.utils.GameOverException;
 import hollowmen.utilities.Pair;
 
@@ -78,10 +76,5 @@ public interface Dungeon {
 	 * @return {@link Shop}
 	 */
 	public Shop getShop();
-	
-	/**
-	 * This method gives the {@code World}
-	 * @return {@link World}
-	 */
-	public World getWorld();
+
 }

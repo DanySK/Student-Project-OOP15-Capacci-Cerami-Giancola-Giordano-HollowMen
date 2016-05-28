@@ -1,6 +1,5 @@
 package hollowmen.model.roomentity;
 
-import java.awt.Rectangle;
 import java.util.Collection;
 
 import hollowmen.model.Enemy;
@@ -14,9 +13,9 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 	private String title;
 	
 	
-	public EnemyAbs(Information info, Rectangle size, int ID, ActionAllowed aA, 
+	public EnemyAbs(Information info, ActionAllowed aA, 
 			Collection<Parameter> param, MovePattern movP, int power, String title) {
-		super(info, size, ID, aA, param);
+		super(info, aA, param);
 		this.pattern = movP;
 		this.combatLevel = power;
 		this.title = title;

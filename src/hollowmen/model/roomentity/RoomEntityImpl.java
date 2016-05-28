@@ -1,11 +1,12 @@
 package hollowmen.model.roomentity;
 
-import java.awt.Rectangle;
-
 import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.FixtureDef;
 
 import hollowmen.model.Information;
 import hollowmen.model.RoomEntity;
+import hollowmen.model.dungeon.FloorSingleton;
 
 public abstract class RoomEntityImpl implements RoomEntity{
 
@@ -14,8 +15,13 @@ public abstract class RoomEntityImpl implements RoomEntity{
 	
 	protected RoomEntityImpl(Information info) {
 		this.info = info;
-		this.body = 
+		this.body = FloorSingleton.getInstance().getCurrentRoom().getWorld().createBody(this.defBody());
+		this.body.createFixture(defFixture());
 	}
+	
+	public abstract BodyDef defBody();
+	
+	public abstract FixtureDef defFixture();
 	
 	@Override
 	public Information getInfo() {
