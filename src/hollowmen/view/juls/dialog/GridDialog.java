@@ -1,14 +1,22 @@
 package hollowmen.view.juls.dialog;
 
+import java.awt.Color;
 import java.awt.Frame;
+import java.awt.Image;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
 import hollowmen.model.facade.InformationDealer;
+import hollowmen.view.ViewImpl;
+import hollowmen.view.juls.buttons.IconButton;
+import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
@@ -21,8 +29,15 @@ import hollowmen.view.juls.panel.PanelBuilder;
 public abstract class GridDialog extends MenuDialog {
 
 	private static final long serialVersionUID = -7697502946815508802L;
-	protected JLabel portrait = new JLabel();
+	protected JLabel statsBox = new JLabel();
+	private ImageIcon portrait;
+	protected IconButton button;
+	protected String nameF, description;
+	protected Icon icon;
+	protected ViewImpl view;
+	protected Optional<Map<String, Integer>> stats;
 	private InformationDealer lastItem;
+	protected PaintedButton close = new PaintedButton("CLOSE");
 	protected JScrollBar scroll = new JScrollBar();
 	protected JPanel gridPanel = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
@@ -35,21 +50,8 @@ public abstract class GridDialog extends MenuDialog {
 	public GridDialog(Frame frame) {
 		super(frame);
 		this.add(gridPanel);
-	}
-	
-	/**
-	 * The {@code addPortrait} method draws something on screen,
-	 * for instance a bigger image of an Item or Mob.
-	 * @param image - the image to draw
-	 */
-	protected void addPortrait(JLabel image) {
-		this.portrait = image;
-		JPanel p = PanelBuilder.getBuilder()
-				.layout(1, 0, 0, 0)
-				.bound(430, 50, 120, 120)
-				.addTo(portrait)
-				.build();
-		//addInfoBox();
+		scroll.setBackground(Color.BLACK);
+		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 	}
 	
 	/**
@@ -63,13 +65,40 @@ public abstract class GridDialog extends MenuDialog {
 		return stats;
 	}
 	
-
-
+	/**
+	 * This method is used to set the InformationDealer on which 
+	 * some action (equip/unequip/buy/sell...) will be done.
+	 * @param lastItem
+	 */
 	protected void setLastItem(InformationDealer lastItem) {
 		this.lastItem = lastItem;
 	}
 	
+	/**
+	 * The method return the last InformationDealer clicked.
+	 * @return lastItem
+	 */
 	protected InformationDealer getLastItem() {
 		return lastItem;
+	}
+	
+	/**
+	 * This method draws a bigger representation of the image passed as parameter.
+	 * @param image
+	 */
+	protected void showImage(ImageIcon image) {
+		Image i = image.getImage();
+		Image scaled = i.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		portrait = new ImageIcon(scaled);
+		JLabel label = new JLabel(portrait);
+		label.setBounds(420, 100, 100, 100);
+	}
+	
+	protected void setButton(IconButton button) {
+		this.button = button;
+	}
+	
+	protected IconButton getButton() {
+		return button;
 	}
 }

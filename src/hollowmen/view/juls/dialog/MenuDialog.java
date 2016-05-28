@@ -36,7 +36,7 @@ public abstract class MenuDialog extends CustomDialog {
 	}
 	
 	@Override
-	public void addBackground() {
+	protected void addBackground() {
 		try {
 			background.setIcon(new ImageIcon(ImageIO.read(new File("res/images/pergamena.jpg"))));
 			this.setContentPane(background);
@@ -46,9 +46,9 @@ public abstract class MenuDialog extends CustomDialog {
 	}
 	
 	/**
-	 * The {@code addTitle} method adds an image to the menu.
+	 * The {@code addTitle} method adds title image to the menu.
 	 */
-	public void addTitle(JLabel title) {
+	protected void addTitle(JLabel title) {
 		title.setBounds(50, 30, 210, 60);
 	}
 
