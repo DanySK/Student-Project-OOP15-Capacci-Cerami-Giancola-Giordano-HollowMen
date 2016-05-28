@@ -14,13 +14,14 @@ import javax.swing.JLabel;
 public class LifeBar extends InternalBar{
     
     private static final long serialVersionUID = -5182672357552953075L;
+    private Font fontLB=new Font("Chiller", Font.PLAIN, 15);
     private Font fontA=new Font("Chiller",Font.PLAIN, 15);
     private JLabel life;
     
     public LifeBar(){
         
         this.setLayout(null);
-        this.setOpaque(true);
+        this.setOpaque(true);//Set true in order to allow to draw the component
         this.setBackground(Color.RED);
         
         this.life=new JLabel();
@@ -32,8 +33,9 @@ public class LifeBar extends InternalBar{
     }
     
     protected void barFilling(){
-    	this.setText(this.value+"/"+this.maxValue);//It shows the life value
-        this.life.setBounds(0,0,(int)width,this.getHeight());
-        this.add(this.life);
+
+        this.setText(this.value+"/"+this.maxValue);//It shows the life value.
+        this.setHorizontalAlignment(CENTER);//To set the text at the center of the bar.
+        this.life.setBounds(0,0,(int)this.width,this.getHeight());
     }
 }

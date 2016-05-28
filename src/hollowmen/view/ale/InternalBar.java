@@ -1,6 +1,7 @@
 package hollowmen.view.ale;
 
 import javax.swing.JLabel;
+
 /** 
  * The abstract class is used to draw bars with variable width.
  * 
@@ -9,7 +10,6 @@ import javax.swing.JLabel;
 public abstract class InternalBar extends JLabel{
     
     private static final long serialVersionUID = -3814942016648716113L;
-    protected double proportion;
     protected double width;
     protected int value;
     protected int maxValue;
@@ -23,8 +23,8 @@ public abstract class InternalBar extends JLabel{
      * @param maxValue
      */
     public void proportion(int value,int maxValue){
-    	this.value=value;
-    	this.maxValue=maxValue;
+        this.value=value;
+        this.maxValue=maxValue;
         this.width=(this.getWidth()*value)/maxValue;
         this.removeAll();
         barFilling();

@@ -2,9 +2,15 @@ package hollowmen.view.ale;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< local
+import java.util.List;
+import javax.swing.BorderFactory;
+=======
 import java.util.Map;
+>>>>>>> other
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
@@ -18,6 +24,7 @@ import hollowmen.enumerators.InputMenu;
  */
 public class ScreenButton extends JButton{
 	private static final long serialVersionUID = -4490819627872969413L;
+	private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
 	
 	public ScreenButton(ViewObserver observer, InputCommand command , Map<String,JLabel> storage){
 		
@@ -29,15 +36,14 @@ public class ScreenButton extends JButton{
 		}
 		this.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				observer.addInput(command);
-			}
+		    public void actionPerformed(ActionEvent e) {
+    		        observer.addInput(command);
+    		    }
 		});
-		
 	}
 	
 	public ScreenButton(ViewObserver observer, InputMenu command , Map<String,JLabel> storage){
-		
+
 		for(Map.Entry<String,JLabel> elem: storage.entrySet()){
 			if(elem.getKey()==command.getString()){
 				this.setIcon(elem.getValue().getIcon());
@@ -46,11 +52,9 @@ public class ScreenButton extends JButton{
 		}
 		this.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent e) {
-				observer.addInput(command);
-			}
+		    public void actionPerformed(ActionEvent e) {
+			observer.addInput(command);
+		    }
 		});
 	}
-	
-	
 }

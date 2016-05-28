@@ -22,7 +22,7 @@ public interface View {
 	 *
 	 * @param fileList
 	 */
-	public void takeFile(Map<String, byte[]> fileList);
+	public void takeFile(Map<String, byte[]> fileMap);
 	
 	/**
 	 * The {@code drawMenu} method draws the menu on screen when needed.
@@ -41,6 +41,6 @@ public interface View {
 	 * 
 	 * @param componentList 
 	 */
-	public void drawGame(Map<String,Point2D> componentList);
+	public void drawGame(Map<String,Point2D> componentMap);
 	
 }
