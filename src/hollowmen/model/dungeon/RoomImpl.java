@@ -5,8 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.jbox2d.dynamics.World;
-
 import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
@@ -17,16 +15,13 @@ import hollowmen.utilities.RandomSelector;
 import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Bullet;
 import hollowmen.model.Enemy;
-import hollowmen.model.Hero;
 
 public class RoomImpl implements Room{
 	
 	private Room parentRoom;
 	
 	private int childNumber;
-	
-	private int IDCounter;
-	
+		
 	private List<Room> childRoom = new ArrayList<>();
 	
 	private Collection<Interactable> interactables;
@@ -110,15 +105,9 @@ public class RoomImpl implements Room{
 	}
 
 	@Override
-	public Hero getHero() {
-		return null;//TODO
-	}
-
-	@Override
 	public int getRoomNumber() {
 		return roomNumber;
 	}
-
 
 	@Override
 	public void addEntity(RoomEntity roomEntity) {
@@ -148,5 +137,7 @@ public class RoomImpl implements Room{
 			interactables.remove((Interactable)roomEntity);
 		}
 	}
+
+
 
 }
