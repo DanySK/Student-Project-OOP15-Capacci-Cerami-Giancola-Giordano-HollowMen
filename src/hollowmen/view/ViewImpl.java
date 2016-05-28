@@ -41,10 +41,10 @@ public class ViewImpl implements View {
 	 * @author Juls
 	 * NOTE FOR ME: change this stupid "?" (Damn Object, you pineapple head)
 	 */
-	public void drawMenu(InputMenu type, InputMenu name, Optional<Collection<InformationDealer>> collection) {
+	public void drawMenu(InputMenu name, Optional<Collection<InformationDealer>> collection) {
 		BasicMenuImpl basic = new BasicMenuImpl();
 		ComplexMenuImpl complex = new ComplexMenuImpl();
-		if (type.getType().equals("basic")) {
+		if (name.getType().equals("basic")) {
 			basic.drawBasicMenu(name);
 		} else {
 			complex.drawComplexMenu(name, collection.get());
@@ -69,5 +69,13 @@ public class ViewImpl implements View {
 	 */ 
 	public void drawGame(Map<String, Point2D> componentMap) {
 		game.draw(componentMap);
+	}
+	
+	/**
+	 * The {@code getStorage()} method allows to get the images' storage.
+	 * @return - storage
+	 */
+	public Map<String,ImageIcon> getStorage() {
+		return storage;
 	}
 }

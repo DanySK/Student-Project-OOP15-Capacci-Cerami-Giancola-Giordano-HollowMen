@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import hollowmen.view.SingletonFrame;
 /**
@@ -44,8 +45,10 @@ public abstract class MenuDialog extends CustomDialog {
 	}
 	
 	/**
-	 * The {@code addTitle} method will add an image to the menu.
+	 * The {@code addTitle} method adds an image to the menu.
 	 */
-	public abstract void addTitle();
+	public void addTitle(JLabel label) {
+		label.setBounds(50, 30, 210, 60);
+	}
 
 }

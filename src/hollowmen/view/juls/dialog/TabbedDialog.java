@@ -23,14 +23,15 @@ public abstract class TabbedDialog extends GridDialog {
 	}
 	
 	protected void addTabbedPane() {
-		tabbedPane.addTab("All", gridPanel);
-		tabbedPane.addTab("Head", gridPanel);
-		tabbedPane.addTab("Chest", gridPanel);
-		tabbedPane.addTab("Legs", gridPanel);
-		tabbedPane.addTab("Rings", gridPanel);
-		tabbedPane.addTab("Weapons", gridPanel);
-		tabbedPane.addTab("Consumables", gridPanel);
-		//tabbedPane.addTab("Spells", gridPanel);
+		tabbedPane.addTab("head", gridPanel);
+		tabbedPane.addTab("chest", gridPanel);
+		tabbedPane.addTab("gloves", gridPanel);
+		tabbedPane.addTab("rings", gridPanel);
+		tabbedPane.addTab("legs", gridPanel);
+		tabbedPane.addTab("boots", gridPanel);
+		tabbedPane.addTab("weapons", gridPanel);
+		tabbedPane.addTab("spells", gridPanel);
+		tabbedPane.addTab("consumables", gridPanel);
 	}
 
 }

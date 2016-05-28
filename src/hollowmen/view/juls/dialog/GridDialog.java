@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
-import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
@@ -22,22 +21,16 @@ public abstract class GridDialog extends MenuDialog {
 	protected JLabel portrait = new JLabel();
 	protected JScrollBar scroll = new JScrollBar();
 	protected JPanel gridPanel = PanelBuilder.getBuilder()
-								.layout(20, 3, 3, 2)
-								.bound(50, 70, 165, 160)
+								.layout(20, 5, 3, 3)
+								.bound(50, 100, 300, 320)
 								.addTo(scroll)
 								.build();
-	protected PaintedButton close = new PaintedButton("CLOSE");
-	protected JPanel buttonC = PanelBuilder.getBuilder()
-								.layout(1, 0, 0, 0)
-								.bound(300, 480, 150, 58)
-								.addTo(close)
-								.build();
+
 	
 	
 	public GridDialog(Frame frame) {
 		super(frame);
 		this.add(gridPanel);
-		this.add(buttonC);
 	}
 	
 	/**

@@ -87,7 +87,6 @@ public class DifficultyMenu  extends MessageDialog {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("EASY") || name.equals("NORMAL") || name.equals("HARD")) {
 				confirm.setEnabled(true);
-				name = ((PaintedButton) e.getSource()).getText();
 				selection.setText(name);
 			} else if (name.equals("CONFIRM")) {
 				//addInput(name)
