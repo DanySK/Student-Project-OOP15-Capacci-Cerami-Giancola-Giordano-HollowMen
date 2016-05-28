@@ -4,8 +4,8 @@ import org.jbox2d.dynamics.Filter;
 
 import hollowmen.model.Information;
 import hollowmen.model.Interactable;
-import hollowmen.model.collision.Utils;
 import hollowmen.model.collision.hitbox.FilterType;
+import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.ExceptionThrower;
 
 public abstract class UselessInteractable extends RoomEntityAbs implements Interactable{
@@ -33,7 +33,7 @@ public abstract class UselessInteractable extends RoomEntityAbs implements Inter
 	}
 
 	public Filter standardFilter(){
-		return Utils.filterBuilder()
+		return Box2DUtils.filterBuilder()
 				.addCategory(FilterType.LOOTABLE.getValue())
 				.addMask(FilterType.GROUND.getValue())
 				.addMask(FilterType.HERO.getValue())

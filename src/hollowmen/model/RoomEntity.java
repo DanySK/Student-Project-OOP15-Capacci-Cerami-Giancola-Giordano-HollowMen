@@ -15,4 +15,8 @@ public interface RoomEntity extends InformationUser{
 	 */
 	public Body getBody();
 	
+	/**
+	 * This method guarantee the right remove of this RoomEntity from the game
+	 */
+	public void dispose();
 }

@@ -9,7 +9,7 @@ import hollowmen.utilities.Pair;
 
 
 public class Constants {
-
+	
 	public static final double ATTACK_DURATION = 0.783;
 	
 	public static final Vec2 JUMPFORCE = new Vec2(0, 100f);
@@ -26,6 +26,8 @@ public class Constants {
 	public static final int SKILLPOINTS_ONLEVELUP = 1;
 	
 	public static final int SKILLPOINTS_FORUPGRADE = 3;
+	
+	public static final Pair<Float, Float> BULLET_SIZE = new Pair<>(50f, 50f);
 	
 	public static final Pair<Float, Float> DOOR_SIZE = new Pair<>(100f, 170f);
 

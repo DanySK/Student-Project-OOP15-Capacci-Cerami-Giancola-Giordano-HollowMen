@@ -1,7 +1,9 @@
 package hollowmen.model.roomentity.hero;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Optional;
 
 import org.jbox2d.collision.shapes.CircleShape;
@@ -14,8 +16,10 @@ import org.jbox2d.dynamics.FixtureDef;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Multimap;
 
 import hollowmen.enumerators.RoomEntityName;
+import hollowmen.model.Actor;
 import hollowmen.model.Hero;
 import hollowmen.model.HeroClass;
 import hollowmen.model.Information;
@@ -28,12 +32,13 @@ import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Slot;
 import hollowmen.model.TargetPointSystem;
-import hollowmen.model.collision.Utils;
+import hollowmen.model.TypeAction;
 import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Actors;
+import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
@@ -60,7 +65,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 	
 	private ListMultimap<String, Slot> slots = ArrayListMultimap.create();
 	
-	public HeroImpl(Information info, ActionAllowed aA, Collection<Parameter> param) {
+	public HeroImpl(Information info, Collection<Parameter> param) {
 		super(new InfoImpl(RoomEntityName.HERO.toString()), aA, param);
 		// TODO Auto-generated constructor stub
 	}
@@ -186,16 +191,15 @@ public class HeroImpl extends ActorAbs implements Hero{
 
 	@Override
 	public BodyDef defBody() {
-		return Utils.bodyDefBuilder()
+		return Box2DUtils.bodyDefBuilder()
 					.type(BodyType.DYNAMIC)
-					.fixRotation(true)
 					.build();
 	}
 
 	@Override
 	public Collection<FixtureDef> defFixture() {
 		Collection<FixtureDef> retValue = new LinkedList<>();
-		Filter filter = Utils.filterBuilder()
+		Filter filter = Box2DUtils.filterBuilder()
 						.addCategory(FilterType.HERO.getValue())
 						.addMask(FilterType.GROUND.getValue())
 						.addMask(FilterType.ENEMY.getValue())
@@ -209,10 +213,15 @@ public class HeroImpl extends ActorAbs implements Hero{
 		CircleShape head = new CircleShape();
 		head.getVertex(0).set(0, (Constants.HERO_SIZE.getY() / 2));
 		head.setRadius(Constants.HERO_SIZE.getX() * this.HEAD_PROP);
-		retValue.add(Utils.fixDefBuilder().shape(underBody).friction(0).filter(filter).build());
-		retValue.add(Utils.fixDefBuilder().shape(head).friction(0).filter(filter).build());
+		retValue.add(Box2DUtils.fixDefBuilder().shape(underBody).friction(0).filter(filter).build());
+		retValue.add(Box2DUtils.fixDefBuilder().shape(head).friction(0).filter(filter).build());
 		return retValue;
 	}
 
-
+	
+	@Override
+	public Multimap<String, Slot> getEquippedItem() {
+		return this.slots;
+	}
+	
 }

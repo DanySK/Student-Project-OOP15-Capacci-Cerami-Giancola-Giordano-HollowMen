@@ -1,5 +1,7 @@
 package hollowmen.model;
 
+import com.google.common.collect.Multimap;
+
 import hollowmen.utilities.Pair;
 
 /**
@@ -106,4 +108,10 @@ public interface Hero extends Actor{
 	 * @return {@link TargetPointSystem}<{@link Parameter}>
 	 */
 	public TargetPointSystem<Parameter> getUpgradableParameter();
+	
+	/**
+	 * This method gives all the equipped {@code Item}
+	 * @return {@link Multimap}
+	 */
+	public Multimap<String, Slot> getEquippedItem();
 }
