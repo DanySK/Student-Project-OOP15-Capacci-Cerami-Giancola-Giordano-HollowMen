@@ -1,11 +1,14 @@
 package hollowmen.view.juls.dialog;
 
 import java.awt.Frame;
+import java.util.Map;
+import java.util.Optional;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
+import hollowmen.model.facade.InformationDealer;
 import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
@@ -19,6 +22,7 @@ public abstract class GridDialog extends MenuDialog {
 
 	private static final long serialVersionUID = -7697502946815508802L;
 	protected JLabel portrait = new JLabel();
+	private InformationDealer lastItem;
 	protected JScrollBar scroll = new JScrollBar();
 	protected JPanel gridPanel = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
@@ -49,12 +53,23 @@ public abstract class GridDialog extends MenuDialog {
 	}
 	
 	/**
-	 * The {@code addInfoBox} method adds information about 
+	 * The {@code showStats} method shows on screen information about 
 	 * what has been clicked before.
+	 * @return - stats
 	 */
-	protected void addInfoBox(/* ci andrà qualcosa*/) {
-		//da implementare
+	protected String showStats(Optional<Map<String, Integer>> map) {
+		String stats;
+		stats = map.get().entrySet().toString();
+		return stats;
 	}
 	
 
+
+	protected void setLastItem(InformationDealer lastItem) {
+		this.lastItem = lastItem;
+	}
+	
+	protected InformationDealer getLastItem() {
+		return lastItem;
+	}
 }

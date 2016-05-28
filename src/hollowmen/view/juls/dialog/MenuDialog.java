@@ -20,6 +20,7 @@ import hollowmen.view.SingletonFrame;
 public abstract class MenuDialog extends CustomDialog {
 
 	private static final long serialVersionUID = 1935614271807195916L;
+	protected JLabel title = new JLabel();
 
 	public MenuDialog(Frame frame) {
 		super(frame);
@@ -47,8 +48,8 @@ public abstract class MenuDialog extends CustomDialog {
 	/**
 	 * The {@code addTitle} method adds an image to the menu.
 	 */
-	public void addTitle(JLabel label) {
-		label.setBounds(50, 30, 210, 60);
+	public void addTitle(JLabel title) {
+		title.setBounds(50, 30, 210, 60);
 	}
 
 }
