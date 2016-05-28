@@ -27,14 +27,14 @@ import hollowmen.view.juls.panel.PanelBuilder;
 public class Inventory extends TabbedDialog {
 
 	private static final long serialVersionUID = 1157519982974148320L;
-	private JLabel inventory = new JLabel();
 	private JLabel body = new JLabel();
 	private ImageIcon s1, s2, s3;
 	
 	private JLabel statsBox = new JLabel();
-	private String nameF, lastItem;
+	private String nameF;
+
 	private Icon icon;
-	private IconButton button;
+
 	private ViewImpl view;
 	private Optional<Map<String, Integer>> stats;
 
@@ -89,33 +89,30 @@ public class Inventory extends TabbedDialog {
 	public Inventory(Frame frame, Collection<InformationDealer> collection) {
 		super(frame);
 		this.loadImages();
-		this.addTitle(inventory);
+		this.addTitle(title);
 		body.setBounds(420, 40, 130, 350);
 		this.add(body);
 		statsBox.setBounds(570, 270, 130, 140);
-		this.add(statsBox);
 		this.add(buttonC);
 		this.add(bodyPNorth);
 		this.add(bodyPCenter);
 		this.add(bodyPSouth);
 		this.add(pEast);
-		
-		equip.setEnabled(false);
+		this.setButtonState(false, false);
 		equip.addActionListener(paintedL);		
-		unequip.setEnabled(false);
 		unequip.addActionListener(paintedL);
 		close.addActionListener(paintedL);
 		this.addMouseListener(dialogL);
 
-		this.populateTab(collection, "head", 1);
-		this.populateTab(collection, "chest", 2);
-		this.populateTab(collection, "gloves", 3);
-		this.populateTab(collection, "rings", 4);
-		this.populateTab(collection, "legs", 5);
-		this.populateTab(collection, "boots", 6);
-		this.populateTab(collection, "weapons", 7);
-		this.populateTab(collection, "spells", 8);
-		this.populateTab(collection, "consumables", 9);
+		this.populateTab(collection, "head", headP);
+		this.populateTab(collection, "chest", chestP);
+		this.populateTab(collection, "gloves", glovesP);
+		this.populateTab(collection, "rings", ringsP);
+		this.populateTab(collection, "legs", legsP);
+		this.populateTab(collection, "boots", bootsP);
+		this.populateTab(collection, "weapons", weaponsP);
+		this.populateTab(collection, "spells", spellsP);
+		this.populateTab(collection, "consumables", consumP);
 		
 		this.populateBody(collection, "head", head);
 		this.populateBody(collection, "chest", chest);
@@ -126,76 +123,59 @@ public class Inventory extends TabbedDialog {
 		this.populateBody(collection, "weapons", weapon);
 		
 		this.setVisible(true);
-
 	}
 	
-		public void populateTab(Collection<InformationDealer> c, String slot, int i) {
-			c.stream()
-			.filter(x -> x.getStat().equals(slot))	//TODO change getStat with getSlot
-			//.filter(x -> x.getState().equals("unequiped"))
-			.forEach(x -> {
-				stats = x.getStat();
-				nameF = x.getName();
-				icon = view.getStorage().get(nameF);
-				button = new IconButton(icon);
-				button.addActionListener(new ActionListener() { // abilita l'equip
-					public void actionPerformed(ActionEvent e) {
-							equip.setEnabled(true);
-							unequip.setEnabled(false);
-							setButton(button);
-							setLastItem(nameF);
-							statsBox.setText(showStats(stats));
-							add(statsBox);	
-					}
-				});
-				tabbedPane.setTabComponentAt(i, button);
+	protected void populateTab(Collection<InformationDealer> c, String slot, JPanel panel) {
+		c.stream()
+		.filter(x -> x.getStat().equals(slot))	//TODO change getStat with getSlot
+		//.filter(x -> x.getState().equals("unequiped"))
+		.forEach(x -> {
+			stats = x.getStat();
+			nameF = x.getName();
+			icon = view.getStorage().get(nameF);
+			button = new IconButton(icon);
+			button.addActionListener(new ActionListener() { // abilita l'equip
+				public void actionPerformed(ActionEvent e) {
+						setButtonState(true, false);
+						setButton(button);
+						setLastItem(x);
+						statsBox.setText(showStats(stats));
+						add(statsBox);	
+				}
 			});
-		}
+			panel.add(button);
+		});
+		tabbedPane.addTab(slot, panel);
+	}
 	
-	public void populateBody(Collection<InformationDealer> c, String slot, IconButton button) {
+	private void populateBody(Collection<InformationDealer> c, String slot, IconButton button) {
 		c.stream()
 		.filter(x -> x.getStat().equals("equiped")) //TODO change getStat with getState - equip or not
 		.forEach(x -> {
-				x.getStat().equals(slot); //TODO change getStat with getSlot
-				nameF = x.getName();
-				icon = view.getStorage().get(nameF);
-				button.setIcon(icon);
-				button.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						unequip.setEnabled(true);
-						equip.setEnabled(false);
-						setButton(button);
-						setLastItem(nameF);
-					}
-				});
+			x.getStat().equals(slot); //TODO change getStat with getSlot
+			nameF = x.getName();
+			icon = view.getStorage().get(nameF);
+			button.setIcon(icon);
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					setButtonState(false, true);
+					statsBox.setText(showStats(stats));
+					setButton(button);
+					setLastItem(x);
+					add(statsBox);
+				}
+			});
 		});
 	}
 		
-	public void setButton(IconButton button) {
-		this.button = button;
-	}
-	
-	public IconButton getButton() {
-		return button;
+	protected void setButtonState(boolean eq, boolean un) {
+		equip.setEnabled(eq);
+		unequip.setEnabled(un);
 	}
 
-	public String showStats(Optional<Map<String, Integer>> map) {
-		String stats;
-		stats = map.get().entrySet().toString();
-		return stats;
-	}
-
-	public void setLastItem(String lastItem) {
-		this.lastItem = lastItem;
-	}
-	
-	public String getLastItem() {
-		return lastItem;
-	}
-	
-	public void loadImages() {
+	private void loadImages() {
 		try {
-			inventory.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/inventory.png"))));
+			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/inventory.png"))));
 			body.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/bodyTemplate.png"))));
 			s1 = new ImageIcon("res/images/");
 			s2= new ImageIcon("res/images/");
@@ -209,10 +189,10 @@ public class Inventory extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
-				//addInput(EQUIP, getLastItem();
+				//addInput(EQUIP, getLastItem());
 				getButton().setEnabled(false);
 			} else if (name.equals("UNEQUIP")) {
-				//addInput(UNEQUIP, getLastItem();
+				//addInput(UNEQUIP, getLastItem());
 				remove(getButton()); //rimuove il bottone
 				setButton(new IconButton()); // e ne aggiunge uno vuoto
 			} else {
@@ -223,8 +203,7 @@ public class Inventory extends TabbedDialog {
 	
 	MouseListener dialogL = new MouseAdapter() {
 		public void mouseClicked(MouseEvent e) {
-			equip.setEnabled(false);
-			unequip.setEnabled(false);
+			setButtonState(false, false);
 		}
 	};
 }
