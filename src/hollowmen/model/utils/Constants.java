@@ -3,10 +3,15 @@ package hollowmen.model.utils;
 import java.awt.Rectangle;
 
 import hollowmen.model.Modifier.Operation;
+import hollowmen.utilities.Pair;
 
 
 public class Constants {
 
+	public static final float MAXSPEED = 5;
+	
+	public static final float FLATSPEED = 20;
+	
 	public static final Rectangle WORLD_SIZE = new Rectangle(800, 600);
 	
 	//Counting also the zero so 0-1-2 = 3 child rooms;
@@ -16,11 +21,18 @@ public class Constants {
 	
 	public static final int SKILLPOINTS_FORUPGRADE = 3;
 	
-	public static final Rectangle DOOR_SIZE = new Rectangle(50, 100);
+	public static final Pair<Float, Float> DOOR_SIZE = new Pair<>(100f, 170f);
 
-	public static final Rectangle HERO_SIZE = new Rectangle(80, 100);
+	public static final Pair<Float, Float> HERO_SIZE = new Pair<>(80f, 150f);
 	
-	public static final int HERO_ID = 0;
+	public static final Pair<Float, Float> SLIME_SIZE = new Pair<>(110f, 70f);
+	
+	public static final Pair<Float, Float> BAT_SIZE = new Pair<>(80f, 70f);
+	
+	public static final Pair<Float, Float> PUPPET_SIZE = new Pair<>(100f, 100f);
+	
+	public static final Pair<Float, Float> TREASURE_SIZE = new Pair<>(50f, 50f);
+	
 	//STATPOINT STUFFS
 	
 	public static final int STATPOINTS_ONLEVELUP = 2;
@@ -31,9 +43,7 @@ public class Constants {
 	
 	
 	//TRESURE CHEST
-	
-	public static final Rectangle TREASURE_SIZE = new Rectangle(60, 80);
-	
+		
 	public static final int TREASURE_FLATFLOOR = 100;
 	
 	public static final int TREASURE_FLATROOM = 10;

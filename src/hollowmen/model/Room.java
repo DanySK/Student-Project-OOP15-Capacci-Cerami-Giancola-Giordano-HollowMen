@@ -48,12 +48,6 @@ public interface Room {
 	public Collection<Bullet> getBullets();
 	
 	/**
-	 * This method gives the {@code Hero}!
-	 * @return {@link Hero}
-	 */
-	public Hero getHero();
-	
-	/**
 	 * This method give all the {@code Interactable} in this {@code Room}
 	 * @return {@link Collection}<{@link Interactable}>
 	 * NOTE: unmodifiableCollection
@@ -65,12 +59,6 @@ public interface Room {
 	 * @return {@code int}
 	 */
 	public int getRoomNumber();
-	
-	/**
-	 * This method gives the number of this {@code Room}'s next univocal ID
-	 * @return
-	 */
-	public int getIDCounter();
 	
 	/**
 	 * This method adds the given <b>roomEntity</b> to the right Collection

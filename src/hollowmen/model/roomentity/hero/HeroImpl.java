@@ -1,8 +1,16 @@
 package hollowmen.model.roomentity.hero;
 
-import java.awt.Rectangle;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Optional;
+
+import org.jbox2d.collision.shapes.CircleShape;
+import org.jbox2d.collision.shapes.PolygonShape;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Filter;
+import org.jbox2d.dynamics.FixtureDef;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
@@ -20,6 +28,8 @@ import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Slot;
 import hollowmen.model.TargetPointSystem;
+import hollowmen.model.collision.Utils;
+import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
@@ -30,6 +40,10 @@ import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
+	private final Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
+	private final float HEAD_PROP = 0.8f;
+	
+	
 	private LimitedCounter exp;
 	
 	private int level;
@@ -46,10 +60,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 	
 	private ListMultimap<String, Slot> slots = ArrayListMultimap.create();
 	
-	public HeroImpl(Information info, Rectangle size, int ID, ActionAllowed aA, Collection<Parameter> param) {
-		super(new InfoImpl(RoomEntityName.HERO.toString()),
-				Constants.HERO_SIZE,
-				Constants.HERO_ID, aA, param);
+	public HeroImpl(Information info, ActionAllowed aA, Collection<Parameter> param) {
+		super(new InfoImpl(RoomEntityName.HERO.toString()), aA, param);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -170,6 +182,36 @@ public class HeroImpl extends ActorAbs implements Hero{
 	@Override
 	public TargetPointSystem<Parameter> getUpgradableParameter() {
 		return this.uppableParam;
+	}
+
+	@Override
+	public BodyDef defBody() {
+		return Utils.bodyDefBuilder()
+					.type(BodyType.DYNAMIC)
+					.fixRotation(true)
+					.build();
+	}
+
+	@Override
+	public Collection<FixtureDef> defFixture() {
+		Collection<FixtureDef> retValue = new LinkedList<>();
+		Filter filter = Utils.filterBuilder()
+						.addCategory(FilterType.HERO.getValue())
+						.addMask(FilterType.GROUND.getValue())
+						.addMask(FilterType.ENEMY.getValue())
+						.addMask(FilterType.LOOTABLE.getValue())
+						.addMask(FilterType.ENEMYATTACK.getValue())
+						.build();
+		PolygonShape underBody = new PolygonShape();
+		float bodyX = Constants.HERO_SIZE.getX() * this.BODY_PROP.getX();
+		float bodyY = Constants.HERO_SIZE.getY() * this.BODY_PROP.getY();
+		underBody.setAsBox(bodyX, bodyY , new Vec2(0,-(Constants.HERO_SIZE.getY() / 2)), 0f);
+		CircleShape head = new CircleShape();
+		head.getVertex(0).set(0, (Constants.HERO_SIZE.getY() / 2));
+		head.setRadius(Constants.HERO_SIZE.getX() * this.HEAD_PROP);
+		retValue.add(Utils.fixDefBuilder().shape(underBody).friction(0).filter(filter).build());
+		retValue.add(Utils.fixDefBuilder().shape(head).friction(0).filter(filter).build());
+		return retValue;
 	}
 
 

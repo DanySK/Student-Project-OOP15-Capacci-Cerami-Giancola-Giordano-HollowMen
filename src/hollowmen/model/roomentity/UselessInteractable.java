@@ -1,18 +1,20 @@
 package hollowmen.model.roomentity;
 
-import java.awt.Rectangle;
+import org.jbox2d.dynamics.Filter;
 
 import hollowmen.model.Information;
 import hollowmen.model.Interactable;
+import hollowmen.model.collision.Utils;
+import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.utilities.ExceptionThrower;
 
-public class UselessInteractable extends RoomEntityImpl implements Interactable{
+public abstract class UselessInteractable extends RoomEntityAbs implements Interactable{
 
 	private boolean canInteract = false;
 	
 	
-	public UselessInteractable(Information info, Rectangle size, int ID) {
-		super(info, size, ID);
+	public UselessInteractable(Information name) {
+		super(name);
 	}
 	
 	@Override
@@ -28,7 +30,13 @@ public class UselessInteractable extends RoomEntityImpl implements Interactable{
 	@Override
 	public void interact() throws IllegalStateException {
 		ExceptionThrower.checkIllegalState(this, d -> !d.isInteractAllowed());
-	}; 
-	
-	
+	}
+
+	public Filter standardFilter(){
+		return Utils.filterBuilder()
+				.addCategory(FilterType.LOOTABLE.getValue())
+				.addMask(FilterType.GROUND.getValue())
+				.addMask(FilterType.HERO.getValue())
+				.build();
+	}
 }
