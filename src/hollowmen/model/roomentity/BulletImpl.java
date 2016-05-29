@@ -10,7 +10,7 @@ import org.jbox2d.dynamics.FixtureDef;
 
 import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Actor;
-import hollowmen.model.Bullet;
+import hollowmen.model.Attack;
 import hollowmen.model.Parameter;
 import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
@@ -18,7 +18,7 @@ import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.ExceptionThrower;
 
-public class BulletImpl extends ActorAbs implements Bullet{
+public class BulletImpl extends ActorAbs implements Attack{
 
 	private final Actor owner;
 	private final String direction;

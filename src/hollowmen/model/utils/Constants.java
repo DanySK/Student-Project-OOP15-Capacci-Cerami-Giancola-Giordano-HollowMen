@@ -10,6 +10,8 @@ import hollowmen.utilities.Pair;
 
 public class Constants {
 	
+	public static final int ROOM_TO_VISIT = 8;
+	
 	public static final double ATTACK_DURATION = 0.783;
 	
 	public static final Vec2 JUMPFORCE = new Vec2(0, 100f);

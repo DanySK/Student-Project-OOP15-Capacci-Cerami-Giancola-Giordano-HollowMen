@@ -13,7 +13,7 @@ import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.RandomSelector;
 import hollowmen.enumerators.RoomEntityName;
-import hollowmen.model.Bullet;
+import hollowmen.model.Attack;
 import hollowmen.model.Enemy;
 
 public class RoomImpl implements Room{
@@ -28,13 +28,12 @@ public class RoomImpl implements Room{
 	
 	private Collection<Enemy> enemies;
 	
-	private Collection<Bullet> bullets;
+	private Collection<Attack> bullets;
 	
 	private List<RoomEntity> list;
 	
 	private int roomNumber;
 	
-	//TODO migliorare l'intervallo dei numeri mettendo numeri interi che vanno da 0 a Constants...
 	private final int roomNumberWithChild = RandomSelector.getIntFromRange(0, Constants.CHILDROOMQUANTITY); 
 	
 	/**
@@ -100,7 +99,7 @@ public class RoomImpl implements Room{
 	}
 
 	@Override
-	public Collection<Bullet> getBullets() {
+	public Collection<Attack> getBullets() {
 		return Collections.unmodifiableCollection(bullets);
 	}
 
@@ -112,8 +111,8 @@ public class RoomImpl implements Room{
 	@Override
 	public void addEntity(RoomEntity roomEntity) {
 		list.add(roomEntity);
-		if(roomEntity instanceof Bullet) {
-			bullets.add((Bullet) roomEntity);
+		if(roomEntity instanceof Attack) {
+			bullets.add((Attack) roomEntity);
 		}
 		if(roomEntity instanceof Enemy) {
 			enemies.add((Enemy) roomEntity);
@@ -127,8 +126,8 @@ public class RoomImpl implements Room{
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
 		ExceptionThrower.checkIllegalArgument(roomEntity, x -> this.list.contains(x));
 		list.remove(roomEntity);
-		if(roomEntity instanceof Bullet) {
-			bullets.remove((Bullet) roomEntity);
+		if(roomEntity instanceof Attack) {
+			bullets.remove((Attack) roomEntity);
 		}
 		if(roomEntity instanceof Enemy) {
 			enemies.remove((Enemy) roomEntity);
