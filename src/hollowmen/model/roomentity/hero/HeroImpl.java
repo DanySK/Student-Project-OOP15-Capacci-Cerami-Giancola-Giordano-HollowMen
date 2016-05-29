@@ -60,9 +60,11 @@ public class HeroImpl extends ActorAbs implements Hero{
 	
 	private ListMultimap<String, Slot> slots = ArrayListMultimap.create();
 	
-	public HeroImpl(Information info, Collection<Parameter> param) {
-		super(new InfoImpl(RoomEntityName.HERO.toString()), Constants.HERO_SIZE, param);
-		// TODO Auto-generated constructor stub
+	public HeroImpl(int level, int gold, Pair<Integer, Integer> exp, Information info, 
+			HeroClass heroClass, Pokedex pokedex, TargetPointSystem<Parameter> statSystem,
+			Inventory inventory, Collection<Item> equippedItems) {
+		super(new InfoImpl(RoomEntityName.HERO.toString()), Constants.HERO_SIZE, heroClass.getBaseParam());
+		
 	}
 	
 	@Override
