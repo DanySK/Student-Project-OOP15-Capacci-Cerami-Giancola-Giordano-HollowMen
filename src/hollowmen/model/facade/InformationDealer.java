@@ -11,7 +11,13 @@ import java.util.Optional;
  *
  */
 public interface InformationDealer {
-	
+        
+        public enum State{
+            EQUIPPED,
+            UNEQUIPPED,
+            BUYABLE;
+        }
+        
 	/**
 	 * @return Give the name of the object 
 	 */
@@ -29,4 +35,16 @@ public interface InformationDealer {
 	 * if item or mob, otherwise null
 	 */
 	public Optional<Map<String,Integer>> getStat();
+	
+	/**
+	 * @return Gives the state of the object,
+	 * for mob give EQUIPPED if already encountered, otherwise UNEQUIPPED
+	 */
+	public State getState();
+	
+	/**
+	 * @return Gives the amount of item in inventory,
+	 * for meb give 1 if encountered, 0 otherwise
+	 */
+	public int getAmount();
 }
