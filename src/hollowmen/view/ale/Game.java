@@ -100,7 +100,6 @@ public class Game extends JPanel implements GameInterface{
 		addDynamicComponent(componentMap);
 	}
 	
-
 	public void setStorage(Map<String,ImageIcon> storage){
 		this.storageGame=new HashMap<String,JLabel>();
 		this.storageFlipped=new HashMap<String,JLabel>();
