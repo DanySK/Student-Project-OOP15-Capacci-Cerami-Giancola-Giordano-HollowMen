@@ -5,7 +5,7 @@ package hollowmen.model;
  * @author pigio
  *
  */
-public interface Bullet extends Actor{
+public interface Attack extends Actor{
 
 	/**
 	 * 
