@@ -8,7 +8,7 @@ import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Lootable;
 import hollowmen.model.Parameter;
-import hollowmen.model.collision.hitbox.FilterType;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.utils.Algorithms;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.Pair;

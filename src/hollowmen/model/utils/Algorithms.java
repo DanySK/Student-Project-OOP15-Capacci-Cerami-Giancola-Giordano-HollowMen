@@ -1,13 +1,18 @@
 package hollowmen.model.utils;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 import hollowmen.enumerators.EnemyTitle;
 import hollowmen.enumerators.ParamName;
 import hollowmen.model.Actor;
 import hollowmen.model.Enemy;
 import hollowmen.model.Lootable;
 import hollowmen.model.Modifier;
+import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.LootableImpl;
 import hollowmen.model.dungeon.ModifierImpl;
+import hollowmen.model.enemy.EnemyPool;
 import hollowmen.model.item.ItemPool;
 import hollowmen.utilities.RandomSelector;
 
@@ -21,6 +26,19 @@ public class Algorithms {
 	private final static double FLAT_ENEMY_GOLD = 75;
 	
 	
+	
+	public static Collection<Enemy> generateEnemy() {
+		int maxLevel = (DungeonSingleton.getInstance().getFloorNumber() / 2) 
+				+ DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() / Constants.ROOM_TO_VISIT;
+		int maxPower = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
+		Collection<Enemy> retValue = new LinkedList<>();
+		while(maxPower > 0) {
+			Enemy e = EnemyPool.getInstance().getRandomForLevelTitle(p -> p <= maxLevel, s -> s.equals(EnemyTitle.ORDINARY));
+			maxPower -= e.getLevel();
+			retValue.add(e);
+		}
+		return retValue;
+	}
 	
 	public static Lootable genLootEnemy(Enemy en) {
 		double titleMul = 1;

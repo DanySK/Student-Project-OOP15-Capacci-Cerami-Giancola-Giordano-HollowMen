@@ -7,8 +7,8 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 
-import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.model.dungeon.DungeonSingleton;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.UselessInteractable;
 import hollowmen.model.utils.Constants;

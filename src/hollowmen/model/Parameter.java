@@ -1,5 +1,7 @@
 package hollowmen.model;
 
+import java.util.Collection;
+
 /**
  * This interface represent a {@code Parameter} intended as a {@code double} value
  * with a name associated inherited by {@link Information}<br>
@@ -32,4 +34,11 @@ public interface Parameter extends InformationUser{
 	 * @throws NullPointerException
 	 */
 	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException;
+	
+	/**
+	 * This method give all the Modifier in this Parameter
+	 * @return {@code Collection} {@link Modifier}
+	 */
+	public Collection<Modifier> getModifiers();
+	
 }

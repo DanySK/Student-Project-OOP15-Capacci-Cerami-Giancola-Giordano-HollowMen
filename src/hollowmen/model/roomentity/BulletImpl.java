@@ -12,7 +12,7 @@ import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Actor;
 import hollowmen.model.Attack;
 import hollowmen.model.Parameter;
-import hollowmen.model.collision.hitbox.FilterType;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.Box2DUtils;

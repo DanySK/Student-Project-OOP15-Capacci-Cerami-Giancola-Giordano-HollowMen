@@ -29,12 +29,13 @@ import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Slot;
 import hollowmen.model.TargetPointSystem;
-import hollowmen.model.collision.hitbox.FilterType;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Actors;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
+import hollowmen.model.utils.SimpleLimitedCounter;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
@@ -174,8 +175,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 	}
 
 	private void levelUp() {
-		//int previousLimit = this.exp.getLimit()
-		//this.exp = new LimitedValueImpl(0, previousLimit);
+		double previousLimit = this.exp.getLimit();
+		this.exp = new SimpleLimitedCounter(0, previousLimit + 500);
 		this.level ++;
 		this.uppableParam.addPoint(Constants.STATPOINTS_ONLEVELUP);
 		this.heroClass.getSkillTree().addPoint(Constants.SKILLPOINTS_ONLEVELUP);;

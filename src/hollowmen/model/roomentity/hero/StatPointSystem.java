@@ -13,6 +13,7 @@ import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.Counter;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
+import hollowmen.utilities.RandomSelector;
 
 public class StatPointSystem implements TargetPointSystem<Parameter>{
 
@@ -50,12 +51,16 @@ public class StatPointSystem implements TargetPointSystem<Parameter>{
 	@Override
 	public void addPoint(int pointToAdd) {
 		this.point += pointToAdd;
+		while(this.point > 0) {
+			this.spendPointOn((Parameter) RandomSelector.getAnyFrom(this.getTargets().stream().toArray()));
+		}
 	}
 
 	@Override
 	public void spendPointOn(Parameter target) throws IllegalStateException, IllegalArgumentException {
 		ExceptionThrower.checkIllegalState(this.point, p -> p <= 0);
 		ExceptionThrower.checkIllegalArgument(target, t -> !this.system.containsKey(keyGen(t)));
+		this.point --;
 		this.system.get(keyGen(target)).getX().addModifier(this.generateMod(target));
 	}
 
@@ -63,6 +68,7 @@ public class StatPointSystem implements TargetPointSystem<Parameter>{
 	public void retrievePointFrom(Parameter target) throws IllegalArgumentException {
 		ExceptionThrower.checkIllegalArgument(target, t -> !this.system.containsKey(keyGen(t)));
 		ExceptionThrower.checkIllegalState(target, t -> this.system.get(keyGen(t)).getY().getCount() <= 0);
+		this.point ++;
 		this.system.get(keyGen(target)).getX().removeModifier(this.generateMod(target));
 	}
 
