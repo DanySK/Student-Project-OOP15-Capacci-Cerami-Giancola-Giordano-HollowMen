@@ -1,5 +1,6 @@
 package hollowmen.model.dungeon;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,12 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 	public ParamImpl(Information info, double baseValue) {
 		super(info);
 		this.baseValue = baseValue;
+	}
+	
+	public ParamImpl(Parameter param) {
+		super(param.getInfo());
+		this.baseValue = param.getValue();
+		param.getModifiers().stream().forEach(m -> this.addModifier(new ModifierImpl(m)));
 	}
 	
 	@Override
@@ -63,6 +70,15 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 	}
 	
 	
+	@Override
+	public Collection<Modifier> getModifiers() {
+		Collection<Modifier> mod = new LinkedList<>();
+		this.modifiersMap.entrySet().stream()
+			.map(e -> e.getValue())
+			.forEach(p -> mod.addAll(p));
+		return mod;
+	}
+	
 	private List<Modifier> getOrPrepareList(Modifier mod) {
 		return this.modifiersMap.merge(this.keyGen(mod), new LinkedList<>(), (x, y) -> x);
 	}
@@ -71,5 +87,5 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 	private Pair<BinaryOperator<Double>, Double> keyGen(Modifier mod) {
 		return new Pair<>(mod.getOperation(), mod.getParameter().getValue());
 	}
-	
+
 }

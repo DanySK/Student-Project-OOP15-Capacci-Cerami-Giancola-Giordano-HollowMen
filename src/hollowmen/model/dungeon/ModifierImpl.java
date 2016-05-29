@@ -27,6 +27,11 @@ public class ModifierImpl implements Modifier{
 		}
 	}
 
+	public ModifierImpl(Modifier m) {
+		this(m.getParameter().getInfo().getName(), m.getParameter().getValue(), 
+				(m.getOperation().equals(Modifier.Operation.ADD.getOp()) ? Modifier.Operation.ADD : Modifier.Operation.MUL));
+	}
+	
 	@Override
 	public Parameter getParameter() {
 		return this.targetParam;

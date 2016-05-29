@@ -4,7 +4,7 @@ import org.jbox2d.dynamics.Filter;
 
 import hollowmen.model.Information;
 import hollowmen.model.Interactable;
-import hollowmen.model.collision.hitbox.FilterType;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
