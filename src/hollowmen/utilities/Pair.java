@@ -9,7 +9,7 @@ package hollowmen.utilities;
  * @param <Y>
  *            the type of the second element
  */
-public final class Pair<X, Y> {
+public class Pair<X, Y> {
 
     private final X x;
     private final Y y;

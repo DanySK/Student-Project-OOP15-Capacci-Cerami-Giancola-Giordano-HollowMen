@@ -23,7 +23,6 @@ public abstract class RoomEntityAbs implements RoomEntity{
 	private float length;
 	private float height;
 	
-	
 	protected RoomEntityAbs(Information info2, Pair<Float, Float> size) {
 		this.info = new InfoImpl(info2);
 		this.length = size.getX();
@@ -31,6 +30,7 @@ public abstract class RoomEntityAbs implements RoomEntity{
 		this.body = DungeonSingleton.getInstance().getWorld().createBody(this.defBody());
 		this.defFixture().stream().forEach(x -> this.body.createFixture(x));
 		DungeonSingleton.getInstance().getCurrentRoom().addEntity(this);
+		this.getBody().setUserData(this);
 	}
 	
 	public abstract BodyDef defBody();
