@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 public class LifeBar extends InternalBar{
     
     private static final long serialVersionUID = -5182672357552953075L;
-    private Font fontLB=new Font("Chiller", Font.PLAIN, 15);
     private Font fontA=new Font("Chiller",Font.PLAIN, 15);
     private JLabel life;
     
