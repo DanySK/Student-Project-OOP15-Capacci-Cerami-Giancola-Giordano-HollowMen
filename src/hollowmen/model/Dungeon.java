@@ -55,12 +55,6 @@ public interface Dungeon {
 	public Pair<Integer, Integer> getFloors();
 	
 	/**
-	 * This method return the current {@code Floor} selected
-	 * @return {@link Floor} current selected
-	 */
-	public Floor getCurrentFloor();
-	
-	/**
 	 * This method will set the current {@code Floor}'s number to 0,
 	 * this {@code Floor} has the lobby {@code Room}<br>
 	 * Increase the reached floor's number if this method is called when the {@code Hero}
@@ -69,9 +63,9 @@ public interface Dungeon {
 	public void endRun();
 	/**
 	 * This method give the currently setted {@code Difficulty} for the {@code Dungeon}
-	 * @return {@link Difficulty} currently setted
+	 * @return {@link int} currently setted
 	 */
-	public Difficulty getDifficulty();
+	public int getDifficulty();
 	
 	/**
 	 * This method give the {@code Dungeons}'s {@code Shop}
@@ -84,6 +78,27 @@ public interface Dungeon {
 	 * @return {@link Hero}
 	 */
 	public Hero getHero();
+	
+	
+	/**
+	 * This method give the floor number, it's number influence the {@link Enemy} found in each {@link Room}
+	 * @return {@code int} that indicates the floor number
+	 */
+	public int getFloorNumber();
+	
+	/**
+	 * This method give the current {@link Room} visited by the {@link Hero}, basically the {@code Room} where the player is
+	 * @return {@link Room} where the player is
+	 */
+	public Room getCurrentRoom();
+	
+	/**
+	 * This method change the current {@code Room} with one of its child OR to its parent if
+	 * <b>choice</b> equals to any negative number
+	 * @param choice (<u>starting from 0</u>) for select the child, or any negative value for parent
+	 */
+	public void changeRoom(int choice);
+	
 	
 	/**
 	 * 

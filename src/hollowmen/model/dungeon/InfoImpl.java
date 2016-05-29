@@ -17,7 +17,7 @@ public class InfoImpl implements Information{
 	
 	public InfoImpl(final String name, final String description) {
 		this.name = name;
-		this.description = Optional.of(description);
+		this.description = Optional.ofNullable(description);
 	}
 	
 	public InfoImpl(Information info) {

@@ -8,13 +8,13 @@ import org.jbox2d.dynamics.FixtureDef;
 
 import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Lootable;
-import hollowmen.model.collision.Utils;
 import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.dungeon.LootableImpl;
 import hollowmen.model.item.ItemPool;
 import hollowmen.model.roomentity.UselessInteractable;
 import hollowmen.model.utils.Constants;
+import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.RandomSelector;
 
 public class TreasureChest extends UselessInteractable{
@@ -23,7 +23,7 @@ public class TreasureChest extends UselessInteractable{
 	
 	//TODO improve the choose of the Item
 	public TreasureChest(int rarity) {
-		super(new InfoImpl(RoomEntityName.TREASURE.toString()));
+		super(new InfoImpl(RoomEntityName.TREASURE.toString()), Constants.TREASURE_SIZE);
 		int floorNum = DungeonSingleton.getInstance().getFloorNumber();
 		int roomNum = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
 		int expAndGold = floorNum * Constants.TREASURE_FLATFLOOR + roomNum * Constants.TREASURE_FLATROOM;
@@ -69,12 +69,12 @@ public class TreasureChest extends UselessInteractable{
 
 	@Override
 	public BodyDef defBody() {
-		return Utils.bodyDefBuilder().fixRotation(true).type(BodyType.DYNAMIC).build();
+		return Box2DUtils.bodyDefBuilder().type(BodyType.DYNAMIC).build();
 	}
 
 	@Override
 	public Collection<FixtureDef> defFixture() {
-		return this.generateRectangleFix(Constants.TREASURE_SIZE, this.standardFilter(), true);
+		return this.generateRectangleFix(this.standardFilter(), true);
 	}
 
 }

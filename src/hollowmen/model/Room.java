@@ -42,10 +42,10 @@ public interface Room {
 	
 	/**
 	 * This method give all the {@code Bullet} in this {@code Room}
-	 * @return {@link Collection}<{@link Bullet}>
+	 * @return {@link Collection}<{@link Attack}>
 	 * NOTE: unmodifiableCollection
 	 */
-	public Collection<Bullet> getBullets();
+	public Collection<Attack> getBullets();
 	
 	/**
 	 * This method give all the {@code Interactable} in this {@code Room}

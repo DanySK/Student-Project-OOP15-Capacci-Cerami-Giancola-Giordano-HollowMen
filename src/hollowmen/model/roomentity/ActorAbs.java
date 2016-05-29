@@ -6,14 +6,15 @@ import java.util.Map;
 
 import org.jbox2d.common.Vec2;
 
+import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.ParamName;
 import hollowmen.model.Actor;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
-import hollowmen.model.Status;
-import hollowmen.model.TypeAction;
+import hollowmen.model.roomentity.typeaction.Attack;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
+import hollowmen.utilities.Pair;
 
 public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
@@ -21,30 +22,26 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	private boolean facingRight;
 	private ActionAllowed actionAllowed;
 	private Map<String, Parameter> parameters;
-	private Collection<Status> status;
+	private Collection<Information> status;
 	
 	
-	public ActorAbs(Information info, ActionAllowed aA, Collection<Parameter> param) {
-		super(info);
-		this.actionAllowed = aA;
+	public ActorAbs(Information info, Pair<Float, Float> size, Collection<Parameter> param) {
+		super(info, size);
 		this.parameters = new HashMap<>();
 		param.stream().forEach(p -> parameters.put(p.getInfo().getName(), p));
-	}
-	
-	public ActionAllowed getActionAllowed() {
-		return this.actionAllowed;
+		
+		actionAllowed.getActionAllowed().put(Actor.Action.JUMP.toString(), () -> this.jump());
+		actionAllowed.getActionAllowed().put(Actor.Action.ATTACK.toString(), () -> this.attack());
 	}
 
 	@Override
 	public void performAction(String action) throws NullPointerException {
 		ExceptionThrower.checkNullPointer(action);
-		TypeAction actionToPerform = actionAllowed.getActionAllowed().get(action);
-		if(actionToPerform != null) {
-			actionToPerform.doAction(this);
-		}
+		ExceptionThrower.checkIllegalArgument(action, a -> this.actionAllowed.getActionAllowed().containsKey(a));
+		actionAllowed.getActionAllowed().get(action).run();
 	}
 
-	public final void move(String d) {
+	public void move(String d) {
 		changeFacing(d);
 		float speed = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue();
 		if(this.getBody().getLinearVelocity().abs().x < speed * Constants.MAXSPEED){
@@ -54,7 +51,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		}
 		
 	}
-	
+
 	private void changeFacing(String d) {
 		if(d.equals(Direction.RIGHT.toString()) && !this.isFacingRight() 
 				|| d.equals(Direction.LEFT.toString()) && this.isFacingRight()) {
@@ -88,9 +85,23 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		this.state = state;
 	}
 
-	@Override
-	public Collection<Status> getStatus() {
-		return this.status;
+	public ActionAllowed getAction() {
+		return this.actionAllowed;
 	}
 	
+	@Override
+	public Collection<Information> getStatus() {
+		return this.status;
+	}
+		
+	private void jump() {
+		if(!this.getState().equals(ActorState.ATTACKING.toString())) {
+			this.getBody().applyLinearImpulse(Constants.JUMPFORCE, this.getBody().getLocalCenter(), true);
+		}
+	}
+	
+	private void attack() {
+		new Attack().doAction(this);
+	}
+
 }

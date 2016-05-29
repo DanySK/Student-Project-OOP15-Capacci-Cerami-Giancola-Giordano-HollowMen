@@ -12,7 +12,7 @@ public class GameOverException extends RuntimeException{
 	 */
 	private static final long serialVersionUID = 7258974978201721791L;
 	
-	public GameOverException(final String reason) {
-		super(reason);
+	public GameOverException() {
+		super();
 	}
 }

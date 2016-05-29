@@ -56,9 +56,11 @@ public interface Actor extends RoomEntity{
 	/**
 	 * This method make the {@code Character} do something specified by action.
 	 * @param action string represents what action will be perform
+	 * @throws IllegalArgumentException If the Actor can't do this Action
+	 * @throws IllegalStateException If the Actor can do this Action but not now
 	 * @throws NullPointerException
 	 */
-	public void performAction(String action) throws NullPointerException;
+	public void performAction(String action) throws IllegalArgumentException, IllegalStateException, NullPointerException;
 	
 	/**
 	 * This method give all the {@link Parameter} of the Character

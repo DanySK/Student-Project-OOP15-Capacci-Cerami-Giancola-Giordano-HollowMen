@@ -4,6 +4,7 @@ public enum ParamName {
 
 	ATTACK,
 	DEFENSE,
+	HPMAX,
 	HP,
 	ATTACKSPEED,
 	ATTACKRANGE,

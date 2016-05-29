@@ -25,6 +25,16 @@ public class StatPointSystem implements TargetPointSystem<Parameter>{
 				new Pair<>(p, new Counter())));
 	}
 	
+	public StatPointSystem(Collection<Pair<Parameter, Integer>> targetsWithPoints, int unspentPoint) {
+		for(Pair<Parameter, Integer> p : targetsWithPoints) {
+			this.system.put(p.getX().getInfo().getName(), new Pair<>(p.getX(), new Counter()));
+			for(int i = 0; i < p.getY(); i++) {
+				this.spendPointOn(p.getX());
+			}
+		}
+		this.point = unspentPoint;
+	}
+	
 	@Override
 	public Collection<Parameter> getTargets() {
 		return this.system.entrySet().stream()
