@@ -7,14 +7,15 @@ import hollowmen.model.Interactable;
 import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.ExceptionThrower;
+import hollowmen.utilities.Pair;
 
 public abstract class UselessInteractable extends RoomEntityAbs implements Interactable{
 
 	private boolean canInteract = false;
 	
 	
-	public UselessInteractable(Information name) {
-		super(name);
+	public UselessInteractable(Information name, Pair<Float,Float> size) {
+		super(name, size);
 	}
 	
 	@Override

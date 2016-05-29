@@ -1,9 +1,7 @@
 package hollowmen.model.roomentity.hero;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Optional;
 
 import org.jbox2d.collision.shapes.CircleShape;
@@ -19,7 +17,6 @@ import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimap;
 
 import hollowmen.enumerators.RoomEntityName;
-import hollowmen.model.Actor;
 import hollowmen.model.Hero;
 import hollowmen.model.HeroClass;
 import hollowmen.model.Information;
@@ -32,10 +29,8 @@ import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Slot;
 import hollowmen.model.TargetPointSystem;
-import hollowmen.model.TypeAction;
 import hollowmen.model.collision.hitbox.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
-import hollowmen.model.roomentity.ActionAllowed;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Actors;
 import hollowmen.model.utils.Box2DUtils;
@@ -66,7 +61,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 	private ListMultimap<String, Slot> slots = ArrayListMultimap.create();
 	
 	public HeroImpl(Information info, Collection<Parameter> param) {
-		super(new InfoImpl(RoomEntityName.HERO.toString()), aA, param);
+		super(new InfoImpl(RoomEntityName.HERO.toString()), Constants.HERO_SIZE, param);
 		// TODO Auto-generated constructor stub
 	}
 	

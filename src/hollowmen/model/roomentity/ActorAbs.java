@@ -8,14 +8,13 @@ import org.jbox2d.common.Vec2;
 
 import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.ParamName;
-import hollowmen.enumerators.StatusName;
 import hollowmen.model.Actor;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
-import hollowmen.model.dungeon.InfoImpl;
-import hollowmen.model.dungeon.time.TimerSingleton;
+import hollowmen.model.roomentity.typeaction.Attack;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
+import hollowmen.utilities.Pair;
 
 public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
@@ -26,8 +25,8 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	private Collection<Information> status;
 	
 	
-	public ActorAbs(Information info, Collection<Parameter> param) {
-		super(info);
+	public ActorAbs(Information info, Pair<Float, Float> size, Collection<Parameter> param) {
+		super(info, size);
 		this.parameters = new HashMap<>();
 		param.stream().forEach(p -> parameters.put(p.getInfo().getName(), p));
 		actionAllowed.getActionAllowed().put(Actor.Action.JUMP.toString(), () -> this.jump());
@@ -101,24 +100,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	}
 	
 	private void attack() {
-		if(!this.getStatus().contains(StatusName.RECHARGE.toString())
-				&& !this.getState().equals(ActorState.ATTACKING.toString())) {
-			this.setState(ActorState.ATTACKING.toString());
-			if(this.getParameters().get(ParamName.ATTACKRANGE.toString()).getValue() <= 0) {
-				createProjectile(this);
-			}
-			TimerSingleton.getInstance().register(this, Constants.ATTACK_DURATION,
-					x -> {
-						x.setState(ActorState.STANDING.toString());
-						x.getStatus().add(new InfoImpl(StatusName.RECHARGE.toString()));
-						TimerSingleton.getInstance().register(x, x.getParameters().get(ParamName.ATTACKSPEED.toString()).getValue(),
-								y -> y.getStatus().remove(new InfoImpl(StatusName.RECHARGE.toString())));
-					});
-		}
+		new Attack().doAction(this);
 	}
 
-	private void createProjectile(ActorAbs actorAbs) {
-		
-	}
-	
 }

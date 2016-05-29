@@ -5,6 +5,7 @@ import java.util.Collection;
 import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
+import hollowmen.utilities.Pair;
 
 public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
@@ -13,8 +14,8 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 	private String title;
 	
 	
-	public EnemyAbs(Information info, Collection<Parameter> param, int power, String title) {
-		super(info, param);
+	public EnemyAbs(Information info, Pair<Float, Float> size, Collection<Parameter> param, int power, String title) {
+		super(info, size, param);
 		this.combatLevel = power;
 		this.title = title;
 	}

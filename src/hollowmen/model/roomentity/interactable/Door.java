@@ -19,7 +19,7 @@ public class Door extends UselessInteractable{
 	private int roomNumber;
 	
 	public Door(String name, int doorNumber) {
-		super(new InfoImpl(name));
+		super(new InfoImpl(name), Constants.DOOR_SIZE);
 		this.roomNumber = doorNumber;
 	}
 	
@@ -40,7 +40,7 @@ public class Door extends UselessInteractable{
 
 	@Override
 	public BodyDef defBody() {
-		return Box2DUtils.bodyDefBuilder().fixRotation(true).type(BodyType.STATIC).build();
+		return Box2DUtils.bodyDefBuilder().type(BodyType.STATIC).build();
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class Door extends UselessInteractable{
 							.addMask(FilterType.GROUND.getValue())
 							.addMask(FilterType.HERO.getValue())
 							.build();
-		return this.generateRectangleFix(Constants.DOOR_SIZE, filter, true);
+		return this.generateRectangleFix(filter, true);
 	}
 
 }
