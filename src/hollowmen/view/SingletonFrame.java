@@ -1,5 +1,7 @@
 package hollowmen.view;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 /**
  * The {@code SingletonFrame} class uses the design pattern Singleton
@@ -10,6 +12,7 @@ import javax.swing.JFrame;
 public class SingletonFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1310007697698107818L;
+	private static final int GAP=200;
 	private static int width;
 	private static int height;
 	
@@ -17,6 +20,7 @@ public class SingletonFrame extends JFrame {
 		this.setSize(getWidth(), getHeight());
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
+		this.setBackground(Color.BLACK);
 		this.setTitle("HOLLOW MEN");
 	}
 	
@@ -64,6 +68,6 @@ public class SingletonFrame extends JFrame {
 	 * This method gets the frame's height.
 	 */
 	public int getHeight() {
-		return SingletonFrame.height;
+		return SingletonFrame.height+GAP;
 	}
 }

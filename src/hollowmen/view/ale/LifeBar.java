@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 public class LifeBar extends InternalBar{
     
     private static final long serialVersionUID = -5182672357552953075L;
-    private Font fontLB=new Font("Chiller", Font.PLAIN, 15);
     private Font fontA=new Font("Chiller",Font.PLAIN, 15);
     private JLabel life;
     
@@ -36,6 +35,8 @@ public class LifeBar extends InternalBar{
 
         this.setText(this.value+"/"+this.maxValue);//It shows the life value.
         this.setHorizontalAlignment(CENTER);//To set the text at the center of the bar.
-        this.life.setBounds(0,0,(int)this.width,this.getHeight());
+        this.setSize(0, 0);
+        this.setLocation((int)this.width,this.getHeight());
+        //this.life.setBounds(0,0,(int)this.width,this.getHeight());
     }
 }

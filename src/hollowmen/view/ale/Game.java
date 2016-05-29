@@ -19,15 +19,16 @@ import hollowmen.model.facade.Point2D;
  * @author Alessia
  *
  */
+//I use the same class for Lobby too.
 public class Game extends JPanel implements GameInterface{
 	
 	private static final long serialVersionUID = -5081282343965245780L;
 	private static final int GAP=200;
-        private static final int ALIGNMENTX=480;
-        private static final int ALIGNMENTY=20;
-        private static final int POSITIONX=300;
-        private static final int POSITIONY=100;
-        private static final int ALIGNMENT=10;
+    private static final int ALIGNMENTX=480;
+    private static final int ALIGNMENTY=20;
+    private static final int POSITIONX=300;
+    private static final int POSITIONY=100;
+    private static final int ALIGNMENT=10;
 	private ViewObserver observer;
 	private JLabel panelGame;
 	private Bar bars;
@@ -42,10 +43,11 @@ public class Game extends JPanel implements GameInterface{
 	private ValueManager goldValue;
 	private ValueManager floorValue;
 	private ValueManager timerValue;
-	private Map<String,JLabel> storage;
+	private Map<String,JLabel> storageGame; //Storage containing all the image I need
+	private Map<String,JLabel> storageFlipped;//Storage containing all the flipped image I need 
 	
 	
-	public Game(int x, int y, ViewObserver observer){//INCOMPLETO... da aggiungere i vari label
+	public Game(int x, int y, ViewObserver observer){
 	    this.observer=observer;
 	    inputChooser=new InputChooser(this.observer);
 	    this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
@@ -66,42 +68,52 @@ public class Game extends JPanel implements GameInterface{
 	    floorValue.setBounds(700, ALIGNMENT*40, 150, 40);
 	    timerValue=new ValueManager("Timer", Color.WHITE);
 	    timerValue.setBounds(350, 0, 150, 80);
-            bars=new Bar();
-            bars.setLayout(null);
-            bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento
-            //bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
-            btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storage);
-            btnAbility1.setBounds(0, 0, 0, 0);
-            btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storage);
-            btnAbility2.setBounds(0, 0, 0, 0);
-            btnAbility3=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storage);
-            btnAbility3.setBounds(0, 0, 0, 0);
-            btnConsumable=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storage);
-            btnConsumable.setBounds(0, 0, 0, 0);
-            btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storage);
-            btnSkillTree.setBounds(0, 0, 0, 0);
-            btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storage);
-            btnInventory.setBounds(0, 0, 0, 0);
+        bars=new Bar();
+        bars.setLayout(null);
+        bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento
+        //bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
+        btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
+        btnAbility1.setBounds(0, 0, 0, 0);
+        btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storageGame);
+        btnAbility2.setBounds(0, 0, 0, 0);
+        btnAbility3=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storageGame);
+        btnAbility3.setBounds(0, 0, 0, 0);
+        btnConsumable=new ScreenButton(this.observer, InputCommand.CONSUMABLE ,this.storageGame);
+        btnConsumable.setBounds(0, 0, 0, 0);
+        btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storageGame);
+        btnSkillTree.setBounds(0, 0, 0, 0);
+        btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storageGame);
+        btnInventory.setBounds(0, 0, 0, 0);
 	}
 	
-	public void draw(Map<String, Point2D> componentList){	
+	public void draw(Map<String, Point2D> componentMap){	
 		removeAll(); /*At first I remove all the components from the screen 
 					 then I'll add the component(addComponent),that are all the static components
 					 (lifeBar, expBar) and the dynamicComponents too (which are the various mob)*/
 		
 		if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
 			this.timerValue=new ValueManager("Timer: ", Color.RED);
-			this.timerValue.setBounds(350, 0, 150, 80);
+			this.timerValue.setSize(350, 0);
+			this.timerValue.setLocation(150, 80);
 		}
 		addComponent();//static components
-		addDynamicComponent(componentList);
+		addDynamicComponent(componentMap);
 	}
 	
 
 	public void setStorage(Map<String,ImageIcon> storage){
-		this.storage=new HashMap<String,JLabel>();
+		this.storageGame=new HashMap<String,JLabel>();
+		this.storageFlipped=new HashMap<String,JLabel>();
 		for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
-			this.storage.put(elem.getKey(),new JLabel(elem.getValue()));
+			for(String name: SingletonNameList.getNameList() ){
+				if(elem.getKey()==name){
+					storageGame.put(name, new JLabel(elem.getValue()));
+					if(name!= "ability1" || name!= "ability2" || name!= "ability3"||
+						name!= "invetory"|| name!= "consumable" || name!= "skillTree"){
+						storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
+					}
+				}
+			}
 		}
 	}
 	
@@ -114,23 +126,23 @@ public class Game extends JPanel implements GameInterface{
 		this.add(btnConsumable);
 		this.add(btnSkillTree);
 		this.add(btnInventory);
-		levelValue.updateValue(Values.LEVEL.getValue());
-		goldValue.updateValue(Values.GOLD.getValue());
-		floorValue.updateValue(Values.FLOOR.getValue());
-		timerValue.updateValue(Values.TIMER.getValue());
+		this.levelValue.updateValue(Values.LEVEL.getValue());
+		this.goldValue.updateValue(Values.GOLD.getValue());
+		this.floorValue.updateValue(Values.FLOOR.getValue());
+		this.timerValue.updateValue(Values.TIMER.getValue());
 		
 	}
 	
-	private void addDynamicComponent(Map<String, Point2D> componentList){
+	private void addDynamicComponent(Map<String, Point2D> componentMap){//List<DrawableRE>
 		JLabel labTmp;
-		for(Map.Entry<String,Point2D> elem: componentList.entrySet()){
+		for(Map.Entry<String,Point2D> elem: componentMap.entrySet()){
 			for(Map.Entry<String,JLabel> element: storage.entrySet()){
 				if(elem.getKey()==element.getKey()){
 					labTmp=element.getValue();
 					labTmp.setBounds((int)elem.getValue().getX(), (int)elem.getValue().getY(), 
 									labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-					panelGame.add(labTmp);
-					break;
+					panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+					break;//When the right image is found, the for cycle will end.
 				}
 			}
 		}

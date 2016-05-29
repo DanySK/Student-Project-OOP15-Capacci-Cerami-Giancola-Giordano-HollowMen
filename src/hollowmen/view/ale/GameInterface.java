@@ -23,7 +23,7 @@ public interface GameInterface {
 	public void draw(Map<String, Point2D> componentList);
 	
 	/**
-	 * The method{@code setStorage} id used to create a list of JLabel with the associated {@link ImageIcon}.
+	 * The method{@code setStorage} is used to create a list of JLabel with the associated {@link ImageIcon}.
 	 * 
 	 * @param storage
 	 */
