@@ -48,10 +48,7 @@ public abstract class RoomEntityAbs implements RoomEntity{
 	}
 
 	public void dispose() {
-		DungeonSingleton.getInstance().getWorld().destroyBody(this.getBody());
-		try {
-		DungeonSingleton.getInstance().getCurrentRoom().removeEntity(this);
-		} catch (IllegalArgumentException e) {};
+		DungeonSingleton.getInstance().getDisposeList().add(this);
 	}
 	
 	
