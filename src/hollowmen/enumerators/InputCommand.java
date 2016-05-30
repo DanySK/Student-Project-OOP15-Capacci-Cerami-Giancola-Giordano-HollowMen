@@ -18,7 +18,6 @@ public enum InputCommand {
 	LEFT(Actor.Direction.LEFT.toString()),
 	RIGHT(Actor.Direction.RIGHT.toString()),
 	CONSUMABLE(Actor.Action.CONSUMABLE.toString()),
-	BACK(Actor.Action.BACK.toString()),
 	INTERACT(Actor.Action.INTERACT.toString()),
 	EQUIP("equip"),
 	UNEQUIP("unequip"),

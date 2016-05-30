@@ -1,5 +1,7 @@
 package hollowmen.enumerators;
 
+import hollowmen.model.Actor;
+
 /**
  * Contains the list of possible menu 
  * 
@@ -18,7 +20,8 @@ public enum InputMenu {
 	SHOP("shop", "complex"),
 	ACHIEVEMENTS("achievements", "complex"),
 	START("start","basic"),
-	LOBBY("lobby","basic");
+	LOBBY("lobby","basic"),
+	BACK(Actor.Action.BACK.toString(),"basic");
 	
 	private String s, type;
 	
