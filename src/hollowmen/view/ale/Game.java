@@ -20,7 +20,6 @@ import hollowmen.model.facade.DrawableRoomEntity;
  * @author Alessia
  *
  */
-//I use the same class for Lobby too.
 public class Game extends JPanel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
