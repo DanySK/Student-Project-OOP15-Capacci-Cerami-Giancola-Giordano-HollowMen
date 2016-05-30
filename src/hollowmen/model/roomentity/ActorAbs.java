@@ -28,8 +28,9 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	public ActorAbs(Information info, Pair<Float, Float> size, Collection<Parameter> param) {
 		super(info, size);
 		this.parameters = new HashMap<>();
+		param.stream().forEach(p -> this.parameters.put(p.getInfo().getName(), p));
 		parameters.put(Parameter.ParamName.HP.toString(),
-				new HPclass(this.parameters.get(Parameter.ParamName.HPMAX.toString())));
+				new HPclass(this.parameters.get(Parameter.ParamName.HPMAX.toString()), this));
 		actionAllowed.getActionAllowed().put(Actor.Action.JUMP.toString(), () -> this.jump());
 		actionAllowed.getActionAllowed().put(Actor.Action.ATTACK.toString(), () -> this.attack());
 	}

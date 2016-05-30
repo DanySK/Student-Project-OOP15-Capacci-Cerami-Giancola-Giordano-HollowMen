@@ -1,8 +1,11 @@
 package hollowmen.model.roomentity;
 
+import hollowmen.model.Actor;
 import hollowmen.model.LimitedCounter;
 import hollowmen.model.Modifier;
 import hollowmen.model.Parameter;
+import hollowmen.model.RoomEntity;
+import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.dungeon.ModifierImpl;
 import hollowmen.model.dungeon.ParamImpl;
@@ -16,10 +19,12 @@ public class HPclass extends ParamImpl{
 	private Parameter maxHP;
 	private LimitedCounter health;
 	private double lastMaxHP;
+	private Actor owner;
 	
-	public HPclass(Parameter maxHP) {
-		super(new InfoImpl(ParamName.HP.toString()), maxHP.getValue());
+	public HPclass(Parameter maxHP, Actor subj) {
+		super(new InfoImpl(Parameter.ParamName.HP.toString()), maxHP.getValue());
 		this.maxHP = maxHP;
+		this.owner = subj;
 		this.lastMaxHP = maxHP.getValue();
 		this.health = new SimpleLimitedCounter(maxHP.getValue(), maxHP.getValue());
 	}
@@ -65,7 +70,11 @@ public class HPclass extends ParamImpl{
 				this.health.subToValue(mod.getOperation().apply(this.health.getValue(), mod.getParameter().getValue()));
 			}
 		} catch (LowerLimitReachException e) {
-			//TODO destroy this
+			if(this.owner.getInfo().getName().equals(RoomEntity.RoomEntityName.HERO.toString())) {
+				DungeonSingleton.getInstance().gameOver();
+			} else {
+				this.owner.dispose();
+			}
 		};
 		
 	}
