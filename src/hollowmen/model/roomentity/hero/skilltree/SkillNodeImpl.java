@@ -11,24 +11,15 @@ public class SkillNodeImpl extends SimpleLimitedCounter implements SkillNode{
 	private String tag;
 	
 	
-	
-	private SkillNodeImpl(double startValue, double limit) {
-		super(startValue, limit);
-	}
-
-	public SkillNodeImpl(Information info, String tag, int level, double startValue, double limit){
-		super(startValue, limit);
+	public SkillNodeImpl(Information info, String tag, int level, double limit){
+		super(0, limit);
 		this.info = info;
 		this.tag = tag;
 		this.nodeLevel = level;
 	}
 
-	public SkillNodeImpl(Information info, String tag, int level, double limit) {
-		this(info, tag, level, 0, limit);
-	}
-
 	public SkillNodeImpl(Information info, String tag, int level) {
-		this(info, tag, level, 0, 1);
+		this(info, tag, level, 1);
 	}
 	
 	@Override
