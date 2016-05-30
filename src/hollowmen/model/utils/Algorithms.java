@@ -49,8 +49,12 @@ public class Algorithms {
 				+ DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() / Constants.ROOM_TO_VISIT;
 		int maxPower = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
 		Collection<Enemy> retValue = new LinkedList<>();
+		if(DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() == Constants.ROOM_TO_VISIT) {
+			retValue.add(EnemyPool.getInstance().getRandomForTitle(p -> p.equals(EnemyTitle.BOSS.toString())));
+			return retValue;
+		}
 		while(maxPower > 0) {
-			Enemy e = EnemyPool.getInstance().getRandomForLevelTitle(p -> p <= maxLevel, s -> s.equals(EnemyTitle.ORDINARY));
+			Enemy e = EnemyPool.getInstance().getRandomForLevelTitle(p -> p <= maxLevel, s -> s.equals(EnemyTitle.ORDINARY.toString()));
 			maxPower -= e.getLevel();
 			retValue.add(e);
 		}
@@ -95,14 +99,8 @@ public class Algorithms {
 		double atkValue = hitter.getParameters().get(ParamName.ATTACK.toString()).getValue();
 		double defValue = subj.getParameters().get(ParamName.DEFENSE.toString()).getValue();
 		double res = ((atkValue - defValue) < 1) ? 1 : atkValue - defValue;
-		try {
 		subj.getParameters().get(ParamName.HP.toString())
 			.removeModifier(new ModifierImpl(ParamName.HP.toString(), res, Modifier.Operation.ADD));
-		} catch (LowerLimitReach e) {
-			
-		}
-		
-		
 	}
 	
 }
