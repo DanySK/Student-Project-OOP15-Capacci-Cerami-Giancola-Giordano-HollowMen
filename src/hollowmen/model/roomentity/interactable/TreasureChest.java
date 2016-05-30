@@ -6,39 +6,29 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
-import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Lootable;
 import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.InfoImpl;
-import hollowmen.model.dungeon.LootableImpl;
-import hollowmen.model.item.ItemPool;
 import hollowmen.model.roomentity.UselessInteractable;
 import hollowmen.model.utils.Constants;
+import hollowmen.model.utils.Algorithms;
 import hollowmen.model.utils.Box2DUtils;
-import hollowmen.utilities.RandomSelector;
 
 public class TreasureChest extends UselessInteractable{
 	
 	private Lootable loot;
 	
 	//TODO improve the choose of the Item
-	public TreasureChest(int rarity) {
+	public TreasureChest() {
 		super(new InfoImpl(RoomEntityName.TREASURE.toString()), Constants.TREASURE_SIZE);
-		int floorNum = DungeonSingleton.getInstance().getFloorNumber();
-		int roomNum = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
-		int expAndGold = floorNum * Constants.TREASURE_FLATFLOOR + roomNum * Constants.TREASURE_FLATROOM;
-		if(RandomSelector.getIntFromRange(0, 100) < Constants.TREASURE_ITEMCHANCE) {
-			this.loot = new LootableImpl(expAndGold, expAndGold, ItemPool.getInstance().getCompletelyRandom());
-		} else {
-			this.loot = new LootableImpl(expAndGold, expAndGold, null);
-		}
+		this.loot = Algorithms.treasureLoot();
 	}
 
 	@Override
 	public void interact() throws IllegalStateException {
 		super.interact();
 		DungeonSingleton.getInstance().getHero().pick(loot);
-		DungeonSingleton.getInstance().getCurrentRoom().removeEntity(this);
+		this.dispose();
 	}
 
 	
