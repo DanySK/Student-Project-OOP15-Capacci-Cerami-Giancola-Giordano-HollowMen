@@ -21,7 +21,9 @@ public enum InputCommand {
 	BACK(Actor.Action.BACK.toString()),
 	INTERACT(Actor.Action.INTERACT.toString()),
 	EQUIP("equip"),
-	TRADE("trade");
+	UNEQUIP("unequip"),
+	BUY("buy"),
+	SELL("sell");
 	
 	private String s;
 	

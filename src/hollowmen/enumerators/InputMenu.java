@@ -16,7 +16,9 @@ public enum InputMenu {
 	SKILL_TREE("skillTree", "complex"),
 	POKEDEX("pokedex", "complex"),
 	SHOP("shop", "complex"),
-	ACHIEVEMENTS("achievements", "complex");
+	ACHIEVEMENTS("achievements", "complex"),
+	START("start","basic"),
+	LOBBY("lobby","basic");
 	
 	private String s, type;
 	

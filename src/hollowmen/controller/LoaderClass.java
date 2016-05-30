@@ -22,7 +22,8 @@ public class LoaderClass {
 		/*
 		 * Aggiungere percorso per tutte le immagini. Se rimane tempo va cambiato
 		 */
-		nameList.add("res/title.png");
+		nameList.add("res/images/title/title.png");
+		nameList.add("res/images/title/skillTree.png");
 		nameList.add("resources/littleButtonPressed.png");
 		nameList.add("resources/littleButtonNOTAvailable.png");
 		return nameList;
@@ -53,7 +54,7 @@ public class LoaderClass {
 				imageMap.put(elem, b);
 			}
 		}catch(Exception e){
-			System.out.println("ERRORE CARICAMENTO IMMAGINI!!!");
+			System.exit(0);
 		}
 		return imageMap;
 	}
