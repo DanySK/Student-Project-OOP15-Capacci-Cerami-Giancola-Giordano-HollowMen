@@ -12,6 +12,12 @@ import javax.swing.border.Border;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 
+/**
+ * The class {@code Lobby} build a sequence of JButton which can be clicked by the player.
+ * 
+ * @author NarcAle
+ *
+ */
 public class Lobby extends JPanel{
 
     private static final long serialVersionUID = -986610577506284L;
@@ -34,10 +40,15 @@ public class Lobby extends JPanel{
     JButton startGame;
     JButton back;
     
+    /**
+     * the constructor create all the buttons I need to display on Lobby.
+     * @param observer
+     * @param storage
+     */
     public Lobby(ViewObserver observer, Map<String,ImageIcon> storage ){
-        this.setBackground(Color.BLACK);//Da cercare un'immagine
-        this.setSize(LOCY2,LOCY2);
-        this.setLocation(0, 0);
+        this.setBackground(Color.BLACK);//Al momento c'è un semplice background nero.
+        this.setSize(LOCY2,LOCY2);//Lobby panel dimension
+        this.setLocation(0, 0);//Location of the panel.It refers to the frame dimension
         
         this.inventory=new JButton();
         this.inventory.setLayout(null);

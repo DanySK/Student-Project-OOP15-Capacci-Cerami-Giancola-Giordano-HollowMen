@@ -31,7 +31,7 @@ public class InputChooser {
 							break;}
 		case KeyEvent.VK_A:{ this.observer.addInput(InputCommand.LEFT);
 							break;}
-		case KeyEvent.VK_S:{ this.observer.addInput(InputCommand.BACK);
+		case KeyEvent.VK_S:{ this.observer.addInput(InputMenu.BACK);
 							break;}
 		case KeyEvent.VK_D:{ this.observer.addInput(InputCommand.RIGHT);
 							break;}
