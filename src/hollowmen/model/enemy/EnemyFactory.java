@@ -1,7 +1,5 @@
 package hollowmen.model.enemy;
 
-import hollowmen.enumerators.RoomEntityName;
-
 public class EnemyFactory {
 
 	private EnemyFactory() {};
@@ -15,15 +13,13 @@ public class EnemyFactory {
 	}
 	
 	
-	@SuppressWarnings("incomplete-switch")
 	public EnemyBuilder getBuilderFor(String s) {
-		RoomEntityName en = RoomEntityName.valueOf(s);
-		switch(en) {
-		case SLIME:
+		switch(s) {
+		case "slime":
 			return new Slime.Builder();
-		case BAT:
+		case "bat":
 			return new Bat.Builder();
-		case PUPPET:
+		case "puppet":
 			return new Puppet.Builder();
 		}
 		return null;
