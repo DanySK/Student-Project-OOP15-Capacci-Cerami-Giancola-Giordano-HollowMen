@@ -1,11 +1,12 @@
 package hollowmen.view;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.model.facade.DrawableRoomEntity;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.model.facade.Point2D;
 
 /**
  * The View interface allows to draw application on screen.
@@ -40,6 +41,11 @@ public interface View {
 	 * 
 	 * @param componentList 
 	 */
-	public void drawGame(Map<String,Point2D> componentMap);
+	public void drawGame(List<DrawableRoomEntity> componentList);
 	
+	
+	/**
+	 * The method {@code drawLobby} is used to draw on screen the component I need
+	 */
+	public void drawLobby();
 }

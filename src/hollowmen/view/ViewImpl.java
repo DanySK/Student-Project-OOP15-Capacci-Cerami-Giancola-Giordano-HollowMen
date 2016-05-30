@@ -2,14 +2,16 @@ package hollowmen.view;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.model.facade.DrawableRoomEntity;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.model.facade.Point2D;
 import hollowmen.view.ale.Game;
+import hollowmen.view.ale.Lobby;
 import hollowmen.view.juls.BasicMenuImpl;
 import hollowmen.view.juls.ComplexMenuImpl;
 
@@ -24,11 +26,15 @@ public class ViewImpl implements View {
 	
 	private Game game;
 	private Map<String,ImageIcon> storage;
+	private ViewObserver observer;
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
+	    this.observer=observer;
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
 		game=new Game(x,y,observer);
+		SingletonFrame.getInstance().add(game);
+		
 	}
 	
 	/**
@@ -67,10 +73,13 @@ public class ViewImpl implements View {
 	 * The method {@code drawGame} is used to draw all the components on screen.
 	 * It's linked to {@link Game} class.
 	 */ 
-	public void drawGame(Map<String, Point2D> componentMap) {
-		game.draw(componentMap);
+	public void drawGame(List<DrawableRoomEntity> componentList) {
+		game.draw(componentList);
 	}
 	
+	public void drawLobby(){
+	    SingletonFrame.getInstance().add(new Lobby(this.observer, this.storage));
+	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.
 	 * @return - storage

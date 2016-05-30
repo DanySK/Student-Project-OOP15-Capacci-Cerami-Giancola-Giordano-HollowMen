@@ -1,9 +1,10 @@
 package hollowmen.view.ale;
 
 import java.awt.event.KeyEvent;
+import java.util.List;
 import java.util.Map;
 import javax.swing.ImageIcon;
-import hollowmen.model.facade.Point2D;
+import hollowmen.model.facade.DrawableRoomEntity;
 
 /**
  * The GameInterface interface makes some methods available in order to 
@@ -20,7 +21,7 @@ public interface GameInterface {
 	 * 
 	 * @param componentList
 	 */
-	public void draw(Map<String, Point2D> componentList);
+	public void draw(List<DrawableRoomEntity> componentList);
 	
 	/**
 	 * The method{@code setStorage} is used to create a list of JLabel with the associated {@link ImageIcon}.
