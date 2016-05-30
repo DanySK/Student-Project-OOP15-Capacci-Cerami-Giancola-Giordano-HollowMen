@@ -6,7 +6,6 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
-import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
@@ -22,6 +21,8 @@ public class Bat extends EnemyAbs{
 		super(new InfoImpl(RoomEntityName.BAT.toString(), info.getDescription().get()), Constants.BAT_SIZE, param, power, title);
 	}
 
+	
+	
 	@Override
 	public BodyDef defBody() {
 		return Box2DUtils.bodyDefBuilder().type(BodyType.DYNAMIC).build();

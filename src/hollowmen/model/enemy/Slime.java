@@ -6,7 +6,6 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
-import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
