@@ -9,11 +9,13 @@ import hollowmen.model.Actor;
 import hollowmen.model.Enemy;
 import hollowmen.model.Lootable;
 import hollowmen.model.Modifier;
+import hollowmen.model.Room;
 import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.LootableImpl;
 import hollowmen.model.dungeon.ModifierImpl;
 import hollowmen.model.enemy.EnemyPool;
 import hollowmen.model.item.ItemPool;
+import hollowmen.model.roomentity.interactable.TreasureChest;
 import hollowmen.utilities.RandomSelector;
 
 public class Algorithms {
@@ -26,6 +28,21 @@ public class Algorithms {
 	private final static double FLAT_ENEMY_GOLD = 75;
 	
 	
+	
+	public static void populateRoom(Room room) {
+		room.addEntity(new TreasureChest());
+	}
+	
+	public static Lootable treasureLoot() {
+		int floorNum = DungeonSingleton.getInstance().getFloorNumber();
+		int roomNum = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
+		int expAndGold = floorNum * Constants.TREASURE_FLATFLOOR + roomNum * Constants.TREASURE_FLATROOM;
+		if(RandomSelector.getIntFromRange(0, 100) < Constants.TREASURE_ITEMCHANCE) {
+			return new LootableImpl(expAndGold, expAndGold, ItemPool.getInstance().getCompletelyRandom());
+		} else {
+			return new LootableImpl(expAndGold, expAndGold, null);
+		}
+	}
 	
 	public static Collection<Enemy> generateEnemy() {
 		int maxLevel = (DungeonSingleton.getInstance().getFloorNumber() / 2) 
@@ -78,8 +95,14 @@ public class Algorithms {
 		double atkValue = hitter.getParameters().get(ParamName.ATTACK.toString()).getValue();
 		double defValue = subj.getParameters().get(ParamName.DEFENSE.toString()).getValue();
 		double res = ((atkValue - defValue) < 1) ? 1 : atkValue - defValue;
+		try {
 		subj.getParameters().get(ParamName.HP.toString())
-			.addModifier(new ModifierImpl(ParamName.HP.toString(), -res, Modifier.Operation.ADD));
+			.removeModifier(new ModifierImpl(ParamName.HP.toString(), res, Modifier.Operation.ADD));
+		} catch (LowerLimitReach e) {
+			
+		}
+		
+		
 	}
 	
 }

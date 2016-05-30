@@ -2,8 +2,11 @@ package hollowmen.model.utils;
 
 import java.util.Collection;
 
+import hollowmen.enumerators.ActorState;
 import hollowmen.model.Actor;
 import hollowmen.model.Modifier;
+import hollowmen.model.Parameter.ParamName;
+import hollowmen.model.dungeon.ModifierImpl;
 import hollowmen.utilities.ExceptionThrower;
 
 public class Actors {
@@ -30,4 +33,12 @@ public class Actors {
 	public static void removeAllModifier(Actor subj, Collection<Modifier> mod) throws IllegalArgumentException {
 		mod.stream().forEach(x -> removeModifier(subj, x));
 	}
+	
+	public static void regenerate(Actor subj) {
+		subj.getStatus().clear();
+		subj.setState(ActorState.STANDING.toString());
+		double maxHP = subj.getParameters().get(ParamName.HPMAX).getValue();
+		Actors.addModifier(subj, new ModifierImpl(ParamName.HP.toString(), maxHP, Modifier.Operation.ADD));
+	}
+	
 }

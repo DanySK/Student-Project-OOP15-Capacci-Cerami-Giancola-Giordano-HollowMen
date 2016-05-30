@@ -14,19 +14,19 @@ public class Counter {
 	}
 	
 	public void add(int i) {
-		count += i;
+		this.count += i;
 	}
 	
 	public void sub(int i) {
-		this.add(-i);
+		this.count -= i;
 	}
 	
 	public void increase() {
-		count++;
+		this.count++;
 	}
 	
 	public void decrease() {
-		count--;
+		this.count--;
 	}
 	
 	public int getCount() {

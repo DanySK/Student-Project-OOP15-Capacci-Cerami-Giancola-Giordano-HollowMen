@@ -24,22 +24,22 @@ public class SimpleLimitedCounter implements LimitedCounter{
 	}
 
 	@Override
-	public void addToValue(double value) throws IllegalArgumentException, IllegalStateException {
+	public void addToValue(double value) throws IllegalArgumentException, UpperLimitReachException {
 		ExceptionThrower.checkIllegalArgument(value, v -> v < 0);
 		this.value = this.value + value;
-		if(this.value >= this.limit) {
+		if(this.value > this.limit) {
 			this.value = this.limit;
-			throw new IllegalStateException();
+			throw new UpperLimitReachException();
 		}
 	}
 
 	@Override
-	public void subToValue(double value) throws IllegalArgumentException, IllegalStateException {
+	public void subToValue(double value) throws IllegalArgumentException, LowerLimitReachException {
 		ExceptionThrower.checkIllegalArgument(value, v -> v < 0);
 		this.value = this.value - value;
 		if(this.value < 0) {
 			this.value = 0;
-			throw new IllegalStateException();
+			throw new LowerLimitReachException();
 		}
 	}
 
