@@ -63,15 +63,14 @@ public interface Room {
 	/**
 	 * This method adds the given <b>roomEntity</b> to the right Collection
 	 * @param roomEntity {@link RoomEntity} to add at this {@code Room}
-	 * @throws IllegalArgumentException If <b>roomEntity</b>'s ID exists already
+	 * @throws IllegalArgumentException 
 	 */
-	public void addEntity(RoomEntity roomEntity) throws IllegalArgumentException;
+	public void addEntity(RoomEntity roomEntity);
 	
 	/**
 	 * This method remove the given <b>roomEntity</b> to the right Collection
 	 * @param roomEntity {@link RoomEntity} to remove at this {@code Room}
-	 * @throws IllegalArgumentException If the given <b>roomEntity</b> isn't present OR 
-	 * If <b>roomEntity</b>'s ID exists already
+	 * @throws IllegalArgumentException If the given <b>roomEntity</b> isn't present
 	 */
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException;
 }

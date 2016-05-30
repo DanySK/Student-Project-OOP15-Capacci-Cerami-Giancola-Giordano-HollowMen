@@ -1,6 +1,6 @@
 package hollowmen.model;
 
-import com.google.common.collect.Multimap;
+import java.util.Collection;
 
 import hollowmen.utilities.Pair;
 
@@ -30,9 +30,10 @@ public interface Hero extends Actor{
 	 * 
 	 * @param item {@link Item} to equip
 	 * @throws IllegalStateException If the <b>item</b> can't be equipped
+	 * @throws IllegalArgumentException If hero haven't the <b>item</b> in the {@link Inventory}
 	 * @throws NullPointerException
 	 */
-	public void equipItem(Item item) throws IllegalStateException, NullPointerException;
+	public void equipItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException;
 	
 	/**
 	 * This method unequip the <b>item</b> removing it's {@link Modifier} to the {@code Hero}'s {@link Parameter} <br>
@@ -85,12 +86,6 @@ public interface Hero extends Actor{
 	public Inventory getInventory();
 	
 	/**
-	 * This method give the {@code Hero}'s {@code Pokedex}
-	 * @return {@link Pokedex}
-	 */
-	public Pokedex getPokedex();
-	
-	/**
 	 * This method give the {@code Hero}'s {@code HeroClass}
 	 * @return {@link HeroClass}
 	 */
@@ -111,7 +106,7 @@ public interface Hero extends Actor{
 	
 	/**
 	 * This method gives all the equipped {@code Item}
-	 * @return {@link Multimap}
+	 * @return {@link Collection} {@link Item}
 	 */
-	public Multimap<String, Slot> getEquippedItem();
+	public Collection<Item> getEquippedItem();
 }

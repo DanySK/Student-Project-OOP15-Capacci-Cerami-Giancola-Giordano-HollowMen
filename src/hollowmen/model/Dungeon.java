@@ -99,6 +99,11 @@ public interface Dungeon {
 	 */
 	public void changeRoom(int choice);
 	
+	/**
+	 * 
+	 * @return {@link Pokedex}
+	 */
+	public Pokedex getPokedex();
 	
 	/**
 	 * 

@@ -7,6 +7,18 @@ package hollowmen.model;
  */
 public interface Enemy extends Actor{
 		
+	public enum EnemyTitle {
+
+		BOSS,
+		COMMANDER,
+		ORDINARY;
+
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
+	}
+	
 	/**
 	 * This method gives an integer value represent his level
 	 * @return {@code int} for the level of this {@code Enemy}

@@ -10,6 +10,12 @@ import java.util.Collection;
 public interface Pokedex {
 
 	/**
+	 * This method update the enemy met 
+	 * @param r {@link Room}
+	 */
+	public void checkNewEnemy(Room r);
+	
+	/**
 	 * This method give all the {@code Enemy} met
 	 * @return {@link Collection}<{@link Enemy}>
 	 */

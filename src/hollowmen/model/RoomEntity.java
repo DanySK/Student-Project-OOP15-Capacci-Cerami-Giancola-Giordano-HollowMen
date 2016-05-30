@@ -9,6 +9,24 @@ import org.jbox2d.dynamics.Body;
  */
 public interface RoomEntity extends InformationUser{
 	
+	public enum RoomEntityName {
+
+		HERO,
+		DOOR,
+		DOOR_BACK,
+		SLIME,
+		BAT,
+		PUPPET,
+		TREASURE,
+		BULLET;
+		
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
+		
+	}
+	
 	/**
 	 * This method give the {@code Size} of this {@code Body}
 	 * @return {@link Body}

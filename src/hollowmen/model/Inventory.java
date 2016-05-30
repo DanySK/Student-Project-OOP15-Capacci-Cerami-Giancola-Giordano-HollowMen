@@ -26,6 +26,14 @@ public interface Inventory {
 	public void removeItem(Item item);
 	
 	/**
+	 * This method gives a specific Item from the {@code Inventory}
+	 * @param itemName {@code String}
+	 * @return {@link Item}
+	 * @throws IllegalArgumentException If <b>itemName</b> isn't in the {@code Inventory}
+	 */
+	public Item getItem(String itemName) throws IllegalArgumentException;
+	
+	/**
 	 * This method give all the {@code Item} currently stored in the {@code Inventory}
 	 * @return {@link Collection}<{@link Item}> currently stored in the {@code Inventory}<br>
 	 * NOTE: unmodifiable Collection

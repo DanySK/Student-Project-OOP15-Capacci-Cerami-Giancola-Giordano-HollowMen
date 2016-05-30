@@ -10,6 +10,17 @@ import java.util.Collection;
  */
 public interface HeroClass extends InformationUser{
 	
+	public enum Name {
+		WARRIOR,
+		ASSASSIN,
+		MAGE;
+		
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
+	}
+	
 	/**
 	 * This method give the Hero's {@code SkillTree}
 	 * @return {@link SkillTree}

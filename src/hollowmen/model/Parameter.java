@@ -12,6 +12,25 @@ import java.util.Collection;
  */
 public interface Parameter extends InformationUser{
 	
+	public enum ParamName {
+
+		ATTACK,
+		DEFENSE,
+		HPMAX,
+		HP,
+		ATTACKSPEED,
+		ATTACKRANGE,
+		MOVSPEED,
+		DURATION,
+		COOLDOWN;
+		
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
+		
+	}
+	
 	/**
 	 * This method give the final value for this {@code Parameter}
 	 * @return {@code double} value

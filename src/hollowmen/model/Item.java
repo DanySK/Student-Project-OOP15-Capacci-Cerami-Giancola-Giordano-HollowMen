@@ -28,6 +28,24 @@ public interface Item extends InformationUser{
 		BUYABLE;
 	}
 	
+	public enum SlotName {
+		HEAD,
+		CHEST,
+		LEGS,
+		HANDS,
+		BOOTS,
+		CONSUMABLE,
+		ABILITY1,
+		ABILITY2,
+		ABILITY3;
+		
+		@Override
+		public String toString(){
+			return this.name().toLowerCase();
+		}
+	}
+	
+	
 	/**
 	 * This method give the {@code ItemState}
 	 * @return {@link ItemState} 
