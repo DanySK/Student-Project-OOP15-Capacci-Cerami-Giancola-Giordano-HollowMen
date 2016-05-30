@@ -12,10 +12,16 @@ public abstract class TranslucentButton extends CustomButton {
 	
 	public TranslucentButton() {
 		super();
+		this.setPreferences();
 	}
 	
 	public TranslucentButton(String text) {
 		super(text);
+	}
+	
+	public TranslucentButton(Direction d) {
+		super();
+		this.setPreferences();
 	}
 	
 	public void setPreferences() {
@@ -28,6 +34,11 @@ public abstract class TranslucentButton extends CustomButton {
 	 * The {@code loadImages()} method will try to load the images
 	 * needed to paint the button.
 	 */
-	public abstract void loadImages();
+	protected abstract void loadImages();
+	
+	public enum Direction {
+		LEFT,
+		RIGHT;
+	}
 
 }

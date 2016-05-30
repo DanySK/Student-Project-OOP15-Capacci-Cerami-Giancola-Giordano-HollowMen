@@ -41,11 +41,10 @@ public class ViewImpl implements View {
 	 * The {@code drawMenu} method draws the menu on screen when needed.
 	 * @param type - distinguishes the two kinds of menu (Basic or Complex)
 	 * @param name - represents the menu to draw
-	 * @param collection - (Optional) represents the pool of Items/Mobs/Skill Nodes/Achievements
+	 * @param collection - (Optional) represents the pool of InformationDealer (Items/Mobs/Skill Nodes/Achievements)
 	 * 						to add to the menu
 	 * 
 	 * @author Juls
-	 * NOTE FOR ME: change this stupid "?" (Damn Object, you pineapple head)
 	 */
 	public void drawMenu(InputMenu name, Optional<Collection<InformationDealer>> collection) {
 		BasicMenuImpl basic = new BasicMenuImpl();

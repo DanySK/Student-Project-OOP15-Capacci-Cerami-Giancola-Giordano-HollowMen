@@ -44,7 +44,7 @@ public interface InformationDealer {
 	
 	/**
 	 * @return Gives the amount of item in inventory,
-	 * for meb give 1 if encountered, 0 otherwise
+	 * for mob give 1 if encountered, 0 otherwise
 	 */
 	public int getAmount();
 }

@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+
+import hollowmen.controller.ViewObserver;
 import hollowmen.view.SingletonFrame;
 
 /**
@@ -19,6 +21,7 @@ public abstract class CustomDialog extends JDialog {
 
 	private static final long serialVersionUID = 3277374667436705243L;
 	protected String name;
+	protected ViewObserver view;
 	protected final JLabel background = new JLabel();
 	protected final JLabel message = new JLabel();
 

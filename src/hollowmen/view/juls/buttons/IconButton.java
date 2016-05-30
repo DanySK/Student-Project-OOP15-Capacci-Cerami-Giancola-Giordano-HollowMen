@@ -1,13 +1,10 @@
 package hollowmen.view.juls.buttons;
 
 import java.awt.Color;
-import java.util.Map;
-import java.util.Optional;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
-
-import hollowmen.model.facade.InformationDealer;
+import javax.swing.SwingConstants;
 
 /**
  * The {@code IconButton} class determines a specialization
@@ -24,16 +21,18 @@ public class IconButton extends CustomButton {
 		this.setPreferences();
 	}
 	
-	public IconButton(String text) {
-		super(text);
-	}
-	
 	public IconButton(Icon icon) {
 		super(icon);
+		this.setPreferences();
 	}
 	
-	public IconButton(Icon icon, InformationDealer dealer) {
+	public IconButton(String text, Icon icon) {
 		super(icon);
+		this.setIcon(icon);
+		this.setText(text);
+		this.setForeground(Color.WHITE);
+		this.setHorizontalTextPosition(SwingConstants.CENTER);
+		this.setPreferences();
 	}
 	
 	public void setPreferences() {

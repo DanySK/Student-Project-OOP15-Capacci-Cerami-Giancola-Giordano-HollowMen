@@ -38,6 +38,7 @@ public class Achievements extends GridDialog {
 	public Achievements(Frame frame, Collection<InformationDealer> collection) {
 		super(frame);
 		this.loadImages();
+		super.addTitle(title);
 		this.add(buttonC);
 		this.populateAchievements(collection);
 		redeem.setEnabled(false);

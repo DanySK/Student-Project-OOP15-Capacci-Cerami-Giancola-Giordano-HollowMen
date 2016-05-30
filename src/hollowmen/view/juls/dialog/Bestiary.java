@@ -29,6 +29,7 @@ public class Bestiary extends GridDialog {
 	public Bestiary(Frame frame, Collection<InformationDealer> collection) {
 		super(frame);
 		this.loadImages();
+		super.addTitle(title);
 		this.populateBestiary(collection);
 		this.add(buttonC);
 		close.addActionListener(new ActionListener() {

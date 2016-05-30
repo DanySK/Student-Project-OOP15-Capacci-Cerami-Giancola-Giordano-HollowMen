@@ -11,9 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import hollowmen.view.juls.buttons.LeftArrow;
+import hollowmen.view.juls.buttons.ArrowButton;
 import hollowmen.view.juls.buttons.PaintedButton;
-import hollowmen.view.juls.buttons.RightArrow;
+import hollowmen.view.juls.buttons.TranslucentButton.Direction;
 import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
@@ -27,9 +27,8 @@ public class HelpMenu extends OptionDialog {
 	private final JLabel title = new JLabel();
 	private final JLabel sheet1 = new JLabel();
 	private final JLabel sheet2 = new JLabel();
-
-	private LeftArrow left = new LeftArrow(); // on panel2
-	private RightArrow right = new RightArrow(); // on panel1
+	private ArrowButton left = new ArrowButton(Direction.LEFT);
+	private ArrowButton right = new ArrowButton(Direction.RIGHT);
 	private PaintedButton close = new PaintedButton("CLOSE");
 	
 	private JPanel buttonC = PanelBuilder.getBuilder()
@@ -59,7 +58,6 @@ public class HelpMenu extends OptionDialog {
 							.build();
 	
 	
-
 	public HelpMenu(Frame frame) {
 		super(frame);
 		this.loadImages();
@@ -111,5 +109,4 @@ public class HelpMenu extends OptionDialog {
 			e.printStackTrace();
 		}
 	}
-	
 }

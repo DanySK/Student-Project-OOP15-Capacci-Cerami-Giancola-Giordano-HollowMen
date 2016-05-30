@@ -43,7 +43,7 @@ public class MainMenu extends JFrame {
 
 	private JPanel buttonsContainer = PanelBuilder.getBuilder()
 									.layout(5,1,8,0)
-									.bound(90, 240, 150, 300)
+									.bound(150, 300, 150, 300)
 									.addTo(newGame)
 									.addTo(loadGame)
 									.addTo(help)
@@ -59,7 +59,7 @@ public class MainMenu extends JFrame {
 	public MainMenu() {
 		SingletonFrame frame = SingletonFrame.getInstance();
 		this.loadImages();
-		title.setBounds(30, 50, 270, 190);
+		title.setBounds(100, 70, 270, 190);
 		this.addToList();
 		frame.setContentPane(label);
 		frame.add(title);
@@ -100,7 +100,7 @@ public class MainMenu extends JFrame {
 	
 	private void loadImages() {
 		try {
-			label.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/castle.jpg"))));
+			label.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/castleBG.jpg"))));
 			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/title.png"))));			
 		} catch (IOException e) {
 			e.printStackTrace();

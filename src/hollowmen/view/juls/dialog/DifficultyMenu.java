@@ -17,6 +17,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.view.SingletonFrame;
+//import hollowmen.controller.ViewObserver;
+//import hollowmen.enumerators.Difficulty;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
@@ -31,6 +34,8 @@ public class DifficultyMenu  extends MessageDialog {
 	private static final long serialVersionUID = -8695951773300972039L;	
 	private JLabel title = new JLabel();
 	private JLabel selection = new JLabel();
+	//private Difficulty diff;
+	//private ViewObserver view;
 	private PaintedButton easy = new PaintedButton("EASY");
 	private PaintedButton normal = new PaintedButton("NORMAL");
 	private PaintedButton hard = new PaintedButton("HARD");
@@ -89,8 +94,10 @@ public class DifficultyMenu  extends MessageDialog {
 				confirm.setEnabled(true);
 				selection.setText(name);
 			} else if (name.equals("CONFIRM")) {
-				//addInput(name)
+				//view.addInput(Difficulty.valueOf(name));
 				dispose();	
+				new ClassChoice(SingletonFrame.getInstance());
+				
 			}
 		}
 	};
