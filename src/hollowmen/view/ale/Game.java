@@ -13,6 +13,7 @@ import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.enumerators.Values;
 import hollowmen.model.facade.DrawableRoomEntity;
+import hollowmen.sound.ale.CreateAudio;
 
 /**
  * The {@code Game} class implements {@link GameInterface}. It is the game panel and give some functionality.
@@ -20,7 +21,6 @@ import hollowmen.model.facade.DrawableRoomEntity;
  * @author Alessia
  *
  */
-//I use the same class for Lobby too.
 public class Game extends JPanel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
@@ -54,10 +54,11 @@ public class Game extends JPanel implements GameInterface{
             this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
             this.setBounds(0,0,x,y+GAP);
             initialSetup(x,y);
+            new CreateAudio();
             addKeyListener(new KeyInput(this));
         }
 
-        private void initialSetup(int x, int y){
+        private void initialSetup(int x, int y){ //Il bound è da sistemare
             panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2, x, y);
@@ -66,7 +67,7 @@ public class Game extends JPanel implements GameInterface{
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
             this.goldValue.setBounds(0, ALIGNMENT*4, 150, 40);
             this.floorValue=new ValueManager("Floor: ", Color.WHITE);
-            this.floorValue.setBounds(700, ALIGNMENT*40, 150, 40);
+            this.floorValue.setBounds(700, ALIGNMENT*70, 150, 40);
             this.timerValue=new ValueManager("Timer", Color.WHITE);
             this.timerValue.setBounds(350, 0, 150, 80);
             this.bars=new Bar();
@@ -74,17 +75,17 @@ public class Game extends JPanel implements GameInterface{
             this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento
             //bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
             this.btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
-            this.btnAbility1.setBounds(0, 0, 0, 0);
+            this.btnAbility1.setBounds(8, 740, 90, 70);
             this.btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storageGame);
-            this.btnAbility2.setBounds(0, 0, 0, 0);
+            this.btnAbility2.setBounds(98, 740, 90, 70);
             this.btnAbility3=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storageGame);
-            this.btnAbility3.setBounds(0, 0, 0, 0);
+            this.btnAbility3.setBounds(188, 740, 90, 70);
             this.btnConsumable=new ScreenButton(this.observer, InputCommand.CONSUMABLE ,this.storageGame);
-            this.btnConsumable.setBounds(0, 0, 0, 0);
+            this.btnConsumable.setBounds(278, 740, 90, 70);
             this.btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storageGame);
-            this.btnSkillTree.setBounds(0, 0, 0, 0);
+            this.btnSkillTree.setBounds(458, 740, 90, 70);
             this.btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storageGame);
-            this.btnInventory.setBounds(0, 0, 0, 0);
+            this.btnInventory.setBounds(548, 740, 90, 70);
         }
         
         public void draw(List<DrawableRoomEntity> componentList){       
