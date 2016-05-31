@@ -1,6 +1,7 @@
 package hollowmen.view.ale;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -21,6 +22,7 @@ import hollowmen.enumerators.InputMenu;
 public class Lobby extends JPanel{
 
     private static final long serialVersionUID = -986610577506284L;
+    private Font fontA=new Font("Chiller",Font.PLAIN, 15);
     private static final int DIMX=100;
     private static final int DIMY=100;
     private static final int LOCX=8;
@@ -101,6 +103,7 @@ public class Lobby extends JPanel{
         this.startGame=new JButton();
         this.startGame.setLayout(null);
         this.startGame.setText("START");
+        this.startGame.setFont(fontA);
         this.startGame.setSize(DIMX,DIMY);
         this.startGame.setLocation(LOCX5,LOCY2);
         this.startGame.setBorder(border);

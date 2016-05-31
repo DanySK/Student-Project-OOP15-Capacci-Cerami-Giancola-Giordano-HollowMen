@@ -25,7 +25,7 @@ public class Game extends JPanel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
         private static final int GAP=200;
-        private static final int ALIGNMENTX=480;
+        private static final int ALIGNMENTX=680;
         private static final int ALIGNMENTY=20;
         private static final int POSITIONX=300;
         private static final int POSITIONY=100;
