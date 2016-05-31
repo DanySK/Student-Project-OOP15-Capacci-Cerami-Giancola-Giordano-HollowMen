@@ -63,9 +63,9 @@ public interface Dungeon {
 	public void endRun();
 	/**
 	 * This method give the currently setted {@code Difficulty} for the {@code Dungeon}
-	 * @return {@link int} currently setted
+	 * @return {@link Difficulty} currently setted
 	 */
-	public int getDifficulty();
+	public Difficulty getDifficulty();
 	
 	/**
 	 * This method give the {@code Dungeons}'s {@code Shop}
@@ -110,6 +110,12 @@ public interface Dungeon {
 	 * @return {@link World}
 	 */
 	public World getWorld();
+	
+	/**
+	 * 
+	 * @return {@link Time}
+	 */
+	public Time getTimer();
 	
 
 }
