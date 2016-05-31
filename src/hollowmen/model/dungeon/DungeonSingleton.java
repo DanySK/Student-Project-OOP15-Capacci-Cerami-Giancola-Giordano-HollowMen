@@ -11,6 +11,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
+import hollowmen.enumerators.Difficulty;
 import hollowmen.model.Dungeon;
 import hollowmen.model.Hero;
 import hollowmen.model.LimitedCounter;

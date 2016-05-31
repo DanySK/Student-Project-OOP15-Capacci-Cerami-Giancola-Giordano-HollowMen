@@ -3,6 +3,7 @@ package hollowmen.controller;
 import java.util.LinkedList;
 import java.util.Optional;
 import hollowmen.enumerators.ClassType;
+import hollowmen.enumerators.Difficulty;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
@@ -27,19 +28,18 @@ public class Controller implements ViewObserver {
 	private Model model;
 	private int counterBack=0;
 	private InputMenu[] menuBack=new InputMenu[10];
+	private boolean classPicked=false;
 	
 	public Controller(){
-		
-		
+	}
+	
+	public void setup(){
 		view=new ViewImpl(800,600,this);
-		
 		view.takeFile(LoaderClass.load());
 		view.drawMenu(InputMenu.MAIN, Optional.empty());
-		
 		model=new ModelImpl();
-		
+		model.setup();
 		menuInputManager();
-		
 	}
 	
 	private void backInc(InputMenu m){
@@ -111,6 +111,9 @@ public class Controller implements ViewObserver {
 		}case ACHIEVEMENTS:{
 			inputMenuList.clear();
 			break;
+		}case RESUME:{
+			gameLoop();
+			break;
 		}case BACK:{
 			backDec();
 			if(this.menuBack[0].getType()=="complex"){
@@ -149,7 +152,10 @@ public class Controller implements ViewObserver {
 		boolean loop=true;
 		while(loop){
 			try{
-				if(inputMenuList.isEmpty()){
+				if(this.classPicked==true){
+					loop=false;
+				}
+				if(this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
 				}else{
 					menuChoice();
@@ -158,6 +164,7 @@ public class Controller implements ViewObserver {
 				System.exit(0);
 			}
 		}
+		view.drawLobby();
 	}
 	
 	private void itemInputManager(){
@@ -172,19 +179,19 @@ public class Controller implements ViewObserver {
 					}
 					switch(mapInputCommand.getX()){
 					case EQUIP:{
-						model.itemAction(mapInputCommand.getY(),"equip");
+						model.itemEquip(mapInputCommand.getY(),"equip");
 						mapInputCommand=null;
 						break;
 					}case BUY:{
-						model.itemAction(mapInputCommand.getY(),"buy");
+						model.itemBuy(mapInputCommand.getY(),"buy");
 						mapInputCommand=null;
 						break;
 					}case UNEQUIP:{
-						model.itemAction(mapInputCommand.getY(),"unequip");
+						model.itemUnequip(mapInputCommand.getY(),"unequip");
 						mapInputCommand=null;
 						break;
 					}case SELL:{
-						model.itemAction(mapInputCommand.getY(),"sell");
+						model.itemSell(mapInputCommand.getY(),"sell");
 						mapInputCommand=null;
 						break;
 					}default:{
@@ -290,10 +297,12 @@ public class Controller implements ViewObserver {
 	}
 
 	public void addInput(ClassType classType) {
-		//model.setclass();
+		//actually there is only one class
+		this.classPicked=true;
 	}
 	
-	public static void main(String[] args){
-		new Controller();
+	public void addInput(Difficulty difficulty){
+		this.model.setDifficulty(difficulty);
 	}
+	
 }

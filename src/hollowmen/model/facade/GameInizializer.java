@@ -1,5 +1,6 @@
 package hollowmen.model.facade;
 
+import hollowmen.enumerators.Difficulty;
 import hollowmen.model.Dungeon;
 import hollowmen.model.Enemy;
 import hollowmen.model.Hero;
@@ -22,7 +23,7 @@ public interface GameInizializer {
 	
 	public void setDiscoveredFloors(int lastUnlock, int maxFloor);
 	
-	public void setDifficulty(Dungeon.Difficulty diff);
+	public void setDifficulty(Difficulty diff);
 	
 	public Dungeon getDungeon();
 	

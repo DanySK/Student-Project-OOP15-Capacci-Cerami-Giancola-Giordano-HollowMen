@@ -28,12 +28,14 @@ public class ViewImpl implements View {
 	private Lobby lobby;
 	private Map<String,ImageIcon> storage;
 	private ViewObserver observer;
+	private BasicMenuImpl basic = new BasicMenuImpl();
+	private ComplexMenuImpl complex = new ComplexMenuImpl();
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 	    this.observer=observer;
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
-		game=new Game(x,y,observer);
+		this.game=new Game(x,y,observer);
 		SingletonFrame.getInstance().add(game);
 		
 	}
@@ -48,8 +50,6 @@ public class ViewImpl implements View {
 	 * @author Juls
 	 */
 	public void drawMenu(InputMenu name, Optional<Collection<InformationDealer>> collection) {
-		BasicMenuImpl basic = new BasicMenuImpl();
-		ComplexMenuImpl complex = new ComplexMenuImpl();
 		if (name.getType().equals("basic")) {
 			basic.drawBasicMenu(name);
 		} else {
@@ -86,9 +86,19 @@ public class ViewImpl implements View {
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.
+	 * 
 	 * @return - storage
 	 */
 	public Map<String,ImageIcon> getStorage() {
 		return storage;
+	}
+	
+	/**
+	 * The {@code getObserver} method return the observer. 
+	 * 
+	 * @return
+	 */
+	public ViewObserver getObserver(){
+		return this.observer;
 	}
 }

@@ -7,9 +7,9 @@ package hollowmen.enumerators;
  *
  */
 public enum Difficulty {
-	EASY(1),
-	NORMAL(2),
-	HARD(3);
+	EASY(0),
+	NORMAL(1),
+	HARD(2);
 	
 	private int v;
 	
