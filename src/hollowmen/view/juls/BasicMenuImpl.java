@@ -1,6 +1,11 @@
 package hollowmen.view.juls;
 
 import hollowmen.enumerators.InputMenu;
+import hollowmen.view.SingletonFrame;
+import hollowmen.view.juls.dialog.ClassChoice;
+import hollowmen.view.juls.dialog.DifficultyMenu;
+import hollowmen.view.juls.dialog.HelpMenu;
+import hollowmen.view.juls.dialog.PauseMenu;
 
 /**
  * The {@code BasicMenuImpl} class represents the concrete
@@ -20,19 +25,19 @@ public class BasicMenuImpl implements BasicMenu {
 			break;
 			
 		case CLASS:
-		//	new ClassChoice();
+			new ClassChoice(SingletonFrame.getInstance());
 			break;
 			
 		case DIFFICULTY:
-		//	new DifficultyMenu(frame);
+			new DifficultyMenu(SingletonFrame.getInstance());
 			break;
 			
 		case HELP:
-		//	new HelpMenu(frame);
+			new HelpMenu(SingletonFrame.getInstance());
 			break;
 			
 		case PAUSE:
-		//	new PauseMenu(frame);
+			new PauseMenu(SingletonFrame.getInstance());
 			break;
 			
 		default:

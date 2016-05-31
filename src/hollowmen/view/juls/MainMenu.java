@@ -20,7 +20,6 @@ import hollowmen.view.juls.dialog.CreditsMenu;
 import hollowmen.view.juls.dialog.ExitDialog;
 import hollowmen.view.juls.dialog.HelpMenu;
 import hollowmen.view.juls.dialog.NewGameDialog;
-import hollowmen.view.juls.dialog.PauseMenu;
 import hollowmen.view.juls.panel.PanelBuilder;
 
 /**
@@ -54,7 +53,7 @@ public class MainMenu extends JFrame {
 	private final JLabel label = new JLabel();
 	private final JLabel title = new JLabel();
 	
-	//private ViewObserver observer; //needed to tell Controller what happens
+	//private ViewObserver observer; 
 	
 	public MainMenu() {
 		SingletonFrame frame = SingletonFrame.getInstance();
@@ -73,7 +72,7 @@ public class MainMenu extends JFrame {
 			if(name.equals("NEW GAME")) {
 				new NewGameDialog(SingletonFrame.getInstance());
 			} else if (name.equals("LOAD GAME")) {
-				new PauseMenu(SingletonFrame.getInstance());
+//				addInput(InputCommand.LOAD);
 			} else if (name.equals("HELP")) {
 				new HelpMenu(SingletonFrame.getInstance());
 			} else if (name.equals("CREDITS")) {
@@ -84,6 +83,9 @@ public class MainMenu extends JFrame {
 		}
 	};
 	
+	/**
+	 * This method add a listener to the buttons
+	 */
 	private void addToList() {
 		List<PaintedButton> buttonList = new ArrayList<>();
 		
@@ -98,6 +100,9 @@ public class MainMenu extends JFrame {
 		}
 	}
 	
+	/**
+	 * The method tries to load the images needed.
+	 */
 	private void loadImages() {
 		try {
 			label.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/castleBG.jpg"))));

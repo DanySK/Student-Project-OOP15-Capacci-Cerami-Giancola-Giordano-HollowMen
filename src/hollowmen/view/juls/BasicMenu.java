@@ -13,8 +13,8 @@ import hollowmen.enumerators.InputMenu;
  */
 public interface BasicMenu {
 	/**
-	 * This method is used to draw those Menus that does not need
-	 * anything else.
+	 * This method is used to draw those menus that does not need
+	 * anything but name.
 	 * 
 	 * @param name - the name of the menu that must be drawn
 	 */

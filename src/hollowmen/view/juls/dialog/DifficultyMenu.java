@@ -73,7 +73,9 @@ public class DifficultyMenu  extends MessageDialog {
 		this.setVisible(true);
 	}
 
-	
+	/**
+	 * This method add a listener to the buttons.
+	 */
 	private void addToList() {
 		List<PaintedButton> buttonList = new ArrayList<>();
 		

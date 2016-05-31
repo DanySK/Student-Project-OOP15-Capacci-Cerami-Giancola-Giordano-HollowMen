@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
  * The {@code NodeButton} class allows to graphically represent the nodes
  * of the SkillTree. Every node is a button.
  * 
+ * NOTE: for now, the SkillTree menu is not implemented.
  * @author Juls
  */
 public class NodeButton extends TranslucentButton {

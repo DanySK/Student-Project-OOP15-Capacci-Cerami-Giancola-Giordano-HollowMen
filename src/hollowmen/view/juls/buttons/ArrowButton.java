@@ -7,6 +7,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The {@code ArrowButton} allows to draw on screen a button "arrow-shaped"
+ * facing left or right.
+ * @author Juls
+ */
 public class ArrowButton extends TranslucentButton {
 
 	private static final long serialVersionUID = 2261116517867429353L;
@@ -33,6 +38,10 @@ public class ArrowButton extends TranslucentButton {
 		}
 	}
 	
+	/**
+	 * The {@code setDirection} method declares the facing of the ArrowButton needed.
+	 * @param d
+	 */
 	protected void setDirection(Direction d) {
 		this.direction = d;
 	}

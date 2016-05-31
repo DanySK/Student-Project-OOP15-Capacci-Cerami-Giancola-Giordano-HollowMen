@@ -56,7 +56,6 @@ public abstract class CustomButton  extends JButton {
 	}
 	
 	
-	
 	/**
 	 * The {@code MyMouseAdapter} inner class implements some of the methods
 	 * of the MouseAdapter class adding some boolean flags. The flags will be used
@@ -64,7 +63,6 @@ public abstract class CustomButton  extends JButton {
 	 * on the button.
 	 * 
 	 * @author Juls
-	 *
 	 */
 	protected class MyMouseAdapter extends MouseAdapter {
 		
@@ -78,5 +76,4 @@ public abstract class CustomButton  extends JButton {
 				isClicked = true;
     	}
 	}
-
 }

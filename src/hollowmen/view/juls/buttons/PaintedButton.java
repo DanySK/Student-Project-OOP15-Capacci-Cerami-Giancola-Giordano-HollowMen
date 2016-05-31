@@ -45,6 +45,6 @@ public class PaintedButton extends TranslucentButton {
 		if(!isAvailable) {
 			g.drawImage(buttonNA, 0, 8, null);
 		}
-		super.paintComponent(g); // must ALWAYS be at the end of the paintComponent() method
+		super.paintComponent(g);
 	}
 }

@@ -31,10 +31,18 @@ public abstract class MessageDialog extends CustomDialog {
 		
 	}
 	
+	/**
+	 * The method sets the color of the foreground (= text color)
+	 * @param color
+	 */
 	protected void setTextForeground(Color color) {
 		message.setForeground(color);
 	}
 	
+	/**
+	 * The method adds a text
+	 * @param text
+	 */
 	protected void addMessage(String text) {
 		message.setText(text);
 	}

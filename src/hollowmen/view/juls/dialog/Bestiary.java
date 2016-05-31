@@ -16,6 +16,12 @@ import hollowmen.model.facade.InformationDealer;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
+/**
+ * The {@code Bestiary} class draws on screen a menu that contains
+ * information about the enemy met.
+ * 
+ * @author Juls
+ */
 public class Bestiary extends GridDialog {
 
 	private static final long serialVersionUID = 9026903745675122006L;
@@ -41,6 +47,10 @@ public class Bestiary extends GridDialog {
 		this.setVisible(true);
 	}
 
+	/**
+	 * The {@code populateBestiary} method fills the Bestiary menu with the enemies met.
+	 * @param c - the collection of enemies met
+	 */
 	private void populateBestiary(Collection<InformationDealer> c) {
 		c.stream()	
 		.forEach(x -> {
@@ -61,6 +71,10 @@ public class Bestiary extends GridDialog {
 		});
 	}
 	
+	/**
+	 * The {@code ShowDescription} method writes on screen the description of the mob.
+	 * @param d - the description
+	 */
 	private void showDescription(String d) {
 		JLabel label = new JLabel(d);
 		label.setBounds(420, 470, 100, 50);

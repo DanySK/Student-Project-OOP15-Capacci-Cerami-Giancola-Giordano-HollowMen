@@ -12,10 +12,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import hollowmen.model.facade.InformationDealer;
+import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
+/**
+ * The {@code Shop} class represents the Shop Menu drawable on screen.
+ * It allows the player to buy/sell items.
+ * @author Juls
+ */
 public class Shop extends TabbedDialog {
 
 	private static final long serialVersionUID = -1975340404777455747L;
@@ -43,7 +49,7 @@ public class Shop extends TabbedDialog {
 		close.addActionListener(listener);
 
 		this.populateTab(collection, "inventory", inventoryP);
-		this.populateTab(collection, "shop", shopP);
+		this.populateShopTab(collection, "shop", shopP);
 		
 		this.setVisible(true);
 	}
@@ -52,11 +58,9 @@ public class Shop extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("BUY")) {
-				//addInput(BUY, getLastItem());
-				getButton().setEnabled(false);
+				//view.addInput(InputCommand.BUY, getLastItem());
 			} else if (name.equals("SELL")) {
-				//addInput(SELL, getLastItem());
-				getButton().setEnabled(false);
+				//view.addInput(InputCommand.SELL, getLastItem());
 			} else {
 				dispose();
 			}
@@ -66,7 +70,7 @@ public class Shop extends TabbedDialog {
 	@Override
 	protected void populateTab(Collection<InformationDealer> c, String tab, JPanel panel) {
 		c.stream()	
-		.filter(x -> x.getStat().equals("unequiped"))//TODO change getStat with getState()
+		.filter(x -> x.getState().equals(State.UNEQUIPPED))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
@@ -87,9 +91,15 @@ public class Shop extends TabbedDialog {
 		tabbedPane.addTab(tab, panel);
 	}
 
+	/**
+	 * The method populates the shop tab and sets the availability of the buttons.
+	 * @param c
+	 * @param tab
+	 * @param panel
+	 */
 	protected void populateShopTab(Collection<InformationDealer> c, String tab, JPanel panel) {
 		c.stream()	
-		.filter(x -> x.getStat().equals("buyable"))//TODO change getStat with getState()
+		.filter(x -> x.getState().equals(State.BUYABLE))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
