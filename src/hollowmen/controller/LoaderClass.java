@@ -22,19 +22,19 @@ public class LoaderClass {
 		/*
 		 * Aggiungere percorso per tutte le immagini. Se rimane tempo va cambiato
 		 */
-		nameList.add("res/images/title/title.png");
-		nameList.add("res/images/title/skillTree.png");
-		nameList.add("res/images/title/shop.png");
-		nameList.add("res/images/title/pauseMenu.png");
-		nameList.add("res/images/title/inventory");
-		nameList.add("res/images/title/helpSheet2");
-		nameList.add("res/images/title/helpSheet1");
-		nameList.add("res/images/title/help");
-		nameList.add("res/images/title/difficulty.png");
-		nameList.add("res/images/title/credits.png");
-		nameList.add("res/images/title/class.png");
-		nameList.add("res/images/title/bestiary.png");
-		nameList.add("res/images/title/achievement.png");
+		nameList.add("res/images/titles/title.png");
+		nameList.add("res/images/titles/skillTree.png");
+		nameList.add("res/images/titles/shop.png");
+		nameList.add("res/images/titles/pauseMenu.png");
+		nameList.add("res/images/titles/inventory.png");
+		nameList.add("res/images/titles/helpSheet2.png");
+		nameList.add("res/images/titles/helpSheet1.png");
+		nameList.add("res/images/titles/help.png");
+		nameList.add("res/images/titles/difficulty.png");
+		nameList.add("res/images/titles/credits.png");
+		nameList.add("res/images/titles/class.png");
+		nameList.add("res/images/titles/bestiary.png");
+		nameList.add("res/images/titles/achievements.png");
 		nameList.add("res/images/room/treasureChest.png");
 		nameList.add("res/images/room/game.png");
 		nameList.add("res/images/room/door.png");
@@ -43,9 +43,9 @@ public class LoaderClass {
 		nameList.add("res/images/mobs/slimePurple.gif");
 		nameList.add("res/images/mobs/slimeGreen.gif");
 		nameList.add("res/images/mobs/slimeBlue.gif");
-		nameList.add("res/images/mobs/puppetWhite");
-		nameList.add("res/images/mobs/puppetRed");
-		nameList.add("res/images/mobs/puppetBlack");
+		nameList.add("res/images/mobs/puppetWhite.gif");
+		nameList.add("res/images/mobs/puppetRed.gif");
+		nameList.add("res/images/mobs/puppetBlack.gif");
 		nameList.add("res/images/mobs/blueSlimeBoss.gif");
 		nameList.add("res/images/mobs/batPurple.gif");
 		nameList.add("res/images/mobs/batGray.gif");
@@ -73,19 +73,19 @@ public class LoaderClass {
 		nameList.add("res/images/items/redSword.png");
 		nameList.add("res/images/items/scimitar.png");
 		nameList.add("res/images/items/simpleSword.png");
-		nameList.add("res/images/items/star.png");
+		nameList.add("res/images/items/star.jpg");
 		nameList.add("res/images/items/woodSword.png");
 		nameList.add("res/images/gameButtons/skillTree.png");
 		nameList.add("res/images/gameButtons/inventory.png");
 		nameList.add("res/images/gameButtons/consumable.png");
-		nameList.add("res/images/gameButtons/ability3");
-		nameList.add("res/images/gameButtons/ability2");
-		nameList.add("res/images/gameButtons/ability1");
+		nameList.add("res/images/gameButtons/ability3.png");
+		nameList.add("res/images/gameButtons/ability2.png");
+		nameList.add("res/images/gameButtons/ability1.png");
 		nameList.add("res/images/character/assassin.png");
 		nameList.add("res/images/character/hero.png");
 		nameList.add("res/images/character/mage.png");
 		nameList.add("res/images/buttons/RArrowOver.png");
-		nameList.add("res/images/buttons/RArrowOverNA.png");
+		nameList.add("res/images/buttons/RArrowNA.png");
 		nameList.add("res/images/buttons/RArrow.png");
 		nameList.add("res/images/buttons/pButtonOver.png");
 		nameList.add("res/images/buttons/pButtonNA.png");
@@ -98,9 +98,9 @@ public class LoaderClass {
 		nameList.add("res/images/buttons/LArrowNA.png");
 		nameList.add("res/images/buttons/LArrow.png");
 		nameList.add("res/images/backgrounds/bodyTemplate.png");
-		nameList.add("res/images/backgrounds/castle.png");
-		nameList.add("res/images/backgrounds/castleBG.png");
-		nameList.add("res/images/backgrounds/pergamena.png");
+		nameList.add("res/images/backgrounds/castle.jpg");
+		nameList.add("res/images/backgrounds/castleBG.jpg");
+		nameList.add("res/images/backgrounds/pergamena.jpg");
 		nameList.add("res/images/dialog.jpg");
 		return nameList;
 	}
@@ -135,7 +135,7 @@ public class LoaderClass {
 				imageMap.put(name, b);
 			}
 		}catch(Exception e){
-			//System.exit(0);
+			System.exit(0);
 		}
 		return imageMap;
 	}

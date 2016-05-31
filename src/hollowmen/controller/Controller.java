@@ -151,7 +151,7 @@ public class Controller implements ViewObserver {
 					menuChoice();
 				}
 			}catch(Exception e){
-				//System.exit(0);
+				System.exit(0);
 			}
 		}
 	}
@@ -190,7 +190,7 @@ public class Controller implements ViewObserver {
 					}
 				}
 			}catch(Exception e){
-				//System.exit(0);
+				System.exit(0);
 			}
 		}
 	}
@@ -240,7 +240,7 @@ public class Controller implements ViewObserver {
 				}
 			}
 		}catch(Exception e){
-			//System.exit(0);
+			System.exit(0);
 		}
 		return false;
 	}
