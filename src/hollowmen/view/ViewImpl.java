@@ -32,7 +32,7 @@ public class ViewImpl implements View {
 	private ComplexMenuImpl complex = new ComplexMenuImpl();
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
-	    this.observer=observer;
+		this.observer = observer;
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
 		this.game=new Game(x,y,observer);
@@ -100,5 +100,9 @@ public class ViewImpl implements View {
 	 */
 	public ViewObserver getObserver(){
 		return this.observer;
+	}
+	
+	public void setObserver(ViewObserver o) {
+		this.observer = o;
 	}
 }

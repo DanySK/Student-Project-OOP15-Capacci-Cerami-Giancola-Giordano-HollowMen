@@ -25,6 +25,7 @@ public class Controller implements ViewObserver {
 	private LinkedList<InputCommand> inputCommandList=new LinkedList<>();
 	private Pair<InputCommand,InformationDealer> mapInputCommand=null;
 	private View view;
+	private ViewObserver obs;
 	private Model model;
 	private int counterBack=0;
 	private InputMenu[] menuBack=new InputMenu[10];
@@ -35,6 +36,7 @@ public class Controller implements ViewObserver {
 	
 	public void setup(){
 		view=new ViewImpl(800,600,this);
+		System.out.println(this);
 		view.takeFile(LoaderClass.load());
 		view.drawMenu(InputMenu.MAIN, Optional.empty());
 		model=new ModelImpl();

@@ -13,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//import hollowmen.controller.ViewObserver;
 import hollowmen.view.SingletonFrame;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.dialog.CreditsMenu;
@@ -52,8 +51,6 @@ public class MainMenu extends JFrame {
 	
 	private final JLabel label = new JLabel();
 	private final JLabel title = new JLabel();
-	
-	//private ViewObserver observer; 
 	
 	public MainMenu() {
 		SingletonFrame frame = SingletonFrame.getInstance();

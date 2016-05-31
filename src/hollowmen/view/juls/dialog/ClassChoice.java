@@ -77,8 +77,10 @@ public class ClassChoice extends OptionDialog {
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
+			System.out.println(v.getObserver());
+			System.out.println(name);
 			if(name.equals("SELECT")) {
-				observer.addInput(ClassType.valueOf(selection));
+				v.getObserver().addInput(ClassType.WARRIOR);
 			} else {
 				dispose();
 			}
@@ -87,12 +89,7 @@ public class ClassChoice extends OptionDialog {
 	
 	ActionListener classL = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			selection = ((IconButton) e.getSource()).getText();
-			if(selection.equals("WARRIOR")) {
-				select.setEnabled(true);
-			} else {
-				select.setEnabled(false);
-			}
+			select.setEnabled(true);
 			
 		}
 	};

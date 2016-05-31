@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 
 import hollowmen.controller.ViewObserver;
 import hollowmen.view.SingletonFrame;
+import hollowmen.view.ViewImpl;
 
 /**
  * The {@code CustomDialog} abstract class represents the head of
@@ -21,7 +22,7 @@ public abstract class CustomDialog extends JDialog {
 
 	private static final long serialVersionUID = 3277374667436705243L;
 	protected String name;
-	protected ViewObserver observer;
+	protected ViewImpl v;
 	protected final JLabel background = new JLabel();
 	protected final JLabel message = new JLabel();
 
