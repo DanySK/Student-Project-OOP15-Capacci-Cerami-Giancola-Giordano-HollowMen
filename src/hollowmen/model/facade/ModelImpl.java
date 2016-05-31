@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import hollowmen.enumerators.ActorState;
+import hollowmen.enumerators.Difficulty;
 import hollowmen.model.Enemy;
 import hollowmen.model.Item;
 import hollowmen.model.Hero;
@@ -87,10 +87,10 @@ public class ModelImpl implements Model{
 	
 	public List<InformationDealer> getShop() {
 		List<InformationDealer> info=new LinkedList<>();
-		Map<String,Integer> param=new HashMap<>();
+		Map<String,Double> param=new HashMap<>();
 		for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 			
-			
+			it.getX().getModifiers();
 			
 			info.add(null);
 			param.clear();
@@ -136,6 +136,10 @@ public class ModelImpl implements Model{
 				}
 			}
 		}catch(Exception e){}
+	}
+	
+	public void setDifficulty(Difficulty difficulty){
+		this.dungeon.setDifficulty(difficulty);
 	}
 	
 }

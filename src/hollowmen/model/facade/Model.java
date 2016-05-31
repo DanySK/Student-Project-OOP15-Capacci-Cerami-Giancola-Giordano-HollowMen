@@ -2,6 +2,7 @@ package hollowmen.model.facade;
 
 import java.util.List;
 
+import hollowmen.enumerators.Difficulty;
 import hollowmen.model.utils.GameOverException;
 
 /**
@@ -22,4 +23,5 @@ public interface Model {
 	public void itemUnequip(InformationDealer item,String action);
 	public void itemBuy(InformationDealer item,String action);
 	public void itemSell(InformationDealer item,String action);
+	public void setDifficulty(Difficulty difficulty);
 }

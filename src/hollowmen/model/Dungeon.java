@@ -2,6 +2,7 @@ package hollowmen.model;
 
 import org.jbox2d.dynamics.World;
 
+import hollowmen.enumerators.Difficulty;
 import hollowmen.model.utils.GameOverException;
 import hollowmen.utilities.Pair;
 
@@ -23,11 +24,11 @@ public interface Dungeon {
 	 * @author pigio
 	 *
 	 */
-	public enum Difficulty{
+	/*public enum Difficulty{
 		EASY,
 		NORMAL,
 		HARD;
-	}
+	}*/
 	
 	/**
 	 * This method handle the update cycle that can be summarized as:<br>
