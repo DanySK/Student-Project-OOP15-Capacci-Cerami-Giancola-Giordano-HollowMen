@@ -8,6 +8,7 @@ import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.Difficulty;
 import hollowmen.model.Enemy;
 import hollowmen.model.Item;
+import hollowmen.model.Modifier;
 import hollowmen.model.Hero;
 import hollowmen.model.Parameter;
 import hollowmen.model.dungeon.DungeonSingleton;
@@ -45,9 +46,11 @@ public class ModelImpl implements Model{
 		List<DrawableRoomEntity> drawable=new LinkedList<>();
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
 			ActorState sta=ActorState.valueOf(re.getState().toUpperCase());
+			
 			drawable.add(new DrawableRoomEntityImpl(
 					re.getInfo().getName(),
-					new Point2DImpl((int)re.getBody().getLocalCenter().x,(int)re.getBody().getLocalCenter().y),
+					new Point2DImpl((int)(re.getBody().getLocalCenter().x-re.getLength()/2),
+							(int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
 					re.isFacingRight(),
 					sta));
 		}
@@ -75,11 +78,17 @@ public class ModelImpl implements Model{
 	
 	public List<InformationDealer> getInventory() {
 		List<InformationDealer> info=new LinkedList<>();
-		Map<String,Integer> param=new HashMap<>();
+		Map<String,Double> param=new HashMap<>();
 		for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
-			it.getX().getModifiers().values();
-			
-			info.add(null);
+			for(Modifier m:it.getX().getModifiers().values()){
+				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
+			}
+			info.add(new InformationDealerImpl(it.getX().getInfo().getName(),
+					it.getX().getInfo().getDescription().orElse(""),
+					param,
+					it.getX().getState().name(),
+					it.getY(),
+					it.getX().getHeroClassEquippable()));
 			param.clear();
 		}
 		return info;
@@ -88,11 +97,16 @@ public class ModelImpl implements Model{
 	public List<InformationDealer> getShop() {
 		List<InformationDealer> info=new LinkedList<>();
 		Map<String,Double> param=new HashMap<>();
-		for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
-			
-			it.getX().getModifiers();
-			
-			info.add(null);
+		for(Item it: this.dungeon.getShop().getShopItem()){
+			for(Modifier m:it.getModifiers().values()){
+				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
+			}
+			info.add(new InformationDealerImpl(it.getInfo().getName(),
+					it.getInfo().getDescription().orElse(""),
+					param,
+					it.getState().name(),
+					1,
+					it.getHeroClassEquippable()));
 			param.clear();
 		}
 		return info;
