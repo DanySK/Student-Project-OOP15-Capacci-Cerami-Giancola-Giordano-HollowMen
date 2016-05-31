@@ -61,7 +61,7 @@ public class Game extends JPanel implements GameInterface{
             addKeyListener(new KeyInput(this));
         }
 
-        private void initialSetup(int x, int y){ //Il bound è da sistemare
+        private void initialSetup(int x, int y){ 
             this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2, x, y);
