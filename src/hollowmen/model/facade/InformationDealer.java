@@ -34,7 +34,7 @@ public interface InformationDealer {
 	 * @return Give a {@code Map<String,Integer>} of the stats
 	 * if item or mob, otherwise null
 	 */
-	public Optional<Map<String,Integer>> getStat();
+	public Optional<Map<String,Double>> getStat();
 	
 	/**
 	 * @return Gives the state of the object,
