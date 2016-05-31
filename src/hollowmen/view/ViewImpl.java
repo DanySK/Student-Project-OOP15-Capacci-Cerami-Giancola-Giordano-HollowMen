@@ -34,7 +34,6 @@ public class ViewImpl implements View {
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
 		game=new Game(x,y,observer);
-		lobby=new Lobby(observer,storage);
 		SingletonFrame.getInstance().add(game);
 		
 	}
@@ -68,6 +67,7 @@ public class ViewImpl implements View {
 			this.storage.put(elem.getKey(),new ImageIcon(elem.getValue()));
 		}
 		this.game.setStorage(this.storage);
+		lobby=new Lobby(this.observer,this.storage);
 	}
 	
 	/**
