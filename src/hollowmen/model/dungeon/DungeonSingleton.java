@@ -18,6 +18,7 @@ import hollowmen.model.Pokedex;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
 import hollowmen.model.Shop;
+import hollowmen.model.Time;
 import hollowmen.model.dungeon.time.TimerSingleton;
 import hollowmen.model.utils.Actors;
 import hollowmen.model.utils.Box2DUtils;
@@ -42,6 +43,8 @@ public class DungeonSingleton implements Dungeon{
 	
 	private Room currentRoom;
 	
+	private Shop shop;
+	
 	private Hero hero;
 	
 	private Difficulty diff;
@@ -57,6 +60,7 @@ public class DungeonSingleton implements Dungeon{
 	private DungeonSingleton() {
 		this.world = new World(new Vec2(0, GRAVITY));
 		setUpBorder();
+		this.world.setContactListener(new GameCollisionListener());
 	};
 	
 	public static DungeonSingleton getInstance() {
@@ -78,6 +82,8 @@ public class DungeonSingleton implements Dungeon{
 			throw new GameOverException();
 		}
 		TimerSingleton.getInstance().addToValue(deltaTime);
+		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
+		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
 	}
 	
@@ -107,6 +113,7 @@ public class DungeonSingleton implements Dungeon{
 	@Override
 	public void goTo(int floorNumber) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkIllegalState(floorNumber, f -> f > this.unlockedFloors.getValue());
+		TimerSingleton.getInstance().resetAndLimit(1000000);
 		this.floorNumber = floorNumber;
 		this.currentRoom = new RoomImpl(this.lobby, Constants.CHILDROOMQUANTITY, 1);
 	}
@@ -128,13 +135,13 @@ public class DungeonSingleton implements Dungeon{
 	}
 
 	@Override
-	public int getDifficulty() {
-		return this.diff.ordinal()-1;
+	public Difficulty getDifficulty() {
+		return this.diff;
 	}
 
 	@Override
 	public Shop getShop() {
-		return null;
+		return this.shop;
 	}
 
 	@Override
@@ -146,6 +153,8 @@ public class DungeonSingleton implements Dungeon{
 	public World getWorld() {
 		return this.world;
 	}
+	
+	
 	
 	public void gameOver() {
 		this.gameOver = true;
@@ -221,9 +230,17 @@ public class DungeonSingleton implements Dungeon{
 		this.poke = poke;
 	}
 
-	public Collection<RoomEntity> getDisposeList() {
-		return disposeList;
+	public void addToDisposeList(RoomEntity re) {
+		this.disposeList.add(re);
 	}
 
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+
+	@Override
+	public Time getTimer() {
+		return TimerSingleton.getInstance();
+	}
 
 }

@@ -48,7 +48,7 @@ public abstract class RoomEntityAbs implements RoomEntity{
 	}
 
 	public void dispose() {
-		DungeonSingleton.getInstance().getDisposeList().add(this);
+		DungeonSingleton.getInstance().addToDisposeList(this);
 	}
 	
 	

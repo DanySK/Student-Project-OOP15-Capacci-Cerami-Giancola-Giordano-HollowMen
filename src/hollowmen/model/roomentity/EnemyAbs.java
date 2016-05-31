@@ -32,8 +32,9 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		return new DumbMovePattern(this);
 	}
 
-	public void move() {
-		move(pattern.getDirection());
+	@Override
+	public void move(String s) {
+		super.move(pattern.getDirection());
 	}
 
 	@Override

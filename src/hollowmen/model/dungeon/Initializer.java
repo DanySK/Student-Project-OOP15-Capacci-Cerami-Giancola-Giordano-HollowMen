@@ -39,6 +39,20 @@ public class Initializer {
 	private void generalSetting() {
 		DungeonSingleton.getInstance().setPokedex(new PokedexImpl());
 		DungeonSingleton.getInstance().setUnlockedFloor(1, 8);
+		Collection<Item> shop = new LinkedList<>();
+		shop.add(ItemPool.getInstance().getItem("woodSword"));
+		shop.add(ItemPool.getInstance().getItem("bootsBlack"));
+		shop.add(ItemPool.getInstance().getItem("bootsBlue"));
+		shop.add(ItemPool.getInstance().getItem("chestBronze"));
+		shop.add(ItemPool.getInstance().getItem("chestSilver"));
+		shop.add(ItemPool.getInstance().getItem("glovesBlack"));
+		shop.add(ItemPool.getInstance().getItem("glovesBlue"));
+		shop.add(ItemPool.getInstance().getItem("headBronze"));
+		shop.add(ItemPool.getInstance().getItem("headSilver"));
+		shop.add(ItemPool.getInstance().getItem("simpleSword"));
+		shop.add(ItemPool.getInstance().getItem("redSword"));
+		shop.add(ItemPool.getInstance().getItem("longSword"));
+		DungeonSingleton.getInstance().setShop(new ShopImpl(shop, 0));
 	}
 
 	private Collection<SkillNode> genNode() {
@@ -206,7 +220,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.4, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 1.05, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("glovesBlue", "blue again"))
+				.info(new InfoImpl("glovesGrey", "blue again"))
 				.rarity(3)
 				.slot(Item.SlotName.GLOVES.toString())
 				.state(ItemState.UNEQUIPPED)
