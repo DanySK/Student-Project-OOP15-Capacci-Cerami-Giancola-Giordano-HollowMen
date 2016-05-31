@@ -18,6 +18,12 @@ import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
+/**
+ * The {@code ClassChoice} class draws on screen the menu needed
+ * to choose the player class.
+ * @author Juls
+ *
+ */
 public class ClassChoice extends OptionDialog {
 
 	private static final long serialVersionUID = 402941805788593572L;
