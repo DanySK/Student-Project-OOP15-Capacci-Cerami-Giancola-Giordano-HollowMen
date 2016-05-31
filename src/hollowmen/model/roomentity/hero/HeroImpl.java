@@ -39,8 +39,10 @@ import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
-	private final Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
-	private final float HEAD_PROP = 0.8f;
+	private final static Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
+	private final static float HEAD_PROP = 0.8f;
+	
+	
 	
 	
 	private LimitedCounter exp;
@@ -58,21 +60,39 @@ public class HeroImpl extends ActorAbs implements Hero{
 	private Map<String, Optional<Item>> slots = new HashMap<>();
 	
 	public HeroImpl(int level, int gold, Pair<Integer, Integer> exp, String description, 
-			HeroClass heroClass, TargetPointSystem<Parameter> statSystem,
-			Inventory inventory, Collection<Item> equippedItems) {
+			HeroClass heroClass, Inventory inventory, Collection<Item> equippedItems) {
 		super(new InfoImpl(RoomEntityName.HERO.toString(), description), 
 				Constants.HERO_SIZE, heroClass.getBaseParam());
 		this.initSlot();
+		this.uppableParam = new StatPointSystem(upgradableParam(heroClass));
 		this.level = level;
 		this.gold = gold;
 		this.exp = new SimpleLimitedCounter(exp.getX(), exp.getY());
 		this.heroClass = heroClass;
+		equippedItems.stream().forEach(x -> {
+			Actors.addAllModifier(this, x.getModifiers().entries().stream()
+					.map(i -> i.getValue())
+					.collect(Collectors.toList()));
+			this.slots.put(x.getSlot(), Optional.of(x));
+		});
+
+		
 	}
 	
 	private void initSlot() {
 		for(Item.SlotName s : Item.SlotName.values()) {
 			this.slots.put(s.toString(), Optional.empty());
 		}
+	}
+	
+	private Collection<Parameter> upgradableParam(HeroClass heroClass) {
+		Collection<String> list = new LinkedList<>();
+		list.add(Parameter.ParamName.HPMAX.toString());
+		list.add(Parameter.ParamName.ATTACK.toString());
+		list.add(Parameter.ParamName.DEFENSE.toString());
+		return heroClass.getBaseParam().stream()
+				.filter(x -> list.contains(x.getInfo().getName()))
+				.collect(Collectors.toList());
 	}
 	
 	@Override
@@ -191,8 +211,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 						.addMask(FilterType.ENEMYATTACK.getValue())
 						.build();
 		PolygonShape underBody = new PolygonShape();
-		float bodyX = Constants.HERO_SIZE.getX() * this.BODY_PROP.getX();
-		float bodyY = Constants.HERO_SIZE.getY() * this.BODY_PROP.getY();
+		float bodyX = Constants.HERO_SIZE.getX() * HeroImpl.BODY_PROP.getX();
+		float bodyY = Constants.HERO_SIZE.getY() * HeroImpl.BODY_PROP.getY();
 		underBody.setAsBox(bodyX, bodyY , new Vec2(0,-(Constants.HERO_SIZE.getY() / 2)), 0f);
 		CircleShape head = new CircleShape();
 		head.getVertex(0).set(0, (Constants.HERO_SIZE.getY() / 2));
