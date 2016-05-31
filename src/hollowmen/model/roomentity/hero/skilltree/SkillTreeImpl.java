@@ -1,6 +1,7 @@
 package hollowmen.model.roomentity.hero.skilltree;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -17,16 +18,35 @@ public class SkillTreeImpl implements SkillTree{
 	
 	private int skillPointUnspent;
 		
-	private Map<Pair<String, Integer>, Collection<SkillNode>> branchLevelNodes;
+	private Map<Pair<String, Integer>, Collection<SkillNode>> branchLevelNodes = new HashMap<>();
 	
 	//unlocked SkillNode
-	private Map<String, SkillNode> allTargets;
+	private Map<String, SkillNode> allTargets = new HashMap<>();
 	
 	//the sum of all the Counter value in a branch
-	private Map<String, Counter> pointsOnBranch;
+	private Map<String, Counter> pointsOnBranch = new HashMap<>();
 	
 	//the sum of all skill point for the branch in the level
-	private Map<Pair<String, Integer>, Counter> pointsOnBranchLevel;
+	private Map<Pair<String, Integer>, Counter> pointsOnBranchLevel = new HashMap<>();
+	
+	
+	public SkillTreeImpl(Collection<SkillNode> allSkillNode) {
+		this.initMaps(allSkillNode);
+		allSkillNode.stream().forEach(s -> this.checkNewTargets(s));
+		this.skillPointUnspent = 0;
+	}
+		
+	
+	public SkillTreeImpl(Collection<Pair<SkillNode, Integer>> allSkillNodeAndPoints, int pointUnspent) {
+		this(allSkillNodeAndPoints.stream().map(p -> p.getX()).collect(Collectors.toList()));
+		allSkillNodeAndPoints.stream()
+			.filter(p -> p.getX().getLevel() == 0)
+			.forEach(p -> {
+			for(int i = 0; i < p.getY(); i++) {
+				this.spendPointOn(p.getX());
+			}
+		});
+	}
 	
 	@Override
 	public Collection<SkillNode> getTargets() {
@@ -58,14 +78,19 @@ public class SkillTreeImpl implements SkillTree{
 	
 	@Override
 	public void retrievePointFrom(SkillNode target) throws IllegalArgumentException {
-		ExceptionThrower.checkIllegalArgument(target, t -> this.allTargets.containsKey(t));
-		retrieveUpdateRoutine(target, 1);
-		checkMaxValueIntegrity(target.getTag(), 1);
-		checkTreeIntegrity(target);
+		ExceptionThrower.checkIllegalArgument(target, t -> !this.allTargets.containsKey(t.getInfo().getName()));
+		retrieveUpdateRoutine(this.allTargets.get(target.getInfo().getName()), 1);
+		checkMaxValueIntegrity(this.allTargets.get(target.getInfo().getName()).getTag(), 1);
+		checkTreeIntegrity(this.allTargets.get(target.getInfo().getName()));
 	}
 	
 	private void retrieveUpdateRoutine(SkillNode target, int value) {
-		this.spendUpdateRoutine(target, -value);
+		this.allTargets.get(target.getInfo().getName()).subToValue(value);
+		this.branchLevelNodes.get(keyGen(target)).stream().map(x -> x.getValue()).forEach(System.out::println);
+		this.pointsOnBranchLevel.get(keyGen(target)).sub(value);
+		this.pointsOnBranch.get(target.getTag()).sub(value);
+		this.skillPointUnspent += value;
+		
 	}
 	
 	
@@ -83,9 +108,15 @@ public class SkillTreeImpl implements SkillTree{
 	//eventually remove all the nodes up target
 	private void checkTreeIntegrity(SkillNode target) {
 		int sumPreviousNodePoints = this.pointsOnBranchLevel.entrySet().stream()
+				.filter(x -> x.getKey().getX().equals(target.getTag()))
 				.filter(x -> x.getKey().getY() <= target.getLevel())
-				.map(x -> x.getKey().getY())
+				.map(x -> x.getValue().getCount())
 				.reduce((x,y) -> x + y).orElse(0);
+		this.pointsOnBranchLevel.entrySet().stream()
+				.filter(x -> x.getKey().getX().equals(target.getTag()))
+				.filter(x -> x.getKey().getY() <= target.getLevel())
+				.map(x -> x.getValue().getCount())
+				.forEach(System.out::println);
 		if(sumPreviousNodePoints < (target.getLevel()+1) * Constants.SKILLPOINTS_FORUPGRADE ) {
 			this.removeAllPointsFromLevelToLimit(keyGen(target));
 		}
@@ -114,16 +145,17 @@ public class SkillTreeImpl implements SkillTree{
 	
 	@Override
 	public void spendPointOn(SkillNode target) throws IllegalStateException, IllegalArgumentException {
-		ExceptionThrower.checkIllegalArgument(target, t -> this.allTargets.containsKey(t));
-		ExceptionThrower.checkIllegalState(this, s -> s.getUnspentPoint() > 0);
-		spendUpdateRoutine(target, 1);
-		checkNewTargets(target);
+		ExceptionThrower.checkIllegalArgument(target, t -> !this.allTargets.containsKey(t.getInfo().getName()));
+		ExceptionThrower.checkIllegalState(this, s -> s.getUnspentPoint() <= 0);
+		spendUpdateRoutine(this.allTargets.get(target.getInfo().getName()), 1);
+		checkNewTargets(this.allTargets.get(target.getInfo().getName()));
 	}
 	
 	private void spendUpdateRoutine(SkillNode target, int value) {
 		this.allTargets.get(target.getInfo().getName()).addToValue(value);
-		this.pointsOnBranchLevel.get(keyGen(target)).add(value);;
-		this.pointsOnBranch.get(target.getTag()).add(value);;
+		this.pointsOnBranchLevel.get(keyGen(target)).add(value);
+		System.out.println(this.pointsOnBranchLevel.get(keyGen(target)).getCount());
+		this.pointsOnBranch.get(target.getTag()).add(value);
 		this.skillPointUnspent-= value;
 	}
 	
@@ -134,6 +166,25 @@ public class SkillTreeImpl implements SkillTree{
 			this.branchLevelNodes.get(keyGen(target.getTag(), levelToUnlock)).stream()
 				.forEach(s -> allTargets.put(s.getInfo().getName(), s));
 		}
+	}
+	
+	
+	private Collection<SkillNode> getOrPrepare(SkillNode node) {
+		return this.branchLevelNodes.merge(keyGen(node), new LinkedList<>(), (x, y) -> x);
+	}
+	
+	private Counter getOrPrepareBranch(SkillNode node) {
+		return this.pointsOnBranch.merge(node.getTag(), new Counter(), (x, y) -> x);
+	}
+	
+	private Counter getOrPrepareBranchLevel(SkillNode node) {
+		return this.pointsOnBranchLevel.merge(keyGen(node), new Counter(), (x, y) -> x);
+	}
+	
+	private void initMaps(Collection<SkillNode> skillNode) {
+		skillNode.stream().forEach(x -> this.getOrPrepare(x).add(x));
+		skillNode.stream().forEach(x -> this.getOrPrepareBranch(x));
+		skillNode.stream().forEach(x -> this.getOrPrepareBranchLevel(x));
 	}
 	
 	private int maxLevelForTag(String tag) {

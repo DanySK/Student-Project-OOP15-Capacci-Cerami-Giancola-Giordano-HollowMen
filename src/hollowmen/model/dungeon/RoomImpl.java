@@ -9,6 +9,8 @@ import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
 import hollowmen.model.roomentity.interactable.Door;
+import hollowmen.model.utils.Algorithms;
+import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.RandomSelector;
@@ -46,13 +48,19 @@ public class RoomImpl implements Room{
 		this.childNumber = childNumber;
 		this.roomNumber = roomNumber;
 		createDoor();
+		if(this.childNumber == 0) {
+			Algorithms.populateRoom(this);
+		}
 	};
 	
 	private void createDoor() {
 		for(int i = 0; i < this.childNumber; i++) {
 			this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
 		}
-		this.interactables.add(new Door(RoomEntityName.DOOR_BACK.toString(), -1));
+		Box2DUtils.linearSpacing(this.interactables);
+		Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
+		Box2DUtils.centerPosition(backDoor);
+		this.interactables.add(backDoor);
 	}
 
 	@Override
@@ -124,7 +132,7 @@ public class RoomImpl implements Room{
 
 	@Override
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
-		ExceptionThrower.checkIllegalArgument(roomEntity, x -> this.list.contains(x));
+		ExceptionThrower.checkIllegalArgument(roomEntity, x -> !this.list.contains(x));
 		list.remove(roomEntity);
 		if(roomEntity instanceof Attack) {
 			bullets.remove((Attack) roomEntity);
