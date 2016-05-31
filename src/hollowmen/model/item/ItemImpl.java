@@ -1,13 +1,17 @@
 package hollowmen.model.item;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+import hollowmen.model.HeroClass;
 import hollowmen.model.Information;
 import hollowmen.model.Item;
 import hollowmen.model.Modifier;
+import hollowmen.model.Parameter;
 import hollowmen.utilities.ExceptionThrower;
 
 /**
@@ -43,11 +47,8 @@ public class ItemImpl implements Item{
 		this.heroClassEquippable = heroClassEquippable;
 	}
 
-	//Per permettere alla inner class di essere instanziata senza problemi
 	private ItemImpl() {};
 	
-	//bariamo sul fatto che sembra il costruttore del Builder, in questo modo riduciamo la
-	//sua visibilità da ItemImpl e ItemBuilder a ItemBuilder soltanto
 	/**
 	 * This method give an {@code ItemBuilder} that is the only way to get an instance
 	 * @return {@link ItemBuilder}
@@ -59,6 +60,33 @@ public class ItemImpl implements Item{
 	private static class Builder extends ItemImpl implements ItemBuilder {
 
 		private Collection<Modifier> mod;
+		private final Collection<String> heroClass = heroClassName();
+		private final Collection<String> slotName = slotName();
+		private final Collection<String> paramName = paramName();
+		
+		private Collection<String> heroClassName() {
+			Collection<String> list = new LinkedList<>();
+			for(HeroClass.Name h : HeroClass.Name.values()) {
+				list.add(h.toString());
+			}
+			return list;
+		}
+		
+		private Collection<String> slotName() {
+			Collection<String> list = new LinkedList<>();
+			for(Item.SlotName s : Item.SlotName.values()) {
+				list.add(s.toString());
+			}
+			return list;
+		}
+		
+		private Collection<String> paramName() {
+			Collection<String> list = new LinkedList<>();
+			for(Parameter.ParamName p : Parameter.ParamName.values()) {
+				list.add(p.toString());
+			}
+			return list;
+		}
 		
 		@Override
 		public ItemBuilder info(Information info) {
@@ -102,21 +130,31 @@ public class ItemImpl implements Item{
 			return this;
 		}
 
+		
+		private void check(Item i) throws IllegalStateException{
+			ExceptionThrower.checkNullPointer(i.getInfo());
+			ExceptionThrower.checkNullPointer(i.getState());
+			ExceptionThrower.checkNullPointer(i.getModifiers());
+			ExceptionThrower.checkNullPointer(i.getSlot());
+			ExceptionThrower.checkNullPointer(i.getHeroClassEquippable());
+			ExceptionThrower.checkIllegalState(i.getInfo(), x -> !x.getDescription().isPresent());
+			ExceptionThrower.checkIllegalState(i.getModifiers(), m -> m.isEmpty());
+			ExceptionThrower.checkIllegalState(i.getRarity(), x -> x <= 0);
+			ExceptionThrower.checkIllegalState(i.getGoldValue(), x -> x <= 0);
+			ExceptionThrower.checkIllegalState(i.getSlot(), x -> !this.slotName.contains(x));
+			ExceptionThrower.checkIllegalState(i.getHeroClassEquippable(), x -> !this.heroClass.contains(x));
+			ExceptionThrower.checkIllegalState(this.mod, 
+					c -> !this.paramName.containsAll(c.stream().map(e -> e.getParameter().getInfo().getName())
+							.collect(Collectors.toList())));
+		}
+		
 		@Override
 		public Item build() throws IllegalStateException{
-			ExceptionThrower.checkNullPointer(super.getInfo());
-			ExceptionThrower.checkNullPointer(super.getState());
-			ExceptionThrower.checkNullPointer(super.getModifiers());
-			ExceptionThrower.checkNullPointer(super.getSlot());
-			ExceptionThrower.checkNullPointer(super.getHeroClassEquippable());
-			ExceptionThrower.checkIllegalState(super.getInfo(), i -> !i.getDescription().isPresent());
-//			ExceptionThrower.checkIllegalState(super.getModifiers(), m -> m.isEmpty());
-			ExceptionThrower.checkIllegalState(super.getRarity(), i -> i <= 0);
-			ExceptionThrower.checkIllegalState(super.getGoldValue(), i -> i <= 0);
-			
-			return new ItemImpl(super.getInfo(), 
+			Item i = new ItemImpl(super.getInfo(), 
 					super.getState(), this.mod, super.getGoldValue(), 
 					super.getRarity(), super.getSlot(), super.getHeroClassEquippable());
+			check(i);
+			return i;
 		}
 
 		

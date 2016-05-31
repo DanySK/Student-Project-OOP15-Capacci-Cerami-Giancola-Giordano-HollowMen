@@ -4,12 +4,13 @@ import java.util.Collection;
 
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 
-import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Enemy;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.EnemyAbs;
 import hollowmen.model.utils.Box2DUtils;
@@ -22,6 +23,8 @@ public class Bat extends EnemyAbs{
 		super(new InfoImpl(RoomEntityName.BAT.toString(), info.getDescription().get()), Constants.BAT_SIZE, param, power, title);
 	}
 
+	
+	
 	@Override
 	public BodyDef defBody() {
 		return Box2DUtils.bodyDefBuilder().type(BodyType.DYNAMIC).build();
@@ -29,7 +32,9 @@ public class Bat extends EnemyAbs{
 
 	@Override
 	public Collection<FixtureDef> defFixture() {
-		return this.generateRectangleFix(this.standardEnemyFilter(), false);
+		Filter filt = this.standardEnemyFilter();
+		filt.categoryBits += FilterType.FLY.getValue();
+		return this.generateRectangleFix(filt, false);
 	}
 
 	public static class Builder extends EnemyBuilderImpl {

@@ -1,5 +1,7 @@
 package hollowmen.model.utils;
 
+import java.util.Collection;
+
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
@@ -8,8 +10,31 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 
+import hollowmen.model.RoomEntity;
+import hollowmen.utilities.RandomSelector;
+
 public class Box2DUtils {
 
+	public static void lowerCorner(RoomEntity re) {
+		float halfHeight = re.getHeight() / 2;
+		float halfLength = re.getLength() / 2;
+		re.getBody().setTransform(new Vec2((float) (RandomSelector.getIntFromRange(0, 1) == 0 ? halfLength
+				: Constants.WORLD_SIZE.getWidth() - halfLength), halfHeight), 0);
+	}
+	
+	public static void linearSpacing(Collection<? extends RoomEntity> entity) {
+		int spacing = (int) (Constants.WORLD_SIZE.getWidth() / (entity.size() == 0 ? 1 : entity.size()));
+		int i = 1;
+		for(RoomEntity re : entity) {
+			re.getBody().setTransform(new Vec2((float) (spacing * i), re.getHeight() / 2), 0);
+			i++;
+		}
+	}
+	
+	public static void centerPosition(RoomEntity r) {
+		float distance = r.getHeight() / 2;
+		r.getBody().setTransform(new Vec2((float) (Constants.WORLD_SIZE.getWidth() / 2), distance), 0);
+	}
 	
 	public static String suffix(String s) {
 		String[] first = s.split("_");
