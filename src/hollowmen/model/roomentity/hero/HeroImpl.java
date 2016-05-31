@@ -39,11 +39,8 @@ import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
-	private final static Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
-	private final static float HEAD_PROP = 0.8f;
-	
-	
-	
+	private final Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
+	private final float HEAD_PROP = 0.8f;
 	
 	private LimitedCounter exp;
 	
@@ -64,6 +61,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 		super(new InfoImpl(RoomEntityName.HERO.toString(), description), 
 				Constants.HERO_SIZE, heroClass.getBaseParam());
 		this.initSlot();
+		this.initMoreAction();
 		this.uppableParam = new StatPointSystem(upgradableParam(heroClass));
 		this.level = level;
 		this.gold = gold;
@@ -212,8 +210,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 						.addMask(FilterType.ENEMYATTACK.getValue())
 						.build();
 		PolygonShape underBody = new PolygonShape();
-		float bodyX = Constants.HERO_SIZE.getX() * HeroImpl.BODY_PROP.getX();
-		float bodyY = Constants.HERO_SIZE.getY() * HeroImpl.BODY_PROP.getY();
+		float bodyX = Constants.HERO_SIZE.getX() * this.BODY_PROP.getX();
+		float bodyY = Constants.HERO_SIZE.getY() * this.BODY_PROP.getY();
 		underBody.setAsBox(bodyX, bodyY , new Vec2(0,-(Constants.HERO_SIZE.getY() / 2)), 0f);
 		CircleShape head = new CircleShape();
 		head.getVertex(0).set(0, (Constants.HERO_SIZE.getY() / 2));
@@ -241,5 +239,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 				.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && !i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
 				.findFirst().ifPresent(c -> c.interact()));
+		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY1.toString(), () -> {});
+		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY2.toString(), () -> {});
+		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY3.toString(), () -> {});
+		super.actionAllowed.getActionAllowed().put(Actor.Action.CONSUMABLE.toString(), () -> {});
 	}
 }
