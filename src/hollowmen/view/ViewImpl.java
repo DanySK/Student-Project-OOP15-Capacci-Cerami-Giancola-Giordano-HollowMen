@@ -33,11 +33,11 @@ public class ViewImpl implements View {
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 		this.observer = observer;
+		InputBuffer.getInstance().setObserver(observer);
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
 		this.game=new Game(x,y,observer);
 		SingletonFrame.getInstance().add(game);
-		
 	}
 	
 	/**
@@ -100,9 +100,5 @@ public class ViewImpl implements View {
 	 */
 	public ViewObserver getObserver(){
 		return this.observer;
-	}
-	
-	public void setObserver(ViewObserver o) {
-		this.observer = o;
 	}
 }

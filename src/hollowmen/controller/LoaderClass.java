@@ -23,7 +23,7 @@ public class LoaderClass {
 		 * Aggiungere percorso per tutte le immagini. Se rimane tempo va cambiato
 		 */
 		nameList.add("res/images/titles/title.png");
-		nameList.add("res/images/titles/skillTree.png");
+		nameList.add("res/images/titles/skilltree.png");
 		nameList.add("res/images/titles/shop.png");
 		nameList.add("res/images/titles/pauseMenu.png");
 		nameList.add("res/images/titles/inventory.png");
@@ -139,6 +139,7 @@ public class LoaderClass {
 				imageMap.put(name, b);
 			}
 		}catch(Exception e){
+			System.out.println(e.getMessage());
 			System.exit(0);
 		}
 		return imageMap;

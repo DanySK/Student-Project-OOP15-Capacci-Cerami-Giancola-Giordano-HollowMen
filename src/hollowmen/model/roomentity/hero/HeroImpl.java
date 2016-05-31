@@ -39,8 +39,8 @@ import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
-	private final Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
-	private final float HEAD_PROP = 0.8f;
+	private final static Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
+	private final static float HEAD_PROP = 0.8f;
 	
 	private LimitedCounter exp;
 	
@@ -210,12 +210,12 @@ public class HeroImpl extends ActorAbs implements Hero{
 						.addMask(FilterType.ENEMYATTACK.getValue())
 						.build();
 		PolygonShape underBody = new PolygonShape();
-		float bodyX = Constants.HERO_SIZE.getX() * this.BODY_PROP.getX();
-		float bodyY = Constants.HERO_SIZE.getY() * this.BODY_PROP.getY();
+		float bodyX = Constants.HERO_SIZE.getX() * HeroImpl.BODY_PROP.getX();
+		float bodyY = Constants.HERO_SIZE.getY() * HeroImpl.BODY_PROP.getY();
 		underBody.setAsBox(bodyX, bodyY , new Vec2(0,-(Constants.HERO_SIZE.getY() / 2)), 0f);
 		CircleShape head = new CircleShape();
 		head.getVertex(0).set(0, (Constants.HERO_SIZE.getY() / 2));
-		head.setRadius(Constants.HERO_SIZE.getX() * this.HEAD_PROP);
+		head.setRadius(Constants.HERO_SIZE.getX() * HeroImpl.HEAD_PROP);
 		retValue.add(Box2DUtils.fixDefBuilder().shape(underBody).friction(0).filter(filter).build());
 		retValue.add(Box2DUtils.fixDefBuilder().shape(head).friction(0).filter(filter).build());
 		return retValue;
