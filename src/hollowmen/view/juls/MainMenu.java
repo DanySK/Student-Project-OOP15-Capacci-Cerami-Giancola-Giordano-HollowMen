@@ -72,7 +72,7 @@ public class MainMenu extends JFrame {
 			if(name.equals("NEW GAME")) {
 				new NewGameDialog(SingletonFrame.getInstance());
 			} else if (name.equals("LOAD GAME")) {
-//				addInput(InputCommand.LOAD);
+//				observer.addInput(InputCommand.LOAD);
 			} else if (name.equals("HELP")) {
 				new HelpMenu(SingletonFrame.getInstance());
 			} else if (name.equals("CREDITS")) {
@@ -94,6 +94,8 @@ public class MainMenu extends JFrame {
 		buttonList.add(help);
 		buttonList.add(credits);
 		buttonList.add(exit);
+		
+		loadGame.setEnabled(false);
 		
 		for(PaintedButton b : buttonList) {
 			b.addActionListener(listener);

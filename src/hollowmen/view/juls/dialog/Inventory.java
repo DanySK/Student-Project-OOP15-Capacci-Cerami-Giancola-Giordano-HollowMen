@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.enumerators.InputCommand;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.juls.buttons.IconButton;
@@ -27,7 +28,9 @@ public class Inventory extends TabbedDialog {
 
 	private static final long serialVersionUID = 1157519982974148320L;
 	private JLabel body = new JLabel();
-	private ImageIcon s1, s2, s3;
+	private ImageIcon s1 = new ImageIcon("res/images/items/spell1");
+	private ImageIcon s2 = new ImageIcon("res/images/items/spell2");
+	private ImageIcon s3 = new ImageIcon("res/images/items/spell3");
 
 	private PaintedButton equip = new PaintedButton("EQUIP"); //dentro buttonC
 	private PaintedButton unequip = new PaintedButton("UNEQUIP"); //dentro buttonC
@@ -93,6 +96,9 @@ public class Inventory extends TabbedDialog {
 		unequip.addActionListener(paintedL);
 		close.addActionListener(paintedL);
 		super.addMouseListener(dialogL);
+		spell1.setEnabled(false);
+		spell2.setEnabled(false);
+		spell3.setEnabled(false);
 
 		this.populateTab(collection, "head", headP);
 		this.populateTab(collection, "chest", chestP);
@@ -120,14 +126,14 @@ public class Inventory extends TabbedDialog {
 	 */
 	protected void populateTab(Collection<InformationDealer> c, String slot, JPanel panel) {
 		c.stream()
-		.filter(x -> x.getStat().equals(slot))	//TODO change getStat with getSlot
+		.filter(x -> x.getSlot().equals(slot))
 		.filter(x -> x.getState().equals(State.UNEQUIPPED))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
 			icon = view.getStorage().get(nameF);
 			button = new IconButton(icon);
-			button.addActionListener(new ActionListener() { // abilita l'equip
+			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 						setButtonState(true, false);
 						setButton(button);
@@ -148,7 +154,7 @@ public class Inventory extends TabbedDialog {
 		c.stream()
 		.filter(x -> x.getState().equals(State.EQUIPPED))
 		.forEach(x -> {
-			x.getStat().equals(slot); //TODO change getStat with getSlot
+			x.getSlot().equals(slot);
 			nameF = x.getName();
 			icon = view.getStorage().get(nameF);
 			button.setIcon(icon);
@@ -173,9 +179,6 @@ public class Inventory extends TabbedDialog {
 		try {
 			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/inventory.png"))));
 			body.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/bodyTemplate.png"))));
-			s1 = new ImageIcon("res/images/");
-			s2= new ImageIcon("res/images/");
-			s3= new ImageIcon("res/images/");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -185,9 +188,9 @@ public class Inventory extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
-				//view.addInput(InputCommand.EQUIP, getLastItem());
+				observer.addInput(InputCommand.EQUIP, getLastItem());
 			} else if (name.equals("UNEQUIP")) {
-				//view.addInput(InputCommand.UNEQUIP, getLastItem());
+				observer.addInput(InputCommand.UNEQUIP, getLastItem());
 			} else {
 				dispose();
 			}

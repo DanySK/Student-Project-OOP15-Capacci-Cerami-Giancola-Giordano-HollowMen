@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -32,7 +31,7 @@ public class Achievements extends GridDialog {
 
 	private static final long serialVersionUID = -7374468384801676593L;
 	private IconButton button;
-	private State state;
+	private String state;
 	private ImageIcon star = new ImageIcon("res/images/items/star.jpg");
 	private PaintedButton redeem = new PaintedButton("REDEEM");
 	private JPanel buttonC = PanelBuilder.getBuilder()
@@ -69,7 +68,7 @@ public class Achievements extends GridDialog {
 			button = new IconButton(star);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
-					if(state.equals("locked") || state.equals("redeemed")) { // change to State.LOCKED and State.REDEEMED
+					if(state.equals("locked") || state.equals("redeemed")) {
 						redeem.setEnabled(false);
 					} else if(state.equals("unlocked")) {
 						redeem.setEnabled(true);
@@ -89,7 +88,7 @@ public class Achievements extends GridDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("REDEEM")) {
-				//addInput(InputCommand.REDEEM, getLastItem());
+				//observer.addInput(InputCommand.REDEEM, getLastItem());
 			}else {
 				dispose();
 			}

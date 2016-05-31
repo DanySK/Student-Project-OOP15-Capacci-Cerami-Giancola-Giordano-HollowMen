@@ -21,7 +21,7 @@ public abstract class CustomDialog extends JDialog {
 
 	private static final long serialVersionUID = 3277374667436705243L;
 	protected String name;
-	protected ViewObserver view;
+	protected ViewObserver observer;
 	protected final JLabel background = new JLabel();
 	protected final JLabel message = new JLabel();
 

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 
+import hollowmen.controller.ViewObserver;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.view.ViewImpl;
 import hollowmen.view.juls.buttons.IconButton;
@@ -34,6 +35,7 @@ public abstract class GridDialog extends MenuDialog {
 	protected IconButton button;
 	protected String nameF, description;
 	protected Icon icon;
+	protected ViewObserver observer;
 	protected ViewImpl view;
 	protected Optional<Map<String, Integer>> stats;
 	private InformationDealer lastItem;

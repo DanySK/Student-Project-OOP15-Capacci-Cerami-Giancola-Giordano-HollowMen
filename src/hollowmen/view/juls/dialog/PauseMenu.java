@@ -55,14 +55,14 @@ public class PauseMenu extends MessageDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("TO MAIN")) {
-				//view.addInput(InputCommand.MAIN);
+				//observer.addInput(InputCommand.MAIN);
 				dispose();
 				new MainMenu();
 			} else if (name.equals("RESUME")) {
-				//view.addInput(InputCommand.RESUME);
+				//observer.addInput(InputCommand.RESUME);
 				dispose();
 			} else {
-				//view.addInput(InputCommand.LOBBY);
+				//observer.addInput(InputCommand.LOBBY);
 				dispose();
 			}
 		}

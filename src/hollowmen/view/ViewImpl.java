@@ -28,6 +28,8 @@ public class ViewImpl implements View {
 	private Lobby lobby;
 	private Map<String,ImageIcon> storage;
 	private ViewObserver observer;
+	private BasicMenuImpl basic = new BasicMenuImpl();
+	private ComplexMenuImpl complex = new ComplexMenuImpl();
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 	    this.observer=observer;
@@ -48,8 +50,6 @@ public class ViewImpl implements View {
 	 * @author Juls
 	 */
 	public void drawMenu(InputMenu name, Optional<Collection<InformationDealer>> collection) {
-		BasicMenuImpl basic = new BasicMenuImpl();
-		ComplexMenuImpl complex = new ComplexMenuImpl();
 		if (name.getType().equals("basic")) {
 			basic.drawBasicMenu(name);
 		} else {
