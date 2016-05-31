@@ -1,28 +1,14 @@
 package hollowmen.controller;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
-
-import org.json.JSONObject;
-import org.json.JSONStringer;
-import org.json.JSONWriter;
-
 import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
-import hollowmen.model.Information;
-import hollowmen.model.Item;
-import hollowmen.model.Modifier;
-import hollowmen.model.dungeon.InfoImpl;
-import hollowmen.model.dungeon.ModifierImpl;
-import hollowmen.model.Item.ItemState;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.Model;
-import hollowmen.model.item.ItemBuilder;
-import hollowmen.model.item.ItemImpl;
+import hollowmen.model.facade.ModelImpl;
+import hollowmen.model.utils.GameOverException;
 import hollowmen.utilities.Pair;
 import hollowmen.view.View;
 import hollowmen.view.ViewImpl;
@@ -50,7 +36,7 @@ public class Controller implements ViewObserver {
 		view.takeFile(LoaderClass.load());
 		view.drawMenu(InputMenu.MAIN, Optional.empty());
 		
-		//model=new ModelImpl();
+		model=new ModelImpl();
 		
 		menuInputManager();
 		
@@ -97,7 +83,7 @@ public class Controller implements ViewObserver {
 			inputMenuList.clear();
 			break;
 		}case INVENTORY:{
-			view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInformationDealer("inventory")));
+			view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInventory()));
 			inputMenuList.clear();
 			itemInputManager();
 			break;
@@ -106,11 +92,11 @@ public class Controller implements ViewObserver {
 			inputMenuList.clear();
 			break;
 		}case POKEDEX:{
-			view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getInformationDealer("pokedex")));
+			view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getPokedex()));
 			inputMenuList.clear();
 			break;
 		}case SHOP:{
-			view.drawMenu(InputMenu.SHOP, Optional.of(model.getInformationDealer("shop")));
+			view.drawMenu(InputMenu.SHOP, Optional.of(model.getShop()));
 			inputMenuList.clear();
 			itemInputManager();
 			break;
@@ -130,12 +116,12 @@ public class Controller implements ViewObserver {
 			if(this.menuBack[0].getType()=="complex"){
 				switch(this.menuBack[0]){
 				case INVENTORY:{
-					view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInformationDealer("inventory")));
+					view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInventory()));
 					inputMenuList.clear();
 					itemInputManager();
 					break;
 				}case SHOP:{
-					view.drawMenu(InputMenu.SHOP, Optional.of(model.getInformationDealer("shop")));
+					view.drawMenu(InputMenu.SHOP, Optional.of(model.getShop()));
 					inputMenuList.clear();
 					itemInputManager();
 					break;
@@ -143,7 +129,7 @@ public class Controller implements ViewObserver {
 					//view.drawMenu(this.menuBack[0],Optional.of(model.getInv))
 					break;
 				}case POKEDEX:{
-					view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getInformationDealer("pokedex")));
+					view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getPokedex()));
 					inputMenuList.clear();
 					break;
 				}default:{
@@ -219,36 +205,36 @@ public class Controller implements ViewObserver {
 				menuChoice();
 			}else{
 				if(inputMenuList.getFirst()==InputMenu.BACK){
-					model.hero("back");
+					model.heroAction("back");
 				}
 				for(InputCommand command:inputCommandList){
 					switch(command){
 					case ABILITY1:{
-						model.hero("ability1");
+						model.heroAction("ability1");
 						break;
 					}case ABILITY2:{
-						model.hero("ability2");
+						model.heroAction("ability2");
 						break;
 					}case ABILITY3:{
-						model.hero("ability3");
+						model.heroAction("ability3");
 						break;
 					}case CONSUMABLE:{
-						model.hero("consumable");
+						model.heroAction("consumable");
 						break;
 					}case ATTACK:{
-						model.hero("attack");
+						model.heroAction("attack");
 						break;
 					}case JUMP:{
-						model.hero("jump");
+						model.heroAction("jump");
 						break;
 					}case LEFT:{
-						model.hero("left");
+						model.moveHero("left");
 						break;
 					}case RIGHT:{
-						model.hero("right");
+						model.moveHero("right");
 						break;
 					}case INTERACT:{
-						model.hero("interact");
+						model.heroAction("interact");
 						break;
 					}
 					default:{
@@ -266,7 +252,7 @@ public class Controller implements ViewObserver {
 	private void gameLoop(){
 		boolean gameRunning=true;
 		//nanosec used
-		final int skipTick=15000;//model update frequency (66 update per sec)
+		final int skipTick=16000;//model update frequency (62 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
 		final int maxFrameSkip=15;//max frame skipped between each model update
@@ -276,8 +262,8 @@ public class Controller implements ViewObserver {
 			loops=0;
 			while(System.nanoTime()>tick&&loops<maxFrameSkip&&gameRunning){
 				try{
-					model.update();
-				}catch(Exception e){
+					model.update(16);
+				}catch(GameOverException e){
 					gameRunning=false;
 				}
 				tick+=skipTick;
