@@ -17,6 +17,11 @@ import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
+/**
+ * The {@code Inventory} class draws on screen the relative menu.
+ * 
+ * @author Juls
+ */
 public class Inventory extends TabbedDialog {
 
 	private static final long serialVersionUID = 1157519982974148320L;
@@ -104,7 +109,7 @@ public class Inventory extends TabbedDialog {
 		this.populateBody(collection, "rings", rings);
 		this.populateBody(collection, "legs", legs);
 		this.populateBody(collection, "boots", boots);
-		this.populateBody(collection, "weapons", weapon);
+		this.populateBody(collection, "weapon", weapon);
 		
 		this.setVisible(true);
 	}
