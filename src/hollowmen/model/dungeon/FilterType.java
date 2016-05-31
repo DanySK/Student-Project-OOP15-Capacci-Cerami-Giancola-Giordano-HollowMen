@@ -8,8 +8,9 @@ public enum FilterType {
 	LOOTABLE(0x0008),
 	HEROATTACK(0x0010),
 	ENEMYATTACK(0x0020),
-	WALL(0x0040);
-	
+	WALL(0x0040),
+	FLY(0x0080),
+	FLYLINE(0x0100);
 	
 	private int value;
 	
