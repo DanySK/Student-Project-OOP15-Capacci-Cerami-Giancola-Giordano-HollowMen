@@ -31,13 +31,15 @@ public class Controller implements ViewObserver {
 	private boolean classPicked=false;
 	
 	public Controller(){
+	}
+	
+	public void setup(){
 		view=new ViewImpl(800,600,this);
 		view.takeFile(LoaderClass.load());
 		view.drawMenu(InputMenu.MAIN, Optional.empty());
 		model=new ModelImpl();
 		model.setup();
 		menuInputManager();
-		
 	}
 	
 	private void backInc(InputMenu m){
@@ -302,10 +304,5 @@ public class Controller implements ViewObserver {
 	public void addInput(Difficulty difficulty){
 		this.model.setDifficulty(difficulty);
 	}
-	
-	public static void main(String[] args){
-		new Controller();
-	}
-	
 	
 }
