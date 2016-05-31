@@ -14,7 +14,7 @@ import hollowmen.model.Interactable;
 import hollowmen.model.roomentity.EnemyAbs;
 import hollowmen.model.utils.Algorithms;
 
-public class ContactManager implements ContactListener{
+public class GameCollisionListener implements ContactListener{
 
 	@Override
 	public void beginContact(Contact contact) {
