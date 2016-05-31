@@ -25,7 +25,6 @@ public class Controller implements ViewObserver {
 	private LinkedList<InputCommand> inputCommandList=new LinkedList<>();
 	private Pair<InputCommand,InformationDealer> mapInputCommand=null;
 	private View view;
-	private ViewObserver obs;
 	private Model model;
 	private int counterBack=0;
 	private InputMenu[] menuBack=new InputMenu[10];
