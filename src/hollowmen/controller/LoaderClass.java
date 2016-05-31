@@ -135,7 +135,7 @@ public class LoaderClass {
 				imageMap.put(name, b);
 			}
 		}catch(Exception e){
-			System.exit(0);
+			//System.exit(0);
 		}
 		return imageMap;
 	}
