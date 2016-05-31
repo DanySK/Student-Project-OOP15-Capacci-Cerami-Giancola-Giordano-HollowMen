@@ -67,7 +67,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.gold = gold;
 		this.exp = new SimpleLimitedCounter(exp.getX(), exp.getY());
 		this.heroClass = heroClass;
-		System.out.println(equippedItems);
 		equippedItems.stream().forEach(x -> {
 			Actors.addAllModifier(this, x.getModifiers().entries().stream()
 					.map(i -> i.getValue())
