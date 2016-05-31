@@ -78,7 +78,7 @@ public class Lobby extends JLabel{
         this.shop=new JButton();
         this.shop.setLayout(null);
         this.shop.setText("SHOP");
-        this.startGame.setFont(fontB);
+        this.shop.setFont(fontB);
         this.shop.setSize(DIMX,DIMY);
         this.shop.setLocation(LOCX3, LOCY);
         this.shop.setBorder(border);
@@ -91,7 +91,7 @@ public class Lobby extends JLabel{
         this.pokedex=new JButton();
         this.pokedex.setLayout(null);
         this.pokedex.setText("POKEDEX");
-        this.startGame.setFont(fontB);
+        this.pokedex.setFont(fontB);
         this.pokedex.setSize(DIMX,DIMY);
         this.pokedex.setLocation(LOCX4, LOCY);
         this.pokedex.setBorder(border);
