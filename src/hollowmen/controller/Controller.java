@@ -3,6 +3,7 @@ package hollowmen.controller;
 import java.util.LinkedList;
 import java.util.Optional;
 import hollowmen.enumerators.ClassType;
+import hollowmen.enumerators.Difficulty;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
@@ -27,6 +28,7 @@ public class Controller implements ViewObserver {
 	private Model model;
 	private int counterBack=0;
 	private InputMenu[] menuBack=new InputMenu[10];
+	private boolean classPicked=false;
 	
 	public Controller(){
 		view=new ViewImpl(800,600,this);
@@ -145,7 +147,10 @@ public class Controller implements ViewObserver {
 		boolean loop=true;
 		while(loop){
 			try{
-				if(inputMenuList.isEmpty()){
+				if(this.classPicked==true){
+					loop=false;
+				}
+				if(this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
 				}else{
 					menuChoice();
@@ -154,6 +159,7 @@ public class Controller implements ViewObserver {
 				System.exit(0);
 			}
 		}
+		view.drawLobby();
 	}
 	
 	private void itemInputManager(){
@@ -286,10 +292,17 @@ public class Controller implements ViewObserver {
 	}
 
 	public void addInput(ClassType classType) {
-		//model.setclass();
+		//actually there is only one class
+		this.classPicked=true;
+	}
+	
+	public void addInput(Difficulty difficulty){
+		this.model.setDifficulty(difficulty);
 	}
 	
 	public static void main(String[] args){
 		new Controller();
 	}
+	
+	
 }
