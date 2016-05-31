@@ -15,10 +15,10 @@ public class ModifierImpl implements Modifier{
 	public ModifierImpl(String targetParam, double value, Operation op) {
 		this.targetParam = new ParamImpl(new InfoImpl(targetParam), value);
 		this.op = op.getOp();
-		if(this.op.equals(Modifier.Operation.ADD)) {
+		if(this.op.equals(Modifier.Operation.ADD.getOp())) {
 			this.revOp = (x, y) -> x - y;
 		}
-		if(this.op.equals(Modifier.Operation.MUL)) {
+		if(this.op.equals(Modifier.Operation.MUL.getOp())) {
 			this.revOp = (x, y) -> x * (1/y);
 		}
 		if(this.op == null) {
@@ -46,5 +46,12 @@ public class ModifierImpl implements Modifier{
 	public BinaryOperator<Double> getReverseOperation() {
 		return this.revOp;
 	}
+
+	@Override
+	public String toString() {
+		return "ModifierImpl [targetParam=" + targetParam + ", op=" + op + ", revOp=" + revOp + "]";
+	}
+	
+	
 	
 }
