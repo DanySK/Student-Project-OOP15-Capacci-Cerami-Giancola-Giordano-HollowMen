@@ -37,7 +37,7 @@ public abstract class GridDialog extends MenuDialog {
 	protected Icon icon;
 	protected ViewObserver observer;
 	protected ViewImpl view;
-	protected Optional<Map<String, Integer>> stats;
+	protected Optional<Map<String, Double>> stats;
 	private InformationDealer lastItem;
 	protected PaintedButton close = new PaintedButton("CLOSE");
 	protected JScrollBar scroll = new JScrollBar();
@@ -61,7 +61,7 @@ public abstract class GridDialog extends MenuDialog {
 	 * what has been clicked before.
 	 * @return - stats
 	 */
-	protected String showStats(Optional<Map<String, Integer>> map) {
+	protected String showStats(Optional<Map<String, Double>> map) {
 		String stats;
 		stats = map.get().entrySet().toString();
 		return stats;
