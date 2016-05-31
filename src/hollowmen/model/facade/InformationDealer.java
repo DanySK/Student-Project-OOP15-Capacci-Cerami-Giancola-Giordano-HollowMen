@@ -47,4 +47,9 @@ public interface InformationDealer {
 	 * for mob give 1 if encountered, 0 otherwise
 	 */
 	public int getAmount();
+	
+	/**
+	 * @return Gives the slot type of the item 
+	 */
+	public String getSlot();
 }
