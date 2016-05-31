@@ -29,15 +29,11 @@ public class Controller implements ViewObserver {
 	private InputMenu[] menuBack=new InputMenu[10];
 	
 	public Controller(){
-		
-		
 		view=new ViewImpl(800,600,this);
-		
 		view.takeFile(LoaderClass.load());
 		view.drawMenu(InputMenu.MAIN, Optional.empty());
-		
 		model=new ModelImpl();
-		
+		model.setup();
 		menuInputManager();
 		
 	}
@@ -172,19 +168,19 @@ public class Controller implements ViewObserver {
 					}
 					switch(mapInputCommand.getX()){
 					case EQUIP:{
-						model.itemAction(mapInputCommand.getY(),"equip");
+						model.itemEquip(mapInputCommand.getY(),"equip");
 						mapInputCommand=null;
 						break;
 					}case BUY:{
-						model.itemAction(mapInputCommand.getY(),"buy");
+						model.itemBuy(mapInputCommand.getY(),"buy");
 						mapInputCommand=null;
 						break;
 					}case UNEQUIP:{
-						model.itemAction(mapInputCommand.getY(),"unequip");
+						model.itemUnequip(mapInputCommand.getY(),"unequip");
 						mapInputCommand=null;
 						break;
 					}case SELL:{
-						model.itemAction(mapInputCommand.getY(),"sell");
+						model.itemSell(mapInputCommand.getY(),"sell");
 						mapInputCommand=null;
 						break;
 					}default:{

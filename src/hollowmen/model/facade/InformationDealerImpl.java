@@ -7,12 +7,12 @@ public class InformationDealerImpl implements InformationDealer{
 	
 	private String name;
 	private String description;
-	private Map<String,Integer> statistic;
+	private Map<String,Double> statistic;
 	private String state;
 	private int amount;
 	private String slot;
 	
-	public InformationDealerImpl(String name, String description, Map<String,Integer>statistic, String state, int amount, String slot){
+	public InformationDealerImpl(String name, String description, Map<String,Double>statistic, String state, int amount, String slot){
 		this.name=name;
 		this.description=description;
 		this.statistic=statistic;
@@ -29,7 +29,7 @@ public class InformationDealerImpl implements InformationDealer{
 		return this.description;
 	}
 
-	public Optional<Map<String, Integer>> getStat() {
+	public Optional<Map<String, Double>> getStat() {
 		return Optional.of(this.statistic);
 	}
 
