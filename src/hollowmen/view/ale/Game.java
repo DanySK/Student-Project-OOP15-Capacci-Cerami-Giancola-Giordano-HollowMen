@@ -30,6 +30,8 @@ public class Game extends JPanel implements GameInterface{
         private static final int POSITIONX=300;
         private static final int POSITIONY=100;
         private static final int ALIGNMENT=10;
+        private int x;
+        private int y;
         private ViewObserver observer;
         private JLabel panelGame;
         private Bar bars;
@@ -49,17 +51,18 @@ public class Game extends JPanel implements GameInterface{
         
         
         public Game(int x, int y, ViewObserver observer){
+        	this.x=x;
+        	this.y=y;
             this.observer=observer;
             inputChooser=new InputChooser(this.observer);
             this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
             this.setBounds(0,0,x,y+GAP);
-            initialSetup(x,y);
             new CreateAudio();
             addKeyListener(new KeyInput(this));
         }
 
         private void initialSetup(int x, int y){ //Il bound è da sistemare
-            panelGame=new JLabel();
+            this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2, x, y);
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
@@ -116,6 +119,7 @@ public class Game extends JPanel implements GameInterface{
                                 }
                         }
                 }
+                initialSetup(this.x,this.y);
         }
         
         private void addComponent(){
@@ -142,13 +146,13 @@ public class Game extends JPanel implements GameInterface{
                             if(elem.getName()=="hero"){
                                 switch(elem.getState()){
                                     case ATTACKING: {
-                                        labTmp=storageFlipped.get("heroAttacking");
+                                        labTmp=storageFlipped.get("hero");
                                         labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                          labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                         panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                         break;}
                                     case JUMPING: {
-                                        labTmp=storageFlipped.get("heroJumping");
+                                        labTmp=storageFlipped.get("hero");
                                         labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                          labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                         panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -160,7 +164,7 @@ public class Game extends JPanel implements GameInterface{
                                         panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                         break;}
                                     case MOVING: {
-                                        labTmp=storageFlipped.get("heroMoving");
+                                        labTmp=storageFlipped.get("hero");
                                         labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                         labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                         panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -208,6 +212,7 @@ public class Game extends JPanel implements GameInterface{
                                 }
                                 break;
                             }
+                            
                             if(elem.getName()==element.getKey()){
                                 labTmp=element.getValue();
                                 labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 

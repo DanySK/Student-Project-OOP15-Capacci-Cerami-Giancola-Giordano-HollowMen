@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.border.Border;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
@@ -19,10 +19,11 @@ import hollowmen.enumerators.InputMenu;
  * @author NarcAle
  *
  */
-public class Lobby extends JPanel{
+public class Lobby extends JLabel{
 
     private static final long serialVersionUID = -986610577506284L;
-    private Font fontA=new Font("Chiller",Font.PLAIN, 15);
+    private Font fontA=new Font("Chiller",Font.PLAIN, 20);
+    private Font fontB=new Font("Chiller",Font.PLAIN, 20);
     private static final int DIMX=100;
     private static final int DIMY=100;
     private static final int LOCX=8;
@@ -49,12 +50,11 @@ public class Lobby extends JPanel{
      */
     public Lobby(ViewObserver observer, Map<String,ImageIcon> storage ){
         this.setBackground(Color.BLACK);//Al momento c'è un semplice background nero.
-        this.setSize(LOCY2,LOCY2);//Lobby panel dimension
+        this.setSize(LOCY2,LOCY2);//Lobby dimension
         this.setLocation(0, 0);//Location of the panel.It refers to the frame dimension
         
         this.inventory=new JButton();
         this.inventory.setLayout(null);
-        this.inventory.setText("INVENTORY");
         this.inventory.setSize(DIMX,DIMY);
         this.inventory.setLocation(LOCX, LOCY);
         this.inventory.setBorder(border);
@@ -66,7 +66,6 @@ public class Lobby extends JPanel{
         
         this.skillTree=new JButton();
         this.skillTree.setLayout(null);
-        this.skillTree.setText("SKILLTREE");
         this.skillTree.setSize(DIMX,DIMY);
         this.skillTree.setLocation(LOCX2, LOCY);
         this.skillTree.setBorder(border);
@@ -79,6 +78,7 @@ public class Lobby extends JPanel{
         this.shop=new JButton();
         this.shop.setLayout(null);
         this.shop.setText("SHOP");
+        this.startGame.setFont(fontB);
         this.shop.setSize(DIMX,DIMY);
         this.shop.setLocation(LOCX3, LOCY);
         this.shop.setBorder(border);
@@ -91,6 +91,7 @@ public class Lobby extends JPanel{
         this.pokedex=new JButton();
         this.pokedex.setLayout(null);
         this.pokedex.setText("POKEDEX");
+        this.startGame.setFont(fontB);
         this.pokedex.setSize(DIMX,DIMY);
         this.pokedex.setLocation(LOCX4, LOCY);
         this.pokedex.setBorder(border);
@@ -126,7 +127,11 @@ public class Lobby extends JPanel{
         });
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
-            
+        	
+        	if(elem.getKey()=="castleBG"){//Background Image
+        		this.setIcon(elem.getValue());
+        		break;
+        	}
             if(elem.getKey()==InputMenu.INVENTORY.getString()){
                 this.inventory.setIcon(elem.getValue());
                 this.setBorder(border);
@@ -138,15 +143,17 @@ public class Lobby extends JPanel{
                 break;
             }
             else if(elem.getKey()==InputMenu.SHOP.getString()){
-                this.shop.setIcon(elem.getValue());
+                //this.shop.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
             }
             else if(elem.getKey()==InputMenu.POKEDEX.getString()){
-                this.pokedex.setIcon(elem.getValue());
+                //this.pokedex.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
             }
         }
+        
+        
     }
 }

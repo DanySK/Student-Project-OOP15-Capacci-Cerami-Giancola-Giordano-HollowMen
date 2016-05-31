@@ -25,6 +25,7 @@ import hollowmen.view.juls.ComplexMenuImpl;
 public class ViewImpl implements View {
 	
 	private Game game;
+	private Lobby lobby;
 	private Map<String,ImageIcon> storage;
 	private ViewObserver observer;
 	
@@ -33,6 +34,7 @@ public class ViewImpl implements View {
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
 		game=new Game(x,y,observer);
+		lobby=new Lobby(observer,storage);
 		SingletonFrame.getInstance().add(game);
 		
 	}
@@ -73,11 +75,14 @@ public class ViewImpl implements View {
 	 * It's linked to {@link Game} class.
 	 */ 
 	public void drawGame(List<DrawableRoomEntity> componentList) {
-		game.draw(componentList);
+		this.game.draw(componentList);
 	}
 	
+	/**
+	 * The method {@code drawLobby} is used to draw all the lobby components on screen.
+	 */
 	public void drawLobby(){
-	    SingletonFrame.getInstance().add(new Lobby(this.observer, this.storage));
+	    SingletonFrame.getInstance().add(this.lobby);
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.
