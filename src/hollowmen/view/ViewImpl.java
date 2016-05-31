@@ -35,7 +35,7 @@ public class ViewImpl implements View {
 	    this.observer=observer;
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
-		game=new Game(x,y,observer);
+		this.game=new Game(x,y,observer);
 		SingletonFrame.getInstance().add(game);
 		
 	}
@@ -86,9 +86,19 @@ public class ViewImpl implements View {
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.
+	 * 
 	 * @return - storage
 	 */
 	public Map<String,ImageIcon> getStorage() {
 		return storage;
+	}
+	
+	/**
+	 * The {@code getObserver} method return the observer. 
+	 * 
+	 * @return
+	 */
+	public ViewObserver getObserver(){
+		return this.observer;
 	}
 }
