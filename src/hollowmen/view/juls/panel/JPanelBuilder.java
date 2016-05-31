@@ -10,7 +10,6 @@ import javax.swing.JPanel;
  * 
  * It's based on the Builder Creational Pattern.
  * @author Juls
- *
  */
 public interface JPanelBuilder {
 

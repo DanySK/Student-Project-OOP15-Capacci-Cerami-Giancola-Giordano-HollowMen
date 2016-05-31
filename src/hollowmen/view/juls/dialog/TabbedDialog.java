@@ -88,8 +88,20 @@ public abstract class TabbedDialog extends GridDialog {
 		this.addMouseListener(dialogL);
 	}
 
+	/**
+	 * The {@code populateTab} method will populate the tab with the corresponding InformationDealer.
+	 * @param c - collection of InofrmationDealer (= item)
+	 * @param s - string representing the slot
+	 * @param panel - the panel on which the item must be added
+	 */
 	protected abstract void populateTab(Collection<InformationDealer> c, String s, JPanel panel);
 
+	/**
+	 * The {@code setButton} state allows to determines the enable state of a couple
+	 * of button, for instance, EQUIP & UNEQUIP.
+	 * @param b1 - first button
+	 * @param b2 - second button
+	 */
 	protected abstract void setButtonState(boolean b1, boolean b2);
 	
 	MouseListener dialogL = new MouseAdapter() {

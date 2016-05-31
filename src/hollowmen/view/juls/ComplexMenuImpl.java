@@ -3,6 +3,12 @@ package hollowmen.view.juls;
 import java.util.Collection;
 
 import hollowmen.enumerators.InputMenu;
+import hollowmen.model.facade.InformationDealer;
+import hollowmen.view.SingletonFrame;
+import hollowmen.view.juls.dialog.Achievements;
+import hollowmen.view.juls.dialog.Bestiary;
+import hollowmen.view.juls.dialog.Inventory;
+import hollowmen.view.juls.dialog.Shop;
 
 /**
  * The {@code ComplexMenuImpl} class represents the concrete
@@ -11,38 +17,35 @@ import hollowmen.enumerators.InputMenu;
  */
 public class ComplexMenuImpl implements ComplexMenu{
 
-	public ComplexMenuImpl() {
-	}
+	public ComplexMenuImpl() {}
 	
 	@Override
-	public void drawComplexMenu(InputMenu name, Collection<?> collection) {
+	public void drawComplexMenu(InputMenu name, Collection<InformationDealer> collection) {
 		switch (name) {
 		
 		case INVENTORY:
-		//	new Inventory(collection);
+			new Inventory(SingletonFrame.getInstance(), collection);
 			break;
 			
 		case SKILL_TREE:
-		//	new SkillTree(collection);
+			// for now, this does nothing
 			break;
 			
 		case SHOP:
-		//	new Shop(collection);
+			new Shop(SingletonFrame.getInstance(), collection);
 			break;
 			
 		case POKEDEX:
-		//	new Pokedex(collection);
+			new Bestiary(SingletonFrame.getInstance(), collection);
 			break;
 			
 		case ACHIEVEMENTS:
-		//	new Achievements(collection);
+			new Achievements(SingletonFrame.getInstance(), collection);
 			break;
 			
 		default:
 			break;
 		
-		}
-		
+		}	
 	}
-
 }

@@ -3,14 +3,13 @@ package hollowmen.view.juls;
 import java.util.Collection;
 
 import hollowmen.enumerators.InputMenu;
+import hollowmen.model.facade.InformationDealer;
 
 /**
  * The interface {@code ComplexMenu} allows to draw more complex menus,
- * such as Inventory, Shop or Skill Tree.
+ * such as Inventory, Shop, Bestiary or Achievements.
+ * 
  * @author Juls
- *
- * @param <X> - a collection of unmodifiable Objects, such as
- * Items or Mobs.
  */
 public interface ComplexMenu {
 	
@@ -21,6 +20,6 @@ public interface ComplexMenu {
 	 * @param collection - the collection that must be added
 	 * to the Menu and graphically represented on screen.
 	 */
-	public void drawComplexMenu(InputMenu name, Collection<?> collection);
+	public void drawComplexMenu(InputMenu name, Collection<InformationDealer> collection);
 
 }

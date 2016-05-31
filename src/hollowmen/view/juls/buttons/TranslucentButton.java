@@ -36,6 +36,12 @@ public abstract class TranslucentButton extends CustomButton {
 	 */
 	protected abstract void loadImages();
 	
+	/**
+	 * This simple enum is useful to set the facing of a component, 
+	 * for example, ArrowButton.
+	 * @author Juls
+	 *
+	 */
 	public enum Direction {
 		LEFT,
 		RIGHT;

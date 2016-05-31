@@ -8,7 +8,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 
-import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Actor;
 import hollowmen.model.Attack;
 import hollowmen.model.Parameter;

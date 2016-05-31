@@ -25,7 +25,8 @@ public class Door extends UselessInteractable{
 	
 	@Override
 	public boolean isInteractAllowed() {
-		return DungeonSingleton.getInstance().getCurrentRoom().getEnemies().isEmpty();
+		return DungeonSingleton.getInstance().getCurrentRoom().getEnemies().isEmpty() ? 
+				false : super.isInteractAllowed();
 	}
 	
 	@Override

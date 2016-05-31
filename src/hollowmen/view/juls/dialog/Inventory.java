@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.model.facade.InformationDealer;
+import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -114,10 +115,13 @@ public class Inventory extends TabbedDialog {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * The {@code populateTab} method fills the different tabs of the menu with the proper items.
+	 */
 	protected void populateTab(Collection<InformationDealer> c, String slot, JPanel panel) {
 		c.stream()
 		.filter(x -> x.getStat().equals(slot))	//TODO change getStat with getSlot
-		//.filter(x -> x.getState().equals("unequiped"))
+		.filter(x -> x.getState().equals(State.UNEQUIPPED))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
@@ -137,9 +141,12 @@ public class Inventory extends TabbedDialog {
 		tabbedPane.addTab(slot, panel);
 	}
 	
+	/**
+	 * The {@code populateBody} method fills the body-puppet with the items equipped.
+	 */
 	private void populateBody(Collection<InformationDealer> c, String slot, IconButton button) {
 		c.stream()
-		.filter(x -> x.getStat().equals("equiped")) //TODO change getStat with getState - equip or not
+		.filter(x -> x.getState().equals(State.EQUIPPED))
 		.forEach(x -> {
 			x.getStat().equals(slot); //TODO change getStat with getSlot
 			nameF = x.getName();
@@ -178,12 +185,9 @@ public class Inventory extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
-				//addInput(EQUIP, getLastItem());
-				getButton().setEnabled(false);
+				//view.addInput(InputCommand.EQUIP, getLastItem());
 			} else if (name.equals("UNEQUIP")) {
-				//addInput(UNEQUIP, getLastItem());
-				remove(getButton()); //rimuove il bottone
-				setButton(new IconButton()); // e ne aggiunge uno vuoto
+				//view.addInput(InputCommand.UNEQUIP, getLastItem());
 			} else {
 				dispose();
 			}

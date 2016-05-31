@@ -4,8 +4,8 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 /**
- * The {@code SingletonFrame} class uses the design pattern Singleton
- * in order to create just one instance of this Class. It's thread-safe.
+ * The {@code SingletonFrame} class creates just one instance 
+ * of the frame.
  * 
  * @author Juls
  */

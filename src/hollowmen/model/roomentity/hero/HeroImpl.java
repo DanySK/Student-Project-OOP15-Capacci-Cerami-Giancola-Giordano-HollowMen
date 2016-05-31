@@ -1,8 +1,11 @@
 package hollowmen.model.roomentity.hero;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.collision.shapes.PolygonShape;
@@ -12,23 +15,18 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
-import com.google.common.collect.Multimap;
-
-import hollowmen.enumerators.RoomEntityName;
+import hollowmen.model.Actor;
 import hollowmen.model.Hero;
 import hollowmen.model.HeroClass;
-import hollowmen.model.Information;
 import hollowmen.model.Inventory;
 import hollowmen.model.Item;
 import hollowmen.model.Item.ItemState;
 import hollowmen.model.LimitedCounter;
 import hollowmen.model.Lootable;
 import hollowmen.model.Parameter;
-import hollowmen.model.Pokedex;
-import hollowmen.model.Slot;
+import hollowmen.model.RoomEntity;
 import hollowmen.model.TargetPointSystem;
+import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.roomentity.ActorAbs;
@@ -41,8 +39,10 @@ import hollowmen.utilities.Pair;
 
 public class HeroImpl extends ActorAbs implements Hero{
 
-	private final Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
-	private final float HEAD_PROP = 0.8f;
+	private final static Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
+	private final static float HEAD_PROP = 0.8f;
+	
+	
 	
 	
 	private LimitedCounter exp;
@@ -52,61 +52,73 @@ public class HeroImpl extends ActorAbs implements Hero{
 	private int gold;
 	
 	private Inventory inventory;
-	
-	private Pokedex pokedex;
-	
+		
 	private HeroClass heroClass;
 	
 	private TargetPointSystem<Parameter> uppableParam;
 	
-	private ListMultimap<String, Slot> slots = ArrayListMultimap.create();
+	private Map<String, Optional<Item>> slots = new HashMap<>();
 	
-	public HeroImpl(int level, int gold, Pair<Integer, Integer> exp, Information info, 
-			HeroClass heroClass, Pokedex pokedex, TargetPointSystem<Parameter> statSystem,
-			Inventory inventory, Collection<Item> equippedItems) {
-		super(new InfoImpl(RoomEntityName.HERO.toString()), Constants.HERO_SIZE, heroClass.getBaseParam());
+	public HeroImpl(int level, int gold, Pair<Integer, Integer> exp, String description, 
+			HeroClass heroClass, Inventory inventory, Collection<Item> equippedItems) {
+		super(new InfoImpl(RoomEntityName.HERO.toString(), description), 
+				Constants.HERO_SIZE, heroClass.getBaseParam());
+		this.initSlot();
+		this.uppableParam = new StatPointSystem(upgradableParam(heroClass));
+		this.level = level;
+		this.gold = gold;
+		this.exp = new SimpleLimitedCounter(exp.getX(), exp.getY());
+		this.heroClass = heroClass;
+		equippedItems.stream().forEach(x -> {
+			Actors.addAllModifier(this, x.getModifiers().entries().stream()
+					.map(i -> i.getValue())
+					.collect(Collectors.toList()));
+			this.slots.put(x.getSlot(), Optional.of(x));
+		});
+
 		
 	}
 	
+	private void initSlot() {
+		for(Item.SlotName s : Item.SlotName.values()) {
+			this.slots.put(s.toString(), Optional.empty());
+		}
+	}
+	
+	private Collection<Parameter> upgradableParam(HeroClass heroClass) {
+		Collection<String> list = new LinkedList<>();
+		list.add(Parameter.ParamName.HPMAX.toString());
+		list.add(Parameter.ParamName.ATTACK.toString());
+		list.add(Parameter.ParamName.DEFENSE.toString());
+		return heroClass.getBaseParam().stream()
+				.filter(x -> list.contains(x.getInfo().getName()))
+				.collect(Collectors.toList());
+	}
+	
 	@Override
-	public void equipItem(Item item) throws IllegalStateException, NullPointerException {
+	public void equipItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> !i.getState().equals(ItemState.UNEQUIPPED));
 		ExceptionThrower.checkIllegalArgument(item, i -> !i.getHeroClassEquippable().equals(this.getHeroClass()));
-		for(Slot s : slots.get(item.getSlot())) {
-			if(s.getEquippedItem().isPresent()) {
-				continue;
-			} else {
-				s.setItem(Optional.of(item));
-				item.setState(ItemState.EQUIPPED);
-				item.getModifiers().entries().stream()
-					.forEach(e -> Actors.addModifier(this, e.getValue()));
-				this.inventory.removeItem(item);
-				return;
-			}
-		}
-		this.unequipItem(slots.get(item.getSlot()).get(0).getEquippedItem().get());
-		this.equipItem(item);
+		ExceptionThrower.checkIllegalArgument(item, i -> !this.inventory.getAllItem().stream()
+				.map(p -> p.getX()).collect(Collectors.toList()).contains(i));
+		Item itemFrom = this.inventory.getItem(item.getInfo().getName());
+		this.inventory.removeItem(itemFrom);
+		itemFrom.setState(ItemState.EQUIPPED);
+		this.slots.get(itemFrom.getSlot()).ifPresent(x -> this.unequipItem(x));
+		this.slots.put(itemFrom.getSlot(), Optional.of(itemFrom));
+		itemFrom.getModifiers().entries().forEach(e -> Actors.addModifier(this, e.getValue()));
 	}
 
 	@Override
 	public void unequipItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> !i.getState().equals(ItemState.EQUIPPED));
-		Item temp;
-		for(Slot s : slots.get(item.getSlot())) {
-			temp = s.getEquippedItem().isPresent() ? s.getEquippedItem().get() : null;
-			if(temp == null) {
-				continue;
-			}
-			if(temp.equals(item)) {
-				temp.setState(ItemState.UNEQUIPPED);
-				temp.getModifiers().entries().stream()
-					.forEach(e -> Actors.removeModifier(this, e.getValue()));
-				this.inventory.addItem(item);
-				s.setItem(Optional.empty());
-			}
-		}
+		ExceptionThrower.checkIllegalState(item, i -> !this.slots.get(i.getSlot()).isPresent());
+		Item unequipItem = this.slots.get(item.getSlot()).get();
+		unequipItem.getModifiers().entries().stream().forEach(e -> Actors.removeModifier(this, e.getValue()));
+		this.inventory.addItem(unequipItem);
+		this.slots.put(item.getSlot(), Optional.empty());
 	}
 
 	
@@ -114,10 +126,10 @@ public class HeroImpl extends ActorAbs implements Hero{
 	public void sellItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> i.getState().equals(ItemState.BUYABLE));
-		this.inventory.removeItem(item);
 		if(item.getState().equals(ItemState.EQUIPPED)) {
 			this.unequipItem(item);
 		}
+		this.inventory.removeItem(item);
 		this.gold += item.getGoldValue();
 	}
 
@@ -125,7 +137,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 	public void buyItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> (i.getGoldValue() - this.getGold()) < 0);
-		item.setState(ItemState.UNEQUIPPED);
 		this.inventory.addItem(item);
 		this.gold -= item.getGoldValue();
 	}
@@ -148,11 +159,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 	@Override
 	public Inventory getInventory() {
 		return this.inventory;
-	}
-
-	@Override
-	public Pokedex getPokedex() {
-		return this.pokedex;
 	}
 
 	@Override
@@ -205,8 +211,8 @@ public class HeroImpl extends ActorAbs implements Hero{
 						.addMask(FilterType.ENEMYATTACK.getValue())
 						.build();
 		PolygonShape underBody = new PolygonShape();
-		float bodyX = Constants.HERO_SIZE.getX() * this.BODY_PROP.getX();
-		float bodyY = Constants.HERO_SIZE.getY() * this.BODY_PROP.getY();
+		float bodyX = Constants.HERO_SIZE.getX() * HeroImpl.BODY_PROP.getX();
+		float bodyY = Constants.HERO_SIZE.getY() * HeroImpl.BODY_PROP.getY();
 		underBody.setAsBox(bodyX, bodyY , new Vec2(0,-(Constants.HERO_SIZE.getY() / 2)), 0f);
 		CircleShape head = new CircleShape();
 		head.getVertex(0).set(0, (Constants.HERO_SIZE.getY() / 2));
@@ -218,8 +224,21 @@ public class HeroImpl extends ActorAbs implements Hero{
 
 	
 	@Override
-	public Multimap<String, Slot> getEquippedItem() {
-		return this.slots;
+	public Collection<Item> getEquippedItem() {
+		return this.slots.entrySet().stream()
+				.filter(e -> e.getValue().isPresent())
+				.map(e -> e.getValue().get())
+				.collect(Collectors.toList());
 	}
 	
+	private void initMoreAction() {
+		super.actionAllowed.getActionAllowed().put(Actor.Action.BACK.toString(), () -> DungeonSingleton.getInstance()
+				.getCurrentRoom().getInteractable().stream()
+				.filter(i -> i.isInteractAllowed() && i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
+				.findFirst().ifPresent(c -> c.interact()));
+		super.actionAllowed.getActionAllowed().put(Actor.Action.INTERACT.toString(), () -> DungeonSingleton.getInstance()
+				.getCurrentRoom().getInteractable().stream()
+				.filter(i -> i.isInteractAllowed() && !i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
+				.findFirst().ifPresent(c -> c.interact()));
+	}
 }

@@ -8,7 +8,7 @@ import javax.swing.SwingConstants;
 
 /**
  * The {@code IconButton} class determines a specialization
- * of {@link CustomButton}. It represents a button with icon.
+ * of {@link CustomButton}. It represents a button with icon and/or text on it.
  * @author Juls
  *
  */

@@ -16,7 +16,7 @@ import hollowmen.view.juls.BasicMenuImpl;
 import hollowmen.view.juls.ComplexMenuImpl;
 
 /**
- * The ViewImpl class, that implements {@link View}, is used to draw application on screen.
+ * The ViewImpl class, that implements {@link View}, is used to draw the application on screen.
  * 
  * @author Alessia
  * 
