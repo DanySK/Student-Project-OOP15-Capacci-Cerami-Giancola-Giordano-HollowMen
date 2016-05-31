@@ -51,7 +51,7 @@ public class LoaderClass {
 		nameList.add("res/images/mobs/batGray.gif");
 		nameList.add("res/images/mobs/batBrown.gif");
 		nameList.add("res/images/items/bootsBlack.png");
-		nameList.add("res/images/items/bootsBrown.png");
+		nameList.add("res/images/items/bootsBlue.png");
 		nameList.add("res/images/items/bootsBrown.png");
 		nameList.add("res/images/items/bootsGreen.png");
 		nameList.add("res/images/items/bootsPurple.png");
@@ -61,6 +61,7 @@ public class LoaderClass {
 		nameList.add("res/images/items/excalibur.png");
 		nameList.add("res/images/items/glovesBlack.png");
 		nameList.add("res/images/items/glovesBlue.png");
+		nameList.add("res/images/items/glovesGrey.png");
 		nameList.add("res/images/items/glovesRed.png");
 		nameList.add("res/images/items/goldSword.png");
 		nameList.add("res/images/items/headBronze.png");
@@ -73,6 +74,9 @@ public class LoaderClass {
 		nameList.add("res/images/items/redSword.png");
 		nameList.add("res/images/items/scimitar.png");
 		nameList.add("res/images/items/simpleSword.png");
+		nameList.add("res/images/items/spell1.png");
+		nameList.add("res/images/items/spell2.png");
+		nameList.add("res/images/items/spell3.png");
 		nameList.add("res/images/items/star.jpg");
 		nameList.add("res/images/items/woodSword.png");
 		nameList.add("res/images/gameButtons/skillTree.png");
