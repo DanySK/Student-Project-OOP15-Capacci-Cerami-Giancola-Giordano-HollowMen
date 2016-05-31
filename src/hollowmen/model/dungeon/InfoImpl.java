@@ -61,4 +61,9 @@ public class InfoImpl implements Information{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Info->" + name;
+	}
+
 }

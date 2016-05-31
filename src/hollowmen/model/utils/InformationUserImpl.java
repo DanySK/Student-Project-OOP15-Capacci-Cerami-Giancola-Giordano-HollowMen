@@ -41,4 +41,11 @@ public class InformationUserImpl implements InformationUser{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "InformationUser [info=" + info + "]";
+	}
+
+	
+	
 }

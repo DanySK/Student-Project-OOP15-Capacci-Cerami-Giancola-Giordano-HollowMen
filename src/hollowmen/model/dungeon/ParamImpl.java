@@ -88,4 +88,9 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 		return new Pair<>(mod.getOperation(), mod.getParameter().getValue());
 	}
 
+	@Override
+	public String toString() {
+		return "Parameter : name "+ super.toString();
+	}
+
 }

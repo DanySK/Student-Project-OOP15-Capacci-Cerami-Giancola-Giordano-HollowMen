@@ -24,9 +24,9 @@ public abstract class EnemyBuilderImpl implements EnemyBuilder{
 	
 	private List<String> titleName() {
 		List<String> list = new LinkedList<>();
-		list.add("ordinary");
-		list.add("commander");
-		list.add("boss");
+		for(Enemy.EnemyTitle e : Enemy.EnemyTitle.values()) {
+			list.add(e.toString());
+		}
 		return list;
 	}
 	

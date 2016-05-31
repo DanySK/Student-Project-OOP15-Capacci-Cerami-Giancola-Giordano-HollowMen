@@ -23,6 +23,7 @@ public interface Modifier {
 		public BinaryOperator<Double> getOp() {
 			return this.op;
 		}
+		
 	}
 	
 	/**

@@ -103,5 +103,12 @@ public abstract class RoomEntityAbs implements RoomEntity{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "RoomEntityAbs [info=" + info + ", length=" + length + ", height=" + height + "]";
+	}
+
+	
+	
 
 }

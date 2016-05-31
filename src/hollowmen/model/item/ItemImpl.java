@@ -242,4 +242,11 @@ public class ItemImpl implements Item{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Item name -> " + info + " -> state -> " + state + " -> mod ->" + mod;
+	}
+
+	
+	
 }

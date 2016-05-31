@@ -49,7 +49,7 @@ public class ModifierImpl implements Modifier{
 
 	@Override
 	public String toString() {
-		return "ModifierImpl [targetParam=" + targetParam + ", op=" + op + ", revOp=" + revOp + "]";
+		return "Modifier -> " + targetParam.getInfo() + ", op=" + op + ", revOp=" + revOp + "]";
 	}
 	
 	
