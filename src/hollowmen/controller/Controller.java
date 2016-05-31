@@ -109,6 +109,9 @@ public class Controller implements ViewObserver {
 		}case ACHIEVEMENTS:{
 			inputMenuList.clear();
 			break;
+		}case RESUME:{
+			gameLoop();
+			break;
 		}case BACK:{
 			backDec();
 			if(this.menuBack[0].getType()=="complex"){

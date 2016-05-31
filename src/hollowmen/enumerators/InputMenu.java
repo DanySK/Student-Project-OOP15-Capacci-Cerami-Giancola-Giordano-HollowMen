@@ -21,7 +21,8 @@ public enum InputMenu {
 	ACHIEVEMENTS("achievements", "complex"),
 	START("start","basic"),
 	LOBBY("lobby","basic"),
-	BACK(Actor.Action.BACK.toString(),"basic");
+	BACK(Actor.Action.BACK.toString(),"basic"),
+	RESUME("resume","basic");
 	
 	private String s, type;
 	
