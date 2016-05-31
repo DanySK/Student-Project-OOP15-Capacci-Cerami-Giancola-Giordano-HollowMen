@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.InformationDealer.State;
+import hollowmen.view.InputBuffer;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -188,9 +189,9 @@ public class Inventory extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
-				observer.addInput(InputCommand.EQUIP, getLastItem());
+				InputBuffer.getInstance().getObserver().addInput(InputCommand.EQUIP, getLastItem());
 			} else if (name.equals("UNEQUIP")) {
-				observer.addInput(InputCommand.UNEQUIP, getLastItem());
+				InputBuffer.getInstance().getObserver().addInput(InputCommand.UNEQUIP, getLastItem());
 			} else {
 				dispose();
 			}

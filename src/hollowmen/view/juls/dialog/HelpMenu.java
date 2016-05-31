@@ -11,7 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import hollowmen.enumerators.InputCommand;
+import hollowmen.enumerators.InputMenu;
+import hollowmen.view.InputBuffer;
 import hollowmen.view.juls.buttons.ArrowButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.buttons.TranslucentButton.Direction;
@@ -71,7 +72,7 @@ public class HelpMenu extends OptionDialog {
 
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//observer.addInput(InputCommand.RESUME);
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}		
 		});		

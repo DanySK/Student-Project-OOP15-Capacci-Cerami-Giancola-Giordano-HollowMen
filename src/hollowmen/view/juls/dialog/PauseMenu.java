@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.enumerators.InputMenu;
+import hollowmen.view.InputBuffer;
 import hollowmen.view.juls.MainMenu;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -55,14 +57,14 @@ public class PauseMenu extends MessageDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("TO MAIN")) {
-				//observer.addInput(InputCommand.MAIN);
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.MAIN);
 				dispose();
 				new MainMenu();
 			} else if (name.equals("RESUME")) {
-				//observer.addInput(InputCommand.RESUME);
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			} else {
-				//observer.addInput(InputCommand.LOBBY);
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.LOBBY);
 				dispose();
 			}
 		}

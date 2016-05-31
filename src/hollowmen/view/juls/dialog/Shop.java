@@ -12,8 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputCommand;
+import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.InformationDealer.State;
+import hollowmen.view.InputBuffer;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -59,11 +61,11 @@ public class Shop extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("BUY")) {
-				observer.addInput(InputCommand.BUY, getLastItem());
+				InputBuffer.getInstance().getObserver().addInput(InputCommand.BUY, getLastItem());
 			} else if (name.equals("SELL")) {
-				observer.addInput(InputCommand.SELL, getLastItem());
+				InputBuffer.getInstance().getObserver().addInput(InputCommand.SELL, getLastItem());
 			} else {
-				//observer.addInput(InputCommand.RESUME, getLastItem());
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}
 		}

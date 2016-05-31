@@ -12,7 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
+import hollowmen.view.InputBuffer;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
@@ -40,6 +42,7 @@ public class Bestiary extends GridDialog {
 		this.add(buttonC);
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}
 		});

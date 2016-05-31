@@ -32,7 +32,6 @@ public class ClassChoice extends OptionDialog {
 	private ImageIcon m = new ImageIcon("res/images/character/mage.png");
 	private ImageIcon a = new ImageIcon("res/images/character/assassin.png");
 	private JLabel title = new JLabel();
-	private String selection;
 	private IconButton warrior = new IconButton("WARRIOR", w);
 	private IconButton mage = new IconButton("MAGE", m);
 	private IconButton assassin = new IconButton("ASSASSIN", a);
@@ -79,7 +78,7 @@ public class ClassChoice extends OptionDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("SELECT")) {
-				
+				InputBuffer.getInstance().getObserver().addInput(ClassType.WARRIOR);
 			} else {
 				dispose();
 			}

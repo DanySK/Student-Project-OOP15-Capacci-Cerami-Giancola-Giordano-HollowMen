@@ -12,7 +12,6 @@ import javax.swing.JLabel;
 import hollowmen.controller.ViewObserver;
 import hollowmen.view.InputBuffer;
 import hollowmen.view.SingletonFrame;
-import hollowmen.view.ViewImpl;
 
 /**
  * The {@code CustomDialog} abstract class represents the head of
