@@ -20,6 +20,7 @@ public class SingletonNameList {
 		nameList.add("batBrown");
 		nameList.add("batGray");
 		nameList.add("batPurple");
+		nameList.add("blueSlimeBoss");
 		nameList.add("puppetBlack");
 		nameList.add("puppetRed");
 		nameList.add("puppetWhite");
@@ -27,6 +28,7 @@ public class SingletonNameList {
 		nameList.add("slimeGreen");
 		nameList.add("slimePurple");
 		nameList.add("slimeRed");
+		nameList.add("violetSlimeBoss");
 		nameList.add("ability1");
 		nameList.add("ability2");
 		nameList.add("ability3");
@@ -42,6 +44,7 @@ public class SingletonNameList {
 	 * @return
 	 */
 	public static List<String> getNameList(){
+		new SingletonNameList();
 		return nameList;
 	}
 }
