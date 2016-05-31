@@ -40,7 +40,7 @@ public interface InformationDealer {
 	 * @return Gives the state of the object,
 	 * for mob give EQUIPPED if already encountered, otherwise UNEQUIPPED
 	 */
-	public State getState();
+	public String getState();
 	
 	/**
 	 * @return Gives the amount of item in inventory,
