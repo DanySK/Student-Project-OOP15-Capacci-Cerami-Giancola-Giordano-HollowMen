@@ -47,13 +47,9 @@ public class RoomImpl implements Room{
 		this.parentRoom = parentRoom;
 		this.childNumber = childNumber;
 		this.roomNumber = roomNumber;
-		createDoor();
-		if(this.childNumber == 0) {
-			Algorithms.populateRoom(this);
-		}
 	};
 	
-	private void createDoor() {
+	public void autoPopulate() {
 		for(int i = 0; i < this.childNumber; i++) {
 			this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
 		}
@@ -61,6 +57,9 @@ public class RoomImpl implements Room{
 		Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
 		Box2DUtils.centerPosition(backDoor);
 		this.interactables.add(backDoor);
+		if(this.childNumber == 0) {
+			Algorithms.populateRoom(this);
+		}
 	}
 
 	@Override

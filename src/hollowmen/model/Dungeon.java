@@ -48,7 +48,7 @@ public interface Dungeon {
 	 * @throws IllegalStateException If the {@code Floor} is locked
 	 * @throws NullPointerException
 	 */
-	public void goTo(int floorNumber) throws IllegalStateException, NullPointerException;
+	public void goTo(int floorNumber) throws IllegalStateException;
 	
 	/**
 	 * @return {@link Pair} X floor's number reached, Y max floor's number
