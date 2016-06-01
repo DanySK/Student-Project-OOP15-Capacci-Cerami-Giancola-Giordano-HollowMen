@@ -22,28 +22,30 @@ import hollowmen.enumerators.InputMenu;
 public class Lobby extends JLabel{
 
     private static final long serialVersionUID = -986610577506284L;
-    private Font fontB=new Font("Chiller",Font.PLAIN, 25);
+    private Font fontA=new Font("Chiller",Font.PLAIN, 25);
+    //private Font fontTitle=new Font("Algerian",Font.BOLD,50);
+    private Font fontB=new Font("Chiller",Font.PLAIN, 40);
+    private static final int DIMXPLAY=200;
     private static final int DIMXL=800;
     private static final int DIMYL=800;
-    private static final int DIMX=120;
+    private static final int DIMX=140;
     private static final int DIMY=80;
-    private static final int LOCX=55;
-    private static final int LOCX2=200;
-    private static final int LOCX3=350;
-    private static final int LOCX4=500;
-    private static final int LOCXPLAY=400;
+    private static final int LOCX=155;
+    private static final int LOCX2=415;
+    private static final int LOCXPLAY=550;
     private static final int LOCXBACK=10;
-    private static final int LOCY=150;
-    private static final int LOCYSP=500;
+    private static final int LOCY=180;
+    private static final int LOCY2=450;
+    private static final int LOCYSP=670;
     
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
+    private JLabel lab;
     private JButton inventory;
     private JButton skillTree;
     private JButton shop;
     private JButton pokedex;
     private JButton startGame;
     private JButton back;
-    
     /**
      * The constructor create all the buttons I need to display on Lobby.
      * 
@@ -51,11 +53,12 @@ public class Lobby extends JLabel{
      * @param storage
      */
     public Lobby(ViewObserver observer, Map<String,ImageIcon> storage ){
-        this.setLayout(null);
-        this.setOpaque(true);
+        this.lab=new JLabel();
+        this.lab.setLayout(null);        
+        this.lab.setOpaque(true);
         this.setBackground(Color.BLACK);
         this.setBounds(0, 0, DIMXL, DIMYL);
-        
+
         this.inventory=new JButton();
         this.inventory.setLayout(null);
         this.inventory.setOpaque(true);
@@ -87,9 +90,9 @@ public class Lobby extends JLabel{
         this.shop.setOpaque(true);
         this.shop.setBackground(Color.darkGray);
         this.shop.setText("SHOP");
-        this.shop.setFont(fontB);
+        this.shop.setFont(fontA);
         this.shop.setForeground(Color.WHITE);
-        this.shop.setBounds(LOCX3, LOCY, DIMX, DIMY);
+        this.shop.setBounds(LOCX, LOCY2, DIMX, DIMY);
         this.shop.setBorder(border);
         this.shop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -103,9 +106,9 @@ public class Lobby extends JLabel{
         this.pokedex.setOpaque(true);
         this.pokedex.setBackground(Color.darkGray);
         this.pokedex.setText("POKEDEX");
-        this.pokedex.setFont(fontB);
+        this.pokedex.setFont(fontA);
         this.pokedex.setForeground(Color.WHITE);
-        this.pokedex.setBounds(LOCX4, LOCY, DIMX, DIMY);
+        this.pokedex.setBounds(LOCX2, LOCY2, DIMX, DIMY);
         this.pokedex.setBorder(border);
         this.pokedex.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -117,11 +120,11 @@ public class Lobby extends JLabel{
         this.startGame=new JButton();
         this.startGame.setLayout(null);
         this.startGame.setOpaque(true);
-        this.startGame.setBackground(Color.darkGray);
+        this.startGame.setBackground(Color.GREEN);
         this.startGame.setText("START");
         this.startGame.setFont(fontB);
-        this.startGame.setForeground(Color.WHITE);
-        this.startGame.setBounds(LOCXPLAY, LOCYSP, DIMX, DIMY);
+        this.startGame.setForeground(Color.BLACK);
+        this.startGame.setBounds(LOCXPLAY, LOCYSP, DIMXPLAY, DIMY);
         this.startGame.setBorder(border);
         this.startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -133,7 +136,7 @@ public class Lobby extends JLabel{
         this.back=new JButton();
         this.back.setLayout(null);
         this.back.setOpaque(true);
-        this.back.setBackground(Color.darkGray);
+        this.back.setBackground(Color.RED);
         this.back.setText("BACK");
         this.back.setFont(fontB);
         this.back.setForeground(Color.WHITE);
@@ -147,17 +150,20 @@ public class Lobby extends JLabel{
         this.add(this.back);
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
-                
+
             if(elem.getKey()=="castleBG"){//Background Image
+                System.out.println("Ciao sono alessia e ho problemi di esaurimento nervoso");
                 this.setIcon(elem.getValue());
                 break;
             }
             if(elem.getKey()==InputMenu.INVENTORY.getString()){
+                System.out.println("Ciao sono alessia e ho problemi di esaurimento nervoso");
                 this.inventory.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
             }
             else if(elem.getKey()==InputMenu.SKILL_TREE.getString()){
+                System.out.println("Ciao sono alessia e ho problemi di esaurimento nervoso");
                 this.skillTree.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
