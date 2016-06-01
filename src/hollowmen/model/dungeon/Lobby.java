@@ -57,4 +57,7 @@ public class Lobby implements Room{
 	@Override
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {}
 
+	@Override
+	public void autoPopulate() {}
+
 }
