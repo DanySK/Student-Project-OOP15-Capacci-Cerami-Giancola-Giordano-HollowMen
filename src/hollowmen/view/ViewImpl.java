@@ -74,6 +74,7 @@ public class ViewImpl implements View {
 	 */ 
 	public void drawGame(List<DrawableRoomEntity> componentList) {
 		SingletonFrame frame=SingletonFrame.getInstance();
+		frame.getContentPane().removeAll();
 		this.game.draw(componentList);
 		frame.add(this.game);
 	}
@@ -82,8 +83,9 @@ public class ViewImpl implements View {
 	 * The method {@code drawLobby} is used to draw all the lobby components on screen.
 	 */
 	public void drawLobby(){
-		SingletonFrame frame=SingletonFrame.getInstance();
-		this.lobby=new Lobby(this.observer,this.storage);
+	    SingletonFrame frame=SingletonFrame.getInstance();
+	    frame.getContentPane().removeAll();
+	    this.lobby=new Lobby(this.observer,this.storage);
 	    frame.add(this.lobby);
 	}
 	/**
