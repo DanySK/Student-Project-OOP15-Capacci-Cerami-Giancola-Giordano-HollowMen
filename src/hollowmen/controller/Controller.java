@@ -120,7 +120,6 @@ public class Controller implements ViewObserver {
 				}
 				if(this.classPicked==true){
 					this.classPicked=false;
-					System.out.println("spero siano poche...");
 					this.view.drawLobby();
 				}
 				if(this.inputMenuList.isEmpty()){
