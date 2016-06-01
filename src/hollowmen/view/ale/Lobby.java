@@ -66,7 +66,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.INVENTORY);
             }       
         });
-        this.add(inventory);
+        this.add(this.inventory);
         
         this.skillTree=new JButton();
         this.skillTree.setLayout(null);
@@ -79,7 +79,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.SKILL_TREE);
             }       
         });        
-        this.add(skillTree);
+        this.add(this.skillTree);
         
         this.shop=new JButton();
         this.shop.setLayout(null);
@@ -95,7 +95,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.SHOP);
             }       
         });
-        this.add(shop);
+        this.add(this.shop);
         
         this.pokedex=new JButton();
         this.pokedex.setLayout(null);
@@ -103,7 +103,7 @@ public class Lobby extends JLabel{
         this.pokedex.setBackground(Color.darkGray);
         this.pokedex.setText("POKEDEX");
         this.pokedex.setFont(fontB);
-        this.shop.setForeground(Color.WHITE);
+        this.pokedex.setForeground(Color.WHITE);
         this.pokedex.setBounds(LOCX4, LOCY, DIMX, DIMY);
         this.pokedex.setBorder(border);
         this.pokedex.addActionListener(new ActionListener() {
@@ -111,7 +111,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.POKEDEX);
             }       
         });
-        this.add(pokedex);
+        this.add(this.pokedex);
         
         this.startGame=new JButton();
         this.startGame.setLayout(null);
@@ -127,7 +127,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.START);
             }       
         });
-        this.add(startGame);
+        this.add(this.startGame);
         
         this.back=new JButton();
         this.back.setLayout(null);
@@ -143,7 +143,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.BACK);
             }       
         });
-        this.add(back);
+        this.add(this.back);
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
                 
