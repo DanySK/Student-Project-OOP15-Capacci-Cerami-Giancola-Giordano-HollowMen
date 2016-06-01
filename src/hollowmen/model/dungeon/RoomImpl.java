@@ -3,6 +3,7 @@ package hollowmen.model.dungeon;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import hollowmen.model.Interactable;
@@ -26,13 +27,13 @@ public class RoomImpl implements Room{
 		
 	private List<Room> childRoom = new ArrayList<>();
 	
-	private Collection<Interactable> interactables;
+	private Collection<Interactable> interactables = new LinkedList<>();
 	
-	private Collection<Enemy> enemies;
+	private Collection<Enemy> enemies = new LinkedList<>();;
 	
-	private Collection<Attack> bullets;
+	private Collection<Attack> bullets = new LinkedList<>();;
 	
-	private List<RoomEntity> list;
+	private List<RoomEntity> list = new LinkedList<>();;
 	
 	private int roomNumber;
 	
