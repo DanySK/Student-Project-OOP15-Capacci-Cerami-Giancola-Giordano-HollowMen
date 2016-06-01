@@ -25,16 +25,16 @@ public class Lobby extends JLabel{
     private Font fontB=new Font("Chiller",Font.PLAIN, 25);
     private static final int DIMXL=800;
     private static final int DIMYL=800;
-    private static final int DIMX=150;
-    private static final int DIMY=100;
+    private static final int DIMX=120;
+    private static final int DIMY=80;
     private static final int LOCX=55;
-    private static final int LOCX2=285;
-    private static final int LOCX3=515;
-    private static final int LOCX4=745;
+    private static final int LOCX2=200;
+    private static final int LOCX3=350;
+    private static final int LOCX4=500;
     private static final int LOCXPLAY=400;
     private static final int LOCXBACK=10;
-    private static final int LOCY=400;
-    private static final int LOCYSP=800;
+    private static final int LOCY=150;
+    private static final int LOCYSP=500;
     
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
     private JButton inventory;
