@@ -77,6 +77,7 @@ public class ViewImpl implements View {
 		frame.getContentPane().removeAll();
 		this.game.draw(componentList);
 		frame.add(this.game);
+		frame.update(frame.getGraphics());
 	}
 	
 	/**
@@ -87,6 +88,7 @@ public class ViewImpl implements View {
 	    frame.getContentPane().removeAll();
 	    this.lobby=new Lobby(this.observer,this.storage);
 	    frame.add(this.lobby);
+	    frame.update(frame.getGraphics());
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.
