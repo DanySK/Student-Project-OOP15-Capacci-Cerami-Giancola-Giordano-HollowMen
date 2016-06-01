@@ -139,7 +139,7 @@ public class LoaderClass {
 				imageMap.put(name, b);
 			}
 		}catch(Exception e){
-			System.out.println(e.getMessage());
+			System.out.println("Impossibile caricare alcuni o tutti i file.");
 			System.exit(0);
 		}
 		return imageMap;

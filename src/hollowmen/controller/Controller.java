@@ -1,7 +1,6 @@
 package hollowmen.controller;
 
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.Difficulty;
@@ -27,46 +26,24 @@ public class Controller implements ViewObserver {
 	private Pair<InputCommand,InformationDealer> mapInputCommand=null;
 	private View view;
 	private Model model;
-	private InputMenu menuBack;
 	private boolean difficultyPicked=false;
 	private boolean classPicked=false;
-	boolean gameRunning=false;
+	private boolean gameRunning=false;
+	private boolean itemSelected=false;
 	
 	public Controller(){
 	}
 	
 	public void setup(){
-		view=new ViewImpl(800,600,this);
-		view.takeFile(LoaderClass.load());
-		view.drawMenu(InputMenu.MAIN, Optional.empty());
-		//view.drawLobby();
-		model=new ModelImpl();
-		model.setup();
-		//this.model.goTo(1);
+		this.view=new ViewImpl(800,600,this);
+		this.view.takeFile(LoaderClass.load());
+		this.view.drawMenu(InputMenu.MAIN, Optional.empty());
+		this.model=new ModelImpl();
+		this.model.setup();
 		menuInputLoop();
 	}
 	
-	/*
-	private void backInc(InputMenu m){
-		this.counterBack++;
-		for(int k=this.counterBack-1; k>0; k--){
-			if(k!=9){
-				menuBack[k]=menuBack[k-1];
-			}
-		}
-		this.menuBack[0]=m;
-	}
-	
-	private void backDec(){
-		for(int k=0;k<this.counterBack-1; k++){
-			menuBack[k]=menuBack[k+1];
-		}
-		this.counterBack--;
-	}
-	*/
-	
 	private void menuChoice(){
-		this.menuBack=this.inputMenuList.getFirst();
 		switch(this.inputMenuList.getFirst()){
 		case MAIN:{
 			this.view.drawMenu(InputMenu.MAIN, Optional.empty());
@@ -111,9 +88,7 @@ public class Controller implements ViewObserver {
 			this.inputMenuList.clear();
 			break;
 		}case START:{
-			System.out.println("start?");
 			this.inputMenuList.clear();
-			System.out.println("start?!?");
 			gameLoop();
 			break;
 		}case ACHIEVEMENTS:{
@@ -121,40 +96,14 @@ public class Controller implements ViewObserver {
 			break;
 		}case RESUME:{
 			this.inputMenuList.clear();
-			if(!gameRunning){
+			if(!this.gameRunning){
 				this.view.drawMenu(InputMenu.MAIN,Optional.empty());
 			}else{
 				gameLoop();
 			}
 			break;
-		}case BACK:{/*
-			backDec();
-			if(this.menuBack[0].getType()=="complex"){
-				switch(this.menuBack[0]){
-				case INVENTORY:{
-					view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInventory()));
-					inputMenuList.clear();
-					itemInputManager();
-					break;
-				}case SHOP:{
-					view.drawMenu(InputMenu.SHOP, Optional.of(model.getShop()));
-					inputMenuList.clear();
-					itemInputManager();
-					break;
-				}case SKILL_TREE:{
-					//view.drawMenu(this.menuBack[0],Optional.of(model.getInv))
-					break;
-				}case POKEDEX:{
-					view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getPokedex()));
-					inputMenuList.clear();
-					break;
-				}default:{
-					break;
-				}
-				}
-			}else{
-				view.drawMenu(this.menuBack[0], Optional.empty());
-			}*/
+		}case BACK:{
+			this.view.drawMenu(InputMenu.MAIN, Optional.empty());
 			this.inputMenuList.clear();
 			break;
 		}
@@ -170,8 +119,9 @@ public class Controller implements ViewObserver {
 					this.difficultyPicked=false;
 				}
 				if(this.classPicked==true){
-					loop=false;
-					break;
+					this.classPicked=false;
+					System.out.println("spero siano poche...");
+					this.view.drawLobby();
 				}
 				if(this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
@@ -186,40 +136,40 @@ public class Controller implements ViewObserver {
 				System.exit(0);
 			}
 		}
-		view.drawLobby();
 	}
 	
 	private void itemInputLoop(){
 		boolean loop=true;
 		while(loop){
 			try{
-				if(mapInputCommand==null&&inputMenuList.isEmpty()){
+				if(this.itemSelected==false && this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
 				}else{
-					if(!inputMenuList.isEmpty()){
+					if(!this.inputMenuList.isEmpty()){
 						menuChoice();
-					}
-					switch(mapInputCommand.getX()){
-					case EQUIP:{
-						model.itemEquip(mapInputCommand.getY(),"equip");
-						mapInputCommand=null;
-						break;
-					}case BUY:{
-						model.itemBuy(mapInputCommand.getY(),"buy");
-						mapInputCommand=null;
-						break;
-					}case UNEQUIP:{
-						model.itemUnequip(mapInputCommand.getY(),"unequip");
-						mapInputCommand=null;
-						break;
-					}case SELL:{
-						model.itemSell(mapInputCommand.getY(),"sell");
-						mapInputCommand=null;
-						break;
-					}default:{
-						mapInputCommand=null;
-						break;
-					}
+					}else{
+						switch(this.mapInputCommand.getX()){
+						case EQUIP:{
+							this.model.itemEquip(this.mapInputCommand.getY());
+							this.mapInputCommand=null;
+							break;
+						}case BUY:{
+							this.model.itemBuy(this.mapInputCommand.getY());
+							this.mapInputCommand=null;
+							break;
+						}case UNEQUIP:{
+							this.model.itemUnequip(this.mapInputCommand.getY());
+							this.mapInputCommand=null;
+							break;
+						}case SELL:{
+							this.model.itemSell(this.mapInputCommand.getY());
+							this.mapInputCommand=null;
+							break;
+						}default:{
+							this.mapInputCommand=null;
+							break;
+						}
+						}
 					}
 				}
 			}catch(Exception e){
@@ -232,38 +182,74 @@ public class Controller implements ViewObserver {
 	
 	private boolean gameInputManager(){
 		try{
-			if(!inputMenuList.isEmpty()){
+			if(!this.inputMenuList.isEmpty()){
 				menuChoice();
+				return true;
 			}else{
-				
-				for(InputCommand command:inputCommandList){
+				boolean ability1=false;
+				boolean ability2=false;
+				boolean ability3=false;
+				boolean consumable=false;
+				boolean attack=false;
+				boolean jump=false;
+				boolean left=false;
+				boolean right=false;
+				boolean interact=false;
+				for(InputCommand command:this.inputCommandList){
 					switch(command){
 					case ABILITY1:{
-						model.heroAction("ability1");
+						if(!ability1){
+							ability1=true;
+							this.model.heroAction("ability1");
+						}
 						break;
 					}case ABILITY2:{
-						model.heroAction("ability2");
+						if(!ability2){
+							ability2=true;
+							this.model.heroAction("ability2");
+						}
 						break;
 					}case ABILITY3:{
-						model.heroAction("ability3");
+						if(!ability3){
+							ability3=true;
+							this.model.heroAction("ability3");
+						}
 						break;
 					}case CONSUMABLE:{
-						model.heroAction("consumable");
+						if(!consumable){
+							consumable=true;
+							this.model.heroAction("consumable");
+						}
 						break;
 					}case ATTACK:{
-						model.heroAction("attack");
+						if(!attack){
+							attack=true;
+							this.model.heroAction("attack");
+						}
 						break;
 					}case JUMP:{
-						model.heroAction("jump");
+						if(!jump){
+							jump=true;
+							this.model.heroAction("jump");
+						}
 						break;
 					}case LEFT:{
-						model.moveHero("left");
+						if(!left){
+							left=true;
+							this.model.moveHero("left");
+						}
 						break;
 					}case RIGHT:{
-						model.moveHero("right");
+						if(!right){
+							right=true;
+							this.model.moveHero("right");
+						}
 						break;
 					}case INTERACT:{
-						model.heroAction("interact");
+						if(!interact){
+							interact=true;
+							this.model.heroAction("interact");
+						}
 						break;
 					}
 					default:{
@@ -271,7 +257,6 @@ public class Controller implements ViewObserver {
 					}
 					}
 				}
-				
 			}
 		}catch(Exception e){
 			System.out.println("gameInputManager");
@@ -296,14 +281,14 @@ public class Controller implements ViewObserver {
 		
 		System.out.println("floor 1");
 		try{
-		while(gameRunning){
+		while(this.gameRunning){
 			loops=0;
-			while(System.nanoTime()>tick&&loops<maxFrameSkip&&gameRunning){
+			while(System.nanoTime()>tick&&loops<maxFrameSkip&&this.gameRunning){
 				System.out.println("giro");
 				try{
-					model.update(16);
+					this.model.update(16);
 				}catch(GameOverException e){
-					gameRunning=false;
+					this.gameRunning=false;
 				}catch(NullPointerException e){
 					e.printStackTrace();
 					System.exit(0);
@@ -311,11 +296,11 @@ public class Controller implements ViewObserver {
 				tick+=skipTick;
 				loops++;
 				if(gameInputManager()){
-					gameRunning=false;
+					this.gameRunning=false;
 				}
 			}
 			try{
-				view.drawGame(model.getDrawableRoomEntity());
+				this.view.drawGame(this.model.getDrawableRoomEntity());
 			}catch(Exception e){
 				System.out.println("drawGame non funziona... che palle!");
 				e.printStackTrace();
