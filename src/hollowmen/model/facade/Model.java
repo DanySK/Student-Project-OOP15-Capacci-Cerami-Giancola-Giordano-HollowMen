@@ -20,9 +20,9 @@ public interface Model {
 	public List<InformationDealer> getPokedex();
 	public List<InformationDealer> getInventory();
 	public List<InformationDealer> getShop();
-	public void itemEquip(InformationDealer item,String action);
-	public void itemUnequip(InformationDealer item,String action);
-	public void itemBuy(InformationDealer item,String action);
-	public void itemSell(InformationDealer item,String action);
+	public void itemEquip(InformationDealer item);
+	public void itemUnequip(InformationDealer item);
+	public void itemBuy(InformationDealer item);
+	public void itemSell(InformationDealer item);
 	public void setDifficulty(Difficulty difficulty);
 }
