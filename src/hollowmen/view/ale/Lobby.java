@@ -40,6 +40,7 @@ public class Lobby extends JLabel{
     
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
     private JLabel lab;
+    //private JLabel labTesto;
     private JButton inventory;
     private JButton skillTree;
     private JButton shop;
@@ -56,6 +57,12 @@ public class Lobby extends JLabel{
         this.lab=new JLabel();
         this.lab.setLayout(null);        
         this.lab.setOpaque(true);
+        /*this.labTesto=new JLabel("Lobby");
+        this.labTesto.setFont(fontTitle);
+        this.labTesto.setForeground(Color.WHITE);
+        this.labTesto.setVerticalAlignment(JLabel.TOP);
+        this.add(labTesto);*/
+        
         this.setBackground(Color.BLACK);
         this.setBounds(0, 0, DIMXL, DIMYL);
 
@@ -63,6 +70,9 @@ public class Lobby extends JLabel{
         this.inventory.setLayout(null);
         this.inventory.setOpaque(true);
         this.inventory.setBackground(Color.darkGray);
+        this.inventory.setText("INVENTORY");
+        this.inventory.setFont(fontA);
+        this.inventory.setForeground(Color.WHITE);
         this.inventory.setBounds(LOCX, LOCY, DIMX, DIMY);
         this.inventory.setBorder(border);
         this.inventory.addActionListener(new ActionListener() {
@@ -76,6 +86,9 @@ public class Lobby extends JLabel{
         this.skillTree.setLayout(null);
         this.skillTree.setOpaque(true);
         this.skillTree.setBackground(Color.darkGray);
+        this.skillTree.setText("SKILLTREE");
+        this.skillTree.setFont(fontA);
+        this.skillTree.setForeground(Color.WHITE);
         this.skillTree.setBounds(LOCX2, LOCY, DIMX, DIMY);
         this.skillTree.setBorder(border);
         this.skillTree.addActionListener(new ActionListener() {
