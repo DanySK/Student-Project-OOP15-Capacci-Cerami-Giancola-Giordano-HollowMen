@@ -18,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.view.InputBuffer;
-import hollowmen.view.SingletonFrame;
 import hollowmen.enumerators.Difficulty;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -98,7 +97,6 @@ public class DifficultyMenu  extends MessageDialog {
 			} else if (name.equals("CONFIRM")) {
 				InputBuffer.getInstance().getObserver().addInput(Difficulty.valueOf(choice));
 				dispose();	
-				new ClassChoice(SingletonFrame.getInstance());
 				
 			}
 		}

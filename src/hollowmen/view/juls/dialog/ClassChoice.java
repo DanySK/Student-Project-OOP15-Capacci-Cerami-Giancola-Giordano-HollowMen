@@ -79,6 +79,7 @@ public class ClassChoice extends OptionDialog {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("SELECT")) {
 				InputBuffer.getInstance().getObserver().addInput(ClassType.WARRIOR);
+				dispose();
 			} else {
 				dispose();
 			}
