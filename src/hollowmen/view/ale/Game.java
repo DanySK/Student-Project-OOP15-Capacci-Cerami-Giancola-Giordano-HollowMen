@@ -30,6 +30,8 @@ public class Game extends JPanel implements GameInterface{
         private static final int POSITIONX=300;
         private static final int POSITIONY=100;
         private static final int ALIGNMENT=10;
+        private static final int DIMX=10;
+        private static final int DIMY=10;
         private int x;
         private int y;
         private ViewObserver observer;
@@ -66,9 +68,9 @@ public class Game extends JPanel implements GameInterface{
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
-            this.levelValue.setBounds(0, ALIGNMENT, 150, 40);
+            this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, 150, 40);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
-            this.goldValue.setBounds(0, ALIGNMENT*4, 150, 40);
+            this.goldValue.setBounds(0, ALIGNMENT*5, 150, 40);
             this.floorValue=new ValueManager("Floor: ", Color.WHITE);
             this.floorValue.setBounds(700, ALIGNMENT*70, 150, 40);
             this.timerValue=new ValueManager("Timer", Color.WHITE);

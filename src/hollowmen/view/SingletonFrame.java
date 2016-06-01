@@ -17,6 +17,7 @@ public class SingletonFrame extends JFrame {
 	private static int height;
 	
 	private SingletonFrame() {
+		this.setLayout(null);
 		this.setSize(getWidth(), getHeight());
 		this.setBackground(Color.BLACK);
 		this.setLocationRelativeTo(null);

@@ -86,12 +86,8 @@ public class ViewImpl implements View {
 	 */
 	public void drawLobby(){
 		SingletonFrame.getInstance().removeAll();
-		//lobby=new Lobby(this.observer,this.storage);
-		JPanel prova=new JPanel();
-		prova.setBounds(0, 100, 800, 600);
-		prova.setOpaque(true);
-		prova.setBackground(Color.BLACK);
-	    SingletonFrame.getInstance().add(prova);
+		this.lobby=new Lobby(this.observer,this.storage);
+	    SingletonFrame.getInstance().add(this.lobby);
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.
