@@ -19,6 +19,11 @@ public interface Room {
 	public Room getParentRoom();
 	
 	/**
+	 * This method populate this {@code Room} with any {@code RoomEntity}
+	 */
+	public void autoPopulate();
+	
+	/**
 	 * This method give the selected child{@code Room}
 	 * @param choice {@code int} counting from left to right (<u>starting from 0</u>)
 	 * @return {@link Room}
