@@ -30,6 +30,10 @@ public class ModelImpl implements Model{
 		new Initializer();
 	}
 	
+	public void goTo(int floor){
+		this.dungeon.goTo(floor);
+	}
+	
 	public void update(long deltaTime) throws GameOverException {
 		this.dungeon.update(deltaTime);
 	}

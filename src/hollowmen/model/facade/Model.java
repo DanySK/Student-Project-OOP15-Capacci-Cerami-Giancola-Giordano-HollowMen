@@ -12,6 +12,7 @@ import hollowmen.model.utils.GameOverException;
  */
 public interface Model {
 	public void setup();
+	public void goTo(int floor);
 	public void update(long deltaTime)throws GameOverException;
 	public void moveHero(String move);
 	public void heroAction(String action);
