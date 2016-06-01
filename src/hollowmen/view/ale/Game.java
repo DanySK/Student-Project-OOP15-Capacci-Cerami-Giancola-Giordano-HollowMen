@@ -101,7 +101,7 @@ public class Game extends JPanel implements GameInterface{
                 this.timerValue.setSize(350, 0);
                 this.timerValue.setLocation(150, 80);
             }
-            addComponent();//static components
+            addComponent();//add all static components
             addDynamicComponent(componentList);
         }
         
@@ -135,6 +135,10 @@ public class Game extends JPanel implements GameInterface{
             this.goldValue.updateValue(Values.GOLD.getValue());
             this.floorValue.updateValue(Values.FLOOR.getValue());
             this.timerValue.updateValue(Values.TIMER.getValue());
+            this.add(this.levelValue);
+            this.add(this.goldValue);
+            this.add(this.floorValue);
+            this.add(this.timerValue);
                 
         }
         

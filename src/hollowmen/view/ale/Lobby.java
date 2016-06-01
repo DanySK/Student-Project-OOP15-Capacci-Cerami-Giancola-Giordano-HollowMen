@@ -14,7 +14,7 @@ import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 
 /**
- * The class {@code Lobby} build a sequence of JButton which can be clicked by the player.
+ * The class {@code Lobby} is used to build a sequence of JButton which can be clicked by the player.
  * 
  * @author NarcAle
  *
@@ -22,116 +22,135 @@ import hollowmen.enumerators.InputMenu;
 public class Lobby extends JLabel{
 
     private static final long serialVersionUID = -986610577506284L;
-    private Font fontA=new Font("Chiller",Font.PLAIN, 20);
-    private Font fontB=new Font("Chiller",Font.PLAIN, 20);
-    private static final int DIMX=100;
+    private Font fontB=new Font("Chiller",Font.PLAIN, 25);
+    private static final int DIMXL=800;
+    private static final int DIMYL=800;
+    private static final int DIMX=150;
     private static final int DIMY=100;
-    private static final int LOCX=8;
-    private static final int LOCX2=170;
-    private static final int LOCX3=320;
-    private static final int LOCX4=470;
-    private static final int LOCX5=400;
-    private static final int LOCX6=10;
-    private static final int LOCY=30;
-    private static final int LOCY2=800;
+    private static final int LOCX=55;
+    private static final int LOCX2=285;
+    private static final int LOCX3=515;
+    private static final int LOCX4=745;
+    private static final int LOCXPLAY=400;
+    private static final int LOCXBACK=10;
+    private static final int LOCY=400;
+    private static final int LOCYSP=800;
     
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
-    JButton inventory;
-    JButton skillTree;
-    JButton shop;
-    JButton pokedex;
-    JButton startGame;
-    JButton back;
+    private JButton inventory;
+    private JButton skillTree;
+    private JButton shop;
+    private JButton pokedex;
+    private JButton startGame;
+    private JButton back;
     
     /**
-     * the constructor create all the buttons I need to display on Lobby.
+     * The constructor create all the buttons I need to display on Lobby.
+     * 
      * @param observer
      * @param storage
      */
     public Lobby(ViewObserver observer, Map<String,ImageIcon> storage ){
-        this.setBackground(Color.BLACK);//Al momento c'è un semplice background nero.
-        this.setSize(LOCY2,LOCY2);//Lobby dimension
-        this.setLocation(0, 0);//Location of the panel.It refers to the frame dimension
+        this.setLayout(null);
+        this.setBackground(Color.BLACK);
+        this.setBounds(0, 0, DIMXL, DIMYL);
         
         this.inventory=new JButton();
         this.inventory.setLayout(null);
-        this.inventory.setSize(DIMX,DIMY);
-        this.inventory.setLocation(LOCX, LOCY);
+        this.inventory.setOpaque(true);
+        this.inventory.setBackground(Color.darkGray);
+        this.inventory.setBounds(LOCX, LOCY, DIMX, DIMY);
         this.inventory.setBorder(border);
         this.inventory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.INVENTORY);
             }       
         });
+        this.add(inventory);
         
         this.skillTree=new JButton();
         this.skillTree.setLayout(null);
-        this.skillTree.setSize(DIMX,DIMY);
-        this.skillTree.setLocation(LOCX2, LOCY);
+        this.skillTree.setOpaque(true);
+        this.skillTree.setBackground(Color.darkGray);
+        this.skillTree.setBounds(LOCX2, LOCY, DIMX, DIMY);
         this.skillTree.setBorder(border);
         this.skillTree.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.SKILL_TREE);
             }       
         });        
+        this.add(skillTree);
         
         this.shop=new JButton();
         this.shop.setLayout(null);
+        this.shop.setOpaque(true);
+        this.shop.setBackground(Color.darkGray);
         this.shop.setText("SHOP");
         this.shop.setFont(fontB);
-        this.shop.setSize(DIMX,DIMY);
-        this.shop.setLocation(LOCX3, LOCY);
+        this.shop.setForeground(Color.WHITE);
+        this.shop.setBounds(LOCX3, LOCY, DIMX, DIMY);
         this.shop.setBorder(border);
         this.shop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.SHOP);
             }       
         });
+        this.add(shop);
         
         this.pokedex=new JButton();
         this.pokedex.setLayout(null);
+        this.pokedex.setOpaque(true);
+        this.pokedex.setBackground(Color.darkGray);
         this.pokedex.setText("POKEDEX");
         this.pokedex.setFont(fontB);
-        this.pokedex.setSize(DIMX,DIMY);
-        this.pokedex.setLocation(LOCX4, LOCY);
+        this.shop.setForeground(Color.WHITE);
+        this.pokedex.setBounds(LOCX4, LOCY, DIMX, DIMY);
         this.pokedex.setBorder(border);
         this.pokedex.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.POKEDEX);
             }       
         });
+        this.add(pokedex);
         
         this.startGame=new JButton();
         this.startGame.setLayout(null);
+        this.startGame.setOpaque(true);
+        this.startGame.setBackground(Color.darkGray);
         this.startGame.setText("START");
-        this.startGame.setFont(fontA);
-        this.startGame.setSize(DIMX,DIMY);
-        this.startGame.setLocation(LOCX5,LOCY2);
+        this.startGame.setFont(fontB);
+        this.startGame.setForeground(Color.WHITE);
+        this.startGame.setBounds(LOCXPLAY, LOCYSP, DIMX, DIMY);
         this.startGame.setBorder(border);
         this.startGame.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.START);
             }       
         });
+        this.add(startGame);
         
         this.back=new JButton();
         this.back.setLayout(null);
-        this.back.setText("back");
-        this.back.setSize(DIMX,DIMY);
-        this.back.setLocation(LOCX6,LOCY2);
+        this.back.setOpaque(true);
+        this.back.setBackground(Color.darkGray);
+        this.back.setText("BACK");
+        this.back.setFont(fontB);
+        this.back.setForeground(Color.WHITE);
+        this.back.setBounds(LOCXBACK, LOCYSP, DIMX, DIMY);
         this.back.setBorder(border);
         this.back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.BACK);
             }       
         });
+        this.add(back);
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
-        	
-        	if(elem.getKey()=="castleBG"){//Background Image
-        		this.setIcon(elem.getValue());
-        		break;
-        	}
+                
+                if(elem.getKey()=="castleBG"){//Background Image
+                        this.setIcon(elem.getValue());
+                        break;
+                }
             if(elem.getKey()==InputMenu.INVENTORY.getString()){
                 this.inventory.setIcon(elem.getValue());
                 this.setBorder(border);
@@ -153,7 +172,5 @@ public class Lobby extends JLabel{
                 break;
             }
         }
-        
-        
     }
 }
