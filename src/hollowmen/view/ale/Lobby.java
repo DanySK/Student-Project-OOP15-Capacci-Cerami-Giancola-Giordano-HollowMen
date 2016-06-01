@@ -148,10 +148,10 @@ public class Lobby extends JLabel{
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
                 
-                if(elem.getKey()=="castleBG"){//Background Image
-                        this.setIcon(elem.getValue());
-                        break;
-                }
+            if(elem.getKey()=="castleBG"){//Background Image
+                this.setIcon(elem.getValue());
+                break;
+            }
             if(elem.getKey()==InputMenu.INVENTORY.getString()){
                 this.inventory.setIcon(elem.getValue());
                 this.setBorder(border);

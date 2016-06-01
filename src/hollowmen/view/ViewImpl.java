@@ -76,18 +76,18 @@ public class ViewImpl implements View {
 	 * It's linked to {@link Game} class.
 	 */ 
 	public void drawGame(List<DrawableRoomEntity> componentList) {
-		SingletonFrame.getInstance().removeAll();
+		SingletonFrame frame=SingletonFrame.getInstance();
 		this.game.draw(componentList);
-		SingletonFrame.getInstance().add(this.game);
+		frame.add(this.game);
 	}
 	
 	/**
 	 * The method {@code drawLobby} is used to draw all the lobby components on screen.
 	 */
 	public void drawLobby(){
-		SingletonFrame.getInstance().removeAll();
+		SingletonFrame frame=SingletonFrame.getInstance();
 		this.lobby=new Lobby(this.observer,this.storage);
-	    SingletonFrame.getInstance().add(this.lobby);
+	    frame.add(this.lobby);
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.

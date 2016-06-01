@@ -25,13 +25,25 @@ public class Game extends JPanel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
         private static final int GAP=200;
-        private static final int ALIGNMENTX=680;
-        private static final int ALIGNMENTY=20;
-        private static final int POSITIONX=300;
-        private static final int POSITIONY=100;
+        private static final int ALIGNMENTX=680;///////////////////
+        private static final int ALIGNMENTY=20;////////////////////
+        private static final int POSITIONX=300;////////////////////
+        private static final int POSITIONY=100;///////////////////
         private static final int ALIGNMENT=10;
-        private static final int DIMX=10;
-        private static final int DIMY=10;
+        private static final int LOCBX=20;
+        private static final int LOCBX2=110;
+        private static final int LOCBX3=200;
+        private static final int LOCBX4=290;
+        private static final int LOCBX5=440;
+        private static final int LOCBX6=530;
+        private static final int DIMX=150;
+        private static final int DIMY=40;
+        private static final int DIMBX=90;
+        private static final int DIMBY=70;
+        private static final int ALIGNMENTXF=630;
+        private static final int ALIGNMENTYF=700;
+        private static final int LOCX=400;
+        private static final int LOCY=740;
         private int x;
         private int y;
         private ViewObserver observer;
@@ -68,40 +80,40 @@ public class Game extends JPanel implements GameInterface{
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
-            this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, 150, 40);
+            this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMY);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
-            this.goldValue.setBounds(0, ALIGNMENT*5, 150, 40);
+            this.goldValue.setBounds(0, ALIGNMENT*5, DIMX, DIMY);
             this.floorValue=new ValueManager("Floor: ", Color.WHITE);
-            this.floorValue.setBounds(700, ALIGNMENT*70, 150, 40);
+            this.floorValue.setBounds(ALIGNMENTXF, ALIGNMENTYF, DIMX, DIMY);
             this.timerValue=new ValueManager("Timer", Color.WHITE);
-            this.timerValue.setBounds(350, 0, 150, 80);
+            this.timerValue.setBounds(LOCX, 0, DIMX, DIMY*2);
             this.bars=new Bar();
             this.bars.setLayout(null);
-            this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento
+            this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento///////////////////////////////////////
             //bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
             this.btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
-            this.btnAbility1.setBounds(8, 740, 90, 70);
+            this.btnAbility1.setBounds(LOCBX, LOCY, DIMBX, DIMBY);
             this.btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storageGame);
-            this.btnAbility2.setBounds(98, 740, 90, 70);
+            this.btnAbility2.setBounds(LOCBX2, LOCY, DIMBX, DIMBY);
             this.btnAbility3=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storageGame);
-            this.btnAbility3.setBounds(188, 740, 90, 70);
+            this.btnAbility3.setBounds(LOCBX3, LOCY, DIMBX, DIMBY);
             this.btnConsumable=new ScreenButton(this.observer, InputCommand.CONSUMABLE ,this.storageGame);
-            this.btnConsumable.setBounds(278, 740, 90, 70);
+            this.btnConsumable.setBounds(LOCBX4, LOCY, DIMBX, DIMBY);
             this.btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storageGame);
-            this.btnSkillTree.setBounds(458, 740, 90, 70);
+            this.btnSkillTree.setBounds(LOCBX6, LOCY, DIMBX, DIMBY);
             this.btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storageGame);
-            this.btnInventory.setBounds(548, 740, 90, 70);
+            this.btnInventory.setBounds(LOCBX5, LOCY, DIMBX, DIMBY);
         }
         
         public void draw(List<DrawableRoomEntity> componentList){       
-            removeAll(); /*At first I remove all the components from the screen 
-                                         then I'll add the component(addComponent),that are all the static components
+            //removeAll(); /*At first I remove all the components from the screen 
+                                         /*then I'll add the component(addComponent),that are all the static components
                                          (lifeBar, expBar) and the dynamicComponents too (which are the various mob)*/
                 
             if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
                 this.timerValue=new ValueManager("Timer: ", Color.RED);
-                this.timerValue.setSize(350, 0);
-                this.timerValue.setLocation(150, 80);
+                this.timerValue.setSize(DIMX, DIMY*2);
+                this.timerValue.setLocation(LOCX, 0);
             }
             addComponent();//add all static components
             addDynamicComponent(componentList);
