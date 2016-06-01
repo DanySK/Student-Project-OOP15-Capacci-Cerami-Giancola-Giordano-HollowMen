@@ -31,11 +31,9 @@ public class RoomImpl implements Room{
 	
 	private Collection<Interactable> interactables = new LinkedList<>();
 	
-	private Collection<Enemy> enemies = new LinkedList<>();;
+	private Collection<Enemy> enemies = new LinkedList<>();
 	
-	private Collection<Attack> bullets = new LinkedList<>();;
-	
-	private List<RoomEntity> list = new LinkedList<>();;
+	private Collection<Attack> bullets = new LinkedList<>();
 	
 	private int roomNumber;
 	
@@ -55,14 +53,16 @@ public class RoomImpl implements Room{
 	public void autoPopulate() {
 		if(this.needToGenerate) {
 			this.needToGenerate = false;
-			for(int i = 0; i < this.childNumber; i++) {
+			for(int i = 0; i <= this.childNumber; i++) {
 				this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
 			}
 			Box2DUtils.linearSpacing(this.interactables);
 			Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
 			Box2DUtils.centerPosition(backDoor);
 			this.interactables.add(backDoor);
-			if(this.childNumber == 0) {
+			if(this.childNumber != 0) {
+				this.enemies = Algorithms.generateEnemy();
+			} else {
 				Algorithms.populateRoom(this);
 			}
 		}
@@ -97,7 +97,11 @@ public class RoomImpl implements Room{
 	
 	@Override
 	public Collection<RoomEntity> getAllEntities() {
-		return Collections.unmodifiableList(list);
+		Collection<RoomEntity> coll = new LinkedList<>();
+		coll.addAll(interactables);
+		coll.addAll(bullets);
+		coll.addAll(enemies);
+		return coll;
 	}
 
 
@@ -123,7 +127,6 @@ public class RoomImpl implements Room{
 
 	@Override
 	public void addEntity(RoomEntity roomEntity) {
-		list.add(roomEntity);
 		if(roomEntity instanceof Attack) {
 			bullets.add((Attack) roomEntity);
 		}
@@ -137,8 +140,6 @@ public class RoomImpl implements Room{
 
 	@Override
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
-		ExceptionThrower.checkIllegalArgument(roomEntity, x -> !this.list.contains(x));
-		list.remove(roomEntity);
 		if(roomEntity instanceof Attack) {
 			bullets.remove((Attack) roomEntity);
 		}

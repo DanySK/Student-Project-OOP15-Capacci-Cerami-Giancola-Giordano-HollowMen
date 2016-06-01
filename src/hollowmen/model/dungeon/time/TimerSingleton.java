@@ -96,8 +96,8 @@ public class TimerSingleton implements Time{
 	}
 	
 	@Override
-	public <T> void register(T subj, double duration, Consumer<T> action) {
-		this.queue.add(new Event<T>(subj, duration, action));
+	public <T> void register(T subj, double durationSec, Consumer<T> action) {
+		this.queue.add(new Event<T>(subj, durationSec * 1000, action));
 	}
 		
 
