@@ -104,6 +104,7 @@ public class DungeonSingleton implements Dungeon{
 			this.currentRoom = this.currentRoom.getParentRoom();
 		} else {
 			this.currentRoom = this.currentRoom.getChildRoom(newRoomNumber);
+			this.currentRoom.autoPopulate();
 			if(this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT) {
 				endRun();
 			}
@@ -117,6 +118,7 @@ public class DungeonSingleton implements Dungeon{
 		TimerSingleton.getInstance().resetAndLimit(1000000);
 		this.floorNumber = floorNumber;
 		this.currentRoom = new RoomImpl(this.lobby, Constants.CHILDROOMQUANTITY, 1);
+		this.currentRoom.autoPopulate();
 	}
 
 	@Override

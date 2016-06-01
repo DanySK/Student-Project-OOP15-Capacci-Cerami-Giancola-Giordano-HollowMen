@@ -2,6 +2,7 @@ package hollowmen.model.roomentity;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.jbox2d.common.Vec2;
@@ -22,7 +23,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	private boolean facingRight;
 	protected ActionAllowed actionAllowed = new ActionAllowedImpl();
 	private Map<String, Parameter> parameters;
-	private Collection<Information> status;
+	private Collection<Information> status = new LinkedList<>();
 	
 	
 	public ActorAbs(Information info, Pair<Float, Float> size, Collection<Parameter> param) {

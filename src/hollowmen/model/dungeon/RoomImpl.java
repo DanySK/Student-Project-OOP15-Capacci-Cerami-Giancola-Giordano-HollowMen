@@ -21,6 +21,8 @@ import hollowmen.model.Enemy;
 
 public class RoomImpl implements Room{
 	
+	private boolean needToGenerate = true;
+	
 	private Room parentRoom;
 	
 	private int childNumber;
@@ -51,15 +53,18 @@ public class RoomImpl implements Room{
 	};
 	
 	public void autoPopulate() {
-		for(int i = 0; i < this.childNumber; i++) {
-			this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
-		}
-		Box2DUtils.linearSpacing(this.interactables);
-		Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
-		Box2DUtils.centerPosition(backDoor);
-		this.interactables.add(backDoor);
-		if(this.childNumber == 0) {
-			Algorithms.populateRoom(this);
+		if(this.needToGenerate) {
+			this.needToGenerate = false;
+			for(int i = 0; i < this.childNumber; i++) {
+				this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
+			}
+			Box2DUtils.linearSpacing(this.interactables);
+			Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
+			Box2DUtils.centerPosition(backDoor);
+			this.interactables.add(backDoor);
+			if(this.childNumber == 0) {
+				Algorithms.populateRoom(this);
+			}
 		}
 	}
 
