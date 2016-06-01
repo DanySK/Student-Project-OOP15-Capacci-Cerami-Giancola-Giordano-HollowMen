@@ -1,11 +1,14 @@
 package hollowmen.view;
 
+import java.awt.Color;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.DrawableRoomEntity;
@@ -83,8 +86,12 @@ public class ViewImpl implements View {
 	 */
 	public void drawLobby(){
 		SingletonFrame.getInstance().removeAll();
-		lobby=new Lobby(this.observer,this.storage);
-	    SingletonFrame.getInstance().add(this.lobby);
+		//lobby=new Lobby(this.observer,this.storage);
+		JPanel prova=new JPanel();
+		prova.setBounds(0, 100, 800, 600);
+		prova.setOpaque(true);
+		prova.setBackground(Color.BLACK);
+	    SingletonFrame.getInstance().add(prova);
 	}
 	/**
 	 * The {@code getStorage()} method allows to get the images' storage.

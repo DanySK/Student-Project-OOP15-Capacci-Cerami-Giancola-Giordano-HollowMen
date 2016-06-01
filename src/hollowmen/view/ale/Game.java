@@ -64,7 +64,7 @@ public class Game extends JPanel implements GameInterface{
         private void initialSetup(int x, int y){ 
             this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
-            this.panelGame.setBounds(0, GAP/2, x, y);
+            this.panelGame.setBounds(0, GAP/2-20, x, y);
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
             this.levelValue.setBounds(0, ALIGNMENT, 150, 40);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);

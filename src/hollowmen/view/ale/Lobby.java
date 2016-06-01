@@ -52,6 +52,7 @@ public class Lobby extends JLabel{
      */
     public Lobby(ViewObserver observer, Map<String,ImageIcon> storage ){
         this.setLayout(null);
+        this.setOpaque(true);
         this.setBackground(Color.BLACK);
         this.setBounds(0, 0, DIMXL, DIMYL);
         
