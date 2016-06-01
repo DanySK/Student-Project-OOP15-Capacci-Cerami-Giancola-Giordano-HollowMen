@@ -25,10 +25,10 @@ public class Game extends JPanel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
         private static final int GAP=200;
-        private static final int ALIGNMENTX=680;///////////////////
-        private static final int ALIGNMENTY=20;////////////////////
-        private static final int POSITIONX=300;////////////////////
-        private static final int POSITIONY=100;///////////////////
+        private static final int ALIGNMENTX=680;
+        private static final int ALIGNMENTY=10;
+        private static final int POSITIONX=300;
+        private static final int POSITIONY=100;
         private static final int ALIGNMENT=10;
         private static final int LOCBX=20;
         private static final int LOCBX2=110;
@@ -82,15 +82,14 @@ public class Game extends JPanel implements GameInterface{
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
             this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMY);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
-            this.goldValue.setBounds(0, ALIGNMENT*5, DIMX, DIMY);
+            this.goldValue.setBounds(ALIGNMENT, ALIGNMENT*5, DIMX, DIMY);
             this.floorValue=new ValueManager("Floor: ", Color.WHITE);
             this.floorValue.setBounds(ALIGNMENTXF, ALIGNMENTYF, DIMX, DIMY);
             this.timerValue=new ValueManager("Timer", Color.WHITE);
             this.timerValue.setBounds(LOCX, 0, DIMX, DIMY*2);
             this.bars=new Bar();
             this.bars.setLayout(null);
-            this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY);//misure statiche al momento///////////////////////////////////////
-            //bars.setBounds(x/7*5, y/38, this.getWidth()/3, this.getHeight());//?????????????????
+            this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY); 
             this.btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
             this.btnAbility1.setBounds(LOCBX, LOCY, DIMBX, DIMBY);
             this.btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storageGame);

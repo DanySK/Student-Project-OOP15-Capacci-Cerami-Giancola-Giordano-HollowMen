@@ -1,14 +1,11 @@
 package hollowmen.view;
 
-import java.awt.Color;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.DrawableRoomEntity;
