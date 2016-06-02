@@ -10,6 +10,7 @@ import hollowmen.model.Enemy;
 import hollowmen.model.Item;
 import hollowmen.model.Modifier;
 import hollowmen.model.Hero;
+import hollowmen.model.Interactable;
 import hollowmen.model.Parameter;
 import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.Initializer;
@@ -50,9 +51,39 @@ public class ModelImpl implements Model{
 
 	public List<DrawableRoomEntity> getDrawableRoomEntity() {
 		List<DrawableRoomEntity> drawable=new LinkedList<>();
+		this.hero.getState();
+		
+		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
+		ActorState sta=ActorState.STANDING;
+		switch(this.hero.getState().toUpperCase()){
+		case "ATTACK":{sta=ActorState.valueOf("ATTACKING");
+		    break;
+		}case "JUMP":{sta=ActorState.valueOf("JUMPING");
+                break;
+                }case "STAND":{sta=ActorState.valueOf("STANDING");
+                break;
+                }case "MOVE":{sta=ActorState.valueOf("MOVING");
+                break;
+                }
+		}
+		
+		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
+		        new Point2DImpl((int)(this.hero.getBody().getLocalCenter().x-this.hero.getLength()/2),
+		                (int)(this.hero.getBody().getLocalCenter().y+this.hero.getHeight()/2)),
+		        this.hero.isFacingRight(),
+		        sta));
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
-			ActorState sta=ActorState.valueOf(re.getState().toUpperCase());
-			
+		    switch(re.getState().toUpperCase()){
+	                case "ATTACK":{sta=ActorState.valueOf("ATTACKING");
+	                    break;
+	                }case "JUMP":{sta=ActorState.valueOf("JUMPING");
+	                break;
+	                }case "STAND":{sta=ActorState.valueOf("STANDING");
+	                break;
+	                }case "MOVE":{sta=ActorState.valueOf("MOVING");
+	                break;
+	                }
+	                }
 			drawable.add(new DrawableRoomEntityImpl(
 					re.getInfo().getName(),
 					new Point2DImpl((int)(re.getBody().getLocalCenter().x-re.getLength()/2),
@@ -60,6 +91,15 @@ public class ModelImpl implements Model{
 					re.isFacingRight(),
 					sta));
 		}
+		for(Interactable re: this.dungeon.getCurrentRoom().getInteractable()){
+                    
+                    drawable.add(new DrawableRoomEntityImpl(
+                                    re.getInfo().getName(),
+                                    new Point2DImpl((int)(re.getBody().getLocalCenter().x-re.getLength()/2),
+                                                    (int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
+                                    false,
+                                    ActorState.STANDING));
+            }
 		return drawable;
 	}
 
