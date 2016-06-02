@@ -41,14 +41,14 @@ public class Game extends JPanel implements GameInterface{
         private static final int LOCBX4=290;
         private static final int LOCBX5=440;
         private static final int LOCBX6=530;
-        private static final int DIMX=150;
+        private static final int DIMX=200;
         private static final int DIMY=40;
         private static final int DIMYTG=30;
         private static final int DIMBX=90;
         private static final int DIMBY=70;
         private static final int ALIGNMENTXF=630;
         private static final int ALIGNMENTYF=700;
-        private static final int LOCX=325;
+        private static final int LOCX=300;
         private static final int LOCY=690;
         private int x;
         private int y;
