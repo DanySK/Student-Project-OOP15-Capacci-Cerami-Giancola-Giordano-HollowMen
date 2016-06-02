@@ -23,11 +23,13 @@ import hollowmen.utilities.Pair;
  */
 public class ModelImpl implements Model{
 	
-	DungeonSingleton dungeon=DungeonSingleton.getInstance();
-	Hero hero=dungeon.getHero();
+	DungeonSingleton dungeon;
+	Hero hero;
 	
 	public void setup(){
 		new Initializer();
+		dungeon=DungeonSingleton.getInstance();
+		hero=dungeon.getHero();
 	}
 	
 	public void goTo(int floor){
@@ -82,9 +84,10 @@ public class ModelImpl implements Model{
 	
 	public List<InformationDealer> getInventory() {
 		List<InformationDealer> info=new LinkedList<>();
-		Map<String,Double> param=new HashMap<>();
+		Map<String,Double> param;
 		for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
-			for(Modifier m:it.getX().getModifiers().values()){
+		    param=new HashMap<>();
+		    for(Modifier m:it.getX().getModifiers().values()){
 				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
 			}
 			info.add(new InformationDealerImpl(it.getX().getInfo().getName(),
@@ -93,7 +96,7 @@ public class ModelImpl implements Model{
 					it.getX().getState().name(),
 					it.getY(),
 					it.getX().getHeroClassEquippable()));
-			param.clear();
+			
 		}
 		return info;
 	}

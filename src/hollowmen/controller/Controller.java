@@ -115,8 +115,8 @@ public class Controller implements ViewObserver {
 		while(loop){
 			try{
 				if(this.difficultyPicked==true){
+				    this.difficultyPicked=false;
 					this.view.drawMenu(InputMenu.CLASS, Optional.empty());
-					this.difficultyPicked=false;
 				}
 				if(this.classPicked==true){
 					this.classPicked=false;
@@ -145,6 +145,7 @@ public class Controller implements ViewObserver {
 					java.lang.Thread.sleep(100);
 				}else{
 					if(!this.inputMenuList.isEmpty()){
+					    System.out.println(this.inputMenuList.getFirst());
 						menuChoice();
 					}else{
 						switch(this.mapInputCommand.getX()){
