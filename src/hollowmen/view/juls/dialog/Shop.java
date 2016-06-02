@@ -43,8 +43,6 @@ public class Shop extends TabbedDialog {
 		this.loadImages();
 		super.addTitle(title);
 		this.add(buttonC);
-		statsBox.setBounds(420, 280, 130, 140);
-		this.add(statsBox);
 		this.setButtonState(false, false);
 		super.addMouseListener(dialogL);
 		
@@ -55,6 +53,9 @@ public class Shop extends TabbedDialog {
 		this.populateTab(collection, "inventory", inventoryP);
 		this.populateShopTab(collection, "shop", shopP);
 		
+		statsBox.setBounds(420, 280, 130, 140);
+		this.add(statsBox);
+		super.add(tabbedPane);
 		this.setVisible(true);
 	}
 	
@@ -92,6 +93,7 @@ public class Shop extends TabbedDialog {
 				}
 			});
 			panel.add(button);
+			scroll.add(panel);
 		});
 		tabbedPane.addTab(tab, panel);
 	}

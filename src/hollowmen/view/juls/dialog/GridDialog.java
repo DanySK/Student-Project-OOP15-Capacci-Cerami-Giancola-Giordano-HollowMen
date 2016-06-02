@@ -44,7 +44,6 @@ public abstract class GridDialog extends MenuDialog {
 	protected JPanel gridPanel = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								.addTo(scroll)
 								.build();
 
 	
