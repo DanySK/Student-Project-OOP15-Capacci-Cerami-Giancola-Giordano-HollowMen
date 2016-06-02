@@ -88,7 +88,7 @@ public class Game extends JPanel implements GameInterface{
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);
             this.panelGame.setOpaque(true);
-            this.panelGame.setBackground(Color.YELLOW);
+            this.panelGame.setIcon(this.storageGame.get("game").getIcon());
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
             this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMYTG);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
@@ -116,6 +116,7 @@ public class Game extends JPanel implements GameInterface{
             this.btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storageGame);
             this.btnSkillTree.setBounds(LOCBX6, LOCY, DIMBX, DIMBY);
             this.btnSkillTree.setBackground(Color.DARK_GRAY);
+            this.btnSkillTree.setEnabled(false);
             this.btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storageGame);
             this.btnInventory.setBounds(LOCBX5, LOCY, DIMBX, DIMBY);
             this.btnInventory.setBackground(Color.DARK_GRAY);
@@ -143,7 +144,8 @@ public class Game extends JPanel implements GameInterface{
                                 if(elem.getKey().equals(name)){
                                         storageGame.put(name, new JLabel(elem.getValue()));
                                         if(!name.equals("ability1") || !name.equals("ability2") || !name.equals("ability3")||
-                                           !name.equals("inventory")|| !name.equals("consumable") || !name.equals("skillTree")){
+                                           !name.equals("inventory")|| !name.equals("consumable") || !name.equals("skillTree")||
+                                           !name.equals("door")|| !name.equals("treasureChest")){
                                                 storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
                                         }
                                 }
@@ -177,7 +179,7 @@ public class Game extends JPanel implements GameInterface{
                 for(DrawableRoomEntity elem: componentList){
                     if(elem.isFacingRight()){
                         for(Map.Entry<String,JLabel> element: storageFlipped.entrySet()){
-                            if(elem.getName()=="hero"){
+                            if(elem.getName().equals("hero")){
                                 switch(elem.getState()){
                                     case ATTACKING: {
                                         labTmp=storageFlipped.get("hero");
@@ -206,19 +208,21 @@ public class Game extends JPanel implements GameInterface{
                                }
                                break;
                            }
-                           if(elem.getName()==element.getKey()){
-                               labTmp=element.getValue();
-                               labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-                                               labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                               this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-                               break;//When the right image is found, the for cycle will end.
-                           }
+                            else{
+	                           if(elem.getName().equals(element.getKey())){
+	                               labTmp=element.getValue();
+	                               labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+	                                               labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+	                               this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+	                               break;//When the right image is found, the for cycle will end.
+	                           }
+                            }
                        }
                     }
                     else{
                         for(Map.Entry<String,JLabel> element: storageGame.entrySet()){
                         	
-                            if(elem.getName()=="hero"){
+                            if(elem.getName().equals("hero")){
                                 switch(elem.getState()){
                                 case ATTACKING: {
                                     labTmp=storageGame.get("hero");
@@ -247,13 +251,14 @@ public class Game extends JPanel implements GameInterface{
                                 }
                                 break;
                             }
-                            
-                            if(elem.getName()==element.getKey()){
-                                labTmp=element.getValue();
-                                labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-                                                labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-                                break;//When the right image is found, the for cycle will end.
+                            else{
+	                            if(elem.getName().equals(element.getKey())){
+	                                labTmp=element.getValue();
+	                                labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+	                                                labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+	                                this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+	                                break;//When the right image is found, the for cycle will end.
+	                            }
                             }
                         }
                    }

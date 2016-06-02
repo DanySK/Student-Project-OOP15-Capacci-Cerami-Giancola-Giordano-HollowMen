@@ -38,7 +38,6 @@ public class ViewImpl implements View {
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 		this.observer = observer;
-		UtilitySingleton.getInstance().setObserver(observer);
 		try{
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/CHILLER.ttf")));
@@ -48,6 +47,7 @@ public class ViewImpl implements View {
 			e.printStackTrace();
 		}
 		
+		UtilitySingleton.getInstance().setObserver(observer);
 		SingletonFrame.setWidth(x);
 		SingletonFrame.setHeight(y);
 		this.game=new Game(x,y,observer);
@@ -80,7 +80,6 @@ public class ViewImpl implements View {
 			this.storage.put(elem.getKey(),new ImageIcon(elem.getValue()));
 		}
 		this.game.setStorage(this.storage);
-		UtilitySingleton.getInstance().setStorage(this.storage);
 	}
 	
 	/**
@@ -111,7 +110,6 @@ public class ViewImpl implements View {
 	 * @return - storage
 	 */
 	public Map<String,ImageIcon> getStorage() {
-		
 		return storage;
 	}
 	
