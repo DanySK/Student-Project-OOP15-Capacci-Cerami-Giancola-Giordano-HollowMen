@@ -6,10 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.view.SingletonFrame;
@@ -60,7 +64,7 @@ public class Lobby extends JLabel{
         this.setBackground(Color.BLACK);
         this.setBounds(0, 0, DIMXL, DIMYL);
         this.add(lab);
-        
+        		
         this.inventory=new JButton();
         this.inventory.setLayout(null);
         this.inventory.setOpaque(true);
@@ -78,6 +82,7 @@ public class Lobby extends JLabel{
         		frame.update(frame.getGraphics());
             }       
         });
+        rollOverButton(this.inventory, Color.DARK_GRAY, Color.GRAY);
         this.add(this.inventory);
         
         this.skillTree=new JButton();
@@ -97,9 +102,9 @@ public class Lobby extends JLabel{
         		frame.update(frame.getGraphics());
             }       
         });        
-        
         this.add(this.skillTree);
         this.skillTree.setEnabled(false);
+        
         this.shop=new JButton();
         this.shop.setLayout(null);
         this.shop.setOpaque(true);
@@ -117,6 +122,7 @@ public class Lobby extends JLabel{
         		frame.update(frame.getGraphics());
             }       
         });
+        rollOverButton(this.shop, Color.DARK_GRAY, Color.GRAY);
         this.add(this.shop);
         
         this.pokedex=new JButton();
@@ -136,12 +142,13 @@ public class Lobby extends JLabel{
         		frame.update(frame.getGraphics());
             }       
         });
+        rollOverButton(this.pokedex, Color.DARK_GRAY, Color.GRAY);
         this.add(this.pokedex);
         
         this.startGame=new JButton();
         this.startGame.setLayout(null);
         this.startGame.setOpaque(true);
-        this.startGame.setBackground(Color.GREEN);
+        this.startGame.setBackground(new Color(3,192,60));
         this.startGame.setText("START");
         this.startGame.setFont(fontB);
         this.startGame.setForeground(Color.BLACK);
@@ -152,12 +159,13 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.START);
             }       
         });
+        rollOverButton(this.startGame, new Color(3,192,60), Color.GREEN);
         this.add(this.startGame);
         
         this.back=new JButton();
         this.back.setLayout(null);
         this.back.setOpaque(true);
-        this.back.setBackground(Color.RED);
+        this.back.setBackground(new Color(150,0,24));
         this.back.setText("BACK");
         this.back.setFont(fontB);
         this.back.setForeground(Color.WHITE);
@@ -168,6 +176,7 @@ public class Lobby extends JLabel{
                 observer.addInput(InputMenu.BACK);
             }       
         });
+        rollOverButton(this.back, new Color(150,0,24), Color.RED);
         this.add(this.back);
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
@@ -198,4 +207,25 @@ public class Lobby extends JLabel{
             }
         }
     }
+    
+    /**
+     * The method {@code rollOverButton} is used to set color when mouse is over
+     * @param button
+     */
+    private void rollOverButton(JButton button, Color colorOUT, Color colorIN){
+    	 button.getModel().addChangeListener(new ChangeListener() {
+ 			
+ 			@Override
+ 			public void stateChanged(ChangeEvent e) {
+ 				ButtonModel model=(ButtonModel) e.getSource();
+ 				if(model.isRollover()){
+ 					button.setBackground(colorIN);
+ 				}
+ 				else{
+ 					button.setBackground(colorOUT);
+ 				}
+ 			}
+ 		});
+    }
+    
 }
