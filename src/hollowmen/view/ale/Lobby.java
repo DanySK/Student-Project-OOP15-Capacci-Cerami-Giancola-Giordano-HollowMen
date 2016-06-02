@@ -29,6 +29,7 @@ public class Lobby extends JLabel{
     private static final long serialVersionUID = -986610577506284L;
     private Font fontA=new Font("Chiller",Font.PLAIN, 25);
     private Font fontB=new Font("Chiller",Font.PLAIN, 40);
+    private Font fontTitle=new Font("Chiller",Font.PLAIN, 70);
     private static final int DIMXPLAY=200;
     private static final int DIMXL=800;
     private static final int DIMYL=800;
@@ -38,18 +39,19 @@ public class Lobby extends JLabel{
     private static final int LOCX2=415;
     private static final int LOCXPLAY=550;
     private static final int LOCXBACK=10;
-    private static final int LOCY=180;
+    private static final int LOCY=230;
     private static final int LOCY2=450;
     private static final int LOCYSP=670;
     
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
-    private JLabel lab;
     private JButton inventory;
     private JButton skillTree;
     private JButton shop;
     private JButton pokedex;
     private JButton startGame;
     private JButton back;
+    private JLabel labTitle;
+    
     /**
      * The constructor create all the buttons I need to display on Lobby.
      * 
@@ -57,14 +59,18 @@ public class Lobby extends JLabel{
      * @param storage
      */
     public Lobby(ViewObserver observer, Map<String,ImageIcon> storage ){
-        this.lab=new JLabel();
-        this.lab.setLayout(null);        
-        this.lab.setOpaque(true);
-        
-        this.setBackground(Color.BLACK);
+        this.setLayout(null);
+        this.setOpaque(true);
         this.setBounds(0, 0, DIMXL, DIMYL);
-        this.add(lab);
-        		
+        this.setIcon(storage.get("castleBG"));
+        
+        this.labTitle=new JLabel();
+        this.labTitle.setText("LOBBY");
+        this.labTitle.setFont(fontTitle);
+        this.labTitle.setForeground(Color.WHITE);
+        this.labTitle.setBounds(315, 10, 300, 100);
+        this.add(labTitle);
+        
         this.inventory=new JButton();
         this.inventory.setLayout(null);
         this.inventory.setOpaque(true);
@@ -178,34 +184,6 @@ public class Lobby extends JLabel{
         });
         rollOverButton(this.back, new Color(150,0,24), Color.RED);
         this.add(this.back);
-        
-        for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
-
-            if(elem.getKey().equals("castleBG")){//Background Image
-                this.setIcon(elem.getValue());
-                break;
-            }
-            if(elem.getKey().equals(InputMenu.INVENTORY.getString())){
-                this.inventory.setIcon(elem.getValue());
-                this.setBorder(border);
-                break;
-            }
-            else if(elem.getKey().equals(InputMenu.SKILL_TREE.getString())){
-                this.skillTree.setIcon(elem.getValue());
-                this.setBorder(border);
-                break;
-            }
-            else if(elem.getKey().equals(InputMenu.SHOP.getString())){
-                //this.shop.setIcon(elem.getValue());
-                this.setBorder(border);
-                break;
-            }
-            else if(elem.getKey().equals(InputMenu.POKEDEX.getString())){
-                //this.pokedex.setIcon(elem.getValue());
-                this.setBorder(border);
-                break;
-            }
-        }
     }
     
     /**
