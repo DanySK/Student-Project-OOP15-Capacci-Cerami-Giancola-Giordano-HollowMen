@@ -48,7 +48,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 	
 	private int gold;
 	
-	private Inventory inventory;
+	private Inventory inventory = new InventoryImpl();
 		
 	private HeroClass heroClass;
 	
