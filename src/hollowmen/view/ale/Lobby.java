@@ -135,7 +135,7 @@ public class Lobby extends JLabel{
         this.pokedex.setLayout(null);
         this.pokedex.setOpaque(true);
         this.pokedex.setBackground(Color.darkGray);
-        this.pokedex.setText("POKEDEX");
+        this.pokedex.setText("BESTIARY");
         this.pokedex.setFont(fontA);
         this.pokedex.setForeground(Color.WHITE);
         this.pokedex.setBounds(LOCX2, LOCY2, DIMX, DIMY);

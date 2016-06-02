@@ -123,10 +123,6 @@ public class Game extends JPanel implements GameInterface{
         }
         
         public void draw(List<DrawableRoomEntity> componentList){       
-            //removeAll(); /*At first I remove all the components from the screen 
-                                         /*then I'll add the component(addComponent),that are all the static components
-                                         (lifeBar, expBar) and the dynamicComponents too (which are the various mob)*/
-                
             if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
                 this.timerValue=new ValueManager("Timer: ", Color.RED);
                 this.timerValue.setSize(DIMX, DIMY*2);

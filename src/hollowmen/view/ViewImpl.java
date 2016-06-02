@@ -38,6 +38,7 @@ public class ViewImpl implements View {
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 		this.observer = observer;
+		//try-catch to register the font into a GraphicsEnvironment
 		try{
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/CHILLER.ttf")));
