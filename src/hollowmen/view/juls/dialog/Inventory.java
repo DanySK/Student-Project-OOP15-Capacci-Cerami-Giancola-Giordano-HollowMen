@@ -1,5 +1,6 @@
 package hollowmen.view.juls.dialog;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,11 +9,13 @@ import java.io.IOException;
 import java.util.Collection;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputCommand;
+import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.InputBuffer;
@@ -29,9 +32,9 @@ public class Inventory extends TabbedDialog {
 
 	private static final long serialVersionUID = 1157519982974148320L;
 	private JLabel body = new JLabel();
-	private ImageIcon s1 = new ImageIcon("res/images/items/spell1");
-	private ImageIcon s2 = new ImageIcon("res/images/items/spell2");
-	private ImageIcon s3 = new ImageIcon("res/images/items/spell3");
+	private ImageIcon s1 = new ImageIcon("res/images/items/spell1.png");
+	private ImageIcon s2 = new ImageIcon("res/images/items/spell2.png");
+	private ImageIcon s3 = new ImageIcon("res/images/items/spell3.png");
 
 	private PaintedButton equip = new PaintedButton("EQUIP"); //dentro buttonC
 	private PaintedButton unequip = new PaintedButton("UNEQUIP"); //dentro buttonC
@@ -48,32 +51,32 @@ public class Inventory extends TabbedDialog {
 	
 	private JPanel buttonC = PanelBuilder.getBuilder()
 								.layout(1, 3, 30, 0)
-								.bound(90, 450, 150, 58)
+								.bound(90, 460, 520, 58)
 								.addTo(equip)
 								.addTo(unequip)
 								.addTo(close)
 								.build();
 	private JPanel bodyPNorth = PanelBuilder.getBuilder()
 								.layout(2, 0, 0, 20)
-								.bound(450, 70, 50, 50)
+								.bound(465, 50, 50, 120)
 								.addTo(head)
 								.addTo(chest)
 								.build();
 	private JPanel bodyPCenter = PanelBuilder.getBuilder()
 								.layout(1, 3, 10, 0)
-								.bound(430, 210, 50, 50)
+								.bound(405, 190, 170, 50)
 								.addTo(gloves)
 								.addTo(legs)
 								.addTo(rings)
 								.build();
 	private JPanel bodyPSouth = PanelBuilder.getBuilder()
 								.layout(1, 0, 0, 0)
-								.bound(430, 300, 50, 50)
+								.bound(430, 310, 50, 50)
 								.addTo(boots)
 								.build();
 	private JPanel pEast = PanelBuilder.getBuilder()
 								.layout(4, 0, 0, 10)
-								.bound(570, 40, 50, 50)
+								.bound(610, 50, 50, 230)
 								.addTo(weapon)
 								.addTo(spell1)
 								.addTo(spell2)
@@ -86,7 +89,9 @@ public class Inventory extends TabbedDialog {
 		super.addTitle(title);
 		body.setBounds(420, 40, 130, 350);
 		this.add(body);
-		statsBox.setBounds(570, 270, 130, 140);
+		statsBox.setBounds(570, 300, 130, 140);
+		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.add(statsBox);
 		this.add(buttonC);
 		this.add(bodyPNorth);
 		this.add(bodyPCenter);
@@ -97,10 +102,7 @@ public class Inventory extends TabbedDialog {
 		unequip.addActionListener(paintedL);
 		close.addActionListener(paintedL);
 		super.addMouseListener(dialogL);
-		spell1.setEnabled(false);
-		spell2.setEnabled(false);
-		spell3.setEnabled(false);
-
+		this.add(tabbedPane);
 		this.populateTab(collection, "head", headP);
 		this.populateTab(collection, "chest", chestP);
 		this.populateTab(collection, "gloves", glovesP);
@@ -119,6 +121,7 @@ public class Inventory extends TabbedDialog {
 		this.populateBody(collection, "boots", boots);
 		this.populateBody(collection, "weapon", weapon);
 		
+		
 		this.setVisible(true);
 	}
 	
@@ -130,6 +133,7 @@ public class Inventory extends TabbedDialog {
 		.filter(x -> x.getSlot().equals(slot))
 		.filter(x -> x.getState().equals(State.UNEQUIPPED))
 		.forEach(x -> {
+			System.out.println(x); //TODO remove
 			stats = x.getStat();
 			nameF = x.getName();
 			icon = view.getStorage().get(nameF);
@@ -140,7 +144,7 @@ public class Inventory extends TabbedDialog {
 						setButton(button);
 						setLastItem(x);
 						statsBox.setText(showStats(stats));
-						add(statsBox);	
+						//add(statsBox);	
 				}
 			});
 			panel.add(button);
@@ -193,6 +197,7 @@ public class Inventory extends TabbedDialog {
 			} else if (name.equals("UNEQUIP")) {
 				InputBuffer.getInstance().getObserver().addInput(InputCommand.UNEQUIP, getLastItem());
 			} else {
+				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}
 		}

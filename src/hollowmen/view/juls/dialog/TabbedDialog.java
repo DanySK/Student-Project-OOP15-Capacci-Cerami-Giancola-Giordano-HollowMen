@@ -27,57 +27,46 @@ public abstract class TabbedDialog extends GridDialog {
 	protected JPanel headP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel chestP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel glovesP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel ringsP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel legsP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel bootsP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel weaponsP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel spellsP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel consumP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel inventoryP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	protected JPanel shopP = PanelBuilder.getBuilder()
 								.layout(20, 5, 3, 3)
 								.bound(50, 100, 300, 320)
-								//.addTo(scroll)
 								.build();
 	
 	public TabbedDialog(Frame frame) {
@@ -85,10 +74,8 @@ public abstract class TabbedDialog extends GridDialog {
 		tabbedPane.setBackground(Color.BLACK);
 		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		tabbedPane.setForeground(Color.WHITE);
-		scroll.add(gridPanel);
-		tabbedPane.add(scroll);
+		tabbedPane.setBounds(50, 100, 300, 320);
 		this.addMouseListener(dialogL);
-		this.add(tabbedPane);
 	}
 
 	/**

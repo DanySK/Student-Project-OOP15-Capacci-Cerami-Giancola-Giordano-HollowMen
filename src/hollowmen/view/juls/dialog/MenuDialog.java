@@ -24,6 +24,7 @@ public abstract class MenuDialog extends CustomDialog {
 
 	public MenuDialog(Frame frame) {
 		super(frame);
+		this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.setPreferences();
 		this.addBackground();
 	}

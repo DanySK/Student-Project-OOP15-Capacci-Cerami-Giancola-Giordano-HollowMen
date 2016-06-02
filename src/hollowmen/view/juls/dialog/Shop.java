@@ -55,7 +55,7 @@ public class Shop extends TabbedDialog {
 		
 		statsBox.setBounds(420, 280, 130, 140);
 		this.add(statsBox);
-		super.add(tabbedPane);
+		this.add(tabbedPane);
 		this.setVisible(true);
 	}
 	
@@ -89,11 +89,10 @@ public class Shop extends TabbedDialog {
 						setLastItem(x);
 						showImage((ImageIcon) icon);
 						statsBox.setText(showStats(stats));
-						add(statsBox);	
+//						add(statsBox);	
 				}
 			});
 			panel.add(button);
-			scroll.add(panel);
 		});
 		tabbedPane.addTab(tab, panel);
 	}
@@ -108,6 +107,7 @@ public class Shop extends TabbedDialog {
 		c.stream()	
 		.filter(x -> x.getState().equals(State.BUYABLE))
 		.forEach(x -> {
+			System.out.println(x); //TODO remove
 			stats = x.getStat();
 			nameF = x.getName();
 			icon = view.getStorage().get(nameF);
