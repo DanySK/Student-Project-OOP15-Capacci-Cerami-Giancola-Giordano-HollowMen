@@ -65,6 +65,9 @@ public class ClassChoice extends OptionDialog {
 		mage.addActionListener(classL);
 		assassin.addActionListener(classL);
 		
+		mage.setEnabled(false);
+		assassin.setEnabled(false);
+		
 		this.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				select.setEnabled(false);

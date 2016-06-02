@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -28,9 +27,7 @@ import hollowmen.view.juls.panel.PanelBuilder;
  * 
  * @author Juls
  */
-public class MainMenu extends JFrame {
-
-	private static final long serialVersionUID = 3001623152687149057L;
+public class MainMenu {
 
 	private PaintedButton newGame = new PaintedButton("NEW GAME");
 	private PaintedButton loadGame = new PaintedButton("LOAD GAME");
@@ -110,12 +107,4 @@ public class MainMenu extends JFrame {
 			e.printStackTrace();
 		}
 	}
-
-	/* This main is here just for me, will be deleted once everything works... */
-	public static void main(String args[]) {
-		SingletonFrame.setWidth(800);
-		SingletonFrame.setHeight(600);
-		new MainMenu();
-	}
-
 }

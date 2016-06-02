@@ -25,7 +25,6 @@ public class SingletonFrame extends JFrame {
 		this.setBackground(Color.BLACK);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		this.setBackground(Color.BLACK);
 		this.setTitle("HOLLOW MEN");
 		this.setVisible(true);
 	}

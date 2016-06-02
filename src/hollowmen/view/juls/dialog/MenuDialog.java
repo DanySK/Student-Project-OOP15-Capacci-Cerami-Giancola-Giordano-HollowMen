@@ -24,6 +24,7 @@ public abstract class MenuDialog extends CustomDialog {
 
 	public MenuDialog(Frame frame) {
 		super(frame);
+		this.setPreferences();
 		this.addBackground();
 	}
 	
@@ -32,13 +33,14 @@ public abstract class MenuDialog extends CustomDialog {
 		this.setUndecorated(true);
 		this.setLocationRelativeTo(SingletonFrame.getInstance());
 		this.setModal(false);
+		this.addBackground();
 		this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	
 	@Override
 	protected void addBackground() {
 		try {
-			background.setIcon(new ImageIcon(ImageIO.read(new File("res/images/pergamena.jpg"))));
+			background.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/pergamena.jpg"))));
 			this.setContentPane(background);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -50,6 +52,7 @@ public abstract class MenuDialog extends CustomDialog {
 	 */
 	protected void addTitle(JLabel title) {
 		title.setBounds(50, 30, 210, 60);
+		this.add(title);
 	}
 
 }

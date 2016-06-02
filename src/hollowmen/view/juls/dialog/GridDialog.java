@@ -54,6 +54,7 @@ public abstract class GridDialog extends MenuDialog {
 		this.add(gridPanel);
 		scroll.setBackground(Color.BLACK);
 		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		this.setVisible(true);
 	}
 	
 	/**
