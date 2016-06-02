@@ -97,7 +97,7 @@ public class ModelImpl implements Model{
                                     re.getInfo().getName(),
                                     new Point2DImpl((int)(re.getBody().getLocalCenter().x-re.getLength()/2),
                                                     (int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
-                                    true,
+                                    false,
                                     ActorState.STANDING));
             }
 		return drawable;
