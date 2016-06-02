@@ -118,18 +118,21 @@ public class LoaderClass {
 		Map<String,byte[]> imageMap=new HashMap<>();
 		BufferedInputStream bf;
 		List<String> nameList=nameList();
+		List<Byte> list2;
 		String name;
 		String[] tmp;
+		Byte[] a;
+		byte[] b;
 		try{
 			for(String elem:nameList){
 				bf=new BufferedInputStream(new FileInputStream (new File(elem)));
-				List<Byte> list2 = new LinkedList<>();
+				list2 = new LinkedList<>();
 				int c;
 				while((c=bf.read())!=-1){
 					list2.add((byte)c);
 				}
-				Byte a[]=list2.toArray(new Byte[0]);
-				byte b[]=new byte[a.length];
+				a=list2.toArray(new Byte[0]);
+				b=new byte[a.length];
 				for(int i=0;i<a.length;i++){
 					b[i]=a[i].byteValue();
 				}
