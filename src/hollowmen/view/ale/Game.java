@@ -174,89 +174,78 @@ public class Game extends JPanel implements GameInterface{
             JLabel labTmp;
                 for(DrawableRoomEntity elem: componentList){
                     if(elem.isFacingRight()){
-                        for(Map.Entry<String,JLabel> element: storageFlipped.entrySet()){
-                            if(elem.getName().equals("hero")){
-                                switch(elem.getState()){
-                                    case ATTACKING: {
-                                        labTmp=storageFlipped.get("hero");
-                                        labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-                                                         labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                        panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-                                        break;}
-                                    case JUMPING: {
-                                        labTmp=storageFlipped.get("hero");
-                                        labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-                                                         labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                        panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-                                        break;}
-                                    case STANDING: {
-                                        labTmp=storageFlipped.get("hero");
-                                        labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-                                                        labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                        panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-                                        break;}
-                                    case MOVING: {
-                                        labTmp=storageFlipped.get("hero");
-                                        labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-                                                        labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                        panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-                                        break;}
-                               }
-                               break;
-                           }
-                            else{
-	                           if(elem.getName().equals(element.getKey())){
-	                               labTmp=element.getValue();
-	                               labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-	                                               labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-	                               this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-	                               break;//When the right image is found, the for cycle will end.
-	                           }
-                            }
-                       }
-                    }
-                    else{
-                        for(Map.Entry<String,JLabel> element: storageGame.entrySet()){
-                        	
-                            if(elem.getName().equals("hero")){
-                                switch(elem.getState()){
+                        if(elem.getName().equals("hero")){
+                            switch(elem.getState()){
                                 case ATTACKING: {
-                                    labTmp=storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                    panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case JUMPING: {
-                                    labTmp=storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                    panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case STANDING: {
-                                    labTmp=storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                    panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case MOVING: {
-                                    labTmp=storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-                                    panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
-                                }
+                           }
+                           break;
+                       }
+                       else{
+	                       labTmp=this.storageFlipped.get(elem.getName());
+	                       labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+	                                       labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+	                       this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                        }
+                    }
+                    else{
+                    	if(elem.getName().equals("hero")){
+                    		switch(elem.getState()){
+                                case ATTACKING: {
+                                    labTmp=this.storageGame.get("hero");
+                                    labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    break;}
+                                case JUMPING: {
+                                    labTmp=this.storageGame.get("hero");
+                                    labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    break;}
+                                case STANDING: {
+                                    labTmp=this.storageGame.get("hero");
+                                    labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+                                                    labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    break;}
+                                case MOVING: {
+                                    labTmp=this.storageGame.get("hero");
+                                    labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+                                                    labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+                                    this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
+                                    break;}
+                            }
                                 break;
                             }
                             else{
-	                            if(elem.getName().equals(element.getKey())){
-	                                labTmp=element.getValue();
-	                                labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
-	                                                labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
-	                                this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
-	                                break;//When the right image is found, the for cycle will end.
-	                            }
+                            	labTmp=this.storageGame.get(elem.getName());
+	                            labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
+	                                            labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
+	                            this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                             }
-                        }
                    }
              }
         }
