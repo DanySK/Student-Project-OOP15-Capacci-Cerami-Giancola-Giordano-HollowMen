@@ -113,12 +113,15 @@ public class Controller implements ViewObserver {
 	private void menuInputLoop(){
 		boolean loop=true;
 		while(loop){
+		    System.out.println("menuLoop gira");
 			try{
 				if(this.difficultyPicked==true){
+				    System.out.println("difficulty picked");
 				    this.difficultyPicked=false;
 					this.view.drawMenu(InputMenu.CLASS, Optional.empty());
 				}
 				if(this.classPicked==true){
+				    System.out.println("class picked");
 					this.classPicked=false;
 					this.view.drawLobby();
 				}
@@ -140,6 +143,7 @@ public class Controller implements ViewObserver {
 	private void itemInputLoop(){
 		boolean loop=true;
 		while(loop){
+		    System.out.println("itemLoop gira");
 			try{
 				if(this.itemSelected==false && this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
@@ -147,6 +151,7 @@ public class Controller implements ViewObserver {
 					if(!this.inputMenuList.isEmpty()){
 					    System.out.println(this.inputMenuList.getFirst());
 						menuChoice();
+						menuInputLoop();
 					}else{
 						switch(this.mapInputCommand.getX()){
 						case EQUIP:{
@@ -286,7 +291,7 @@ public class Controller implements ViewObserver {
 			while(System.nanoTime()>tick&&loops<maxFrameSkip&&this.gameRunning){
 				System.out.println("giro");
 				try{
-					this.model.update(16);
+					this.model.update(skipTick/1000000);
 				}catch(GameOverException e){
 					this.gameRunning=false;
 					e.printStackTrace();
@@ -329,11 +334,13 @@ public class Controller implements ViewObserver {
 	}
 
 	public void addInput(ClassType classType) {
+	    System.out.println("class input");
 		//actually there is only one class
 		this.classPicked=true;
 	}
 	
 	public void addInput(Difficulty difficulty){
+	    System.out.println("difficulty input");
 		this.difficultyPicked=true;
 		this.model.setDifficulty(difficulty);
 	}
