@@ -58,12 +58,12 @@ public class ModelImpl implements Model{
 		Values.LEVEL.setValue(this.hero.getLevel());
 		Values.EXP.setValue(this.hero.getExp().getX());
 		Values.EXPNEEDE.setValue(this.hero.getExp().getY());
-		Values.TIMER.setValue((int)(this.dungeon.getTimer().getLimit()
-		        -this.dungeon.getTimer().getValue()));
+		Values.TIMER.setValue((int)((this.dungeon.getTimer().getLimit()
+		        -this.dungeon.getTimer().getValue())/1000));
 		Values.FLOOR.setValue(this.dungeon.getFloorNumber());
 		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
 		ActorState sta=ActorState.STANDING;
-		switch(this.hero.getState().toUpperCase()){
+		/*switch(this.hero.getState().toUpperCase()){
 		case "ATTACK":{sta=ActorState.valueOf("ATTACKING");
 		    break;
 		}case "JUMP":{sta=ActorState.valueOf("JUMPING");
@@ -73,7 +73,7 @@ public class ModelImpl implements Model{
                 }case "MOVE":{sta=ActorState.valueOf("MOVING");
                 break;
                 }
-		}
+		}*/
 		
 		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
 		        new Point2DImpl((int)(this.hero.getBody().getLocalCenter().x-this.hero.getLength()/2),
