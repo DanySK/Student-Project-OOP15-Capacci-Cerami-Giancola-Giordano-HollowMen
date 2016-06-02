@@ -51,10 +51,9 @@ public abstract class GridDialog extends MenuDialog {
 	
 	public GridDialog(Frame frame) {
 		super(frame);
-		this.add(gridPanel);
 		scroll.setBackground(Color.BLACK);
 		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-		this.setVisible(true);
+		this.add(gridPanel);
 	}
 	
 	/**
@@ -95,6 +94,7 @@ public abstract class GridDialog extends MenuDialog {
 		portrait = new ImageIcon(scaled);
 		JLabel label = new JLabel(portrait);
 		label.setBounds(420, 100, 100, 100);
+		this.add(label);
 	}
 	
 	protected void setButton(IconButton button) {

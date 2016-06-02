@@ -32,7 +32,7 @@ public class Shop extends TabbedDialog {
 	private PaintedButton sell = new PaintedButton("SELL");
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 3, 30, 0)
-							.bound(90, 450, 150, 58)
+							.bound(90, 450, 520, 58)
 							.addTo(buy)
 							.addTo(sell)
 							.addTo(close)
@@ -44,6 +44,7 @@ public class Shop extends TabbedDialog {
 		super.addTitle(title);
 		this.add(buttonC);
 		statsBox.setBounds(420, 280, 130, 140);
+		this.add(statsBox);
 		this.setButtonState(false, false);
 		super.addMouseListener(dialogL);
 		
