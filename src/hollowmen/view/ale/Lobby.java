@@ -97,8 +97,9 @@ public class Lobby extends JLabel{
         		frame.update(frame.getGraphics());
             }       
         });        
-        this.add(this.skillTree);
         
+        this.add(this.skillTree);
+        this.skillTree.setEnabled(false);
         this.shop=new JButton();
         this.shop.setLayout(null);
         this.shop.setOpaque(true);

@@ -35,6 +35,9 @@ public class SingletonNameList {
 		nameList.add("consumable");
 		nameList.add("inventory");
 		nameList.add("skillTree");
+		nameList.add("door");
+		nameList.add("treasureChest");
+		nameList.add("game");
 	}
 	
 	/**
