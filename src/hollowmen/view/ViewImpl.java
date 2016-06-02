@@ -111,6 +111,7 @@ public class ViewImpl implements View {
 	 * @return - storage
 	 */
 	public Map<String,ImageIcon> getStorage() {
+		
 		return storage;
 	}
 	
