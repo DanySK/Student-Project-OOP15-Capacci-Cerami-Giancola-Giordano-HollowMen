@@ -65,11 +65,13 @@ public class EnemyPool {
 	}
 	
 	public Enemy getRandomForLevelTitle(Predicate<Integer> funcInt, Predicate<String> funcTit) {
-		return Cloner.enemy((Enemy) RandomSelector.getAnyFrom(this.pool.entrySet().stream()
+		Enemy en = Cloner.enemy((Enemy) RandomSelector.getAnyFrom(this.pool.entrySet().stream()
 				.filter(e -> funcInt.test(e.getKey().getY()))
 				.filter(e -> funcTit.test(e.getKey().getZ()))
 				.map(e -> e.getValue())
 				.toArray()));
+		System.out.println(en);
+		return en;
 	}
 	
 }

@@ -1,11 +1,12 @@
 package hollowmen.model.roomentity;
 
 import hollowmen.model.Actor;
+import hollowmen.model.Actor.Direction;
 
 public class DumbMovePattern implements MovePattern{
 
 	private EnemyAbs enemy;
-	private String direction;
+	private String direction = Direction.RIGHT.toString();
 	
 	public DumbMovePattern(EnemyAbs en) {
 		this.enemy = en;

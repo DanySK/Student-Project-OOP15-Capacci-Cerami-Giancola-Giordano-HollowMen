@@ -20,7 +20,7 @@ import hollowmen.utilities.Pair;
 public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
 	private String state;
-	private boolean facingRight;
+	private boolean facingRight = true;
 	protected ActionAllowed actionAllowed = new ActionAllowedImpl();
 	private Map<String, Parameter> parameters;
 	private Collection<Information> status = new LinkedList<>();

@@ -59,7 +59,8 @@ public class Algorithms {
 			return retValue;
 		}
 		while(maxPower > 0) {
-			Enemy e = EnemyPool.getInstance().getRandomForLevelTitle(p -> p <= maxLevel, s -> s.equals(EnemyTitle.ORDINARY.toString()));
+			Enemy e = EnemyPool.getInstance().getRandomForLevelTitle(p -> p <= ((maxLevel == 0) ? 1 : maxLevel),
+					s -> s.equals(EnemyTitle.ORDINARY.toString()));
 			maxPower -= e.getLevel();
 			retValue.add(e);
 			e.getBody().setTransform(new Vec2(RandomSelector.getIntFromRange(0, 1) == 0 ?

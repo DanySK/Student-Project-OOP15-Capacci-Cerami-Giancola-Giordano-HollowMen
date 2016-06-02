@@ -15,7 +15,7 @@ import hollowmen.utilities.Pair;
 
 public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
-	private MovePattern pattern;
+	protected MovePattern pattern;
 	private int combatLevel;
 	private String title;
 	private Lootable loot;
@@ -25,7 +25,6 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		super(info, size, param);
 		this.combatLevel = power;
 		this.title = title;
-		pattern = movePattern();
 	}
 	
 	public MovePattern movePattern() {
@@ -34,7 +33,7 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
 	@Override
 	public void move(String s) {
-		super.move(pattern.getDirection());
+		super.move(pattern == null ? movePattern().getDirection() : pattern.getDirection());
 	}
 
 	@Override

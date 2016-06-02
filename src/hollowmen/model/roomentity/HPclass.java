@@ -42,7 +42,7 @@ public class HPclass extends ParamImpl{
 				this.lastMaxHP = maxHP.getValue();
 			} 
 		}
-		return this.getValue();
+		return this.health.getValue();
 	}
 
 	@Override
