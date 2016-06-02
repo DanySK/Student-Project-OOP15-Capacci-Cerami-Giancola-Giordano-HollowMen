@@ -15,7 +15,7 @@ import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.InformationDealer.State;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -63,11 +63,11 @@ public class Shop extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("BUY")) {
-				InputBuffer.getInstance().getObserver().addInput(InputCommand.BUY, getLastItem());
+				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.BUY, getLastItem());
 			} else if (name.equals("SELL")) {
-				InputBuffer.getInstance().getObserver().addInput(InputCommand.SELL, getLastItem());
+				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.SELL, getLastItem());
 			} else {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}
 		}
@@ -80,7 +80,7 @@ public class Shop extends TabbedDialog {
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
-			icon = view.getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class Shop extends TabbedDialog {
 			System.out.println(x); //TODO remove
 			stats = x.getStat();
 			nameF = x.getName();
-			icon = view.getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {

@@ -1,5 +1,9 @@
 package hollowmen.view;
 
+import java.util.Map;
+
+import javax.swing.ImageIcon;
+
 import hollowmen.controller.ViewObserver;
 
 /**
@@ -8,19 +12,20 @@ import hollowmen.controller.ViewObserver;
  * @author pigio
  *
  */
-public class InputBuffer {
+public class UtilitySingleton {
 
 	
 	private ViewObserver viewObserver;
+	private Map<String,ImageIcon> storage;
 	
-	private InputBuffer() {};
+	private UtilitySingleton() {};
 	
 	
 	private static class Holder {
-		public static InputBuffer INSTANCE = new InputBuffer();
+		public static UtilitySingleton INSTANCE = new UtilitySingleton();
 	}
 	
-	public static InputBuffer getInstance() {
+	public static UtilitySingleton getInstance() {
 		return Holder.INSTANCE;
 	}
 	
@@ -30,6 +35,14 @@ public class InputBuffer {
 	
 	public void setObserver(ViewObserver viewObs) {
 		this.viewObserver = viewObs;
+	}
+	
+	public Map<String,ImageIcon> getStorage() {
+		return this.storage;
+	}
+	
+	public void setStorage(Map<String,ImageIcon> storage) {
+		this.storage = storage;
 	}
 	
 }

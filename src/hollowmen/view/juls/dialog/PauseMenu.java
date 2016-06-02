@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputMenu;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.MainMenu;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -57,14 +57,14 @@ public class PauseMenu extends MessageDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("TO MAIN")) {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.MAIN);
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.MAIN);
 				dispose();
 				new MainMenu();
 			} else if (name.equals("RESUME")) {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			} else {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.LOBBY);
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.LOBBY);
 				dispose();
 			}
 		}

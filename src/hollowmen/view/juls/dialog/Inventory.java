@@ -18,7 +18,7 @@ import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.InformationDealer.State;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -131,12 +131,12 @@ public class Inventory extends TabbedDialog {
 	protected void populateTab(Collection<InformationDealer> c, String slot, JPanel panel) {
 		c.stream()
 		.filter(x -> x.getSlot().equals(slot))
-		.filter(x -> x.getState().equals(State.UNEQUIPPED))
+		//.filter(x -> x.getState().equals(State.UNEQUIPPED))
 		.forEach(x -> {
 			System.out.println(x); //TODO remove
 			stats = x.getStat();
 			nameF = x.getName();
-			icon = view.getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -161,7 +161,7 @@ public class Inventory extends TabbedDialog {
 		.forEach(x -> {
 			x.getSlot().equals(slot);
 			nameF = x.getName();
-			icon = view.getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button.setIcon(icon);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -193,11 +193,11 @@ public class Inventory extends TabbedDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
-				InputBuffer.getInstance().getObserver().addInput(InputCommand.EQUIP, getLastItem());
+				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.EQUIP, getLastItem());
 			} else if (name.equals("UNEQUIP")) {
-				InputBuffer.getInstance().getObserver().addInput(InputCommand.UNEQUIP, getLastItem());
+				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.UNEQUIP, getLastItem());
 			} else {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}
 		}

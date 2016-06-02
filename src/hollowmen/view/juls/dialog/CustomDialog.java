@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import hollowmen.controller.ViewObserver;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.SingletonFrame;
 
 /**
@@ -30,7 +30,7 @@ public abstract class CustomDialog extends JDialog {
 	public CustomDialog(Frame frame) {
 		super(SingletonFrame.getInstance());
 		this.addBackground();
-		v = InputBuffer.getInstance().getObserver();
+		v = UtilitySingleton.getInstance().getObserver();
 	}
 
 	/**

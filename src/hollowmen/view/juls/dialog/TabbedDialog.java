@@ -75,6 +75,7 @@ public abstract class TabbedDialog extends GridDialog {
 		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBounds(50, 100, 300, 320);
+		tabbedPane.setOpaque(false);
 		this.addMouseListener(dialogL);
 	}
 

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
@@ -42,7 +42,7 @@ public class Bestiary extends GridDialog {
 		this.add(buttonC);
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME);
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}
 		});
@@ -60,7 +60,7 @@ public class Bestiary extends GridDialog {
 			stats = x.getStat();
 			nameF = x.getName();
 			description = x.getDescription();
-			icon = view.getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {

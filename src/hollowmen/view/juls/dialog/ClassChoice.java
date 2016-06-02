@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.enumerators.ClassType;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -81,7 +81,7 @@ public class ClassChoice extends OptionDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("SELECT")) {
-				InputBuffer.getInstance().getObserver().addInput(ClassType.WARRIOR);
+				UtilitySingleton.getInstance().getObserver().addInput(ClassType.WARRIOR);
 				dispose();
 			} else {
 				dispose();

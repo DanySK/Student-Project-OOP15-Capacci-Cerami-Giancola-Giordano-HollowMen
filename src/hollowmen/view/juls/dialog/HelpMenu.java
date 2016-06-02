@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputMenu;
-import hollowmen.view.InputBuffer;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.ArrowButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.buttons.TranslucentButton.Direction;
@@ -72,7 +72,7 @@ public class HelpMenu extends OptionDialog {
 
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				InputBuffer.getInstance().getObserver().addInput(InputMenu.RESUME); // PROBLEMA RESUME
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME); // PROBLEMA RESUME
 				dispose();
 			}		
 		});		
