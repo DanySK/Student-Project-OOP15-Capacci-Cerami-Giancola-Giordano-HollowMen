@@ -269,6 +269,5 @@ public class Game extends JPanel implements GameInterface{
             
                 int key=e.getKeyCode();
                 this.inputChooser.chooser(key);//calls the method of the InputChooser class
-                
         }                       
 }
