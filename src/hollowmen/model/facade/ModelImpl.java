@@ -53,8 +53,8 @@ public class ModelImpl implements Model{
 		List<DrawableRoomEntity> drawable=new LinkedList<>();
 		this.hero.getState();
 		
-		ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
-		
+		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
+		ActorState sta=ActorState.STANDING;
 		switch(this.hero.getState().toUpperCase()){
 		case "ATTACK":{sta=ActorState.valueOf("ATTACKING");
 		    break;

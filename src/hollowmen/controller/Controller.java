@@ -289,6 +289,8 @@ public class Controller implements ViewObserver {
 					this.model.update(16);
 				}catch(GameOverException e){
 					this.gameRunning=false;
+					e.printStackTrace();
+					System.out.println("GameOver!");
 				}catch(NullPointerException e){
 					e.printStackTrace();
 					System.exit(0);
