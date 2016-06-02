@@ -62,6 +62,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 				Constants.HERO_SIZE, heroClass.getBaseParam());
 		this.initSlot();
 		this.initMoreAction();
+		this.inventory = inventory;
 		this.uppableParam = new StatPointSystem(upgradableParam(heroClass));
 		this.level = level;
 		this.gold = gold;
