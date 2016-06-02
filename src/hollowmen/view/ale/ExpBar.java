@@ -26,9 +26,7 @@ public class ExpBar extends InternalBar{
     }
     
     protected void barFilling(){
-        this.setSize(0, 0);
-        this.setLocation((int)this.width,this.getHeight());
-    	//this.exp.setBounds(0,0,(int)this.width,this.getHeight());
+    	this.exp.setBounds(0,0,(int)this.width,this.getHeight());
         this.add(this.exp);
     }
 }

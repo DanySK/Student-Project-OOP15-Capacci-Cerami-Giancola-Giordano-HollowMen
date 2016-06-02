@@ -5,9 +5,13 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
@@ -24,11 +28,12 @@ import hollowmen.sound.ale.CreateAudio;
 public class Game extends JPanel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
+        private Border border=BorderFactory.createLineBorder(Color.DARK_GRAY);
         private static final int GAP=200;
-        private static final int ALIGNMENTX=680;
+        private static final int ALIGNMENTX=535;
         private static final int ALIGNMENTY=10;
-        private static final int POSITIONX=300;
-        private static final int POSITIONY=100;
+        private static final int POSITIONX=250;
+        private static final int POSITIONY=60;
         private static final int ALIGNMENT=10;
         private static final int LOCBX=20;
         private static final int LOCBX2=110;
@@ -38,12 +43,13 @@ public class Game extends JPanel implements GameInterface{
         private static final int LOCBX6=530;
         private static final int DIMX=150;
         private static final int DIMY=40;
+        private static final int DIMYTG=30;
         private static final int DIMBX=90;
         private static final int DIMBY=70;
         private static final int ALIGNMENTXF=630;
         private static final int ALIGNMENTYF=700;
-        private static final int LOCX=400;
-        private static final int LOCY=740;
+        private static final int LOCX=325;
+        private static final int LOCY=690;
         private int x;
         private int y;
         private ViewObserver observer;
@@ -68,8 +74,10 @@ public class Game extends JPanel implements GameInterface{
         	this.x=x;
         	this.y=y;
             this.observer=observer;
-            inputChooser=new InputChooser(this.observer);
+            this.inputChooser=new InputChooser(this.observer);
             this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
+            this.setOpaque(true);
+            this.setBackground(Color.BLACK);
             this.setBounds(0,0,x,y+GAP);
             new CreateAudio();
             addKeyListener(new KeyInput(this));
@@ -79,10 +87,12 @@ public class Game extends JPanel implements GameInterface{
             this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);
+            this.panelGame.setOpaque(true);
+            this.panelGame.setBackground(Color.YELLOW);
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
-            this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMY);
+            this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMYTG);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
-            this.goldValue.setBounds(ALIGNMENT, ALIGNMENT*5, DIMX, DIMY);
+            this.goldValue.setBounds(ALIGNMENT, ALIGNMENT*4, DIMX, DIMYTG);
             this.floorValue=new ValueManager("Floor: ", Color.WHITE);
             this.floorValue.setBounds(ALIGNMENTXF, ALIGNMENTYF, DIMX, DIMY);
             this.timerValue=new ValueManager("Timer", Color.WHITE);
@@ -90,18 +100,25 @@ public class Game extends JPanel implements GameInterface{
             this.bars=new Bar();
             this.bars.setLayout(null);
             this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY); 
+            this.bars.setBorder(border);            
             this.btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
             this.btnAbility1.setBounds(LOCBX, LOCY, DIMBX, DIMBY);
+            this.btnAbility1.setBackground(Color.DARK_GRAY);
             this.btnAbility2=new ScreenButton(this.observer, InputCommand.ABILITY2, this.storageGame);
             this.btnAbility2.setBounds(LOCBX2, LOCY, DIMBX, DIMBY);
+            this.btnAbility2.setBackground(Color.DARK_GRAY);
             this.btnAbility3=new ScreenButton(this.observer, InputCommand.ABILITY3 ,this.storageGame);
             this.btnAbility3.setBounds(LOCBX3, LOCY, DIMBX, DIMBY);
+            this.btnAbility3.setBackground(Color.DARK_GRAY);
             this.btnConsumable=new ScreenButton(this.observer, InputCommand.CONSUMABLE ,this.storageGame);
             this.btnConsumable.setBounds(LOCBX4, LOCY, DIMBX, DIMBY);
+            this.btnConsumable.setBackground(Color.DARK_GRAY);
             this.btnSkillTree=new ScreenButton(this.observer, InputMenu.SKILL_TREE ,this.storageGame);
             this.btnSkillTree.setBounds(LOCBX6, LOCY, DIMBX, DIMBY);
+            this.btnSkillTree.setBackground(Color.DARK_GRAY);
             this.btnInventory=new ScreenButton(this.observer,InputMenu.INVENTORY ,this.storageGame);
             this.btnInventory.setBounds(LOCBX5, LOCY, DIMBX, DIMBY);
+            this.btnInventory.setBackground(Color.DARK_GRAY);
         }
         
         public void draw(List<DrawableRoomEntity> componentList){       
@@ -122,11 +139,11 @@ public class Game extends JPanel implements GameInterface{
                 this.storageGame=new HashMap<String,JLabel>();
                 this.storageFlipped=new HashMap<String,JLabel>();
                 for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
-                        for(String name: SingletonNameList.getNameList() ){
-                                if(elem.getKey()==name){
+                        for(String name: SingletonNameList.getSingletonNameList().getNameList() ){
+                                if(elem.getKey().equals(name)){
                                         storageGame.put(name, new JLabel(elem.getValue()));
-                                        if(name!= "ability1" || name!= "ability2" || name!= "ability3"||
-                                                name!= "invetory"|| name!= "consumable" || name!= "skillTree"){
+                                        if(!name.equals("ability1") || !name.equals("ability2") || !name.equals("ability3")||
+                                           !name.equals("inventory")|| !name.equals("consumable") || !name.equals("skillTree")){
                                                 storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
                                         }
                                 }
@@ -200,16 +217,17 @@ public class Game extends JPanel implements GameInterface{
                     }
                     else{
                         for(Map.Entry<String,JLabel> element: storageGame.entrySet()){
+                        	
                             if(elem.getName()=="hero"){
                                 switch(elem.getState()){
                                 case ATTACKING: {
-                                    labTmp=storageGame.get("heroAttacking");
+                                    labTmp=storageGame.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case JUMPING: {
-                                    labTmp=storageGame.get("heroJumping");
+                                    labTmp=storageGame.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -221,7 +239,7 @@ public class Game extends JPanel implements GameInterface{
                                     panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case MOVING: {
-                                    labTmp=storageGame.get("heroMoving");
+                                    labTmp=storageGame.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.

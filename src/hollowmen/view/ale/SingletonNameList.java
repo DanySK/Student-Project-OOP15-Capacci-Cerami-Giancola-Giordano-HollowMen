@@ -11,8 +11,8 @@ import java.util.List;
  *
  */
 public class SingletonNameList {
-	
-	private static List<String> nameList;
+	private static final SingletonNameList singleton=new SingletonNameList();
+	private List<String> nameList;
 	
 	//Private constructor avoid the instance of objects from external classes.
 	private SingletonNameList(){
@@ -38,13 +38,20 @@ public class SingletonNameList {
 	}
 	
 	/**
+	 * The method {@code SingletonNameList} returns the instance of this Singleton.
+	 * 
+	 * @return
+	 */
+	public static SingletonNameList getSingletonNameList(){
+		return singleton;
+	}
+	/**
 	 * The method {@code getNameList} gets the name of all the images contained 
 	 * in the {@link SingletonNameList} 
 	 * 
 	 * @return
 	 */
-	public static List<String> getNameList(){
-		new SingletonNameList();
-		return nameList;
+	public List<String> getNameList(){
+		return this.nameList;
 	}
 }

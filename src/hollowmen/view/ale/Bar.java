@@ -41,6 +41,7 @@ public class Bar extends JLabel{
     public void updateBar(int life,int maxLife,int exp,int expNeeded){
         this.life.proportion(life,maxLife);
         this.exp.proportion(exp,expNeeded);
+        this.update(this.getGraphics());
         
     }
 }

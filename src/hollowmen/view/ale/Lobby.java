@@ -12,18 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.border.Border;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.view.SingletonFrame;
 
 /**
  * The class {@code Lobby} is used to build a sequence of JButton which can be clicked by the player.
  * 
- * @author NarcAle
+ * @author Alessia
  *
  */
 public class Lobby extends JLabel{
 
     private static final long serialVersionUID = -986610577506284L;
     private Font fontA=new Font("Chiller",Font.PLAIN, 25);
-    //private Font fontTitle=new Font("Algerian",Font.BOLD,50);
     private Font fontB=new Font("Chiller",Font.PLAIN, 40);
     private static final int DIMXPLAY=200;
     private static final int DIMXL=800;
@@ -40,7 +40,6 @@ public class Lobby extends JLabel{
     
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
     private JLabel lab;
-    //private JLabel labTesto;
     private JButton inventory;
     private JButton skillTree;
     private JButton shop;
@@ -57,15 +56,11 @@ public class Lobby extends JLabel{
         this.lab=new JLabel();
         this.lab.setLayout(null);        
         this.lab.setOpaque(true);
-        /*this.labTesto=new JLabel("Lobby");
-        this.labTesto.setFont(fontTitle);
-        this.labTesto.setForeground(Color.WHITE);
-        this.labTesto.setVerticalAlignment(JLabel.TOP);
-        this.add(labTesto);*/
         
         this.setBackground(Color.BLACK);
         this.setBounds(0, 0, DIMXL, DIMYL);
-
+        this.add(lab);
+        
         this.inventory=new JButton();
         this.inventory.setLayout(null);
         this.inventory.setOpaque(true);
@@ -78,6 +73,9 @@ public class Lobby extends JLabel{
         this.inventory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.INVENTORY);
+                SingletonFrame frame=SingletonFrame.getInstance();
+        		frame.getContentPane().removeAll();
+        		frame.update(frame.getGraphics());
             }       
         });
         this.add(this.inventory);
@@ -94,6 +92,9 @@ public class Lobby extends JLabel{
         this.skillTree.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.SKILL_TREE);
+                SingletonFrame frame=SingletonFrame.getInstance();
+        		frame.getContentPane().removeAll();
+        		frame.update(frame.getGraphics());
             }       
         });        
         this.add(this.skillTree);
@@ -110,6 +111,9 @@ public class Lobby extends JLabel{
         this.shop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.SHOP);
+                SingletonFrame frame=SingletonFrame.getInstance();
+        		frame.getContentPane().removeAll();
+        		frame.update(frame.getGraphics());
             }       
         });
         this.add(this.shop);
@@ -126,6 +130,9 @@ public class Lobby extends JLabel{
         this.pokedex.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 observer.addInput(InputMenu.POKEDEX);
+                SingletonFrame frame=SingletonFrame.getInstance();
+        		frame.getContentPane().removeAll();
+        		frame.update(frame.getGraphics());
             }       
         });
         this.add(this.pokedex);
@@ -164,29 +171,26 @@ public class Lobby extends JLabel{
         
         for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
 
-            if(elem.getKey()=="castleBG"){//Background Image
-                System.out.println("Ciao sono alessia e ho problemi di esaurimento nervoso");
+            if(elem.getKey().equals("castleBG")){//Background Image
                 this.setIcon(elem.getValue());
                 break;
             }
-            if(elem.getKey()==InputMenu.INVENTORY.getString()){
-                System.out.println("Ciao sono alessia e ho problemi di esaurimento nervoso");
+            if(elem.getKey().equals(InputMenu.INVENTORY.getString())){
                 this.inventory.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
             }
-            else if(elem.getKey()==InputMenu.SKILL_TREE.getString()){
-                System.out.println("Ciao sono alessia e ho problemi di esaurimento nervoso");
+            else if(elem.getKey().equals(InputMenu.SKILL_TREE.getString())){
                 this.skillTree.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
             }
-            else if(elem.getKey()==InputMenu.SHOP.getString()){
+            else if(elem.getKey().equals(InputMenu.SHOP.getString())){
                 //this.shop.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;
             }
-            else if(elem.getKey()==InputMenu.POKEDEX.getString()){
+            else if(elem.getKey().equals(InputMenu.POKEDEX.getString())){
                 //this.pokedex.setIcon(elem.getValue());
                 this.setBorder(border);
                 break;

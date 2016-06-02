@@ -23,14 +23,8 @@ public class ScreenButton extends JButton{
 	private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
 	
 	public ScreenButton(ViewObserver observer, InputCommand command , Map<String,JLabel> storage){
-		
-		for(Map.Entry<String,JLabel> elem: storage.entrySet()){
-			if(elem.getKey()==command.getString()){
-				this.setIcon(elem.getValue().getIcon());
-				this.setBorder(border);
-				break;
-			}
-		}
+		super(storage.get(command.getString()).getIcon());
+		this.setBorder(border);
 		this.addActionListener(new ActionListener() {
 			
 		    public void actionPerformed(ActionEvent e) {
@@ -40,13 +34,8 @@ public class ScreenButton extends JButton{
 	}
 	
 	public ScreenButton(ViewObserver observer, InputMenu command , Map<String,JLabel> storage){
-
-		for(Map.Entry<String,JLabel> elem: storage.entrySet()){
-			if(elem.getKey()==command.getString()){
-				this.setIcon(elem.getValue().getIcon());
-				break;
-			}
-		}
+		super(storage.get(command.getString()).getIcon());
+		this.setBorder(border);
 		this.addActionListener(new ActionListener() {
 			
 		    public void actionPerformed(ActionEvent e) {

@@ -35,8 +35,6 @@ public class LifeBar extends InternalBar{
 
         this.setText(this.value+"/"+this.maxValue);//It shows the life value.
         this.setHorizontalAlignment(CENTER);//To set the text at the center of the bar.
-        this.setSize(0, 0);
-        this.setLocation((int)this.width,this.getHeight());
-        //this.life.setBounds(0,0,(int)this.width,this.getHeight());
+        this.life.setBounds(0,0,(int)this.width,this.getHeight());
     }
 }
