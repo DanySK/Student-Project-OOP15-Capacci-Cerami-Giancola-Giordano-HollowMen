@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.Difficulty;
+import hollowmen.enumerators.Values;
 import hollowmen.model.Enemy;
 import hollowmen.model.Item;
 import hollowmen.model.Modifier;
@@ -24,13 +25,13 @@ import hollowmen.utilities.Pair;
  */
 public class ModelImpl implements Model{
 	
-	DungeonSingleton dungeon;
-	Hero hero;
+	private DungeonSingleton dungeon;
+	private Hero hero;
 	
 	public void setup(){
 		new Initializer();
-		dungeon=DungeonSingleton.getInstance();
-		hero=dungeon.getHero();
+		this.dungeon=DungeonSingleton.getInstance();
+		this.hero=dungeon.getHero();
 	}
 	
 	public void goTo(int floor){
@@ -51,8 +52,15 @@ public class ModelImpl implements Model{
 
 	public List<DrawableRoomEntity> getDrawableRoomEntity() {
 		List<DrawableRoomEntity> drawable=new LinkedList<>();
-		this.hero.getState();
-		
+		Values.LIFE.setValue((int)this.hero.getParameters().get("hp").getValue());
+		Values.LIFE.setValue((int)this.hero.getParameters().get("hpmax").getValue());
+		Values.GOLD.setValue(this.hero.getGold());
+		Values.LEVEL.setValue(this.hero.getLevel());
+		Values.EXP.setValue(this.hero.getExp().getX());
+		Values.EXPNEEDE.setValue(this.hero.getExp().getY());
+		Values.TIMER.setValue((int)(this.dungeon.getTimer().getLimit()
+		        -this.dungeon.getTimer().getValue()));
+		Values.FLOOR.setValue(this.dungeon.getFloorNumber());
 		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
 		ActorState sta=ActorState.STANDING;
 		switch(this.hero.getState().toUpperCase()){
@@ -90,6 +98,7 @@ public class ModelImpl implements Model{
 							(int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
 					re.isFacingRight(),
 					sta));
+			System.out.println(re.getInfo().getName());
 		}
 		for(Interactable re: this.dungeon.getCurrentRoom().getInteractable()){
                     
@@ -99,15 +108,16 @@ public class ModelImpl implements Model{
                                                     (int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
                                     false,
                                     ActorState.STANDING));
+                    System.out.println(re.getInfo().getName());
             }
 		return drawable;
 	}
 
 	public List<InformationDealer> getPokedex() {
 		List<InformationDealer> info=new LinkedList<>();
-		Map<String,Double> param=new HashMap<>();
+		Map<String,Double> param;
 		for(Enemy en: this.dungeon.getPokedex().getEnemyMet()){
-			
+		    param=new HashMap<>();
 			for(Map.Entry<String, Parameter> map:en.getParameters().entrySet()){
 				param.put(map.getKey(),(Double)map.getValue().getValue());
 			}
@@ -117,7 +127,6 @@ public class ModelImpl implements Model{
 					en.getState(),
 					1,
 					""));
-			param.clear();
 		}
 		return info;
 	}
@@ -136,16 +145,16 @@ public class ModelImpl implements Model{
 					it.getX().getState().name(),
 					it.getY(),
 					it.getX().getHeroClassEquippable()));
-			
 		}
 		return info;
 	}
 	
 	public List<InformationDealer> getShop() {
 		List<InformationDealer> info=new LinkedList<>();
-		Map<String,Double> param=new HashMap<>();
+		Map<String,Double> param;
 		for(Item it: this.dungeon.getShop().getShopItem()){
-			for(Modifier m:it.getModifiers().values()){
+		    param=new HashMap<>();
+		    for(Modifier m:it.getModifiers().values()){
 				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
 			}
 			info.add(new InformationDealerImpl(it.getInfo().getName(),
@@ -154,7 +163,6 @@ public class ModelImpl implements Model{
 					it.getState().name(),
 					1,
 					it.getHeroClassEquippable()));
-			param.clear();
 		}
 		return info;
 	}

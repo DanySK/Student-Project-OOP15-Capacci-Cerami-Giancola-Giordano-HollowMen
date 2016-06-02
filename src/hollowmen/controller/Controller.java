@@ -113,15 +113,12 @@ public class Controller implements ViewObserver {
 	private void menuInputLoop(){
 		boolean loop=true;
 		while(loop){
-		    System.out.println("menuLoop gira");
 			try{
 				if(this.difficultyPicked==true){
-				    System.out.println("difficulty picked");
 				    this.difficultyPicked=false;
 					this.view.drawMenu(InputMenu.CLASS, Optional.empty());
 				}
 				if(this.classPicked==true){
-				    System.out.println("class picked");
 					this.classPicked=false;
 					this.view.drawLobby();
 				}
@@ -143,7 +140,6 @@ public class Controller implements ViewObserver {
 	private void itemInputLoop(){
 		boolean loop=true;
 		while(loop){
-		    System.out.println("itemLoop gira");
 			try{
 				if(this.itemSelected==false && this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
@@ -309,14 +305,15 @@ public class Controller implements ViewObserver {
 			try{
 				this.view.drawGame(this.model.getDrawableRoomEntity());
 			}catch(Exception e){
-				System.out.println("drawGame non funziona... che palle!");
 				e.printStackTrace();
+				System.exit(0);
 			}
 			
 		}
 		}catch(Exception e){
 			System.out.println("il gameLoop non va");
 			e.printStackTrace();
+			System.exit(0);
 		}
 		
 	}
@@ -334,13 +331,11 @@ public class Controller implements ViewObserver {
 	}
 
 	public void addInput(ClassType classType) {
-	    System.out.println("class input");
 		//actually there is only one class
 		this.classPicked=true;
 	}
 	
 	public void addInput(Difficulty difficulty){
-	    System.out.println("difficulty input");
 		this.difficultyPicked=true;
 		this.model.setDifficulty(difficulty);
 	}
