@@ -81,11 +81,11 @@ public class Initializer {
 	
 	private void generateHero() {
 		Collection<Parameter> list = new LinkedList<>();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 10000));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1000));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 10));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 100));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 2));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 10000));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 1000));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
 
 		Collection<Item> initItem = new LinkedList<>();

@@ -4,6 +4,8 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 
 import hollowmen.model.Time;
+import hollowmen.model.utils.LowerLimitReachException;
+import hollowmen.model.utils.UpperLimitReachException;
 import hollowmen.utilities.ExceptionThrower;
 
 public class TimerSingleton implements Time{
@@ -112,20 +114,23 @@ public class TimerSingleton implements Time{
 	}
 
 	@Override
-	public void addToValue(double value) throws IllegalArgumentException, IllegalStateException {
+	public void addToValue(double value) throws IllegalArgumentException, UpperLimitReachException {
 		ExceptionThrower.checkIllegalArgument(value, v -> v < 0);
 		this.currentTime += value;
-		ExceptionThrower.checkIllegalState(this.currentTime, c -> c > this.getLimit());
+		if(this.currentTime > this.getLimit()) {
+			this.currentTime = this.getLimit();
+			throw new UpperLimitReachException();
+		}
 		this.checkEventTrigger();
 	}
 	
 	@Override
-	public void subToValue(double value) throws IllegalArgumentException, IllegalStateException {
+	public void subToValue(double value) throws IllegalArgumentException, LowerLimitReachException {
 		ExceptionThrower.checkIllegalArgument(value, v -> v < 0);
 		this.currentTime -= value;
 		if(this.currentTime < 0) {
 			this.currentTime = 0;
-			throw new IllegalStateException();
+			throw new LowerLimitReachException();
 		}
 	}
 	

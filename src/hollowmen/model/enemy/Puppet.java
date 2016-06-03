@@ -16,7 +16,7 @@ import hollowmen.model.utils.Constants;
 
 public class Puppet extends EnemyAbs{
 
-	public Puppet(Information info, Collection<Parameter> param, int power, String title) {
+	private Puppet(Information info, Collection<Parameter> param, int power, String title) {
 		super(new InfoImpl(RoomEntityName.PUPPET.toString(), info.getDescription().get()), Constants.PUPPET_SIZE, param, power, title);
 	}
 

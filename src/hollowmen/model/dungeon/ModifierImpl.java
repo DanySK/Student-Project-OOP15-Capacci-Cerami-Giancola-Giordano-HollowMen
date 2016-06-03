@@ -49,7 +49,8 @@ public class ModifierImpl implements Modifier{
 
 	@Override
 	public String toString() {
-		return "Modifier -> " + targetParam.getInfo() + ", op=" + op + ", revOp=" + revOp + "]";
+		return "Modifier -> " + targetParam.getInfo().getName() + ", value=" + targetParam.getValue() +
+				", Op=" + (this.op.equals(Modifier.Operation.ADD.getOp())? "ADD" : "MUL") + "]";
 	}
 	
 	

@@ -71,4 +71,11 @@ public class SimpleLimitedCounter implements LimitedCounter{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "value=" + value + ", limit=" + limit;
+	}
+
+	
+	
 }

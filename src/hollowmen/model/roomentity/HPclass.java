@@ -50,7 +50,7 @@ public class HPclass extends ParamImpl{
 		ExceptionThrower.checkNullPointer(mod);
 		ExceptionThrower.checkIllegalArgument(mod, m -> this.getInfo().getName().equals(m));
 		try {
-			if(mod.getOperation().equals(Modifier.Operation.ADD)) {
+			if(mod.getOperation().equals(Modifier.Operation.ADD.getOp())) {
 				this.health.addToValue(mod.getParameter().getValue());
 			} else {
 				this.health.addToValue(mod.getOperation().apply(this.health.getValue(), mod.getParameter().getValue()));
@@ -64,7 +64,7 @@ public class HPclass extends ParamImpl{
 		ExceptionThrower.checkNullPointer(mod);
 		ExceptionThrower.checkIllegalArgument(mod, m -> this.getInfo().getName().equals(m));
 		try {
-			if(mod.getOperation().equals(Modifier.Operation.ADD)) {
+			if(mod.getOperation().equals(Modifier.Operation.ADD.getOp())) {
 				this.health.subToValue(mod.getParameter().getValue());
 			} else {
 				this.health.subToValue(mod.getOperation().apply(this.health.getValue(), mod.getParameter().getValue()));

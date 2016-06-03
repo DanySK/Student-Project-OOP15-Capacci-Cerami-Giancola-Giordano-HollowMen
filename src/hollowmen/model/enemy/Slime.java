@@ -17,7 +17,7 @@ import hollowmen.model.utils.Constants;
 public class Slime extends EnemyAbs{
 
 	
-	public Slime(Information info, Collection<Parameter> param, int power, String title) {
+	private Slime(Information info, Collection<Parameter> param, int power, String title) {
 		super(new InfoImpl(RoomEntityName.SLIME.toString(), info.getDescription().get()), Constants.SLIME_SIZE, param, power, title);
 	}
 
