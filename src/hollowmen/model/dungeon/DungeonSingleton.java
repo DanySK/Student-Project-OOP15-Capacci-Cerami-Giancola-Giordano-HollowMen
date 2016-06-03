@@ -8,6 +8,7 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
@@ -92,6 +93,8 @@ public class DungeonSingleton implements Dungeon{
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
+		
+		System.out.println("HERO POSITION" + this.hero.getBody().getWorldCenter());
 	}
 	
 	@Override
@@ -119,12 +122,13 @@ public class DungeonSingleton implements Dungeon{
 	}
 	
 	@Override
-	public void goTo(int floorNumber) throws IllegalStateException, NullPointerException {
+	public void goTo(int floorNumber) throws IllegalStateException {
 		ExceptionThrower.checkIllegalState(floorNumber, f -> f > this.unlockedFloors.getValue());
 		TimerSingleton.getInstance().resetAndLimit(1000000);
 		this.floorNumber = floorNumber;
 		this.currentRoom = new RoomImpl(this.lobby, Constants.CHILDROOMQUANTITY, 1);
 		this.currentRoom.autoPopulate();
+		Box2DUtils.centerPosition(this.hero);
 	}
 
 	@Override
@@ -174,7 +178,6 @@ public class DungeonSingleton implements Dungeon{
 		float halfLength = (float)(Constants.WORLD_SIZE.getWidth()/2);
 		float halfHeight = (float)(Constants.WORLD_SIZE.getHeight()/2);
 
-
 		PolygonShape polygonShape = new PolygonShape();
 
 		BodyDef bodyDef = new Box2DUtils.BodyDefBuilder()
@@ -182,9 +185,9 @@ public class DungeonSingleton implements Dungeon{
 				.position((float) Constants.WORLD_SIZE.getCenterX(), (float) Constants.WORLD_SIZE.getCenterY())
 				.build();
 
-		FixtureDef groundFix = new Box2DUtils.FixtureDefBuilder()
-				.friction(0)
-				.restitution(0)
+		FixtureDef groundFix = Box2DUtils.fixDefBuilder()
+				.friction(0.3f)
+				.restitution(0.5f)
 				.shape(polygonShape)
 				.filter(new Box2DUtils.FilterBuilder()
 						.addCategory(FilterType.GROUND.getValue())
@@ -196,26 +199,36 @@ public class DungeonSingleton implements Dungeon{
 		wallFix.getFilter().categoryBits = FilterType.WALL.getValue();
 		
 		FixtureDef airLine = Box2DUtils.fixtureDefCloner(groundFix);
-		airLine.getFilter().categoryBits = FilterType.WALL.getValue();
-		airLine.getFilter().maskBits = FilterType.FLYLINE.getValue();
+		airLine.getFilter().categoryBits = FilterType.FLYLINE.getValue();
+		airLine.getFilter().maskBits = FilterType.FLY.getValue();
 		
 		Body body = world.createBody(bodyDef);
 
 		//ground
 		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, -(halfHeight+THICKNESS)), 0);
 		body.createFixture(groundFix);
+		System.out.println(groundFix.getShape());
 		//top
 		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, halfHeight+THICKNESS), 0);
-		body.createFixture(groundFix);
+		body.createFixture(wallFix);
+		System.out.println(groundFix.getShape());
 		//left
 		polygonShape.setAsBox( THICKNESS, halfHeight+THICKNESS, new Vec2(-(halfLength+THICKNESS), 0), 0);
-		body.createFixture(groundFix);
+		body.createFixture(wallFix);
+		System.out.println(groundFix.getShape());
 		//right
 		polygonShape.setAsBox( THICKNESS, halfHeight+THICKNESS, new Vec2(halfLength+THICKNESS, 0), 0);
-		body.createFixture(groundFix);
+		body.createFixture(wallFix);
+		System.out.println(groundFix.getShape());
 		//flyLine
-		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, 0), 0);
-		body.createFixture(groundFix);
+		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS);
+		body.createFixture(airLine);
+		Fixture fixT = body.getFixtureList();
+		while(fixT != null) {
+			System.out.println(fixT.getBody().getWorldCenter());
+			System.out.println("CAT: "+fixT.m_filter.categoryBits +" MASK: "+fixT.m_filter.maskBits);
+			fixT = fixT.getNext();
+		}
 	}
 	
 	@Override
