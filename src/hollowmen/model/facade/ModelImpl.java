@@ -144,7 +144,7 @@ public class ModelImpl implements Model{
 					param,
 					it.getX().getState().name(),
 					it.getY(),
-					it.getX().getHeroClassEquippable()));
+					it.getX().getSlot()));
 		}
 		return info;
 	}
@@ -162,7 +162,7 @@ public class ModelImpl implements Model{
 					param,
 					it.getState().name(),
 					1,
-					it.getHeroClassEquippable()));
+					it.getSlot()));
 		}
 		return info;
 	}
