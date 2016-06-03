@@ -229,13 +229,13 @@ public class Controller implements ViewObserver {
 	private void gameLoop(){
 		
 		//nanosec used
-		final long skipTick=30000000;//model update frequency (62 update per sec)
+		final long skipTick=20000000;//model update frequency (62 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
 		final int convert=1000000;
 		final int skipTickMillisec=(int)(skipTick/convert);//max frame skipped between each model update
 		
-		//int loops;
+		int loops=0;
 		this.gameRunning=true;
 		long sleep;
 		this.model.goTo(1);
@@ -260,6 +260,12 @@ public class Controller implements ViewObserver {
 			System.out.println(sleep);
 			if(sleep>0){
 				java.lang.Thread.sleep(sleep);
+			}else{
+				System.out.println("I'M LATE!!!");
+				loops++;
+				if(loops>20){
+					System.exit(0);
+				}
 			}
 			
 		}
