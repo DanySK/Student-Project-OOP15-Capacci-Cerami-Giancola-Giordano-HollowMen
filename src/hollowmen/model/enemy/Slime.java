@@ -23,7 +23,8 @@ public class Slime extends EnemyAbs{
 
 	@Override
 	public BodyDef defBody() {
-		return Box2DUtils.bodyDefBuilder().type(BodyType.DYNAMIC).build();
+		return Box2DUtils.bodyDefBuilder()
+				.type(BodyType.DYNAMIC).build();
 	}
 
 	@Override

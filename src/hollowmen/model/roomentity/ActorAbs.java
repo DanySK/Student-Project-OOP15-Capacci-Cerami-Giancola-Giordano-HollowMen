@@ -19,7 +19,7 @@ import hollowmen.utilities.Pair;
 
 public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
-	private String state;
+	private String state = ActorState.STANDING.toString();
 	private boolean facingRight = true;
 	protected ActionAllowed actionAllowed = new ActionAllowedImpl();
 	private Map<String, Parameter> parameters;
@@ -39,7 +39,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	@Override
 	public void performAction(String action) throws NullPointerException {
 		ExceptionThrower.checkNullPointer(action);
-		ExceptionThrower.checkIllegalArgument(action, a -> this.actionAllowed.getActionAllowed().containsKey(a));
+		ExceptionThrower.checkIllegalArgument(action, a -> !this.actionAllowed.getActionAllowed().containsKey(a));
 		actionAllowed.getActionAllowed().get(action).run();
 	}
 

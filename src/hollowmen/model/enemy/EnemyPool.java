@@ -31,6 +31,7 @@ public class EnemyPool {
 	}
 	
 	public void addEnemy(Enemy enemy) {
+		
 		pool.put(new Tris<>(enemy.getInfo().getName(), enemy.getLevel(), enemy.getTitle()), enemy);
 	}
 	
