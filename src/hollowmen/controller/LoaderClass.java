@@ -106,6 +106,10 @@ public class LoaderClass {
 		nameList.add("res/images/backgrounds/castleBG.jpg");
 		nameList.add("res/images/backgrounds/pergamena.jpg");
 		nameList.add("res/images/dialog.jpg");
+		nameList.add("res/images/gameButtons/blueSlime.gif");
+		nameList.add("res/images/gameButtons/coinBag.png");
+		nameList.add("res/images/gameButtons/inventoryLobby.png");
+		nameList.add("res/images/gameButtons/skillTreeLobby.png");
 		return nameList;
 	}
 	
