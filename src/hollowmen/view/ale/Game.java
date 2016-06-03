@@ -1,6 +1,7 @@
 package hollowmen.view.ale;
 
 import java.awt.Color;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
@@ -80,7 +81,8 @@ public class Game extends JPanel implements GameInterface{
             this.setBackground(Color.BLACK);
             this.setBounds(0,0,x,y+GAP);
             new CreateAudio();
-            addKeyListener(new KeyInput(this));
+            KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+            manager.addKeyEventDispatcher(new KeyInput(this));
         }
 
         private void initialSetup(int x, int y){ 

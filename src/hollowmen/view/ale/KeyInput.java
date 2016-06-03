@@ -1,6 +1,6 @@
 package hollowmen.view.ale;
 
-import java.awt.event.KeyAdapter;
+import java.awt.KeyEventDispatcher;
 import java.awt.event.KeyEvent;
 
 /**
@@ -10,18 +10,17 @@ import java.awt.event.KeyEvent;
  * @author Alessia
  *
  */
-public class KeyInput extends KeyAdapter{
+public class KeyInput implements KeyEventDispatcher{
 	Game game;
 	
 	public KeyInput(Game game){
 		this.game=game;
 	}
 	
-	public void keyPressed(KeyEvent e){
-		game.keyManager(e);
-	}
-	
-	public void keyReleased(KeyEvent e){
-		game.keyManager(e);
+	public boolean dispatchKeyEvent(KeyEvent e) {
+		if(e.getID() == KeyEvent.KEY_PRESSED){
+			this.game.keyManager(e);
+		}
+		return false;
 	}
 }
