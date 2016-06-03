@@ -195,54 +195,11 @@ public class Controller implements ViewObserver {
 				menuChoice();
 				return true;
 			}else{
-				boolean ability1=false;
-				boolean ability2=false;
-				boolean ability3=false;
-				boolean consumable=false;
-				boolean attack=false;
-				boolean jump=false;
 				boolean left=false;
 				boolean right=false;
-				boolean interact=false;
 				for(InputCommand command:this.inputCommandList){
 					switch(command){
-					case ABILITY1:{
-						if(!ability1){
-							ability1=true;
-							this.model.heroAction("ability1");
-						}
-						break;
-					}case ABILITY2:{
-						if(!ability2){
-							ability2=true;
-							this.model.heroAction("ability2");
-						}
-						break;
-					}case ABILITY3:{
-						if(!ability3){
-							ability3=true;
-							this.model.heroAction("ability3");
-						}
-						break;
-					}case CONSUMABLE:{
-						if(!consumable){
-							consumable=true;
-							this.model.heroAction("consumable");
-						}
-						break;
-					}case ATTACK:{
-						if(!attack){
-							attack=true;
-							this.model.heroAction("attack");
-						}
-						break;
-					}case JUMP:{
-						if(!jump){
-							jump=true;
-							this.model.heroAction("jump");
-						}
-						break;
-					}case LEFT:{
+					case LEFT:{
 						if(!left){
 							left=true;
 							this.model.moveHero("left");
@@ -254,14 +211,7 @@ public class Controller implements ViewObserver {
 							this.model.moveHero("right");
 						}
 						break;
-					}case INTERACT:{
-						if(!interact){
-							interact=true;
-							this.model.heroAction("interact");
-						}
-						break;
-					}
-					default:{
+					}default:{
 						break;
 					}
 					}
@@ -278,48 +228,45 @@ public class Controller implements ViewObserver {
 	private void gameLoop(){
 		
 		//nanosec used
-		final int skipTick=16000000;//model update frequency (62 update per sec)
+		final long skipTick=35000000;//model update frequency (62 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
-		final int maxFrameSkip=15;//max frame skipped between each model update
-		long tick=System.nanoTime();
-		int loops;
+		final int convert=1000000;
+		final int skipTickMillisec=(int)(skipTick/convert);//max frame skipped between each model update
+		
+		//int loops;
 		this.gameRunning=true;
-		
+		long sleep;
 		this.model.goTo(1);
-		
+		this.inputMenuList.clear();
+		long tick=System.nanoTime();
 		try{
 		while(this.gameRunning){
-			java.lang.Thread.sleep(25);
-			loops=0;
-			while(System.nanoTime()>tick&&loops<maxFrameSkip&&this.gameRunning){
-				System.out.println("giro");
-				try{
-					this.model.update(skipTick/1000000);
-				}catch(GameOverException e){
-					this.gameRunning=false;
-					e.printStackTrace();
-					System.out.println("GameOver!");
-				}catch(NullPointerException e){
-					e.printStackTrace();
-					System.exit(0);
-				}
-				tick+=skipTick;
-				loops++;
-				if(gameInputManager()){
-					this.gameRunning=false;
-				}
-			}
 			try{
-				this.view.drawGame(this.model.getDrawableRoomEntity());
-			}catch(Exception e){
-				e.printStackTrace();
+				this.model.update(skipTickMillisec);
+			}catch(GameOverException e){
+				this.gameRunning=false;
+				System.out.println("GameOver!");
+				break;
+			}
+			this.view.drawGame(this.model.getDrawableRoomEntity());
+			if(gameInputManager()){
+				this.gameRunning=false;
+				break;
+			}
+			tick+=skipTick;
+			sleep=(tick-System.nanoTime())/convert;
+			System.out.println(sleep);
+			if(sleep>0){
+				java.lang.Thread.sleep(sleep);
+			}else{
+				System.out.println("Siamo indietro!!!");
 				System.exit(0);
 			}
 			
 		}
 		}catch(Exception e){
-			System.out.println("il gameLoop non va");
+			System.out.println("il gameLoop si inchioda");
 			e.printStackTrace();
 			System.exit(0);
 		}

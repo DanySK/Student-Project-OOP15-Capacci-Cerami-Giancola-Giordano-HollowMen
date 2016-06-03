@@ -61,19 +61,10 @@ public class ModelImpl implements Model{
 		Values.TIMER.setValue((int)((this.dungeon.getTimer().getLimit()
 		        -this.dungeon.getTimer().getValue())/1000));
 		Values.FLOOR.setValue(this.dungeon.getFloorNumber());
-		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
+		/*actually there is only the standing image, so i give that to the view*/
 		ActorState sta=ActorState.STANDING;
-		/*switch(this.hero.getState().toUpperCase()){
-		case "ATTACK":{sta=ActorState.valueOf("ATTACKING");
-		    break;
-		}case "JUMP":{sta=ActorState.valueOf("JUMPING");
-                break;
-                }case "STAND":{sta=ActorState.valueOf("STANDING");
-                break;
-                }case "MOVE":{sta=ActorState.valueOf("MOVING");
-                break;
-                }
-		}*/
+		
+		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
 		
 		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
 		        new Point2DImpl((int)(this.hero.getBody().getWorldCenter().x-this.hero.getLength()/2),
@@ -81,24 +72,12 @@ public class ModelImpl implements Model{
 		        this.hero.isFacingRight(),
 		        sta));
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
-		    switch(re.getState().toUpperCase()){
-	                case "ATTACK":{sta=ActorState.valueOf("ATTACKING");
-	                    break;
-	                }case "JUMP":{sta=ActorState.valueOf("JUMPING");
-	                break;
-	                }case "STAND":{sta=ActorState.valueOf("STANDING");
-	                break;
-	                }case "MOVE":{sta=ActorState.valueOf("MOVING");
-	                break;
-	                }
-	                }
 			drawable.add(new DrawableRoomEntityImpl(
 					re.getInfo().getName(),
 					new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
 									(int)(re.getBody().getWorldCenter().y+re.getHeight()/2)),
 					re.isFacingRight(),
-					sta));
-			System.out.println(re.getInfo().getName());
+					ActorState.STANDING));/*STANDING state, beacuse only one image is available for now*/
 		}
 		for(Interactable re: this.dungeon.getCurrentRoom().getInteractable()){
                     
@@ -107,8 +86,7 @@ public class ModelImpl implements Model{
                                     new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
                                                     (int)(re.getBody().getWorldCenter().y+re.getHeight()/2)),
                                     false,
-                                    ActorState.STANDING));
-                    System.out.println(re.getInfo().getName());
+                                    ActorState.STANDING));/*STANDING state, beacuse it's a door or a chest*/
             }
 		return drawable;
 	}
