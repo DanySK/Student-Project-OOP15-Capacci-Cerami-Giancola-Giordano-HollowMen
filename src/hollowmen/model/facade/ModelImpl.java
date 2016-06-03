@@ -68,14 +68,14 @@ public class ModelImpl implements Model{
 		
 		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
 		        new Point2DImpl((int)(this.hero.getBody().getWorldCenter().x-this.hero.getLength()/2),
-		                		(int)(this.hero.getBody().getWorldCenter().y+this.hero.getHeight()/2)),
+		                		(int)(this.hero.getBody().getWorldCenter().y-this.hero.getHeight()/2)),
 		        this.hero.isFacingRight(),
 		        sta));
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
 			drawable.add(new DrawableRoomEntityImpl(
 					re.getInfo().getName(),
 					new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
-									(int)(re.getBody().getWorldCenter().y+re.getHeight()/2)),
+									(int)(re.getBody().getWorldCenter().y-re.getHeight()/2)),
 					re.isFacingRight(),
 					ActorState.STANDING));/*STANDING state, beacuse only one image is available for now*/
 		}
@@ -84,7 +84,7 @@ public class ModelImpl implements Model{
                     drawable.add(new DrawableRoomEntityImpl(
                                     re.getInfo().getName(),
                                     new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
-                                                    (int)(re.getBody().getWorldCenter().y+re.getHeight()/2)),
+                                                    (int)(re.getBody().getWorldCenter().y-re.getHeight()/2)),
                                     false,
                                     ActorState.STANDING));/*STANDING state, beacuse it's a door or a chest*/
             }
@@ -146,6 +146,7 @@ public class ModelImpl implements Model{
 	}
 
 	public void itemEquip(InformationDealer item) {
+		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
@@ -156,6 +157,7 @@ public class ModelImpl implements Model{
 	}
 	
 	public void itemUnequip(InformationDealer item) {
+		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
@@ -166,6 +168,7 @@ public class ModelImpl implements Model{
 	}
 	
 	public void itemBuy(InformationDealer item) {
+		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
@@ -176,6 +179,7 @@ public class ModelImpl implements Model{
 	}
 	
 	public void itemSell(InformationDealer item){
+		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
