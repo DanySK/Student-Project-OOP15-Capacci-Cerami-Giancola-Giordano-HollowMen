@@ -76,8 +76,8 @@ public class ModelImpl implements Model{
 		}*/
 		
 		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
-		        new Point2DImpl((int)(this.hero.getBody().getLocalCenter().x-this.hero.getLength()/2),
-		                (int)(this.hero.getBody().getLocalCenter().y+this.hero.getHeight()/2)),
+		        new Point2DImpl((int)(this.hero.getBody().getWorldCenter().x-this.hero.getLength()/2),
+		                		(int)(this.hero.getBody().getWorldCenter().y+this.hero.getHeight()/2)),
 		        this.hero.isFacingRight(),
 		        sta));
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
@@ -94,8 +94,8 @@ public class ModelImpl implements Model{
 	                }
 			drawable.add(new DrawableRoomEntityImpl(
 					re.getInfo().getName(),
-					new Point2DImpl((int)(re.getBody().getLocalCenter().x-re.getLength()/2),
-							(int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
+					new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
+									(int)(re.getBody().getWorldCenter().y+re.getHeight()/2)),
 					re.isFacingRight(),
 					sta));
 			System.out.println(re.getInfo().getName());
@@ -104,8 +104,8 @@ public class ModelImpl implements Model{
                     
                     drawable.add(new DrawableRoomEntityImpl(
                                     re.getInfo().getName(),
-                                    new Point2DImpl((int)(re.getBody().getLocalCenter().x-re.getLength()/2),
-                                                    (int)(re.getBody().getLocalCenter().y+re.getHeight()/2)),
+                                    new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
+                                                    (int)(re.getBody().getWorldCenter().y+re.getHeight()/2)),
                                     false,
                                     ActorState.STANDING));
                     System.out.println(re.getInfo().getName());
