@@ -280,9 +280,9 @@ public class Controller implements ViewObserver {
 		
 		this.model.goTo(1);
 		
-		System.out.println("floor 1");
 		try{
 		while(this.gameRunning){
+			java.lang.Thread.sleep(25);
 			loops=0;
 			while(System.nanoTime()>tick&&loops<maxFrameSkip&&this.gameRunning){
 				System.out.println("giro");
