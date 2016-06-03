@@ -33,7 +33,7 @@ public class Box2DUtils {
 	
 	public static void centerPosition(RoomEntity r) {
 		float distance = r.getHeight() / 2;
-		r.getBody().setTransform(new Vec2((float) (0), 0), 0);
+		r.getBody().setTransform(new Vec2(400f, 100f), 0);
 	}
 	
 	public static String suffix(String s) {
@@ -102,7 +102,16 @@ public class Box2DUtils {
 	}
 
 	public static FixtureDef fixtureDefCloner(FixtureDef subj) {
-		return subj;
+		return Box2DUtils.fixDefBuilder()
+				.density(subj.getDensity())
+				.filter(Box2DUtils.filterBuilder()
+						.addCategory(subj.getFilter().categoryBits)
+						.addMask(subj.getFilter().maskBits).build())
+				.friction(subj.getFriction())
+				.restitution(subj.getRestitution())
+				.sensor(subj.isSensor)
+				.shape(subj.shape)
+				.build();
 	}
 	
 	public static class FixtureDefBuilder {
