@@ -33,8 +33,8 @@ import hollowmen.utilities.Pair;
 
 public class DungeonSingleton implements Dungeon{
 
-	private final float GRAVITY = -9.8f;
-	private final float THICKNESS = 50f;
+	private final float GRAVITY = 9.8f;
+	private final float THICKNESS = 10f;
 	private final int ITERATION_VELOCITY = 6;
 	private final int ITERATION_POSITION = 3;
 	
@@ -90,11 +90,11 @@ public class DungeonSingleton implements Dungeon{
 			this.gameOver();
 		}
 		
+		System.out.println("HERO POSITION" + this.hero.getBody().getWorldCenter());
+
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
-		
-		System.out.println("HERO POSITION" + this.hero.getBody().getWorldCenter());
 	}
 	
 	@Override
@@ -205,11 +205,11 @@ public class DungeonSingleton implements Dungeon{
 		Body body = world.createBody(bodyDef);
 
 		//ground
-		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, -(halfHeight+THICKNESS)), 0);
+		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, halfHeight+THICKNESS), 0);
 		body.createFixture(groundFix);
 		System.out.println(groundFix.getShape());
 		//top
-		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, halfHeight+THICKNESS), 0);
+		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, -(halfHeight+THICKNESS)), 0);
 		body.createFixture(wallFix);
 		System.out.println(groundFix.getShape());
 		//left

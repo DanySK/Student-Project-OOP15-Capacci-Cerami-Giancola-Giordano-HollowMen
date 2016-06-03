@@ -33,7 +33,8 @@ public class Box2DUtils {
 	
 	public static void centerPosition(RoomEntity r) {
 		float distance = r.getHeight() / 2;
-		r.getBody().setTransform(new Vec2(400f, 100f), 0);
+		r.getBody().setTransform(new Vec2((float) (Constants.WORLD_SIZE.getWidth() / 2), 
+				(float) (Constants.WORLD_SIZE.getHeight() - distance)), 0);
 	}
 	
 	public static String suffix(String s) {
