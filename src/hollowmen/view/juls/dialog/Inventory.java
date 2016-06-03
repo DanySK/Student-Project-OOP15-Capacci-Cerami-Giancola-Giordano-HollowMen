@@ -131,7 +131,7 @@ public class Inventory extends TabbedDialog {
 	protected void populateTab(Collection<InformationDealer> c, String slot, JPanel panel) {
 		c.stream()
 		.filter(x -> x.getSlot().equals(slot))
-		//.filter(x -> x.getState().equals(State.UNEQUIPPED))
+		.filter(x -> x.getState().equals("UNEQUIPPED"))
 		.forEach(x -> {
 			System.out.println(x); //TODO remove
 			stats = x.getStat();

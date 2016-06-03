@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 
 import hollowmen.view.SingletonFrame;
 /**
@@ -32,10 +33,12 @@ public abstract class MenuDialog extends CustomDialog {
 	public void setPreferences() {
 		this.setSize(750, 550);
 		this.setUndecorated(true);
+		this.setResizable(false);
 		this.setLocationRelativeTo(SingletonFrame.getInstance());
 		this.setModal(false);
 		this.addBackground();
 		this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		UIManager.put("TabbedPane.contentOpaque", false);
 	}
 	
 	@Override

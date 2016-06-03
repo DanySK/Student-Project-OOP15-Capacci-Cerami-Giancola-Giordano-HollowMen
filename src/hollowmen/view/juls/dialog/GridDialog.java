@@ -83,13 +83,11 @@ public abstract class GridDialog extends MenuDialog {
 	 * This method draws a bigger representation of the image passed as parameter.
 	 * @param image
 	 */
-	protected void showImage(ImageIcon image) {
+	protected ImageIcon showImage(ImageIcon image) {
 		Image i = image.getImage();
 		Image scaled = i.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		portrait = new ImageIcon(scaled);
-		JLabel label = new JLabel(portrait);
-		label.setBounds(420, 100, 100, 100);
-		this.add(label);
+		return portrait;
 	}
 	
 	protected void setButton(IconButton button) {

@@ -9,12 +9,12 @@ import java.util.Collection;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
@@ -30,6 +30,7 @@ public class Shop extends TabbedDialog {
 	private static final long serialVersionUID = -1975340404777455747L;
 	private PaintedButton buy = new PaintedButton("BUY");
 	private PaintedButton sell = new PaintedButton("SELL");
+	private JLabel label = new JLabel();
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 3, 30, 0)
 							.bound(90, 450, 520, 58)
@@ -53,7 +54,10 @@ public class Shop extends TabbedDialog {
 		this.populateTab(collection, "inventory", inventoryP);
 		this.populateShopTab(collection, "shop", shopP);
 		
-		statsBox.setBounds(420, 280, 130, 140);
+		label.setBounds(450, 100, 100, 100);
+		this.add(label);
+		
+		statsBox.setBounds(420, 280, 200, 140);
 		this.add(statsBox);
 		this.add(tabbedPane);
 		this.setVisible(true);
@@ -76,7 +80,7 @@ public class Shop extends TabbedDialog {
 	@Override
 	protected void populateTab(Collection<InformationDealer> c, String tab, JPanel panel) {
 		c.stream()	
-		.filter(x -> x.getState().equals(State.UNEQUIPPED))
+		.filter(x -> x.getState().equals("UNEQUIPPED"))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
@@ -84,12 +88,16 @@ public class Shop extends TabbedDialog {
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
-						setButtonState(false, true);
-						setButton(button);
-						setLastItem(x);
-						showImage((ImageIcon) icon);
-						statsBox.setText(showStats(stats));
-//						add(statsBox);	
+					stats = x.getStat();
+					nameF = x.getName();
+					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					button.setIcon(icon);
+					setButtonState(false, true);
+					setButton(button);
+					setLastItem(x);
+					showImage((ImageIcon) icon);
+					label.setIcon(showImage((ImageIcon) icon));
+					statsBox.setText(showStats(stats));
 				}
 			});
 			panel.add(button);
@@ -105,21 +113,24 @@ public class Shop extends TabbedDialog {
 	 */
 	protected void populateShopTab(Collection<InformationDealer> c, String tab, JPanel panel) {
 		c.stream()	
-		.filter(x -> x.getState().equals(State.BUYABLE))
+		//.filter(x -> x.getState().equals("BUYABLE"))
 		.forEach(x -> {
-			System.out.println(x); //TODO remove
 			stats = x.getStat();
 			nameF = x.getName();
 			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
-						setButtonState(true, false);
-						setButton(button);
-						setLastItem(x);
-						showImage((ImageIcon) icon);
-						statsBox.setText(showStats(stats));
-						add(statsBox);	
+					stats = x.getStat();
+					nameF = x.getName();
+					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					button.setIcon(icon);
+					setButtonState(true, false);
+					setButton(button);
+					setLastItem(x);
+					showImage((ImageIcon) icon);
+					label.setIcon(showImage((ImageIcon) icon));
+					statsBox.setText(showStats(stats));
 				}
 			});
 			panel.add(button);

@@ -25,47 +25,47 @@ public abstract class TabbedDialog extends GridDialog {
 	private static final long serialVersionUID = 6838744487705502656L;
 	protected JTabbedPane tabbedPane = new JTabbedPane();
 	protected JPanel headP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel chestP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel glovesP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel ringsP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel legsP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel bootsP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel weaponsP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel spellsP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel consumP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel inventoryP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	protected JPanel shopP = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 3, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 	
@@ -76,6 +76,7 @@ public abstract class TabbedDialog extends GridDialog {
 		tabbedPane.setForeground(Color.WHITE);
 		tabbedPane.setBounds(50, 100, 300, 320);
 		tabbedPane.setOpaque(false);
+//		this.add(tabbedPane);
 		this.addMouseListener(dialogL);
 	}
 

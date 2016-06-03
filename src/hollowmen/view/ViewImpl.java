@@ -81,6 +81,7 @@ public class ViewImpl implements View {
 			this.storage.put(elem.getKey(),new ImageIcon(elem.getValue()));
 		}
 		this.game.setStorage(this.storage);
+		UtilitySingleton.getInstance().setStorage(storage);
 	}
 	
 	/**
