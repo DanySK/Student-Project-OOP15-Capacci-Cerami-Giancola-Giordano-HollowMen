@@ -55,7 +55,6 @@ public class RoomImpl implements Room{
 			this.needToGenerate = false;
 			for(int i = 0; i <= this.childNumber; i++) {
 				new Door(RoomEntityName.DOOR.toString(), i);
-				System.out.println("INDICE" +i);
 			}
 			Box2DUtils.linearSpacing(this.interactables);
 			Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
