@@ -206,6 +206,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 						.addCategory(FilterType.HERO.getValue())
 						.addMask(FilterType.GROUND.getValue())
 						.addMask(FilterType.ENEMY.getValue())
+						.addMask(FilterType.WALL.getValue())
 						.addMask(FilterType.LOOTABLE.getValue())
 						.addMask(FilterType.ENEMYATTACK.getValue())
 						.build();
