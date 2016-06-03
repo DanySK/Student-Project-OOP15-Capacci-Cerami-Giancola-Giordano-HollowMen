@@ -35,7 +35,6 @@ public class Algorithms {
 	public static void populateRoom(Room room) {
 		Interactable chest = new TreasureChest();
 		Box2DUtils.lowerCorner(chest);
-		room.addEntity(chest);
 	}
 	
 	public static Lootable treasureLoot() {

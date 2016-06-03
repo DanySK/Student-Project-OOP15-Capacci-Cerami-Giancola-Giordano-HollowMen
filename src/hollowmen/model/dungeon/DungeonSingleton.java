@@ -89,9 +89,6 @@ public class DungeonSingleton implements Dungeon{
 		} catch (UpperLimitReachException e) {
 			this.gameOver();
 		}
-		
-		System.out.println("HERO POSITION" + this.hero.getBody().getWorldCenter());
-
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
@@ -207,28 +204,18 @@ public class DungeonSingleton implements Dungeon{
 		//ground
 		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, halfHeight+THICKNESS), 0);
 		body.createFixture(groundFix);
-		System.out.println(groundFix.getShape());
 		//top
 		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, -(halfHeight+THICKNESS)), 0);
 		body.createFixture(wallFix);
-		System.out.println(groundFix.getShape());
 		//left
 		polygonShape.setAsBox( THICKNESS, halfHeight+THICKNESS, new Vec2(-(halfLength+THICKNESS), 0), 0);
 		body.createFixture(wallFix);
-		System.out.println(groundFix.getShape());
 		//right
 		polygonShape.setAsBox( THICKNESS, halfHeight+THICKNESS, new Vec2(halfLength+THICKNESS, 0), 0);
 		body.createFixture(wallFix);
-		System.out.println(groundFix.getShape());
 		//flyLine
 		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS);
 		body.createFixture(airLine);
-		Fixture fixT = body.getFixtureList();
-		while(fixT != null) {
-			System.out.println(fixT.getBody().getWorldCenter());
-			System.out.println("CAT: "+fixT.m_filter.categoryBits +" MASK: "+fixT.m_filter.maskBits);
-			fixT = fixT.getNext();
-		}
 	}
 	
 	@Override
