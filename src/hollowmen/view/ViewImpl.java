@@ -93,7 +93,7 @@ public class ViewImpl implements View {
 		frame.getContentPane().removeAll();
 		this.game.draw(componentList);
 		frame.add(this.game);
-		frame.update(frame.getGraphics());
+		frame.repaint();
 	}
 	
 	/**
