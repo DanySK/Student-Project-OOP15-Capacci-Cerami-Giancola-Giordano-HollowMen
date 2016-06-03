@@ -29,10 +29,10 @@ public class GameCollisionListener implements ContactListener{
 		}
 		
 		if(typeA == FilterType.LOOTABLE.getValue() && typeB == FilterType.HERO.getValue()) {
-			((Interactable) contact.getFixtureB().getBody().getUserData()).changeInteract();
+			((Interactable) contact.getFixtureA().getBody().getUserData()).changeInteract();
 		}
 		if(typeB == FilterType.LOOTABLE.getValue() && typeA == FilterType.HERO.getValue()) {
-			((Interactable) contact.getFixtureA().getBody().getUserData()).changeInteract();
+			((Interactable) contact.getFixtureB().getBody().getUserData()).changeInteract();
 		}
 		
 		if(typeA == FilterType.WALL.getValue()) {

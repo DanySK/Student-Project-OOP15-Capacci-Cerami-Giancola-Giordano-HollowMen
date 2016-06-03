@@ -26,13 +26,14 @@ import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.GameOverException;
 import hollowmen.model.utils.SimpleLimitedCounter;
+import hollowmen.model.utils.UpperLimitReachException;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
 public class DungeonSingleton implements Dungeon{
 
 	private final float GRAVITY = -9.8f;
-	private final float THICKNESS = 20f;
+	private final float THICKNESS = 50f;
 	private final int ITERATION_VELOCITY = 6;
 	private final int ITERATION_POSITION = 3;
 	
@@ -82,7 +83,12 @@ public class DungeonSingleton implements Dungeon{
 			endRun();
 			throw new GameOverException();
 		}
-		TimerSingleton.getInstance().addToValue(deltaTime);
+		try {
+			TimerSingleton.getInstance().addToValue(deltaTime);
+		} catch (UpperLimitReachException e) {
+			this.gameOver();
+		}
+		
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);

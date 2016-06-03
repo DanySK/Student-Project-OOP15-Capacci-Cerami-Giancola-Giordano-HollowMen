@@ -30,7 +30,7 @@ public class Algorithms {
 	private final static double FLAT_ENEMY_EXP = 100;
 	private final static double FLAT_ENEMY_GOLD = 75;
 	private final static int MAX_ENEMY_DISTANCE_FROM_WALL = 255;
-	
+	private final static int MIN_ENEMY_DISTANCE_FROM_WALL = 100;
 	
 	public static void populateRoom(Room room) {
 		Interactable chest = new TreasureChest();
@@ -64,9 +64,10 @@ public class Algorithms {
 			maxPower -= e.getLevel();
 			retValue.add(e);
 			e.getBody().setTransform(new Vec2(RandomSelector.getIntFromRange(0, 1) == 0 ?
-					RandomSelector.getIntFromRange(0, Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL)
+					RandomSelector.getIntFromRange(Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL, Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL)
 					: RandomSelector.getIntFromRange((int)(Constants.WORLD_SIZE.getWidth() - Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL),
-							(int) Constants.WORLD_SIZE.getWidth()), (float) Constants.WORLD_SIZE.getHeight()), 0);
+							(int) Constants.WORLD_SIZE.getWidth() - Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL),
+					(float) Constants.WORLD_SIZE.getHeight()), 0);
 		}
 		return retValue;
 	}
