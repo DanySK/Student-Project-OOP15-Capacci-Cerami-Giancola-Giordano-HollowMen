@@ -68,6 +68,7 @@ public class Box2DUtils {
 		
 		public BodyDefBuilder() {
 			def.fixedRotation = true;
+			def.setGravityScale(1);
 		}
 		
 		public BodyDefBuilder type(BodyType bodyType) {

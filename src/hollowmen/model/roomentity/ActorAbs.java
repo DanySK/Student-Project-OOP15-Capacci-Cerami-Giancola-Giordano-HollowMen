@@ -44,8 +44,6 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	}
 
 	public void move(String d) {
-		System.out.println("MOVE "  +this.getInfo().getName()+  " Local Center -->" + this.getBody().getLocalCenter() +
-				" Facing -->" + (this.isFacingRight() ? "RIGHT" : "LEFT"));
 		changeFacing(d);
 		float speed = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue();
 		if(this.getBody().getLinearVelocity().abs().x < speed * Constants.MAXSPEED){
@@ -53,9 +51,6 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		} else {
 			this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? Constants.FLATSPEED : -Constants.FLATSPEED, 0));
 		}
-		System.out.println("MOVE: Local Center -->" + this.getBody().getLocalCenter() +
-				" Facing -->" + (this.isFacingRight() ? "RIGHT" : "LEFT"));
-		
 	}
 
 	private void changeFacing(String d) {
