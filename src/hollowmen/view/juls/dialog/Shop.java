@@ -1,5 +1,6 @@
 package hollowmen.view.juls.dialog;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +15,7 @@ import javax.swing.JPanel;
 
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.enumerators.Values;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
@@ -31,6 +33,7 @@ public class Shop extends TabbedDialog {
 	private PaintedButton buy = new PaintedButton("BUY");
 	private PaintedButton sell = new PaintedButton("SELL");
 	private JLabel label = new JLabel();
+	private JLabel gold = new JLabel("GOLD:   " + String.valueOf(Values.GOLD.getValue()));
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 3, 30, 0)
 							.bound(90, 450, 520, 58)
@@ -53,6 +56,10 @@ public class Shop extends TabbedDialog {
 
 		this.populateTab(collection, "inventory", inventoryP);
 		this.populateShopTab(collection, "shop", shopP);
+		
+		gold.setBounds(420, 50, 100, 50);
+		gold.setForeground(Color.BLACK);
+		this.add(gold);
 		
 		label.setBounds(450, 100, 100, 100);
 		this.add(label);
@@ -91,7 +98,6 @@ public class Shop extends TabbedDialog {
 					stats = x.getStat();
 					nameF = x.getName();
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
-					button.setIcon(icon);
 					setButtonState(false, true);
 					setButton(button);
 					setLastItem(x);
@@ -113,7 +119,7 @@ public class Shop extends TabbedDialog {
 	 */
 	protected void populateShopTab(Collection<InformationDealer> c, String tab, JPanel panel) {
 		c.stream()	
-		//.filter(x -> x.getState().equals("BUYABLE"))
+		.filter(x -> x.getState().equals("UNEQUIPPED"))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
@@ -124,7 +130,6 @@ public class Shop extends TabbedDialog {
 					stats = x.getStat();
 					nameF = x.getName();
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
-					button.setIcon(icon);
 					setButtonState(true, false);
 					setButton(button);
 					setLastItem(x);
