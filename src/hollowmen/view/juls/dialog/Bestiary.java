@@ -1,5 +1,6 @@
 package hollowmen.view.juls.dialog;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +30,7 @@ public class Bestiary extends GridDialog {
 
 	private static final long serialVersionUID = 9026903745675122006L;
 	private IconButton button;
+	private JLabel label = new JLabel();
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 0, 0, 0)
 							.bound(150, 450, 150, 58)
@@ -46,7 +49,12 @@ public class Bestiary extends GridDialog {
 				dispose();
 			}
 		});
-		
+		label.setBounds(450, 100, 100, 100);
+		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.add(label);
+		statsBox.setBounds(420, 280, 200, 140);
+		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.add(statsBox);
 		this.setVisible(true);
 	}
 
@@ -57,6 +65,7 @@ public class Bestiary extends GridDialog {
 	private void populateBestiary(Collection<InformationDealer> c) {
 		c.stream()	
 		.forEach(x -> {
+			//System.out.println(x);
 			stats = x.getStat();
 			nameF = x.getName();
 			description = x.getDescription();
@@ -64,6 +73,9 @@ public class Bestiary extends GridDialog {
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
+					stats = x.getStat();
+					nameF = x.getName();
+					description = x.getDescription();
 					showDescription(description);	
 					showImage((ImageIcon) icon);
 					statsBox.setText(showStats(stats));
@@ -79,8 +91,8 @@ public class Bestiary extends GridDialog {
 	 * @param d - the description
 	 */
 	private void showDescription(String d) {
-		JLabel label = new JLabel(d);
-		label.setBounds(420, 470, 100, 50);
+		JLabel desc = new JLabel(d);
+		desc.setBounds(420, 470, 100, 50);
 	}
 	
 	private void loadImages() {

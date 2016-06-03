@@ -1,10 +1,12 @@
 package hollowmen.view.juls.dialog;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Image;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -40,7 +42,7 @@ public abstract class GridDialog extends MenuDialog {
 	protected PaintedButton close = new PaintedButton("CLOSE");
 	protected JScrollBar scroll = new JScrollBar();
 	protected JPanel gridPanel = PanelBuilder.getBuilder()
-								.layout(20, 5, 3, 3)
+								.layout(5, 4, 3, 3)
 								.bound(50, 100, 300, 320)
 								.build();
 
@@ -48,6 +50,7 @@ public abstract class GridDialog extends MenuDialog {
 	
 	public GridDialog(Frame frame) {
 		super(frame);
+		gridPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(gridPanel);
 	}
 	

@@ -97,7 +97,6 @@ public class Shop extends TabbedDialog {
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(false, true);
 					setButton(button);
 					setLastItem(x);
@@ -119,7 +118,7 @@ public class Shop extends TabbedDialog {
 	 */
 	protected void populateShopTab(Collection<InformationDealer> c, String tab, JPanel panel) {
 		c.stream()	
-		.filter(x -> x.getState().equals("UNEQUIPPED"))
+		.filter(x -> x.getState().equals("BUYABLE"))
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
@@ -129,7 +128,6 @@ public class Shop extends TabbedDialog {
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(true, false);
 					setButton(button);
 					setLastItem(x);

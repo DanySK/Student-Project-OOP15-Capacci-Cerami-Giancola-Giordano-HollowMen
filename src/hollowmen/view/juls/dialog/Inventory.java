@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
-import hollowmen.model.facade.InformationDealer.State;
 import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
@@ -98,18 +97,20 @@ public class Inventory extends TabbedDialog {
 		this.add(bodyPSouth);
 		this.add(pEast);
 		this.setButtonState(false, false);
+		this.add(tabbedPane);	
+		
 		equip.addActionListener(paintedL);		
 		unequip.addActionListener(paintedL);
 		close.addActionListener(paintedL);
 		super.addMouseListener(dialogL);
-		this.add(tabbedPane);
+
 		this.populateTab(collection, "head", headP);
 		this.populateTab(collection, "chest", chestP);
 		this.populateTab(collection, "gloves", glovesP);
 		this.populateTab(collection, "rings", ringsP);
 		this.populateTab(collection, "legs", legsP);
 		this.populateTab(collection, "boots", bootsP);
-		this.populateTab(collection, "weapons", weaponsP);
+		this.populateTab(collection, "weapon", weaponsP);
 		this.populateTab(collection, "spells", spellsP);
 		this.populateTab(collection, "consumables", consumP);
 		
@@ -157,7 +158,7 @@ public class Inventory extends TabbedDialog {
 	 */
 	private void populateBody(Collection<InformationDealer> c, String slot, IconButton button) {
 		c.stream()
-		.filter(x -> x.getState().equals(State.EQUIPPED))
+		.filter(x -> x.getState().equals("EQUIPPED"))
 		.filter(x -> x.getSlot().equals(slot))
 		.forEach(x -> {
 			nameF = x.getName();
