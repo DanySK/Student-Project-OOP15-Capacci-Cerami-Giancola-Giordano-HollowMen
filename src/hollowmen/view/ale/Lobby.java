@@ -27,7 +27,7 @@ import hollowmen.view.SingletonFrame;
 public class Lobby extends JLabel{
 
     private static final long serialVersionUID = -986610577506284L;
-    private Font fontA=new Font("Chiller",Font.PLAIN, 25);
+    private Font fontA=new Font("Chiller",Font.PLAIN, 20);
     private Font fontB=new Font("Chiller",Font.PLAIN, 40);
     private Font fontTitle=new Font("Chiller",Font.PLAIN, 70);
     private static final int DIMXPLAY=200;
@@ -74,6 +74,7 @@ public class Lobby extends JLabel{
         this.inventory=new JButton();
         this.inventory.setLayout(null);
         this.inventory.setOpaque(true);
+        this.inventory.setIcon(new ImageIcon(storage.get("inventoryLobby").getImage()));
         this.inventory.setBackground(Color.darkGray);
         this.inventory.setText("INVENTORY");
         this.inventory.setFont(fontA);
@@ -94,6 +95,7 @@ public class Lobby extends JLabel{
         this.skillTree=new JButton();
         this.skillTree.setLayout(null);
         this.skillTree.setOpaque(true);
+        this.skillTree.setIcon(new ImageIcon(storage.get("skillTreeLobby").getImage()));
         this.skillTree.setBackground(Color.darkGray);
         this.skillTree.setText("SKILLTREE");
         this.skillTree.setFont(fontA);
@@ -114,6 +116,7 @@ public class Lobby extends JLabel{
         this.shop=new JButton();
         this.shop.setLayout(null);
         this.shop.setOpaque(true);
+        this.shop.setIcon(new ImageIcon(storage.get("coinBag").getImage()));
         this.shop.setBackground(Color.darkGray);
         this.shop.setText("SHOP");
         this.shop.setFont(fontA);
@@ -134,6 +137,7 @@ public class Lobby extends JLabel{
         this.pokedex=new JButton();
         this.pokedex.setLayout(null);
         this.pokedex.setOpaque(true);
+        this.pokedex.setIcon(new ImageIcon(storage.get("blueSlime").getImage()));
         this.pokedex.setBackground(Color.darkGray);
         this.pokedex.setText("BESTIARY");
         this.pokedex.setFont(fontA);
