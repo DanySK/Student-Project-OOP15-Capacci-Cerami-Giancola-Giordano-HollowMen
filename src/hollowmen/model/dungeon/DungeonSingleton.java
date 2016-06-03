@@ -89,9 +89,6 @@ public class DungeonSingleton implements Dungeon{
 		} catch (UpperLimitReachException e) {
 			this.gameOver();
 		}
-		
-		System.out.println("HERO POSITION" + this.hero.getBody().getWorldCenter());
-
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);

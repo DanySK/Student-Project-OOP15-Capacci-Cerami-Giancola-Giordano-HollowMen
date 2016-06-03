@@ -54,12 +54,12 @@ public class RoomImpl implements Room{
 		if(this.needToGenerate) {
 			this.needToGenerate = false;
 			for(int i = 0; i <= this.childNumber; i++) {
-				this.interactables.add(new Door(RoomEntityName.DOOR.toString(), i));
+				new Door(RoomEntityName.DOOR.toString(), i);
+				System.out.println("INDICE" +i);
 			}
 			Box2DUtils.linearSpacing(this.interactables);
 			Interactable backDoor = new Door(RoomEntityName.DOOR_BACK.toString(), -1);
 			Box2DUtils.centerPosition(backDoor);
-			this.interactables.add(backDoor);
 			if(this.childNumber != 0) {
 				this.enemies = Algorithms.generateEnemy();
 			} else {
