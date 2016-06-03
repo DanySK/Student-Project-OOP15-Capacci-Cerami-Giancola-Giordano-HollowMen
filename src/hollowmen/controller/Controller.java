@@ -1,6 +1,7 @@
 package hollowmen.controller;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.Difficulty;
@@ -79,7 +80,14 @@ public class Controller implements ViewObserver {
 			this.inputMenuList.clear();
 			break;
 		}case SHOP:{
-			this.view.drawMenu(InputMenu.SHOP, Optional.of(model.getShop()));
+			List<InformationDealer> shop=new LinkedList<>();
+			for(InformationDealer item:model.getInventory()){
+				if(item.getState().equals("UNEQUIPPED")){
+					shop.add(item);
+				}
+			}
+			shop.addAll(model.getShop());
+			this.view.drawMenu(InputMenu.SHOP, Optional.of(shop));
 			this.inputMenuList.clear();
 			itemInputLoop();
 			break;
