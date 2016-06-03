@@ -7,6 +7,7 @@ import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.Difficulty;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.model.facade.DrawableRoomEntity;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.Model;
 import hollowmen.model.facade.ModelImpl;
@@ -228,7 +229,7 @@ public class Controller implements ViewObserver {
 	private void gameLoop(){
 		
 		//nanosec used
-		final long skipTick=35000000;//model update frequency (62 update per sec)
+		final long skipTick=30000000;//model update frequency (62 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
 		final int convert=1000000;
@@ -259,9 +260,6 @@ public class Controller implements ViewObserver {
 			System.out.println(sleep);
 			if(sleep>0){
 				java.lang.Thread.sleep(sleep);
-			}else{
-				System.out.println("Siamo indietro!!!");
-				System.exit(0);
 			}
 			
 		}
