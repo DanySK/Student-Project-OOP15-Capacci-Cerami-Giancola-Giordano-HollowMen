@@ -100,7 +100,7 @@ public class Game extends JPanel implements GameInterface{
             this.timerValue=new ValueManager("Timer", Color.WHITE);
             this.timerValue.setBounds(LOCX, 0, DIMX, DIMY*2);
             this.bars=new Bar();
-            this.bars.setLayout(null);
+            //this.bars.setLayout(null);
             this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY); 
             this.bars.setBorder(border);            
             this.btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
@@ -144,11 +144,11 @@ public class Game extends JPanel implements GameInterface{
                         for(String name: SingletonNameList.getSingletonNameList().getNameList() ){
                                 if(elem.getKey().equals(name)){
                                         storageGame.put(name, new JLabel(elem.getValue()));
-                                        /*if(!name.equals("ability1") || !name.equals("ability2") || !name.equals("ability3")||
+                                        if(!name.equals("ability1") || !name.equals("ability2") || !name.equals("ability3")||
                                            !name.equals("inventory")|| !name.equals("consumable") || !name.equals("skillTree")||
-                                           !name.equals("door")|| !name.equals("treasureChest")){*/
+                                           !name.equals("door")|| !name.equals("treasureChest")){
                                                 storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
-                                        //}
+                                        }
                                 }
                         }
                 }
@@ -158,6 +158,7 @@ public class Game extends JPanel implements GameInterface{
         private void addComponent(){
             this.add(panelGame);
             this.add(bars);
+            this.bars.updateBar(Values.LIFE.getValue(), Values.MAXLIFE.getValue(), Values.EXP.getValue(), Values.EXPNEEDE.getValue());
             this.add(btnAbility1);
             this.add(btnAbility2);
             this.add(btnAbility3);

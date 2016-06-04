@@ -17,7 +17,7 @@ public enum Values {
 	LEVEL,
 	FLOOR;
 	
-	private int value=0;
+	private int value=1;
 	
 	public void setValue(int v){
 		this.value=v;
