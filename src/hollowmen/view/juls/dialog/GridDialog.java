@@ -30,6 +30,14 @@ import hollowmen.view.juls.panel.PanelBuilder;
 public abstract class GridDialog extends MenuDialog {
 
 	private static final long serialVersionUID = -7697502946815508802L;
+	protected static final int ROWS = 5;
+	protected static final int COLUMNS = 3;
+	protected static final int HGAP = 3;
+	protected static final int VGAP = 3;
+	protected static final int X = 50;
+	protected static final int Y = 100;
+	protected static final int WIDTH = 300;
+	protected static final int HEIGHT = 320;
 	protected JLabel statsBox = new JLabel();
 	private ImageIcon portrait;
 	protected IconButton button;
@@ -42,12 +50,10 @@ public abstract class GridDialog extends MenuDialog {
 	protected PaintedButton close = new PaintedButton("CLOSE");
 	protected JScrollBar scroll = new JScrollBar();
 	protected JPanel gridPanel = PanelBuilder.getBuilder()
-								.layout(5, 4, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 
-	
-	
 	public GridDialog(Frame frame) {
 		super(frame);
 		gridPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -91,13 +97,5 @@ public abstract class GridDialog extends MenuDialog {
 		Image scaled = i.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		portrait = new ImageIcon(scaled);
 		return portrait;
-	}
-	
-	protected void setButton(IconButton button) {
-		this.button = button;
-	}
-	
-	protected IconButton getButton() {
-		return button;
 	}
 }
