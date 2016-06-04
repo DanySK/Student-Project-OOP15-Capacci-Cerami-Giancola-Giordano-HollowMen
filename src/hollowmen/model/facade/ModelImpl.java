@@ -53,7 +53,7 @@ public class ModelImpl implements Model{
 	public List<DrawableRoomEntity> getDrawableRoomEntity() {
 		List<DrawableRoomEntity> drawable=new LinkedList<>();
 		Values.LIFE.setValue((int)this.hero.getParameters().get("hp").getValue());
-		Values.LIFE.setValue((int)this.hero.getParameters().get("hpmax").getValue());
+		Values.MAXLIFE.setValue((int)this.hero.getParameters().get("hpmax").getValue());
 		Values.GOLD.setValue(this.hero.getGold());
 		Values.LEVEL.setValue(this.hero.getLevel());
 		Values.EXP.setValue(this.hero.getExp().getX());
