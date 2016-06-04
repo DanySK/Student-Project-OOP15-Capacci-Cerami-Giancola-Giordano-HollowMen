@@ -64,7 +64,7 @@ public class Shop extends TabbedDialog {
 		label.setBounds(450, 100, 100, 100);
 		this.add(label);
 		
-		statsBox.setBounds(420, 280, 200, 140);
+		statsBox.setBounds(420, 280, 200, 50);
 		this.add(statsBox);
 		this.add(tabbedPane);
 		this.setVisible(true);

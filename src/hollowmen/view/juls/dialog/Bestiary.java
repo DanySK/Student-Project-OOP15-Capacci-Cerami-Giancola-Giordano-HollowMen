@@ -65,7 +65,7 @@ public class Bestiary extends GridDialog {
 	private void populateBestiary(Collection<InformationDealer> c) {
 		c.stream()	
 		.forEach(x -> {
-			//System.out.println(x);
+			//System.out.println("Sono nel bestiario" + x);
 			stats = x.getStat();
 			nameF = x.getName();
 			description = x.getDescription();
