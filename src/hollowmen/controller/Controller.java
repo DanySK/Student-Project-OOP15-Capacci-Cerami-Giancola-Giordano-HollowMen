@@ -212,6 +212,24 @@ public class Controller implements ViewObserver {
 							this.model.moveHero("right");
 						}
 						break;
+					}case JUMP:{
+						if(!left){
+							left=true;
+							this.model.moveHero("left");
+						}
+						break;
+					}case ATTACK:{
+						if(!left){
+							left=true;
+							this.model.moveHero("left");
+						}
+						break;
+					}case INTERACT:{
+						if(!left){
+							left=true;
+							this.model.moveHero("left");
+						}
+						break;
 					}default:{
 						break;
 					}
@@ -229,13 +247,12 @@ public class Controller implements ViewObserver {
 	private void gameLoop(){
 		
 		//nanosec used
-		final long skipTick=20000000;//model update frequency (62 update per sec)
+		final long skipTick=50000000;//model update frequency (62 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
 		final int convert=1000000;
 		final int skipTickMillisec=(int)(skipTick/convert);//max frame skipped between each model update
-		
-		int loops=0;
+		List<DrawableRoomEntity> drawable;
 		this.gameRunning=true;
 		long sleep;
 		this.model.goTo(1);
@@ -250,22 +267,16 @@ public class Controller implements ViewObserver {
 				System.out.println("GameOver!");
 				break;
 			}
-			this.view.drawGame(this.model.getDrawableRoomEntity());
+			drawable=this.model.getDrawableRoomEntity();
+			this.view.drawGame(drawable);
 			if(gameInputManager()){
 				this.gameRunning=false;
 				break;
 			}
 			tick+=skipTick;
 			sleep=(tick-System.nanoTime())/convert;
-			System.out.println(sleep);
 			if(sleep>0){
 				java.lang.Thread.sleep(sleep);
-			}else{
-				System.out.println("I'M LATE!!!");
-				loops++;
-				if(loops>20){
-					System.exit(0);
-				}
 			}
 			
 		}
@@ -278,6 +289,7 @@ public class Controller implements ViewObserver {
 	}
 	
 	public void addInput(InputCommand input) {
+		System.out.println(input);
 		this.inputCommandList.add(input);
 	}
 

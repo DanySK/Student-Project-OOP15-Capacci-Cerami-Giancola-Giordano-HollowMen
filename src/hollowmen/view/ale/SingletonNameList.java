@@ -17,15 +17,15 @@ public class SingletonNameList {
 	//Private constructor avoid the instance of objects from external classes.
 	private SingletonNameList(){
 		nameList=new LinkedList<>();
-		nameList.add("batBrown");
+		nameList.add("bat1");
 		nameList.add("batGray");
 		nameList.add("batPurple");
 		nameList.add("blueSlimeBoss");
-		nameList.add("puppetBlack");
+		nameList.add("puppet1");
 		nameList.add("puppetRed");
 		nameList.add("puppetWhite");
 		nameList.add("slimeBlue");
-		nameList.add("slimeGreen");
+		nameList.add("slime1");
 		nameList.add("slimePurple");
 		nameList.add("slimeRed");
 		nameList.add("violetSlimeBoss");

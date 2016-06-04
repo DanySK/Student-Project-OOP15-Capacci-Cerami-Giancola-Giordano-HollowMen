@@ -65,29 +65,35 @@ public class ModelImpl implements Model{
 		ActorState sta=ActorState.STANDING;
 		
 		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
-		
+		String name;
 		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
 		        new Point2DImpl((int)(this.hero.getBody().getWorldCenter().x-this.hero.getLength()/2),
 		                		(int)(this.hero.getBody().getWorldCenter().y-this.hero.getHeight()/2)),
 		        this.hero.isFacingRight(),
 		        sta));
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
+			
+			name=new String(re.getInfo().getName()+re.getLevel());
 			drawable.add(new DrawableRoomEntityImpl(
-					re.getInfo().getName(),
+					name,
 					new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
 									(int)(re.getBody().getWorldCenter().y-re.getHeight()/2)),
 					re.isFacingRight(),
 					ActorState.STANDING));/*STANDING state, beacuse only one image is available for now*/
 		}
 		for(Interactable re: this.dungeon.getCurrentRoom().getInteractable()){
-                    
+			if(!re.getInfo().getName().equals("door_back")){
                     drawable.add(new DrawableRoomEntityImpl(
                                     re.getInfo().getName(),
                                     new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
                                                     (int)(re.getBody().getWorldCenter().y-re.getHeight()/2)),
                                     false,
                                     ActorState.STANDING));/*STANDING state, beacuse it's a door or a chest*/
+			}  
             }
+		/*for(DrawableRoomEntity e:drawable){
+			System.out.println(e.getName());
+		}*/
 		return drawable;
 	}
 

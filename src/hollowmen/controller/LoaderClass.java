@@ -41,15 +41,15 @@ public class LoaderClass {
 		nameList.add("res/images/mobs/violetSlimeBoss.gif");
 		nameList.add("res/images/mobs/slimeRed.gif");
 		nameList.add("res/images/mobs/slimePurple.gif");
-		nameList.add("res/images/mobs/slimeGreen.gif");
+		nameList.add("res/images/mobs/slime1.gif");
 		nameList.add("res/images/mobs/slimeBlue.gif");
 		nameList.add("res/images/mobs/puppetWhite.gif");
 		nameList.add("res/images/mobs/puppetRed.gif");
-		nameList.add("res/images/mobs/puppetBlack.gif");
+		nameList.add("res/images/mobs/puppet1.gif");
 		nameList.add("res/images/mobs/blueSlimeBoss.gif");
 		nameList.add("res/images/mobs/batPurple.gif");
 		nameList.add("res/images/mobs/batGray.gif");
-		nameList.add("res/images/mobs/batBrown.gif");
+		nameList.add("res/images/mobs/bat1.gif");
 		nameList.add("res/images/items/bootsBlack.png");
 		nameList.add("res/images/items/bootsBlue.png");
 		nameList.add("res/images/items/bootsBrown.png");
