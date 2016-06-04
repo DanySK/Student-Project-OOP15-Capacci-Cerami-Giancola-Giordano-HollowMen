@@ -247,7 +247,7 @@ public class Controller implements ViewObserver {
 	private void gameLoop(){
 		
 		//nanosec used
-		final long skipTick=50000000;//model update frequency (62 update per sec)
+		final long skipTick=20000000;//model update frequency (62 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
 		final int convert=1000000;

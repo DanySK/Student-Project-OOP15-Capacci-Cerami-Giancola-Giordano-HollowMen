@@ -125,13 +125,15 @@ public class Game extends JPanel implements GameInterface{
         }
         
         public void draw(List<DrawableRoomEntity> componentList){
-            if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
+        	if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
                 this.timerValue=new ValueManager("Timer: ", Color.RED);
                 this.timerValue.setSize(DIMX, DIMY*2);
                 this.timerValue.setLocation(LOCX, 0);
             }
+        	this.panelGame.removeAll();
             addComponent();//add all static components
             addDynamicComponent(componentList);
+            this.panelGame.repaint();
         }
         
         public void setStorage(Map<String,ImageIcon> storage){
@@ -175,8 +177,7 @@ public class Game extends JPanel implements GameInterface{
         private void addDynamicComponent(List<DrawableRoomEntity> componentList){
             JLabel labTmp;
                 for(DrawableRoomEntity elem: componentList){
-                	//System.out.println(elem.getName());
-                    if(elem.isFacingRight()){
+                	if(elem.isFacingRight()){
                         if(elem.getName().equals("hero")){
                             switch(elem.getState()){
                                 case ATTACKING: {
