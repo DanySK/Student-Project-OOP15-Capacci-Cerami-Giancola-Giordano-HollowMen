@@ -7,6 +7,7 @@ import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.Difficulty;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
+import hollowmen.enumerators.Values;
 import hollowmen.model.facade.DrawableRoomEntity;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.Model;
@@ -112,8 +113,16 @@ public class Controller implements ViewObserver {
 			}
 			break;
 		}case BACK:{
-			this.view.drawMenu(InputMenu.MAIN, Optional.empty());
 			this.inputMenuList.clear();
+			if(!this.gameRunning){
+				this.view.drawMenu(InputMenu.MAIN, Optional.empty());
+			}else{
+				if(Values.FLOOR.getValue()==1){ 
+					this.view.drawLobby();
+					this.gameRunning=false;
+					menuInputLoop();
+				}
+			}
 			break;
 		}
 		}
@@ -199,7 +208,6 @@ public class Controller implements ViewObserver {
 				boolean left=false;
 				boolean right=false;
 				for(InputCommand command:this.inputCommandList){
-					System.out.println(command);
 					switch(command){
 					case LEFT:{
 						if(!left){
@@ -216,19 +224,19 @@ public class Controller implements ViewObserver {
 					}case JUMP:{
 						if(!left){
 							left=true;
-							this.model.moveHero("left");
+							this.model.heroAction("jump");
 						}
 						break;
 					}case ATTACK:{
 						if(!left){
 							left=true;
-							this.model.moveHero("left");
+							this.model.heroAction("attack");
 						}
 						break;
 					}case INTERACT:{
 						if(!left){
 							left=true;
-							this.model.moveHero("left");
+							this.model.heroAction("interact");
 						}
 						break;
 					}default:{
