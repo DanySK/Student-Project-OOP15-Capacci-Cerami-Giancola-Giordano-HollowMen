@@ -172,8 +172,7 @@ public class ItemImpl implements Item{
 	
 	@Override
 	public void setState(ItemState state) {
-		// TODO Auto-generated method stub
-		
+		this.state = state;
 	}
 	@Override
 	public Multimap<String, Modifier> getModifiers() {
