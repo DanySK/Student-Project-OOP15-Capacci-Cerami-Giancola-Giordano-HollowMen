@@ -6,13 +6,11 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
-
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
@@ -26,7 +24,7 @@ import hollowmen.sound.ale.CreateAudio;
  * @author Alessia
  *
  */
-public class Game extends JPanel implements GameInterface{
+public class Game extends JLabel implements GameInterface{
         
         private static final long serialVersionUID = -5081282343965245780L;
         private Border border=BorderFactory.createLineBorder(Color.DARK_GRAY);
@@ -86,11 +84,14 @@ public class Game extends JPanel implements GameInterface{
         }
 
         private void initialSetup(int x, int y){ 
+        	this.setIcon(this.storageGame.get("game2").getIcon());
+        	this.setLayout(null);
+        	this.setBounds(0,0,x,y+GAP);
             this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);
-            this.panelGame.setOpaque(true);
-            this.panelGame.setIcon(this.storageGame.get("game").getIcon());
+            //this.panelGame.setOpaque(true);
+            //this.panelGame.setIcon(this.storageGame.get("game").getIcon());
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
             this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMYTG);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);

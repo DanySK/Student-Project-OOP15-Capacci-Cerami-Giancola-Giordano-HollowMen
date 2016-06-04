@@ -36,7 +36,7 @@ public class LoaderClass {
 		nameList.add("res/images/titles/bestiary.png");
 		nameList.add("res/images/titles/achievements.png");
 		nameList.add("res/images/room/treasureChest.png");
-		nameList.add("res/images/room/game.png");
+		//nameList.add("res/images/room/game.png");
 		nameList.add("res/images/room/door.png");
 		nameList.add("res/images/mobs/slimeBoss.gif");
 		nameList.add("res/images/mobs/slime4.gif");
@@ -105,6 +105,7 @@ public class LoaderClass {
 		nameList.add("res/images/backgrounds/castle.jpg");
 		nameList.add("res/images/backgrounds/castleBG.jpg");
 		nameList.add("res/images/backgrounds/pergamena.jpg");
+		nameList.add("res/images/game2.png");
 		nameList.add("res/images/dialog.jpg");
 		nameList.add("res/images/gameButtons/blueSlime.gif");
 		nameList.add("res/images/gameButtons/coinBag.png");
