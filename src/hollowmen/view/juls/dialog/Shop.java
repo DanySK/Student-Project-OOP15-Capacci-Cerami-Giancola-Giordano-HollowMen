@@ -97,6 +97,7 @@ public class Shop extends TabbedDialog {
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
+					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(false, true);
 					setButton(button);
 					setLastItem(x);
@@ -128,6 +129,7 @@ public class Shop extends TabbedDialog {
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
+					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(true, false);
 					setButton(button);
 					setLastItem(x);

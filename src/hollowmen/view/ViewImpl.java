@@ -6,6 +6,7 @@ import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,7 @@ public class ViewImpl implements View {
 		if (name.getType().equals("basic")) {
 			basic.drawBasicMenu(name);
 		} else {
-			complex.drawComplexMenu(name, collection.get());
+			complex.drawComplexMenu(name, collection.orElse(Collections.emptyList()));
 		}
 	}
 
