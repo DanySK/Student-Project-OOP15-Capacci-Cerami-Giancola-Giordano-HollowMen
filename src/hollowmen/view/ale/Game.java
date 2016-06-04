@@ -144,11 +144,7 @@ public class Game extends JPanel implements GameInterface{
                         for(String name: SingletonNameList.getSingletonNameList().getNameList() ){
                                 if(elem.getKey().equals(name)){
                                         storageGame.put(name, new JLabel(elem.getValue()));
-                                        if(!name.equals("ability1") || !name.equals("ability2") || !name.equals("ability3")||
-                                           !name.equals("inventory")|| !name.equals("consumable") || !name.equals("skillTree")||
-                                           !name.equals("door")|| !name.equals("treasureChest")){
                                                 storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
-                                        }
                                 }
                         }
                 }
@@ -184,28 +180,28 @@ public class Game extends JPanel implements GameInterface{
                             switch(elem.getState()){
                                 case ATTACKING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                    labTmp=this.storageGame.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case JUMPING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                    labTmp=this.storageGame.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case STANDING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                    labTmp=this.storageGame.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case MOVING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                    labTmp=this.storageGame .get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -214,7 +210,7 @@ public class Game extends JPanel implements GameInterface{
                        }
                        else{
                     	   labTmp=new JLabel();
-	                       labTmp=this.storageFlipped.get(elem.getName());
+	                       labTmp=this.storageGame.get(elem.getName());
 	                       labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
 	                                       labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
 	                       this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -225,28 +221,28 @@ public class Game extends JPanel implements GameInterface{
                     		switch(elem.getState()){
                                 case ATTACKING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case JUMPING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case STANDING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case MOVING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                    labTmp=this.storageFlipped.get("hero");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -255,7 +251,7 @@ public class Game extends JPanel implements GameInterface{
                             }
                             else{
                             	labTmp=new JLabel();
-                            	labTmp=this.storageGame.get(elem.getName());
+                            	labTmp=this.storageFlipped.get(elem.getName());
 	                            labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
 	                                            labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
 	                            this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
