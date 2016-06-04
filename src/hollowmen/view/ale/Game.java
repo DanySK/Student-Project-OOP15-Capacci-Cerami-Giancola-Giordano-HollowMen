@@ -84,7 +84,7 @@ public class Game extends JLabel implements GameInterface{
         }
 
         private void initialSetup(int x, int y){ 
-        	this.setIcon(this.storageGame.get("game2").getIcon());
+        	this.setIcon(this.storageGame.get("game").getIcon());
         	this.setLayout(null);
         	this.setBounds(0,0,x,y+GAP);
             this.panelGame=new JLabel();
