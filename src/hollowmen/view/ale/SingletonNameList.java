@@ -18,17 +18,17 @@ public class SingletonNameList {
 	private SingletonNameList(){
 		nameList=new LinkedList<>();
 		nameList.add("bat1");
-		nameList.add("batGray");
-		nameList.add("batPurple");
-		nameList.add("blueSlimeBoss");
+		nameList.add("bat2");
+		nameList.add("bat3");
+		nameList.add("slimeBossSecret");
 		nameList.add("puppet1");
-		nameList.add("puppetRed");
-		nameList.add("puppetWhite");
-		nameList.add("slimeBlue");
+		nameList.add("puppet2");
+		nameList.add("puppet3");
+		nameList.add("slime2");
 		nameList.add("slime1");
-		nameList.add("slimePurple");
-		nameList.add("slimeRed");
-		nameList.add("violetSlimeBoss");
+		nameList.add("slime3");
+		nameList.add("slime4");
+		nameList.add("slimeBoss");
 		nameList.add("ability1");
 		nameList.add("ability2");
 		nameList.add("ability3");
