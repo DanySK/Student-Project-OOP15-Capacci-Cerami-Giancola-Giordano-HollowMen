@@ -165,9 +165,9 @@ public class Inventory extends TabbedDialog {
 			button.setIcon(icon);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-//					nameF = x.getName();
-//					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
-//					button.setIcon(icon);
+					nameF = x.getName();
+					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					button.setIcon(icon);
 					setButtonState(false, true);
 					statsBox.setText(showStats(stats));
 					setLastItem(x);
