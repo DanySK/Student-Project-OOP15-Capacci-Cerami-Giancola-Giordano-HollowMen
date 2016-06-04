@@ -134,7 +134,8 @@ public class Game extends JPanel implements GameInterface{
             addComponent();//add all static components
             addDynamicComponent(componentList);
             this.panelGame.repaint();
-        }
+            this.repaint();
+            }
         
         public void setStorage(Map<String,ImageIcon> storage){
                 this.storageGame=new HashMap<String,JLabel>();
