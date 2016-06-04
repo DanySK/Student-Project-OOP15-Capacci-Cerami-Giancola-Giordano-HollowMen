@@ -62,9 +62,11 @@ public class ModelImpl implements Model{
 		        -this.dungeon.getTimer().getValue())/1000));
 		Values.FLOOR.setValue(this.dungeon.getFloorNumber());
 		/*actually there is only the standing image, so i give that to the view*/
-		ActorState sta=ActorState.STANDING;
-		
-		//ActorState sta=ActorState.valueOf(this.hero.getState().toUpperCase());
+		//ActorState sta=ActorState.STANDING;
+		ActorState sta=ActorState.MOVING;// need to be changed
+		if(this.hero.getState().equals("move")){
+		    sta=ActorState.MOVING;
+		}
 		String name;
 		drawable.add(new DrawableRoomEntityImpl(this.hero.getInfo().getName(),
 		        new Point2DImpl((int)(this.hero.getBody().getWorldCenter().x-this.hero.getLength()/2),
