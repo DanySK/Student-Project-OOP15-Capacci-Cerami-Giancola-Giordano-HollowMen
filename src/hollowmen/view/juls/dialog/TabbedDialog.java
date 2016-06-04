@@ -25,48 +25,48 @@ public abstract class TabbedDialog extends GridDialog {
 	private static final long serialVersionUID = 6838744487705502656L;
 	protected JTabbedPane tabbedPane = new JTabbedPane();
 	protected JPanel headP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel chestP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel glovesP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel ringsP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel legsP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel bootsP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel weaponsP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel spellsP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel consumP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel inventoryP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	protected JPanel shopP = PanelBuilder.getBuilder()
-								.layout(5, 3, 3, 3)
-								.bound(50, 100, 300, 320)
+								.layout(ROWS, COLUMNS, HGAP, VGAP)
+								.bound(X, Y, WIDTH, HEIGHT)
 								.build();
 	
 	public TabbedDialog(Frame frame) {
@@ -74,7 +74,7 @@ public abstract class TabbedDialog extends GridDialog {
 		tabbedPane.setBackground(Color.BLACK);
 		tabbedPane.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		tabbedPane.setForeground(Color.WHITE);
-		tabbedPane.setBounds(50, 100, 300, 320);
+		tabbedPane.setBounds(X, Y, WIDTH, HEIGHT);
 		tabbedPane.setOpaque(false);
 		this.addMouseListener(dialogL);
 	}
@@ -100,5 +100,4 @@ public abstract class TabbedDialog extends GridDialog {
 			setButtonState(false, false);
 		}
 	};
-	
 }

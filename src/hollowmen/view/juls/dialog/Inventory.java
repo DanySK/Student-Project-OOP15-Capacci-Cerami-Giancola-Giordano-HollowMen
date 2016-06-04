@@ -88,7 +88,7 @@ public class Inventory extends TabbedDialog {
 		super.addTitle(title);
 		body.setBounds(420, 40, 130, 350);
 		this.add(body);
-		statsBox.setBounds(570, 300, 130, 140);
+		statsBox.setBounds(550, 300, 180, 100);
 		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(statsBox);
 		this.add(buttonC);
@@ -143,7 +143,6 @@ public class Inventory extends TabbedDialog {
 					nameF = x.getName();
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(true, false);
-					setButton(button);
 					setLastItem(x);
 					statsBox.setText(showStats(stats));	
 				}
@@ -171,7 +170,6 @@ public class Inventory extends TabbedDialog {
 //					button.setIcon(icon);
 					setButtonState(false, true);
 					statsBox.setText(showStats(stats));
-					setButton(button);
 					setLastItem(x);
 				}
 			});
