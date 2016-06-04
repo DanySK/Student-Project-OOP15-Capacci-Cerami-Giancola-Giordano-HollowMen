@@ -199,6 +199,7 @@ public class Controller implements ViewObserver {
 				boolean left=false;
 				boolean right=false;
 				for(InputCommand command:this.inputCommandList){
+					System.out.println(command);
 					switch(command){
 					case LEFT:{
 						if(!left){
@@ -235,6 +236,7 @@ public class Controller implements ViewObserver {
 					}
 					}
 				}
+				this.inputCommandList.clear();
 			}
 		}catch(Exception e){
 			System.out.println("gameInputManager");
@@ -289,7 +291,6 @@ public class Controller implements ViewObserver {
 	}
 	
 	public void addInput(InputCommand input) {
-		System.out.println(input);
 		this.inputCommandList.add(input);
 	}
 
