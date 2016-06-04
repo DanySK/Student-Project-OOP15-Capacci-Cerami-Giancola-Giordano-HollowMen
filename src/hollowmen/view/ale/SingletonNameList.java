@@ -43,6 +43,7 @@ public class SingletonNameList {
 		nameList.add("coinBag");
 		nameList.add("inventoryLobby");
 		nameList.add("skillTreeLobby");
+		nameList.add("game2");
 	}
 	
 	/**
