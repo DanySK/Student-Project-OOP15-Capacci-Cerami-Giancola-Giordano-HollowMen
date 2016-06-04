@@ -33,7 +33,7 @@ import hollowmen.utilities.Pair;
 
 public class DungeonSingleton implements Dungeon{
 
-	private final float GRAVITY = 9.8f;
+	private final float GRAVITY = 0.1f;
 	private final float THICKNESS = 10f;
 	private final int ITERATION_VELOCITY = 6;
 	private final int ITERATION_POSITION = 3;
@@ -92,7 +92,6 @@ public class DungeonSingleton implements Dungeon{
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
-		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.performAction("jump"));
 	}
 	
 	@Override

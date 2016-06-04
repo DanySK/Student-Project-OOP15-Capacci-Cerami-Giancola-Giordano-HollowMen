@@ -54,10 +54,12 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
 	public void move(String d) {
 		changeFacing(d);
-		float speed = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue() * Constants.MAXSPEED;
-		this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? speed : -speed, 0));
+		float speedX = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue() * Constants.MAXSPEED
+				+ this.getBody().getLinearVelocity().x;
+		float speedY = (float) this.getBody().getLinearVelocity().y;
+		this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? speedX : -speedX, speedY));
 		if(this.jumpability > 0) {
-			this.getBody().setGravityScale(0f);
+			this.getBody().setGravityScale(1f);
 		}
 	}
 
@@ -116,7 +118,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		if((!this.getState().equals(ActorState.ATTACKING.toString()))
 				&& this.jumpability > 0) {
 			this.setState(ActorState.JUMPING.toString());
-			this.getBody().setGravityScale(-4);
+			this.getBody().setGravityScale(-1f);
 			this.getBody().setLinearVelocity(new Vec2(this.getBody().getLinearVelocity().x, Constants.JUMPFORCE.y));
 			TimerSingleton.getInstance().register(this, 2, x -> x.getBody().setGravityScale(1));
 		}

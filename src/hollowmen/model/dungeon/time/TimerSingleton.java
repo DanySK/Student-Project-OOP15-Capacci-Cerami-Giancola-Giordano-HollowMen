@@ -12,7 +12,7 @@ public class TimerSingleton implements Time{
 
 	private class Event<T> implements Comparable<Event<?>>{
 		final T subj;
-		final double timeAtTrig;
+		double timeAtTrig;
 		final Consumer<T> action;
 		
 		public Event(T event, double duration, Consumer<T> action) {
@@ -23,6 +23,7 @@ public class TimerSingleton implements Time{
 		
 		public void pullTheTrigger() {
 			this.action.accept(subj);
+			System.out.println("TRIG EVENT");
 		}
 	
 		public double getTimeAtTrig() {
@@ -99,7 +100,11 @@ public class TimerSingleton implements Time{
 	
 	@Override
 	public <T> void register(T subj, double durationSec, Consumer<T> action) {
-		this.queue.add(new Event<T>(subj, durationSec * 1000, action));
+		Event<T> timeEvent = new Event<T>(subj, durationSec * 1000, action);
+		while(this.queue.contains(timeEvent)) {
+			timeEvent.timeAtTrig++;
+		}	
+		this.queue.add(timeEvent);
 	}
 		
 
@@ -139,7 +144,7 @@ public class TimerSingleton implements Time{
 		if(this.isAnyLeft()){
 			double soonerTime = queue.first().getTimeAtTrig();
 			while(soonerTime <= currentTime){
-				queue.first().pullTheTrigger();;
+				queue.first().pullTheTrigger();
 				queue.remove(queue.first());
 				if(!this.isAnyLeft()) {
 					return;

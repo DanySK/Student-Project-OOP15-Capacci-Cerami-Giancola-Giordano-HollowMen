@@ -26,8 +26,7 @@ public class Attack implements TypeAction{
 	@Override
 	public void doAction(Actor subject) throws NullPointerException {
 		if(!subject.getStatus().contains(StatusName.RECHARGE.toString())
-				&& !subject.getState().equals(ActorState.ATTACKING.toString())) {
-			
+				|| !subject.getState().equals(ActorState.ATTACKING.toString())) {
 			if(subject.getParameters().get(ParamName.ATTACKRANGE.toString()).getValue() <= 0) {
 				createProjectile(subject);
 			} else {
@@ -39,10 +38,12 @@ public class Attack implements TypeAction{
 			TimerSingleton.getInstance().register(subject, Constants.ATTACK_DURATION,
 					x -> {
 						x.setState(ActorState.STANDING.toString());
+						System.out.println(x.getState());
 						x.getStatus().add(new InfoImpl(StatusName.RECHARGE.toString()));
-//						TimerSingleton.getInstance().register(x, x.getParameters().get(ParamName.ATTACKSPEED.toString()).getValue(),
-//								y -> y.getStatus().remove(new InfoImpl(StatusName.RECHARGE.toString())));
 					});
+			TimerSingleton.getInstance().register(subject, Constants.ATTACK_DURATION + 
+					subject.getParameters().get(ParamName.ATTACKSPEED.toString()).getValue(),
+					x -> x.getStatus().remove(new InfoImpl(StatusName.RECHARGE.toString())));
 		}
 	}
 
