@@ -87,6 +87,7 @@ public class LoaderClass {
 		nameList.add("res/images/gameButtons/ability1.png");
 		nameList.add("res/images/character/assassin.png");
 		nameList.add("res/images/character/hero.png");
+                nameList.add("res/images/character/warriorWalkSword.gif");	
 		nameList.add("res/images/character/mage.png");
 		nameList.add("res/images/buttons/RArrowOver.png");
 		nameList.add("res/images/buttons/RArrowNA.png");

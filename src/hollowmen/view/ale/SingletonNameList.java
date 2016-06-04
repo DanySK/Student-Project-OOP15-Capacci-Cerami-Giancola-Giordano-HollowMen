@@ -38,6 +38,7 @@ public class SingletonNameList {
 		nameList.add("door");
 		nameList.add("treasureChest");
 		nameList.add("game");
+		nameList.add("warriorWalkSword");
 		nameList.add("hero");
 		nameList.add("blueSlime");
 		nameList.add("coinBag");

@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 import hollowmen.controller.ViewObserver;
 import hollowmen.enumerators.InputCommand;
@@ -202,7 +201,7 @@ public class Game extends JLabel implements GameInterface{
                                     break;}
                                 case MOVING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageGame .get("hero");
+                                    labTmp=this.storageGame.get("warriorWalkSword");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -211,7 +210,7 @@ public class Game extends JLabel implements GameInterface{
                        }
                        else{
                     	   labTmp=new JLabel();
-	                       labTmp=this.storageGame.get(elem.getName());
+	                       labTmp=this.storageFlipped.get(elem.getName());
 	                       labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
 	                                       labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
 	                       this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -243,7 +242,7 @@ public class Game extends JLabel implements GameInterface{
                                     break;}
                                 case MOVING: {
                                 	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                    labTmp=this.storageFlipped.get("warriorWalkSword");
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -252,7 +251,7 @@ public class Game extends JLabel implements GameInterface{
                             }
                             else{
                             	labTmp=new JLabel();
-                            	labTmp=this.storageFlipped.get(elem.getName());
+                            	labTmp=this.storageGame.get(elem.getName());
 	                            labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
 	                                            labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
 	                            this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
