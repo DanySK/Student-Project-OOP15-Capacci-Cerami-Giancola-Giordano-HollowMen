@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import org.jbox2d.common.Vec2;
 
 import hollowmen.model.Modifier.Operation;
+import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.utilities.Pair;
 
 
@@ -16,14 +17,13 @@ public class Constants {
 	
 	public static final double ATTACK_DURATION = 0.783;
 	
-	public static final Vec2 JUMPFORCE = new Vec2(0, -100f);
+	public static final float MAXSPEED = 50;
 	
-	public static final float MAXSPEED = 5;
-	
-	public static final float FLATSPEED = 20;
+	public static final float FLATSPEED = 30;
 	
 	public static final Rectangle WORLD_SIZE = new Rectangle(800, 600);
 	
+	public static final Vec2 JUMPFORCE = new Vec2(0, -400);
 	//Counting also the zero so 0-1-2 = 3 child rooms;
 	public static final int CHILDROOMQUANTITY = 2;
 	

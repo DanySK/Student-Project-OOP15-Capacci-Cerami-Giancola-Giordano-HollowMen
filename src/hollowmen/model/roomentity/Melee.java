@@ -2,26 +2,25 @@ package hollowmen.model.roomentity;
 
 import java.util.Collection;
 
-import hollowmen.enumerators.ParamName;
 import hollowmen.model.Actor;
 import hollowmen.model.Parameter;
+import hollowmen.model.RoomEntity;
+import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.dungeon.time.TimerSingleton;
 import hollowmen.model.utils.Constants;
+import hollowmen.utilities.Pair;
 
-public class Melee extends BulletImpl{
+public class Melee extends AttackAbs{
 
-	public Melee(Actor owner, Collection<Parameter> param, String direction) {
-		super(owner, param, direction);
+	private static final float HEIGHT = 50f;
+
+	public Melee(Actor owner, Collection<Parameter> param, float length,
+			String direction) {
+		super(new InfoImpl(RoomEntity.RoomEntityName.BULLET.toString()), new Pair<>(length, HEIGHT), param, owner, direction);
 		TimerSingleton.getInstance().register(this, Constants.ATTACK_DURATION, x -> x.dispose());
 	}
-	
+
 	@Override
 	public void move(String s) {};
-	
-	@Override
-	public float getLength() {
-		return (float) super.getOwner().getParameters()
-				.get(ParamName.ATTACKRANGE.toString()).getValue();
-	}
 	
 }

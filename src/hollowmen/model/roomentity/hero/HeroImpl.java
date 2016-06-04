@@ -232,14 +232,21 @@ public class HeroImpl extends ActorAbs implements Hero{
 	}
 	
 	private void initMoreAction() {
-		super.actionAllowed.getActionAllowed().put(Actor.Action.BACK.toString(), () -> DungeonSingleton.getInstance()
-				.getCurrentRoom().getInteractable().stream()
+		super.actionAllowed.getActionAllowed().put(Actor.Action.BACK.toString(), () -> {
+			DungeonSingleton.getInstance()
+			.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
-				.findFirst().ifPresent(c -> c.interact()));
-		super.actionAllowed.getActionAllowed().put(Actor.Action.INTERACT.toString(), () -> DungeonSingleton.getInstance()
-				.getCurrentRoom().getInteractable().stream()
+				.findFirst().ifPresent(c -> c.interact());
+			System.out.println("STO CERCANDO DI BACKARE");
+		});
+		super.actionAllowed.getActionAllowed().put(Actor.Action.INTERACT.toString(), () -> {
+			DungeonSingleton.getInstance()
+			.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && !i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
-				.findFirst().ifPresent(c -> c.interact()));
+				.findFirst().ifPresent(c -> c.interact());
+			System.out.println("STO CERCANDO DI INTERAGIRE");
+		});
+				
 		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY1.toString(), () -> {});
 		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY2.toString(), () -> {});
 		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY3.toString(), () -> {});

@@ -10,7 +10,8 @@ public enum FilterType {
 	ENEMYATTACK(0x0020),
 	WALL(0x0040),
 	FLY(0x0080),
-	FLYLINE(0x0100);
+	FLYLINE(0x0100),
+	JUMP(0x0200);
 	
 	private int value;
 	

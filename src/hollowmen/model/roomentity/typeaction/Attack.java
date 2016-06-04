@@ -14,7 +14,7 @@ import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.dungeon.ModifierImpl;
 import hollowmen.model.dungeon.ParamImpl;
 import hollowmen.model.dungeon.time.TimerSingleton;
-import hollowmen.model.roomentity.BulletImpl;
+import hollowmen.model.roomentity.Bullet;
 import hollowmen.model.roomentity.Melee;
 import hollowmen.model.utils.Constants;
 
@@ -35,16 +35,13 @@ public class Attack implements TypeAction{
 			}
 			
 			subject.setState(ActorState.ATTACKING.toString());
-			subject.getParameters().get(ParamName.MOVSPEED.toString())
-				.addModifier(new ModifierImpl(ParamName.MOVSPEED.toString(), 0.5, Modifier.Operation.MUL));
+			subject.getParameters().get(ParamName.MOVSPEED.toString());
 			TimerSingleton.getInstance().register(subject, Constants.ATTACK_DURATION,
 					x -> {
-						x.getParameters().get(ParamName.MOVSPEED.toString())
-							.removeModifier(new ModifierImpl(ParamName.MOVSPEED.toString(), 0.5, Modifier.Operation.MUL));
 						x.setState(ActorState.STANDING.toString());
 						x.getStatus().add(new InfoImpl(StatusName.RECHARGE.toString()));
-						TimerSingleton.getInstance().register(x, x.getParameters().get(ParamName.ATTACKSPEED.toString()).getValue(),
-								y -> y.getStatus().remove(new InfoImpl(StatusName.RECHARGE.toString())));
+//						TimerSingleton.getInstance().register(x, x.getParameters().get(ParamName.ATTACKSPEED.toString()).getValue(),
+//								y -> y.getStatus().remove(new InfoImpl(StatusName.RECHARGE.toString())));
 					});
 		}
 	}
@@ -54,18 +51,21 @@ public class Attack implements TypeAction{
 		List<Parameter> temp = new LinkedList<>();
 		temp.add(new ParamImpl(subject.getParameters().get(ParamName.ATTACK.toString()).getInfo(),
 					subject.getParameters().get(ParamName.ATTACK.toString()).getValue()));
+		temp.add(new ParamImpl(subject.getParameters().get(ParamName.HPMAX.toString()).getInfo(),
+					subject.getParameters().get(ParamName.HPMAX.toString()).getValue()));
 		temp.add(new ParamImpl(subject.getParameters().get(ParamName.MOVSPEED.toString()).getInfo(),
 					subject.getParameters().get(ParamName.MOVSPEED.toString()).getValue() * Constants.MAXSPEED));
-		new BulletImpl(subject, temp, subject.isFacingRight() ? Actor.Direction.RIGHT.toString() : Actor.Direction.LEFT.toString());
+		new Bullet(subject, temp, subject.isFacingRight() ? Actor.Direction.RIGHT.toString() : Actor.Direction.LEFT.toString());
 	}
 	
 	private void createMelee(Actor subject) {
 		List<Parameter> temp = new LinkedList<>();
 		temp.add(new ParamImpl(subject.getParameters().get(ParamName.ATTACK.toString()).getInfo(),
 					subject.getParameters().get(ParamName.ATTACK.toString()).getValue()));
-		temp.add(new ParamImpl(subject.getParameters().get(ParamName.ATTACKRANGE.toString()).getInfo(),
-					subject.getParameters().get(ParamName.ATTACKRANGE.toString()).getValue()));
-		new Melee(subject, temp, subject.isFacingRight() ? Actor.Direction.RIGHT.toString() : Actor.Direction.LEFT.toString());
+		temp.add(new ParamImpl(subject.getParameters().get(ParamName.HPMAX.toString()).getInfo(),
+				subject.getParameters().get(ParamName.HPMAX.toString()).getValue()));
+		new Melee(subject, temp, (float) subject.getParameters().get(Parameter.ParamName.ATTACKRANGE.toString()).getValue(),
+				subject.isFacingRight() ? Actor.Direction.RIGHT.toString() : Actor.Direction.LEFT.toString());
 	}
 	
 	

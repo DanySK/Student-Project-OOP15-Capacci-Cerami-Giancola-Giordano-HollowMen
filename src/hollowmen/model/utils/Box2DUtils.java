@@ -130,6 +130,7 @@ public class Box2DUtils {
 			CircleShape shape = new CircleShape();
 			shape.setRadius(1f);
 			def.shape = shape;
+			def.density = 1f;
 		}
 		
 		public FixtureDefBuilder density(float density) {
