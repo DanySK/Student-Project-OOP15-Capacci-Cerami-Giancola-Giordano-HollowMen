@@ -19,14 +19,17 @@ public class Box2DUtils {
 		float halfHeight = re.getHeight() / 2;
 		float halfLength = re.getLength() / 2;
 		re.getBody().setTransform(new Vec2((float) (RandomSelector.getIntFromRange(0, 1) == 0 ? halfLength
-				: Constants.WORLD_SIZE.getWidth() - halfLength), halfHeight), 0);
+				: Constants.WORLD_SIZE.getWidth() - halfLength), Constants.WORLD_SIZE.height - halfHeight), 0);
 	}
 	
+	
 	public static void linearSpacing(Collection<? extends RoomEntity> entity) {
-		int spacing = (int) (Constants.WORLD_SIZE.getWidth() / (entity.size() == 0 ? 1 : entity.size()));
 		int i = 1;
 		for(RoomEntity re : entity) {
-			re.getBody().setTransform(new Vec2((float) (spacing * i), re.getHeight() / 2), 0);
+			float halfHeight = re.getHeight() / 2;
+			float halfLength = re.getLength() / 2;	
+			int spacing = (int) ((Constants.WORLD_SIZE.getWidth() - re.getLength())  / (entity.size() == 0 ? 1 : entity.size()));
+			re.getBody().setTransform(new Vec2((float) (spacing * i)-halfLength, Constants.WORLD_SIZE.height - halfHeight), 0);
 			i++;
 		}
 	}

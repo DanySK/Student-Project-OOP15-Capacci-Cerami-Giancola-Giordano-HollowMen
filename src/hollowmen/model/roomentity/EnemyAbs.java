@@ -55,6 +55,7 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		return Box2DUtils.filterBuilder()
 				.addCategory(FilterType.ENEMY.getValue())
 				.addMask(FilterType.GROUND.getValue())
+				.addMask(FilterType.WALL.getValue())
 				.addMask(FilterType.HERO.getValue())
 				.addMask(FilterType.HEROATTACK.getValue())
 				.build();

@@ -35,6 +35,7 @@ public class Bat extends EnemyAbs{
 	public Collection<FixtureDef> defFixture() {
 		Filter filt = this.standardEnemyFilter();
 		filt.categoryBits += FilterType.FLY.getValue();
+		filt.maskBits += FilterType.FLYLINE.getValue();
 		return this.generateRectangleFix(filt, false);
 	}
 

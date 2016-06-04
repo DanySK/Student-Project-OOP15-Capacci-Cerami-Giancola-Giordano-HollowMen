@@ -16,7 +16,7 @@ public class Constants {
 	
 	public static final double ATTACK_DURATION = 0.783;
 	
-	public static final Vec2 JUMPFORCE = new Vec2(0, 100f);
+	public static final Vec2 JUMPFORCE = new Vec2(0, -100f);
 	
 	public static final float MAXSPEED = 5;
 	
