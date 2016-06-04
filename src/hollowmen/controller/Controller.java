@@ -32,7 +32,6 @@ public class Controller implements ViewObserver {
 	private boolean difficultyPicked=false;
 	private boolean classPicked=false;
 	private boolean gameRunning=false;
-	private boolean itemSelected=false;
 	private InputMenu last=InputMenu.MAIN;
 	
 	public Controller(){
@@ -100,11 +99,13 @@ public class Controller implements ViewObserver {
 			itemInputLoop();
 			break;
 		}case LOBBY:{
+			this.last=InputMenu.LOBBY;
 			this.inputMenuList.clear();
 			this.view.drawLobby();
 			menuInputLoop();
 			break;
 		}case START:{
+			this.last=InputMenu.START;
 			this.inputMenuList.clear();
 			this.model.goTo(1);
 			gameLoop();
@@ -114,10 +115,12 @@ public class Controller implements ViewObserver {
 			break;
 		}case RESUME:{
 			this.inputMenuList.clear();
-			if(!this.gameRunning){
+			if(this.last!=InputMenu.START){
 				if(this.last==InputMenu.MAIN){
+					this.last=InputMenu.MAIN;
 					this.view.drawMenu(InputMenu.MAIN, Optional.empty());
 				}else{
+					this.last=InputMenu.LOBBY;
 					this.view.drawLobby();
 				}
 				menuInputLoop();
@@ -171,7 +174,7 @@ public class Controller implements ViewObserver {
 		boolean loop=true;
 		while(loop){
 			try{
-				if(this.itemSelected==false && this.inputMenuList.isEmpty()){
+				if(this.mapInputCommand==null && this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
 				}else{
 					if(!this.inputMenuList.isEmpty()){
@@ -201,7 +204,10 @@ public class Controller implements ViewObserver {
 						}
 						}
 					}
+					this.mapInputCommand=null;
 				}
+				
+				
 			}catch(Exception e){
 				System.out.println("itemInputManager");
 				e.printStackTrace();

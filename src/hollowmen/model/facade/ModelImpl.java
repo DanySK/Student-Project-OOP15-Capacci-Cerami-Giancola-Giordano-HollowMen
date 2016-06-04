@@ -152,7 +152,6 @@ public class ModelImpl implements Model{
 	}
 
 	public void itemEquip(InformationDealer item) {
-		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
@@ -163,7 +162,6 @@ public class ModelImpl implements Model{
 	}
 	
 	public void itemUnequip(InformationDealer item) {
-		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
@@ -174,7 +172,6 @@ public class ModelImpl implements Model{
 	}
 	
 	public void itemBuy(InformationDealer item) {
-		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
@@ -185,7 +182,6 @@ public class ModelImpl implements Model{
 	}
 	
 	public void itemSell(InformationDealer item){
-		System.out.println(item.getName());
 		try{
 			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 				if(it.getX().getInfo().getName()==item.getName()){
