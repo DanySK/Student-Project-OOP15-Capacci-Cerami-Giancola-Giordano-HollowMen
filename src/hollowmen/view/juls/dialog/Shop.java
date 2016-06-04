@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.Collection;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -62,9 +63,10 @@ public class Shop extends TabbedDialog {
 		this.add(gold);
 		
 		label.setBounds(450, 100, 100, 100);
+		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(label);
 		
-		statsBox.setBounds(420, 280, 200, 140);
+		statsBox.setBounds(420, 280, 200, 50);
 		this.add(statsBox);
 		this.add(tabbedPane);
 		this.setVisible(true);
@@ -100,7 +102,6 @@ public class Shop extends TabbedDialog {
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(false, true);
 					setLastItem(x);
-					showImage((ImageIcon) icon);
 					label.setIcon(showImage((ImageIcon) icon));
 					statsBox.setText(showStats(stats));
 				}
@@ -131,7 +132,6 @@ public class Shop extends TabbedDialog {
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(true, false);
 					setLastItem(x);
-					showImage((ImageIcon) icon);
 					label.setIcon(showImage((ImageIcon) icon));
 					statsBox.setText(showStats(stats));
 				}

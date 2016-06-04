@@ -9,9 +9,9 @@ import java.util.Optional;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
 
 import hollowmen.controller.ViewObserver;
 import hollowmen.model.facade.InformationDealer;
@@ -38,7 +38,7 @@ public abstract class GridDialog extends MenuDialog {
 	protected static final int Y = 100;
 	protected static final int WIDTH = 300;
 	protected static final int HEIGHT = 320;
-	protected JLabel statsBox = new JLabel();
+	protected JTextArea statsBox = new JTextArea();
 	private ImageIcon portrait;
 	protected IconButton button;
 	protected String nameF, description;
@@ -57,6 +57,10 @@ public abstract class GridDialog extends MenuDialog {
 	public GridDialog(Frame frame) {
 		super(frame);
 		gridPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		statsBox.setEditable(false);
+		statsBox.setLineWrap(true);
+		statsBox.setOpaque(false);
+		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(gridPanel);
 	}
 	
@@ -97,5 +101,9 @@ public abstract class GridDialog extends MenuDialog {
 		Image scaled = i.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		portrait = new ImageIcon(scaled);
 		return portrait;
+	}
+	
+	protected ImageIcon showMobPortrait(ImageIcon image) {
+		return this.portrait = image;
 	}
 }

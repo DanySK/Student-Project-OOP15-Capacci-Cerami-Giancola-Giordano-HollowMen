@@ -1,6 +1,5 @@
 package hollowmen.view.juls.dialog;
 
-import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.util.Collection;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -88,8 +86,7 @@ public class Inventory extends TabbedDialog {
 		super.addTitle(title);
 		body.setBounds(420, 40, 130, 350);
 		this.add(body);
-		statsBox.setBounds(550, 300, 180, 100);
-		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		statsBox.setBounds(550, 300, 140, 50);
 		this.add(statsBox);
 		this.add(buttonC);
 		this.add(bodyPNorth);

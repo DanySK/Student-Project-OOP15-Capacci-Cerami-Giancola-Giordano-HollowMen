@@ -12,6 +12,7 @@ import hollowmen.model.Enemy;
 import hollowmen.model.Hero;
 import hollowmen.model.Interactable;
 import hollowmen.model.roomentity.EnemyAbs;
+import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Algorithms;
 
 public class GameCollisionListener implements ContactListener{
@@ -21,26 +22,22 @@ public class GameCollisionListener implements ContactListener{
 		int typeA = contact.getFixtureA().getFilterData().categoryBits;
 		int typeB = contact.getFixtureB().getFilterData().categoryBits;
 		
-		if(typeA == FilterType.GROUND.getValue() && typeB == FilterType.HERO.getValue() || typeB == FilterType.ENEMY.getValue()) {
-			Actor subj = ((Actor) contact.getFixtureB().getBody().getUserData());
-			if(!(subj.getState().equals(ActorState.ATTACKING.toString()) 
-					|| subj.getState().equals(ActorState.MOVING.toString()))){
-				subj.setState(ActorState.STANDING.toString());
-			}
+		if(typeA == FilterType.GROUND.getValue() && typeB == FilterType.JUMP.getValue()) {
+			((ActorAbs) contact.getFixtureB().getBody().getUserData()).addGroundContact();
+			System.out.println("Collisione GROUND <-> JUMP");
 		}
-		if(typeB == FilterType.GROUND.getValue() && typeA == FilterType.HERO.getValue() || typeA == FilterType.ENEMY.getValue()) {
-			Actor subj = ((Actor) contact.getFixtureA().getBody().getUserData());
-			if(!(subj.getState().equals(ActorState.ATTACKING.toString()) 
-					|| subj.getState().equals(ActorState.MOVING.toString()))){
-				subj.setState(ActorState.STANDING.toString());
-			}
+		if(typeB == FilterType.GROUND.getValue() && typeA == FilterType.JUMP.getValue()) {
+			((ActorAbs) contact.getFixtureA().getBody().getUserData()).addGroundContact();
+			System.out.println("Collisione GROUND <-> JUMP");
 		}
-		
+			
 		if(typeA == FilterType.LOOTABLE.getValue() && typeB == FilterType.HERO.getValue()) {
 			((Interactable) contact.getFixtureA().getBody().getUserData()).changeInteract();
+			System.out.println("Collisione LOOTABLE <-> HERO");
 		}
 		if(typeB == FilterType.LOOTABLE.getValue() && typeA == FilterType.HERO.getValue()) {
 			((Interactable) contact.getFixtureB().getBody().getUserData()).changeInteract();
+			System.out.println("Collisione LOOTABLE <-> HERO");
 		}
 		
 		if(typeA == FilterType.WALL.getValue()) {
@@ -53,19 +50,24 @@ public class GameCollisionListener implements ContactListener{
 		if((typeA == FilterType.ENEMYATTACK.getValue() || typeA == FilterType.HEROATTACK.getValue())
 				&& (typeB == FilterType.ENEMY.getValue() || typeB == FilterType.HERO.getValue())) {
 			attack((Attack) contact.getFixtureA().getBody().getUserData(), contact, false);
+			System.out.println("Collisione ENEMYATTACK/HEROATTACK <-> HERO/ENEMY");
 		}
 		if((typeA == FilterType.ENEMYATTACK.getValue() || typeA == FilterType.HEROATTACK.getValue())
 				&& (typeB == FilterType.ENEMY.getValue() || typeB == FilterType.HERO.getValue())) {
-			
+			attack((Attack) contact.getFixtureB().getBody().getUserData(), contact, true);
+			System.out.println("Collisione ENEMYATTACK/HEROATTACK <-> HERO/ENEMY");
 		}
 		
 		if(typeA == FilterType.HERO.getValue() && typeB == FilterType.ENEMY.getValue()) {
 			Algorithms.combat((Enemy)contact.getFixtureB().getBody().getUserData(), 
 					(Hero) contact.getFixtureA().getBody().getUserData());
-		}
+			System.out.println("Collisione HERO <-> ENEMY");
+			}
+		
 		if(typeB == FilterType.HERO.getValue() && typeA == FilterType.ENEMY.getValue()) {
 			Algorithms.combat((Enemy)contact.getFixtureA().getBody().getUserData(), 
 					(Hero) contact.getFixtureB().getBody().getUserData());
+			System.out.println("Collisione HERO <-> ENEMY");
 		}
 	}
 
@@ -80,10 +82,31 @@ public class GameCollisionListener implements ContactListener{
 		
 		if(typeA == FilterType.LOOTABLE.getValue()) {
 			interactableAction((Interactable)contact.getFixtureA().getBody().getUserData(), typeB);
+			System.out.println("Fine collisione HERO <-> LOOTABLE");
 		}
 		if(typeB == FilterType.LOOTABLE.getValue()) {
 			interactableAction((Interactable)contact.getFixtureB().getBody().getUserData(), typeA);
+			System.out.println("Fine collisione HERO <-> LOOTABLE");
 		}
+		
+		if(typeA == FilterType.GROUND.getValue() && typeB == FilterType.JUMP.getValue()) {
+			((ActorAbs) contact.getFixtureB().getBody().getUserData()).removeGroundContact();
+			System.out.println("Fine collisione GROUND <-> JUMP");
+		}
+		if(typeB == FilterType.GROUND.getValue() && typeA == FilterType.JUMP.getValue()) {
+			((ActorAbs) contact.getFixtureA().getBody().getUserData()).removeGroundContact();
+			System.out.println("Fine collisione GROUND <-> JUMP");
+		}
+		
+		if(typeA == FilterType.WALL.getValue() && typeB == FilterType.ENEMY.getValue()) {
+			((EnemyAbs)contact.getFixtureB().getBody().getUserData()).setHitWall(false);
+			System.out.println("Fine collisione ENEMY <-> WALL");
+		}
+		if(typeB == FilterType.LOOTABLE.getValue() && typeA == FilterType.ENEMY.getValue()) {
+			((EnemyAbs)contact.getFixtureA().getBody().getUserData()).setHitWall(false);
+			System.out.println("Fine collisione ENEMY <-> WALL");
+
+			}
 		
 	}
 
@@ -124,12 +147,14 @@ public class GameCollisionListener implements ContactListener{
 			EnemyAbs e = (EnemyAbs) ((checkA) ? contact.getFixtureA().getBody().getUserData()
 					 : contact.getFixtureB().getBody().getUserData());
 			e.setHitWall(true);
+			System.out.println("Collisione ENEMY <-> WALL");
 		}
 		if(unknownEntity == FilterType.ENEMYATTACK.getValue() 
 				|| unknownEntity == FilterType.HEROATTACK.getValue()) {
 			Attack b = (Attack)((checkA) ? contact.getFixtureA().getBody().getUserData()
 					: contact.getFixtureB().getBody().getUserData());
 			b.dispose();
+			System.out.println("Collisione ATTACK <-> WALL");
 		}
 	}
 

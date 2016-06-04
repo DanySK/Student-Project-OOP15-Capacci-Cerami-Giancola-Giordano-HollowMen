@@ -86,7 +86,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 100));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 2));
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 10));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 20));
 
 		Collection<Item> initItem = new LinkedList<>();
 		initItem.add(ItemPool.getInstance().getItem("woodSword"));

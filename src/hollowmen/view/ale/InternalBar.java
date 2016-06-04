@@ -26,7 +26,6 @@ public abstract class InternalBar extends JLabel{
         this.value=value;
         this.maxValue=maxValue;
         this.width=(this.getWidth()*value)/maxValue;
-        //this.removeAll();
         barFilling();
     }
     

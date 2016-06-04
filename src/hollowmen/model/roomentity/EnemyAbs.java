@@ -25,15 +25,16 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		super(info, size, param);
 		this.combatLevel = power;
 		this.title = title;
+		pattern = movePattern();
 	}
 	
-	public MovePattern movePattern() {
+	private MovePattern movePattern() {
 		return new DumbMovePattern(this);
 	}
 
 	@Override
 	public void move(String s) {
-		super.move(pattern == null ? movePattern().getDirection() : pattern.getDirection());
+		super.move(pattern.getDirection());
 	}
 
 	@Override

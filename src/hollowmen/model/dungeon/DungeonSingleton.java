@@ -92,6 +92,7 @@ public class DungeonSingleton implements Dungeon{
 		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.move("By Pattern"));
 		this.getCurrentRoom().getBullets().stream().forEach(x -> x.move("By Yourself"));
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
+		this.getCurrentRoom().getEnemies().stream().forEach(x -> x.performAction("jump"));
 	}
 	
 	@Override
@@ -108,15 +109,14 @@ public class DungeonSingleton implements Dungeon{
 		Box2DUtils.centerPosition(this.hero);
 		if(newRoomNumber < 0) {
 			this.currentRoom = this.currentRoom.getParentRoom();
-			if(this.currentRoom.getRoomNumber() == 0) {
-				this.gameOver();
-			}
 		} else {
 			this.currentRoom = this.currentRoom.getChildRoom(newRoomNumber);
 			this.currentRoom.autoPopulate();
-			if(this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT) {
-				endRun();
-			}
+			System.out.println("Room Number " + this.currentRoom.getRoomNumber());
+		}
+		if(this.currentRoom.getRoomNumber() == 0 
+				|| this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT) {
+			this.gameOver();
 		}
 		this.poke.checkNewEnemy(this.currentRoom);
 	}
@@ -186,12 +186,21 @@ public class DungeonSingleton implements Dungeon{
 				.build();
 
 		FixtureDef groundFix = Box2DUtils.fixDefBuilder()
-				.friction(0.3f)
+				.friction(0f)
 				.restitution(0.5f)
 				.shape(polygonShape)
 				.filter(new Box2DUtils.FilterBuilder()
 						.addCategory(FilterType.GROUND.getValue())
-						.addMask(0xffff)
+						.addMask(FilterType.GROUND.getValue())
+						.addMask(FilterType.ENEMY.getValue())
+						.addMask(FilterType.ENEMYATTACK.getValue())
+						.addMask(FilterType.FLY.getValue())
+						.addMask(FilterType.FLYLINE.getValue())
+						.addMask(FilterType.HERO.getValue())
+						.addMask(FilterType.HEROATTACK.getValue())
+						.addMask(FilterType.JUMP.getValue())
+						.addMask(FilterType.LOOTABLE.getValue())
+						.addMask(FilterType.WALL.getValue())
 						.build())
 				.build();
 

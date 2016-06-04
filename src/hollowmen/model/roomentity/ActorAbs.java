@@ -5,20 +5,28 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Filter;
+import org.jbox2d.dynamics.FixtureDef;
 
 import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.ParamName;
 import hollowmen.model.Actor;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
+import hollowmen.model.dungeon.FilterType;
+import hollowmen.model.dungeon.time.TimerSingleton;
 import hollowmen.model.roomentity.typeaction.Attack;
+import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
 public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
+	
+	protected int jumpability = 0;
 	private String state = ActorState.STANDING.toString();
 	private boolean facingRight = true;
 	protected ActionAllowed actionAllowed = new ActionAllowedImpl();
@@ -28,6 +36,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 	
 	public ActorAbs(Information info, Pair<Float, Float> size, Collection<Parameter> param) {
 		super(info, size);
+		new JumpSensor(this);
 		this.parameters = new HashMap<>();
 		param.stream().forEach(p -> this.parameters.put(p.getInfo().getName(), p));
 		parameters.put(Parameter.ParamName.HP.toString(),
@@ -45,11 +54,10 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
 	public void move(String d) {
 		changeFacing(d);
-		float speed = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue();
-		if(this.getBody().getLinearVelocity().abs().x < speed * Constants.MAXSPEED){
-			this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? speed : -speed, 0));
-		} else {
-			this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? Constants.FLATSPEED : -Constants.FLATSPEED, 0));
+		float speed = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue() * Constants.MAXSPEED;
+		this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? speed : -speed, 0));
+		if(this.jumpability > 0) {
+			this.getBody().setGravityScale(0f);
 		}
 	}
 
@@ -95,9 +103,22 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		return this.status;
 	}
 		
+	
+	public void addGroundContact(){
+		this.jumpability ++;
+	}
+	
+	public void removeGroundContact() {
+		this.jumpability --;
+	}
+	
 	private void jump() {
-		if(!this.getState().equals(ActorState.ATTACKING.toString())) {
-			this.getBody().applyForceToCenter(Constants.JUMPFORCE);
+		if((!this.getState().equals(ActorState.ATTACKING.toString()))
+				&& this.jumpability > 0) {
+			this.setState(ActorState.JUMPING.toString());
+			this.getBody().setGravityScale(-4);
+			this.getBody().setLinearVelocity(new Vec2(this.getBody().getLinearVelocity().x, Constants.JUMPFORCE.y));
+			TimerSingleton.getInstance().register(this, 2, x -> x.getBody().setGravityScale(1));
 		}
 	}
 	

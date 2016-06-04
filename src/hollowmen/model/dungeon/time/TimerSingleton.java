@@ -18,7 +18,7 @@ public class TimerSingleton implements Time{
 		public Event(T event, double duration, Consumer<T> action) {
 			this.subj = event;
 			this.action = action;
-			this.timeAtTrig = this.getOuterType().getLimit() + duration;
+			this.timeAtTrig = this.getOuterType().getValue() + duration;
 		}
 		
 		public void pullTheTrigger() {
