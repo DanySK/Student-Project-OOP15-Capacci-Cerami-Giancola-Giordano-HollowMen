@@ -26,7 +26,6 @@ public class ShopImpl implements Shop{
 	public ShopImpl(Collection<Item> shop, int i) {
 		shop.stream().forEach(x -> x.setState(ItemState.BUYABLE));
 		this.sellableItem = shop;
-		sellableItem.stream().forEach(x -> System.out.println(x.getState()));
 	}
 
 	@Override

@@ -108,6 +108,9 @@ public class DungeonSingleton implements Dungeon{
 		Box2DUtils.centerPosition(this.hero);
 		if(newRoomNumber < 0) {
 			this.currentRoom = this.currentRoom.getParentRoom();
+			if(this.currentRoom.getRoomNumber() == 0) {
+				this.gameOver();
+			}
 		} else {
 			this.currentRoom = this.currentRoom.getChildRoom(newRoomNumber);
 			this.currentRoom.autoPopulate();
