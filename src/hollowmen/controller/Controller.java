@@ -33,6 +33,7 @@ public class Controller implements ViewObserver {
 	private boolean classPicked=false;
 	private boolean gameRunning=false;
 	private boolean itemSelected=false;
+	private InputMenu last=InputMenu.MAIN;
 	
 	public Controller(){
 	}
@@ -49,6 +50,8 @@ public class Controller implements ViewObserver {
 	private void menuChoice(){
 		switch(this.inputMenuList.getFirst()){
 		case MAIN:{
+			this.last=InputMenu.MAIN;
+			this.gameRunning=false;
 			this.view.drawMenu(InputMenu.MAIN, Optional.empty());
 			this.inputMenuList.clear();
 			break;
@@ -65,8 +68,11 @@ public class Controller implements ViewObserver {
 			this.inputMenuList.clear();
 			break;
 		}case PAUSE:{
-			this.view.drawMenu(InputMenu.PAUSE, Optional.empty());
 			this.inputMenuList.clear();
+			if(this.gameRunning){
+				this.view.drawMenu(InputMenu.PAUSE, Optional.empty());
+				menuInputLoop();
+			}
 			break;
 		}case INVENTORY:{
 			this.view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInventory()));
@@ -94,11 +100,13 @@ public class Controller implements ViewObserver {
 			itemInputLoop();
 			break;
 		}case LOBBY:{
-			this.view.drawLobby();
 			this.inputMenuList.clear();
+			this.view.drawLobby();
+			menuInputLoop();
 			break;
 		}case START:{
 			this.inputMenuList.clear();
+			this.model.goTo(1);
 			gameLoop();
 			break;
 		}case ACHIEVEMENTS:{
@@ -107,7 +115,12 @@ public class Controller implements ViewObserver {
 		}case RESUME:{
 			this.inputMenuList.clear();
 			if(!this.gameRunning){
-				this.view.drawMenu(InputMenu.MAIN,Optional.empty());
+				if(this.last==InputMenu.MAIN){
+					this.view.drawMenu(InputMenu.MAIN, Optional.empty());
+				}else{
+					this.view.drawLobby();
+				}
+				menuInputLoop();
 			}else{
 				gameLoop();
 			}
@@ -138,14 +151,13 @@ public class Controller implements ViewObserver {
 				}
 				if(this.classPicked==true){
 					this.classPicked=false;
+					this.last=InputMenu.LOBBY;
 					this.view.drawLobby();
 				}
 				if(this.inputMenuList.isEmpty()){
 					java.lang.Thread.sleep(100);
 				}else{
-					System.out.println(this.inputMenuList.getFirst());
 					menuChoice();
-					
 				}
 			}catch(Exception e){
 				System.out.println("menuInputManager");
@@ -163,7 +175,6 @@ public class Controller implements ViewObserver {
 					java.lang.Thread.sleep(100);
 				}else{
 					if(!this.inputMenuList.isEmpty()){
-					    System.out.println(this.inputMenuList.getFirst());
 						menuChoice();
 						menuInputLoop();
 					}else{
@@ -265,7 +276,6 @@ public class Controller implements ViewObserver {
 		List<DrawableRoomEntity> drawable;
 		this.gameRunning=true;
 		long sleep;
-		this.model.goTo(1);
 		this.inputMenuList.clear();
 		long tick=System.nanoTime();
 		try{
@@ -275,6 +285,8 @@ public class Controller implements ViewObserver {
 			}catch(GameOverException e){
 				this.gameRunning=false;
 				System.out.println("GameOver!");
+				this.view.drawLobby();
+				menuInputLoop();
 				break;
 			}
 			drawable=this.model.getDrawableRoomEntity();
