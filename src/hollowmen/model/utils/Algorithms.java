@@ -31,6 +31,8 @@ public class Algorithms {
 	private final static double FLAT_ENEMY_GOLD = 75;
 	private final static int MAX_ENEMY_DISTANCE_FROM_WALL = 255;
 	private final static int MIN_ENEMY_DISTANCE_FROM_WALL = 100;
+	private final static Vec2 FORCE_BACK = new Vec2(100f, -100f);
+	
 	
 	public static void populateRoom(Room room) {
 		Interactable chest = new TreasureChest();
@@ -66,7 +68,7 @@ public class Algorithms {
 					RandomSelector.getIntFromRange(Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL, Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL)
 					: RandomSelector.getIntFromRange((int)(Constants.WORLD_SIZE.getWidth() - Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL),
 							(int) Constants.WORLD_SIZE.getWidth() - Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL),
-					(float) Constants.WORLD_SIZE.getHeight()), 0);
+					200f), 0);
 		}
 		return retValue;
 	}
@@ -111,6 +113,7 @@ public class Algorithms {
 		double res = ((atkValue - defValue) < 1) ? 1 : atkValue - defValue;
 		subj.getParameters().get(ParamName.HP.toString())
 			.removeModifier(new ModifierImpl(ParamName.HP.toString(), res, Modifier.Operation.ADD));
+		subj.getBody().applyForceToCenter(new Vec2(hitter.isFacingRight() ? FORCE_BACK.x : -FORCE_BACK.x, FORCE_BACK.y));
 	}
 	
 }

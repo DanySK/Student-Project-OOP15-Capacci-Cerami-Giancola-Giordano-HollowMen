@@ -22,10 +22,18 @@ public class GameCollisionListener implements ContactListener{
 		int typeB = contact.getFixtureB().getFilterData().categoryBits;
 		
 		if(typeA == FilterType.GROUND.getValue() && typeB == FilterType.HERO.getValue() || typeB == FilterType.ENEMY.getValue()) {
-			((Actor) contact.getFixtureB().getBody().getUserData()).setState(ActorState.STANDING.toString());;
+			Actor subj = ((Actor) contact.getFixtureB().getBody().getUserData());
+			if(!(subj.getState().equals(ActorState.ATTACKING.toString()) 
+					|| subj.getState().equals(ActorState.MOVING.toString()))){
+				subj.setState(ActorState.STANDING.toString());
+			}
 		}
 		if(typeB == FilterType.GROUND.getValue() && typeA == FilterType.HERO.getValue() || typeA == FilterType.ENEMY.getValue()) {
-			((Actor) contact.getFixtureA().getBody().getUserData()).setState(ActorState.STANDING.toString());;
+			Actor subj = ((Actor) contact.getFixtureA().getBody().getUserData());
+			if(!(subj.getState().equals(ActorState.ATTACKING.toString()) 
+					|| subj.getState().equals(ActorState.MOVING.toString()))){
+				subj.setState(ActorState.STANDING.toString());
+			}
 		}
 		
 		if(typeA == FilterType.LOOTABLE.getValue() && typeB == FilterType.HERO.getValue()) {

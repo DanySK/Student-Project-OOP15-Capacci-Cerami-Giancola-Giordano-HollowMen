@@ -49,7 +49,7 @@ public class BulletImpl extends ActorAbs implements Attack{
 		return Box2DUtils.bodyDefBuilder()
 				.type(BodyType.DYNAMIC)
 				.gravityOff()
-				.position(xPos, temp.getLocalCenter().y)
+				.position(xPos, temp.getWorldCenter().y)
 				.build();
 	}
 

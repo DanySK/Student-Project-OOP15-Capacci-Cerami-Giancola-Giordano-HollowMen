@@ -97,7 +97,7 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		
 	private void jump() {
 		if(!this.getState().equals(ActorState.ATTACKING.toString())) {
-			this.getBody().applyLinearImpulse(Constants.JUMPFORCE, this.getBody().getLocalCenter(), true);
+			this.getBody().applyForceToCenter(Constants.JUMPFORCE);
 		}
 	}
 	
