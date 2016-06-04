@@ -77,7 +77,7 @@ public class Game extends JLabel implements GameInterface{
             this.setOpaque(true);
             this.setBackground(Color.BLACK);
             this.setBounds(0,0,x,y+GAP);
-            new CreateAudio();
+            //new CreateAudio();
             KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             manager.addKeyEventDispatcher(new KeyInput(this));
         }
@@ -89,8 +89,6 @@ public class Game extends JLabel implements GameInterface{
             this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);
-            //this.panelGame.setOpaque(true);
-            //this.panelGame.setIcon(this.storageGame.get("game").getIcon());
             this.levelValue=new ValueManager("Level: ", Color.WHITE);
             this.levelValue.setBounds(ALIGNMENT, ALIGNMENT, DIMX, DIMYTG);
             this.goldValue=new ValueManager("Gold: ", Color.YELLOW);
@@ -100,8 +98,8 @@ public class Game extends JLabel implements GameInterface{
             this.timerValue=new ValueManager("Timer", Color.WHITE);
             this.timerValue.setBounds(LOCX, 0, DIMX, DIMY*2);
             this.bars=new Bar();
-            //this.bars.setLayout(null);
             this.bars.setBounds(ALIGNMENTX, ALIGNMENTY, POSITIONX, POSITIONY); 
+            this.bars.setup();
             this.bars.setBorder(border);            
             this.btnAbility1=new ScreenButton(this.observer, InputCommand.ABILITY1, this.storageGame);
             this.btnAbility1.setBounds(LOCBX, LOCY, DIMBX, DIMBY);
@@ -153,8 +151,8 @@ public class Game extends JLabel implements GameInterface{
         
         private void addComponent(){
             this.add(panelGame);
-            this.add(bars);
             this.bars.updateBar(Values.LIFE.getValue(), Values.MAXLIFE.getValue(), Values.EXP.getValue(), Values.EXPNEEDE.getValue());
+            this.add(bars);
             this.add(btnAbility1);
             this.add(btnAbility2);
             this.add(btnAbility3);
