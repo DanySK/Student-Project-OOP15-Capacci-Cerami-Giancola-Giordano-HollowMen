@@ -59,7 +59,7 @@ public abstract class GridDialog extends MenuDialog {
 		gridPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		statsBox.setEditable(false);
 		statsBox.setLineWrap(true);
-		statsBox.setOpaque(true);
+		statsBox.setOpaque(false);
 		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(gridPanel);
 	}
@@ -72,7 +72,6 @@ public abstract class GridDialog extends MenuDialog {
 	protected String showStats(Optional<Map<String, Double>> map) {
 		String stats;
 		stats = map.get().entrySet().toString();
-		//map.get().entrySet().stream().forEach(System.out :: println);
 		return stats;
 	}
 	
@@ -102,5 +101,9 @@ public abstract class GridDialog extends MenuDialog {
 		Image scaled = i.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		portrait = new ImageIcon(scaled);
 		return portrait;
+	}
+	
+	protected ImageIcon showMobPortrait(ImageIcon image) {
+		return this.portrait = image;
 	}
 }

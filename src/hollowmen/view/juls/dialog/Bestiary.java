@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
@@ -31,6 +32,7 @@ public class Bestiary extends GridDialog {
 	private static final long serialVersionUID = 9026903745675122006L;
 	private IconButton button;
 	private JLabel label = new JLabel();
+	private JTextArea desc = new JTextArea();
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 0, 0, 0)
 							.bound(150, 450, 150, 58)
@@ -49,12 +51,18 @@ public class Bestiary extends GridDialog {
 				dispose();
 			}
 		});
-		label.setBounds(450, 100, 100, 100);
+		label.setBounds(450, 100, 115, 115);
 		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(label);
-		statsBox.setBounds(420, 280, 200, 140);
+		statsBox.setBounds(420, 240, 200, 140);
 		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(statsBox);
+		desc.setBounds(420, 390, 200, 140);
+		desc.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		desc.setEditable(false);
+		desc.setLineWrap(true);
+		desc.setOpaque(false);
+		this.add(desc);
 		this.setVisible(true);
 	}
 
@@ -75,24 +83,13 @@ public class Bestiary extends GridDialog {
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
-					description = x.getDescription();
-					showDescription(description);	
-					showImage((ImageIcon) icon);
-					statsBox.setText(showStats(stats));
-					add(statsBox);	
+					desc.setText(description = x.getDescription());
+					label.setIcon(showMobPortrait((ImageIcon) icon));
+					statsBox.setText(showStats(stats));	
 				}
 			});
 			gridPanel.add(button);
 		});
-	}
-	
-	/**
-	 * The {@code ShowDescription} method writes on screen the description of the mob.
-	 * @param d - the description
-	 */
-	private void showDescription(String d) {
-		JLabel desc = new JLabel(d);
-		desc.setBounds(420, 470, 100, 50);
 	}
 	
 	private void loadImages() {

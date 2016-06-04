@@ -102,7 +102,6 @@ public class Shop extends TabbedDialog {
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(false, true);
 					setLastItem(x);
-					showImage((ImageIcon) icon);
 					label.setIcon(showImage((ImageIcon) icon));
 					statsBox.setText(showStats(stats));
 				}
@@ -133,7 +132,6 @@ public class Shop extends TabbedDialog {
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(true, false);
 					setLastItem(x);
-					showImage((ImageIcon) icon);
 					label.setIcon(showImage((ImageIcon) icon));
 					statsBox.setText(showStats(stats));
 				}
