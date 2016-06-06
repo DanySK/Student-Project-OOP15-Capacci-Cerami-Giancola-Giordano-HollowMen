@@ -66,7 +66,10 @@ public class Shop extends TabbedDialog {
 		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(label);
 		
-		statsBox.setBounds(420, 280, 200, 50);
+		desc.setBounds(420, 360, 280, 60);
+		this.add(desc);
+		
+		statsBox.setBounds(420, 280, 280, 50);
 		this.add(statsBox);
 		this.add(tabbedPane);
 		this.setVisible(true);
@@ -93,12 +96,14 @@ public class Shop extends TabbedDialog {
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
+			description = x.getDescription();
 			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
+					desc.setText(description = x.getDescription());
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(false, true);
 					setLastItem(x);
@@ -123,12 +128,14 @@ public class Shop extends TabbedDialog {
 		.forEach(x -> {
 			stats = x.getStat();
 			nameF = x.getName();
+			description = x.getDescription();
 			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
 					stats = x.getStat();
 					nameF = x.getName();
+					desc.setText(description = x.getDescription());
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					setButtonState(true, false);
 					setLastItem(x);

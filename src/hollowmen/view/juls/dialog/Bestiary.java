@@ -13,7 +13,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import hollowmen.enumerators.InputMenu;
 import hollowmen.model.facade.InformationDealer;
@@ -32,7 +31,6 @@ public class Bestiary extends GridDialog {
 	private static final long serialVersionUID = 9026903745675122006L;
 	private IconButton button;
 	private JLabel label = new JLabel();
-	private JTextArea desc = new JTextArea();
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 0, 0, 0)
 							.bound(150, 450, 150, 58)
@@ -51,17 +49,12 @@ public class Bestiary extends GridDialog {
 				dispose();
 			}
 		});
-		label.setBounds(450, 100, 115, 115);
+		label.setBounds(420, 100, 115, 115);
 		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(label);
-		statsBox.setBounds(420, 240, 200, 140);
-		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		statsBox.setBounds(420, 240, 280, 100);
 		this.add(statsBox);
-		desc.setBounds(420, 390, 200, 140);
-		desc.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		desc.setEditable(false);
-		desc.setLineWrap(true);
-		desc.setOpaque(false);
+		desc.setBounds(420, 365, 280, 60);
 		this.add(desc);
 		this.setVisible(true);
 	}
@@ -73,7 +66,6 @@ public class Bestiary extends GridDialog {
 	private void populateBestiary(Collection<InformationDealer> c) {
 		c.stream()	
 		.forEach(x -> {
-			//System.out.println("Sono nel bestiario" + x);
 			stats = x.getStat();
 			nameF = x.getName();
 			description = x.getDescription();
@@ -84,6 +76,7 @@ public class Bestiary extends GridDialog {
 					stats = x.getStat();
 					nameF = x.getName();
 					desc.setText(description = x.getDescription());
+					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 					label.setIcon(showMobPortrait((ImageIcon) icon));
 					statsBox.setText(showStats(stats));	
 				}

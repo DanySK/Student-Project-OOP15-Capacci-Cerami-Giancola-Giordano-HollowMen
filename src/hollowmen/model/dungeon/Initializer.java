@@ -128,7 +128,7 @@ public class Initializer {
 		Collection<Modifier> mod = new LinkedList<>();
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("bootsBlack", "they're Black...amazing"))
+				.info(new InfoImpl("bootsBlack", "They're Black...amazing"))
 				.rarity(1)
 				.slot(Item.SlotName.BOOTS.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -140,7 +140,7 @@ public class Initializer {
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 20, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("bootsBlue", "they're Blue...not so amazing"))
+				.info(new InfoImpl("bootsBlue", "They're Blue...quite fashion"))
 				.rarity(2)
 				.slot(Item.SlotName.BOOTS.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -153,7 +153,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 40, true));
 		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("bootsBrown", "they're Brown...i don't like them"))
+				.info(new InfoImpl("bootsBrown", "They're Brown... and old."))
 				.rarity(3)
 				.slot(Item.SlotName.BOOTS.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -167,7 +167,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 20, true));
 		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 20, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("chestBronze", "it looks like Gold at first sight"))
+				.info(new InfoImpl("chestBronze", "It looks like Gold at first sight! \n But actually... it's not."))
 				.rarity(1)
 				.slot(Item.SlotName.CHEST.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -180,7 +180,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 50, true));
 		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 50, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("chestSilver", "it looks like Silver at first sight...wait...it is"))
+				.info(new InfoImpl("chestSilver", "It looks like Silver at first sight... wait...it is!"))
 				.rarity(2)
 				.slot(Item.SlotName.CHEST.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -194,7 +194,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 80, true));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("chestGold", "it looks like Gold at first sight...holy!...it is"))
+				.info(new InfoImpl("chestGold", "It looks like Gold at first sight... Holy!... It is!"))
 				.rarity(3)
 				.slot(Item.SlotName.CHEST.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -206,7 +206,7 @@ public class Initializer {
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.1, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("glovesBlack", "black again"))
+				.info(new InfoImpl("glovesBlack", "Because black is my happy color."))
 				.rarity(1)
 				.slot(Item.SlotName.GLOVES.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -218,7 +218,7 @@ public class Initializer {
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.2, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("glovesBlue", "blue again"))
+				.info(new InfoImpl("glovesBlue", "Blue!"))
 				.rarity(2)
 				.slot(Item.SlotName.GLOVES.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -231,7 +231,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.4, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 1.05, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("glovesGrey", "blue again"))
+				.info(new InfoImpl("glovesGrey", "Mmh... nice."))
 				.rarity(3)
 				.slot(Item.SlotName.GLOVES.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -270,7 +270,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 50, true));
 		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 20, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("headGold", "I can give you 5 dollars for this"))
+				.info(new InfoImpl("headGold", "I can give you 5 dollars for this."))
 				.rarity(3)
 				.slot(Item.SlotName.HEAD.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -283,7 +283,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.1, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("woodSword", "You can't really use it"))
+				.info(new InfoImpl("woodSword", "This is... just for training, I guess."))
 				.rarity(1)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -295,7 +295,7 @@ public class Initializer {
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 100, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("simpleSword", "From the wood to the iron"))
+				.info(new InfoImpl("simpleSword", "From the wood to the iron!"))
 				.rarity(2)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -308,7 +308,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.3, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 150, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("redSword", "From the iron to the iron...with red details"))
+				.info(new InfoImpl("redSword", "From the iron to the iron... but with fashionable red details."))
 				.rarity(3)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -321,7 +321,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACKRANGE.toString(), 1.3, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 200, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("longSword", "From the iron to the longer iron"))
+				.info(new InfoImpl("longSword", "From the iron to the, mh, longer iron (?)"))
 				.rarity(3)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -335,7 +335,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.75, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 400, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("scimitar", "From the iron to the iron...heavier"))
+				.info(new InfoImpl("scimitar", "From the iron to the iron... heavier."))
 				.rarity(4)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -350,7 +350,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 2, false));
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 1.5, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
-				.info(new InfoImpl("excalibur", "This legendary sword never seen in any other RPG game..."))
+				.info(new InfoImpl("excalibur", "This LEGENDARY sword has NEVER been seen in any other RPG game..."))
 				.rarity(5)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
@@ -371,7 +371,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 3));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
-				.description("this bat will bite you!")
+				.description("This cutie... will bite you!")
 				.level(1)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -385,7 +385,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 10));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 15));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
-				.description("this bat will bite you hard!")
+				.description("This bat will bite you hard!")
 				.level(2)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -399,7 +399,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 20));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 20));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
-				.description("this bat will bite you harder!!!")
+				.description("This bat will bite you and become Dracula.")
 				.level(3)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -413,7 +413,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
-				.description("this bat will bite you even MORE harder, he's the Bat's BOSS")
+				.description("Edward Cullen -who ? BAT BOSS")
 				.level(5)
 				.param(list)
 				.title(Enemy.EnemyTitle.BOSS.toString())
@@ -427,7 +427,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 5));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
-				.description("this Slime is so slow and resistance and the time is limited be careful")
+				.description("This Slime is so slow and resistance... \n so watch out the time!")
 				.level(1)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -441,7 +441,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 7));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
-				.description("this Slime is less slow and more resistance and the time...is time")
+				.description("This Slime is slow and more resistance... \n It's about time, mate!")
 				.level(2)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -455,7 +455,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
-				.description("this Slime is less slow and more resistance and the time...is time")
+				.description("A powerful slime. T-I-M-E !")
 				.level(3)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -469,7 +469,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 1));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
-				.description("throw away any defense item and hit this slimy BOSS")
+				.description("Throw away any defense item and hit \nthis BOSS, HARD!")
 				.level(5)
 				.param(list)
 				.title(Enemy.EnemyTitle.BOSS.toString())
@@ -484,7 +484,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 100));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 30));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
-				.description("uuu they are well balanced, high attack high defense but low HP")
+				.description("They are well balanced: high attack, \nhigh defense but low HP.")
 				.level(1)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -498,7 +498,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 250));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 40));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
-				.description("uuu they are well balanced, high attack high defense but low HP")
+				.description("This puppet is so... hollow?")
 				.level(2)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -512,7 +512,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 399));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 50));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
-				.description("uuu they are well balanced, high attack high defense but low HP")
+				.description("Don't trust this little cutiepie... ")
 				.level(3)
 				.param(list)
 				.title(Enemy.EnemyTitle.ORDINARY.toString())
@@ -526,7 +526,7 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 2000));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 50));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
-				.description("uuu they are well balanced, high attack high defense but low HP")
+				.description("Here we are! Fight this BIG-ONE!")
 				.level(5)
 				.param(list)
 				.title(Enemy.EnemyTitle.BOSS.toString())

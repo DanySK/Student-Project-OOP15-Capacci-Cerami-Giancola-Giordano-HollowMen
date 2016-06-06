@@ -7,8 +7,7 @@ import javax.swing.ImageIcon;
 import hollowmen.controller.ViewObserver;
 
 /**
- * This class was made cause View doesn't know how to take the ViewObserver
- * from the ViewImpl and since ViewImpl constructor has inputs i think about this simple Singleton
+ *
  * @author pigio
  *
  */

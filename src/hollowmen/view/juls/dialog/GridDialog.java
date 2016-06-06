@@ -31,7 +31,7 @@ public abstract class GridDialog extends MenuDialog {
 
 	private static final long serialVersionUID = -7697502946815508802L;
 	protected static final int ROWS = 5;
-	protected static final int COLUMNS = 3;
+	protected static final int COLUMNS = 1;
 	protected static final int HGAP = 3;
 	protected static final int VGAP = 3;
 	protected static final int X = 50;
@@ -39,6 +39,7 @@ public abstract class GridDialog extends MenuDialog {
 	protected static final int WIDTH = 300;
 	protected static final int HEIGHT = 320;
 	protected JTextArea statsBox = new JTextArea();
+	protected JTextArea desc = new JTextArea();
 	private ImageIcon portrait;
 	protected IconButton button;
 	protected String nameF, description;
@@ -61,6 +62,10 @@ public abstract class GridDialog extends MenuDialog {
 		statsBox.setLineWrap(true);
 		statsBox.setOpaque(false);
 		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		desc.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		desc.setEditable(false);
+		desc.setOpaque(false);		
+		desc.setLineWrap(true);
 		this.add(gridPanel);
 	}
 	
