@@ -93,6 +93,7 @@ public class DungeonSingleton implements Dungeon{
 			world.destroyBody(r.getBody());
 			this.currentRoom.removeEntity(r);
 		});
+		this.disposeList.clear();
 		if(gameOver) {
 			endRun();
 			throw new GameOverException();
