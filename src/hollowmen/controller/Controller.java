@@ -1,5 +1,6 @@
 package hollowmen.controller;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class Controller implements ViewObserver {
 	
 	private LinkedList<InputMenu> inputMenuList=new LinkedList<>();
 	private LinkedList<InputCommand> inputCommandList=new LinkedList<>();
+	private List<InputCommand> inputCommandListThread;
 	private Pair<InputCommand,InformationDealer> mapInputCommand=null;
 	private View view;
 	private Model model;
@@ -38,6 +40,8 @@ public class Controller implements ViewObserver {
 	}
 	
 	public void setup(){
+		//need to use thread safe list due to concurrency
+		inputCommandListThread=Collections.synchronizedList(inputCommandList);
 		this.view=new ViewImpl(800,600,this);
 		this.view.takeFile(LoaderClass.load());
 		this.view.drawMenu(InputMenu.MAIN, Optional.empty());
@@ -224,7 +228,7 @@ public class Controller implements ViewObserver {
 			}else{
 				boolean left=false;
 				boolean right=false;
-				for(InputCommand command:this.inputCommandList){
+				for(InputCommand command:this.inputCommandListThread){
 					switch(command){
 					case LEFT:{
 						if(!left){
@@ -261,7 +265,7 @@ public class Controller implements ViewObserver {
 					}
 					}
 				}
-				this.inputCommandList.clear();
+				this.inputCommandListThread.clear();
 			}
 		}catch(Exception e){
 			System.out.println("gameInputManager");
@@ -317,7 +321,7 @@ public class Controller implements ViewObserver {
 	}
 	
 	public void addInput(InputCommand input) {
-		this.inputCommandList.add(input);
+		this.inputCommandListThread.add(input);
 	}
 
 	public void addInput(InputMenu menu) {

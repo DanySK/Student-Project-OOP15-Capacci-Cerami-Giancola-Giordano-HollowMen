@@ -61,7 +61,7 @@ public class ModelImpl implements Model{
 		Values.TIMER.setValue((int)((this.dungeon.getTimer().getLimit()
 		        -this.dungeon.getTimer().getValue())/1000));
 		Values.FLOOR.setValue(this.dungeon.getFloorNumber());
-		/*actually there is only the standing image, so i give that to the view*/
+		/*actually bugged, actor state don change to moving so i give that to the view*/
 		//ActorState sta=ActorState.STANDING;
 		ActorState sta=ActorState.MOVING;// need to be changed
 		if(this.hero.getState().equals("move")){
@@ -93,9 +93,6 @@ public class ModelImpl implements Model{
                                     ActorState.STANDING));/*STANDING state, beacuse it's a door or a chest*/
 			}  
             }
-		/*for(DrawableRoomEntity e:drawable){
-			System.out.println(e.getName());
-		}*/
 		return drawable;
 	}
 
