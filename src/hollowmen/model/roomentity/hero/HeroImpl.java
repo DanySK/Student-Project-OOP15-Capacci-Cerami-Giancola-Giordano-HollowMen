@@ -78,10 +78,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 			Actors.addAllModifier(this, x.getModifiers().entries().stream()
 					.map(i -> i.getValue())
 					.collect(Collectors.toList()));
+			x.setState(ItemState.EQUIPPED);
 			this.slots.put(x.getSlot(), Optional.of(x));
 		});
-
-		
 	}
 	
 	private void initSlot() {
@@ -108,15 +107,18 @@ public class HeroImpl extends ActorAbs implements Hero{
 	public void equipItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> !i.getState().equals(ItemState.UNEQUIPPED));
-		ExceptionThrower.checkIllegalArgument(item, i -> !i.getHeroClassEquippable().equals(this.getHeroClass()));
+		ExceptionThrower.checkIllegalArgument(item, i -> !i.getHeroClassEquippable().equals(this.getHeroClass().getInfo().getName()));
 		ExceptionThrower.checkIllegalArgument(item, i -> !this.inventory.getAllItem().stream()
 				.map(p -> p.getX()).collect(Collectors.toList()).contains(i));
+		System.out.println("EQUIP");
+		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 		Item itemFrom = this.inventory.getItem(item.getInfo().getName());
 		this.inventory.removeItem(itemFrom);
 		itemFrom.setState(ItemState.EQUIPPED);
 		this.slots.get(itemFrom.getSlot()).ifPresent(x -> this.unequipItem(x));
 		this.slots.put(itemFrom.getSlot(), Optional.of(itemFrom));
 		itemFrom.getModifiers().entries().forEach(e -> Actors.addModifier(this, e.getValue()));
+		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 	}
 
 	/**
@@ -127,10 +129,14 @@ public class HeroImpl extends ActorAbs implements Hero{
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> !i.getState().equals(ItemState.EQUIPPED));
 		ExceptionThrower.checkIllegalState(item, i -> !this.slots.get(i.getSlot()).isPresent());
+		System.out.println("UNEQUIP");
+		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 		Item unequipItem = this.slots.get(item.getSlot()).get();
 		unequipItem.getModifiers().entries().stream().forEach(e -> Actors.removeModifier(this, e.getValue()));
 		this.inventory.addItem(unequipItem);
 		this.slots.put(item.getSlot(), Optional.empty());
+		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
+
 	}
 
 	
@@ -286,10 +292,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 			.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && !i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
 				.findFirst().ifPresent(c -> c.interact());
-			DungeonSingleton.getInstance()
-			.getCurrentRoom().getInteractable().stream().forEach(x -> System.out.println(x.getInfo() + " STATUS" + x.isInteractAllowed() 
-			+ " POSITION: " +x.getBody().getWorldCenter()));
-			System.out.println("HERO POSITION "+DungeonSingleton.getInstance().getHero().getBody().getWorldCenter());
 			System.out.println("STO CERCANDO DI INTERAGIRE");
 		});
 				

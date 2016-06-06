@@ -136,6 +136,8 @@ public abstract class RoomEntityAbs implements RoomEntity{
 				return false;
 		} else if (!info.equals(other.info))
 			return false;
+		if (!this.getBody().getWorldCenter().equals(other.getBody().getWorldCenter()))
+			return false;
 		return true;
 	}
 

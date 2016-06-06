@@ -67,10 +67,12 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 		this.getOrPrepareList(mod).add(mod);
 		
 		if(mod.getOperation().equals(Modifier.Operation.ADD.getOp())) {
-			mod.getOperation().apply(sum, mod.getParameter().getValue());
+			this.sum = mod.getOperation().apply(this.sum, mod.getParameter().getValue());
+			System.out.println("HO SOMMATO -->"+mod+" E ADESSO SUM VALE -->"+this.sum);
 		}
 		if(mod.getOperation().equals(Modifier.Operation.MUL.getOp())) {
-			mod.getOperation().apply(mul, mod.getParameter().getValue());
+			this.mul = mod.getOperation().apply(this.mul, mod.getParameter().getValue());
+			System.out.println("HO MOLTIPLICATO -->"+mod+" E ADESSO MUL VALE -->"+this.mul);
 		}
 	}
 
@@ -84,10 +86,10 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 		this.getOrPrepareList(mod).remove(mod);
 		
 		if(mod.getOperation().equals(Modifier.Operation.ADD.getOp())) {
-			mod.getReverseOperation().apply(sum, mod.getParameter().getValue());
+			this.sum = mod.getReverseOperation().apply(this.sum, mod.getParameter().getValue());
 		}
 		if(mod.getOperation().equals(Modifier.Operation.MUL.getOp())) {
-			mod.getReverseOperation().apply(mul, mod.getParameter().getValue());
+			this.mul = mod.getReverseOperation().apply(this.mul, mod.getParameter().getValue());
 		}
 	}
 	
@@ -114,7 +116,7 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 
 	@Override
 	public String toString() {
-		return "Parameter : name "+ super.toString();
+		return "Parameter : name "+ super.toString() + " Value : "+this.getValue();
 	}
 
 }
