@@ -137,13 +137,7 @@ public class Controller implements ViewObserver {
 			if(!this.gameRunning){
 				this.view.drawMenu(InputMenu.MAIN, Optional.empty());
 			}else{
-				this.model.heroAction("back");
-				/*if(Values.FLOOR.getValue()==1){ 
-					this.last=InputMenu.LOBBY;
-					this.view.drawLobby();
-					this.gameRunning=false;
-					menuInputLoop();
-				}*/
+				System.out.println("se arriva qui il back c'è un problema...");
 			}
 			break;
 		}
@@ -245,23 +239,17 @@ public class Controller implements ViewObserver {
 						}
 						break;
 					}case JUMP:{
-						if(!left){
-							left=true;
-							this.model.heroAction("jump");
-						}
+						this.model.heroAction("jump");
 						break;
 					}case ATTACK:{
-						if(!left){
-							left=true;
-							this.model.heroAction("attack");
-						}
+						this.model.heroAction("attack");
 						break;
 					}case INTERACT:{
-						if(!left){
-							left=true;
-							this.model.heroAction("interact");
-						}
+						this.model.heroAction("interact");
 						break;
+					}case BACKHERO:{
+						//System.out.println("il backhero funziona nel controller...");
+						this.model.heroAction("back");
 					}default:{
 						break;
 					}
