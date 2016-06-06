@@ -135,10 +135,18 @@ public class Game extends JLabel implements GameInterface{
                 for(Map.Entry<String,ImageIcon> elem: storage.entrySet()){
                         for(String name: SingletonNameList.getSingletonNameList().getNameList() ){
                                 if(elem.getKey().equals(name)){
-                                        storageGame.put(name, new JLabel(elem.getValue()));
-                                                storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
+                                	storageGame.put(name, new JLabel(elem.getValue()));
+                                    storageFlipped.put(name, new JLabel(new FlipImage(elem.getValue().getImage())));
                                 }
                         }
+                }
+                System.out.println("Stampo lo storage");
+                for(Map.Entry<String,JLabel> map: this.storageGame.entrySet()){
+                	System.out.println(map.getKey());
+                }
+                System.out.println("Stampo il flipped");
+                for(Map.Entry<String,JLabel> map: this.storageFlipped.entrySet()){
+                	System.out.println(map.getKey());
                 }
                 initialSetup(this.x,this.y);
         }
