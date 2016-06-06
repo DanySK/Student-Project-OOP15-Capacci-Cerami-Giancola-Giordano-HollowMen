@@ -8,7 +8,6 @@ import hollowmen.enumerators.ClassType;
 import hollowmen.enumerators.Difficulty;
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
-import hollowmen.enumerators.Values;
 import hollowmen.model.facade.DrawableRoomEntity;
 import hollowmen.model.facade.InformationDealer;
 import hollowmen.model.facade.Model;
@@ -41,7 +40,7 @@ public class Controller implements ViewObserver {
 	
 	public void setup(){
 		//need to use thread safe list due to concurrency
-		inputCommandListThread=Collections.synchronizedList(inputCommandList);
+		this.inputCommandListThread=Collections.synchronizedList(this.inputCommandList);
 		this.view=new ViewImpl(800,600,this);
 		this.view.takeFile(LoaderClass.load());
 		this.view.drawMenu(InputMenu.MAIN, Optional.empty());
@@ -84,8 +83,9 @@ public class Controller implements ViewObserver {
 			itemInputLoop();
 			break;
 		}case SKILL_TREE:{
-			this.view.drawMenu(InputMenu.SKILL_TREE, Optional.empty());
+			//actually menu missing
 			this.inputMenuList.clear();
+			gameLoop();
 			break;
 		}case POKEDEX:{
 			this.view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getPokedex()));
@@ -116,7 +116,9 @@ public class Controller implements ViewObserver {
 			gameLoop();
 			break;
 		}case ACHIEVEMENTS:{
+			//actually no menu 
 			this.inputMenuList.clear();
+			gameLoop();
 			break;
 		}case RESUME:{
 			this.inputMenuList.clear();
@@ -215,11 +217,10 @@ public class Controller implements ViewObserver {
 		}
 	}
 	
-	private boolean gameInputManager(){
+	private void gameInputManager(){
 		try{
 			if(!this.inputMenuList.isEmpty()){
 				menuChoice();
-				return true;
 			}else{
 				boolean left=false;
 				boolean right=false;
@@ -260,13 +261,12 @@ public class Controller implements ViewObserver {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		return false;
 	}
 	
 	private void gameLoop(){
 		
 		//nanosec used
-		final long skipTick=20000000;//model update frequency (62 update per sec)
+		final long skipTick=20000000;//model and view update frequency (50 update per sec)
 		//more accurate than millisec in my opinion
 		//didn't find a real answer on the Internet
 		final int convert=1000000;
@@ -290,10 +290,7 @@ public class Controller implements ViewObserver {
 			}
 			drawable=this.model.getDrawableRoomEntity();
 			this.view.drawGame(drawable);
-			if(gameInputManager()){
-				this.gameRunning=false;
-				break;
-			}
+			gameInputManager();
 			tick+=skipTick;
 			sleep=(tick-System.nanoTime())/convert;
 			if(sleep>0){
