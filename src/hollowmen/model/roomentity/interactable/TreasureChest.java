@@ -68,7 +68,7 @@ public class TreasureChest extends UselessInteractable{
 
 	@Override
 	public BodyDef defBody() {
-		return Box2DUtils.bodyDefBuilder().type(BodyType.DYNAMIC).build();
+		return Box2DUtils.bodyDefBuilder().type(BodyType.STATIC).build();
 	}
 
 	@Override
