@@ -60,6 +60,7 @@ public class Controller implements ViewObserver {
 			break;
 		}case CLASS:{
 			this.view.drawMenu(InputMenu.CLASS, Optional.empty());
+			this.model.setup();
 			this.inputMenuList.clear();
 			break;
 		}case DIFFICULTY:{
@@ -136,8 +137,6 @@ public class Controller implements ViewObserver {
 			this.inputMenuList.clear();
 			if(!this.gameRunning){
 				this.view.drawMenu(InputMenu.MAIN, Optional.empty());
-			}else{
-				System.out.println("se arriva qui il back c'è un problema...");
 			}
 			break;
 		}
@@ -248,7 +247,6 @@ public class Controller implements ViewObserver {
 						this.model.heroAction("interact");
 						break;
 					}case BACKHERO:{
-						//System.out.println("il backhero funziona nel controller...");
 						this.model.heroAction("back");
 					}default:{
 						break;
@@ -285,6 +283,7 @@ public class Controller implements ViewObserver {
 			}catch(GameOverException e){
 				this.gameRunning=false;
 				System.out.println("GameOver!");
+				this.last=InputMenu.LOBBY;
 				this.view.drawLobby();
 				menuInputLoop();
 				break;
