@@ -104,7 +104,7 @@ public class ModelImpl implements Model{
 			for(Map.Entry<String, Parameter> map:en.getParameters().entrySet()){
 				param.put(map.getKey(),(Double)map.getValue().getValue());
 			}
-			info.add(new InformationDealerImpl(en.getInfo().getName(),
+			info.add(new InformationDealerImpl(en.getInfo().getName()+en.getLevel(),
 					en.getInfo().getDescription().orElse(""),
 					param,
 					en.getState(),

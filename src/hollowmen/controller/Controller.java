@@ -138,6 +138,7 @@ public class Controller implements ViewObserver {
 				this.view.drawMenu(InputMenu.MAIN, Optional.empty());
 			}else{
 				if(Values.FLOOR.getValue()==1){ 
+					this.last=InputMenu.LOBBY;
 					this.view.drawLobby();
 					this.gameRunning=false;
 					menuInputLoop();
