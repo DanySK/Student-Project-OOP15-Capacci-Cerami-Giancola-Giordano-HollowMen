@@ -42,7 +42,7 @@ public class PokedexImpl implements Pokedex{
 	@Override
 	public void checkNewEnemy(Room r) {
 		r.getEnemies().stream()
-			.filter(e -> this.enemyMet.contains(e))
+			.filter(e -> !this.enemyMet.contains(e))
 			.forEach(e -> this.enemyMet.add(e));
 	}
 

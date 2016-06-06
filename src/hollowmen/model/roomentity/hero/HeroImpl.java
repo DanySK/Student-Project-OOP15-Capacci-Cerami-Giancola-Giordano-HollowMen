@@ -34,6 +34,7 @@ import hollowmen.model.utils.Actors;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.SimpleLimitedCounter;
+import hollowmen.model.utils.UpperLimitReachException;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
@@ -207,7 +208,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 		
 		try {
 			this.exp.addToValue(loot.getExp());
-		} catch (IllegalStateException e) {
+		} catch (UpperLimitReachException e) {
 			levelUp();
 		}
 		

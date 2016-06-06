@@ -153,6 +153,7 @@ public class DungeonSingleton implements Dungeon{
 		this.floorNumber = floorNumber;
 		this.currentRoom = new RoomImpl(this.lobby, Constants.CHILDROOMQUANTITY, 1);
 		this.currentRoom.autoPopulate();
+		this.poke.checkNewEnemy(this.currentRoom);
 		Box2DUtils.centerPosition(this.hero);
 	}
 
