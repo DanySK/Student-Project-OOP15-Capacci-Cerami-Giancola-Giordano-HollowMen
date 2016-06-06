@@ -59,6 +59,8 @@ public class InputChooser {
 							break;}
 		case KeyEvent.VK_0:{ this.observer.addInput(InputCommand.CONSUMABLE);
 							break;}
+		default:
+			break;
 		}
 	}
 }

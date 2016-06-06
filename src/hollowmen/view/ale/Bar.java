@@ -21,14 +21,6 @@ public class Bar extends JLabel{
         this.setLayout(null);
         this.setOpaque(true);
         this.setBackground(Color.BLACK);
-        /*this.life=new LifeBar();
-        this.life.setBounds(GAP, GAP, (int)(this.getWidth()-GAP*2), 
-                            (int)((this.getHeight()-GAP*3)/3*2));
-        this.exp=new ExpBar();
-        this.exp.setBounds(GAP, this.life.getHeight()+GAP*2,
-                            (int)(this.getWidth()-GAP*2), (int)((this.getHeight()-GAP*3)/3));
-        this.add(this.life);
-        this.add(this.exp);*/
     }
     
     public void setup(){

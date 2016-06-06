@@ -181,6 +181,7 @@ public class Game extends JLabel implements GameInterface{
         private void addDynamicComponent(List<DrawableRoomEntity> componentList){
             JLabel labTmp;
                 for(DrawableRoomEntity elem: componentList){
+                	System.out.println(elem.getName()+elem.isFacingRight());
                 	if(elem.isFacingRight()){
                         if(elem.getName().equals("hero")){
                             switch(elem.getState()){
@@ -212,6 +213,8 @@ public class Game extends JLabel implements GameInterface{
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
+                                default:
+                                	break;
                            }
                        }
                        else{
@@ -253,9 +256,12 @@ public class Game extends JLabel implements GameInterface{
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
+                                default:
+                                	break;
                             }
-                            }
+                        }
                             else{
+                            	System.out.println(elem.getName());
                             	labTmp=new JLabel();
                             	labTmp=this.storageGame.get(elem.getName());
 	                            labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 

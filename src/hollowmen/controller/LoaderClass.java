@@ -35,7 +35,7 @@ public class LoaderClass {
 		nameList.add("res/images/titles/class.png");
 		nameList.add("res/images/titles/bestiary.png");
 		nameList.add("res/images/titles/achievements.png");
-		nameList.add("res/images/room/treasureChest.png");
+		nameList.add("res/images/room/treasure.png");
 		nameList.add("res/images/room/game.png");
 		nameList.add("res/images/room/door.png");
 		nameList.add("res/images/mobs/slimeBoss.gif");
