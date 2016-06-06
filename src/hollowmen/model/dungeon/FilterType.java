@@ -1,5 +1,15 @@
 package hollowmen.model.dungeon;
 
+/**
+ * This enum represents the Category and the Mask used for filtering Collision
+ * <br>
+ * Short Description of how it works:<br>
+ * Each {@link Body} can have one or more {@link Fixture} and each {@code Fixture}
+ * has a {@link Filter} object. In Box2D {@link World}, category 
+ * @author pigio
+ *
+ */
+//TODO finish the Doc
 public enum FilterType {
 	
 	GROUND(0x0001),

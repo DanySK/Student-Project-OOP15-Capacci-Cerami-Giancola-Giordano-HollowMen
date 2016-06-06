@@ -18,6 +18,12 @@ import hollowmen.model.roomentity.Bullet;
 import hollowmen.model.roomentity.Melee;
 import hollowmen.model.utils.Constants;
 
+/**
+ * This class implements {@link TypeAction}<br>
+ * It holds a generic "attack routine"
+ * @author pigio
+ *
+ */
 public class Attack implements TypeAction{
 
 	

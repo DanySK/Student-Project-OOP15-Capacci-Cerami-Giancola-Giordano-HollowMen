@@ -3,6 +3,11 @@ package hollowmen.model.roomentity;
 import hollowmen.model.Actor;
 import hollowmen.model.Actor.Direction;
 
+/**
+ * This class implements {@link MovePattern} and simply move the {@link Enemy} from right to left and viceversa
+ * @author pigio
+ *
+ */
 public class DumbMovePattern implements MovePattern{
 
 	private EnemyAbs enemy;
@@ -12,6 +17,9 @@ public class DumbMovePattern implements MovePattern{
 		this.enemy = en;
 	}
 
+	/**
+	 * {@inheritDoc MovePattern}
+	 */
 	@Override
 	public String getDirection() {
 		if(enemy.isHittingWall()) {

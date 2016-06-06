@@ -14,6 +14,12 @@ import hollowmen.model.roomentity.EnemyAbs;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 
+/**
+ * This class represents an {@link Enemy} called slime<br>
+ * This class provides a Builder instead of Constructors
+ * @author pigio
+ *
+ */
 public class Slime extends EnemyAbs{
 
 	

@@ -10,6 +10,12 @@ import hollowmen.model.Information;
 import hollowmen.model.Modifier;
 import hollowmen.model.utils.Actors;
 
+/**
+ * This class represents a generic {@link Parameter} buff or debuff
+ * STILL NOT IN GAME
+ * @author pigio
+ *
+ */
 public class GenericBuff {
 
 	private Information info;

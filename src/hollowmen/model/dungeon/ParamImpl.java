@@ -14,6 +14,11 @@ import hollowmen.model.utils.InformationUserImpl;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class implements {@link Parameter}
+ * @author pigio
+ *
+ */
 public class ParamImpl extends InformationUserImpl implements Parameter{
 	
 	private Map<Pair<BinaryOperator<Double>, Double>, List<Modifier>> modifiersMap = new HashMap<>();
@@ -23,23 +28,38 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 	private double sum = 0;
 	private double mul = 1;
 	
-	
+	/**
+	 * This constructor create a {@code Parameter} with no {@link Modifier}
+	 * attached and with a base value
+	 * @param info {@link Information}
+	 * @param baseValue {@code double}
+	 */
 	public ParamImpl(Information info, double baseValue) {
 		super(info);
 		this.baseValue = baseValue;
 	}
 	
+	/**
+	 * This is a Cloner constructor
+	 * @param param
+	 */
 	public ParamImpl(Parameter param) {
 		super(param.getInfo());
 		this.baseValue = param.getValue();
 		param.getModifiers().stream().forEach(m -> this.addModifier(new ModifierImpl(m)));
 	}
 	
+	/**
+	 * @return (baseValue + all ADD {@code Modifier}) * all MUL {@code Modifier}
+	 */
 	@Override
 	public double getValue() {
 		return (baseValue + sum) * mul;
 	}
 
+	/**
+	 * {@inheritDoc Parameter}
+	 */
 	@Override
 	public void addModifier(Modifier mod) throws IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(mod);
@@ -54,7 +74,9 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 		}
 	}
 
-	
+	/**
+	 * {@inheritDoc Parameter}
+	 */
 	@Override
 	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(mod);
@@ -69,7 +91,9 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 		}
 	}
 	
-	
+	/**
+	 * {@inheritDoc Parameter}
+	 */
 	@Override
 	public Collection<Modifier> getModifiers() {
 		Collection<Modifier> mod = new LinkedList<>();

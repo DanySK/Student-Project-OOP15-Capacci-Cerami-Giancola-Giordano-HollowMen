@@ -8,6 +8,11 @@ import hollowmen.model.Actor;
 import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.utils.Box2DUtils;
 
+/**
+ * This class is a special Sensor that let an {@code Actor} jump
+ * @author pigio
+ *
+ */
 public class JumpSensor extends FixtureDef{
 
 	public JumpSensor(Actor act) {

@@ -15,6 +15,11 @@ import hollowmen.model.utils.Counter;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class implements {@link Inventory}
+ * @author pigio
+ *
+ */
 public class InventoryImpl implements Inventory{
 
 	private Map<String, Pair<Item, Counter>> storage;
@@ -24,6 +29,12 @@ public class InventoryImpl implements Inventory{
 		this.storage = new HashMap<>();
 	}
 	
+	/**
+	 * This constructor build an {@code Inventory} with the given <b>itemInInventory</b> 
+	 * that holds the name and quantities<br>
+	 * NOTE: This constructor use {@link ItemPool} for retrieve the {@code Item}s
+	 * @param itemInInventory
+	 */
 	public InventoryImpl(Collection<Pair<String, Integer>> itemInInventory) {
 		this();
 		itemInInventory.stream().forEach(e -> {
@@ -33,11 +44,17 @@ public class InventoryImpl implements Inventory{
 		});
 	}
 	
+	/**
+	 * {@inheritDoc Inventory}
+	 */
 	@Override
 	public void addItem(Item item) {
 		getOrCreateValue(item).getY().increase();
 	}
-
+	
+	/**
+	 * {@inheritDoc Inventory}
+	 */
 	@Override
 	public void removeItem(Item item) throws IllegalArgumentException{
 		ExceptionThrower.checkIllegalArgument(storage, m -> !(m.containsKey(item.getInfo().getName()) 
@@ -45,6 +62,9 @@ public class InventoryImpl implements Inventory{
 		this.storage.get(item.getInfo().getName()).getY().decrease();
 	}
 
+	/**
+	 * {@inheritDoc Inventory}
+	 */
 	@Override
 	public Collection<Pair<Item, Integer>> getAllItem() {
 		Collection<Pair<Item, Integer>> coll = new LinkedList<>();
@@ -55,6 +75,9 @@ public class InventoryImpl implements Inventory{
 		return coll;
 	}
 
+	/**
+	 * {@inheritDoc Inventory}
+	 */
 	@Override
 	public Collection<Item> getAllItemFound() {
 		return this.storage.entrySet().stream()
@@ -67,6 +90,9 @@ public class InventoryImpl implements Inventory{
 				new Pair<>(ItemPool.getInstance().getItem(item.getInfo().getName()), new Counter()), (x, y) -> x);
 	}
 
+	/**
+	 * {@inheritDoc Inventory}
+	 */
 	@Override
 	public Item getItem(String itemName) throws IllegalArgumentException {
 		ExceptionThrower.checkIllegalArgument(itemName, i -> !this.storage.containsKey(i));

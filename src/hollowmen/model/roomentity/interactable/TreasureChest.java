@@ -14,6 +14,12 @@ import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.Algorithms;
 import hollowmen.model.utils.Box2DUtils;
 
+/**
+ * This class extends {@link UselessInteractable}<br>
+ * 
+ * @author pigio
+ *
+ */
 public class TreasureChest extends UselessInteractable{
 	
 	private Lootable loot;
@@ -24,6 +30,9 @@ public class TreasureChest extends UselessInteractable{
 		this.loot = Algorithms.treasureLoot();
 	}
 
+	/**
+	 * This method let the {@link Hero} pick this {@code TreasureChest}'s {@link Lootable} object
+	 */
 	@Override
 	public void interact() throws IllegalStateException {
 		super.interact();

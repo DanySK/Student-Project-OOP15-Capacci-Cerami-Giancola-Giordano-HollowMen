@@ -12,6 +12,11 @@ import java.util.Collection;
  */
 public interface Parameter extends InformationUser{
 	
+	/**
+	 * All Parameter name in game
+	 * @author pigio
+	 *
+	 */
 	public enum ParamName {
 
 		ATTACK,
@@ -38,7 +43,7 @@ public interface Parameter extends InformationUser{
 	public double getValue();
 	
 	/**
-	 * This method <u>add</u> a {@link Modifier} to the Character
+	 * This method <u>add</u> <b>mod</b> {@code Modifier} to this {@code Parameter}
 	 * @param mod {@link Modifier}
 	 * @throws IllegalArgumentException If <b>mod</b> doesn't target this {@code Parameter}
 	 * @throws NullPointerException
@@ -46,10 +51,10 @@ public interface Parameter extends InformationUser{
 	public void addModifier(Modifier mod) throws NullPointerException;
 	
 	/**
-	 * This method <u>remove</u> a {@link Modifier} to the Character
+	 * This method <u>remove</u> <b>mod</b> {@code Modifier} to this {@code Parameter}
 	 * @param mod {@link Modifier}
 	 * @throws IllegalArgumentException If <b>mod</b> doesn't target this {@code Parameter}<br>
-	 * OR If the Character hasn't the passed {@link Modifier}
+	 * OR If this {@code Paramete} hasn't <b>mod</b>
 	 * @throws NullPointerException
 	 */
 	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException;

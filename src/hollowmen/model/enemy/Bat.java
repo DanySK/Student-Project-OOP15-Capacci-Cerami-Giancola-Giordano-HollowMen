@@ -16,6 +16,13 @@ import hollowmen.model.roomentity.EnemyAbs;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 
+/**
+ * This class represents an {@link Enemy} called bat<br>
+ * This is a flying enemy<br>
+ * This class provides a Builder instead of Constructors
+ * @author pigio
+ *
+ */
 public class Bat extends EnemyAbs{
 
 	

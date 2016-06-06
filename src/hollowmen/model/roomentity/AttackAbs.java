@@ -20,6 +20,12 @@ import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class extends {@link ActorAbs} and implements {@link Attack}<br>
+ * This class apply the right filter and make the attack on the right position
+ * @author pigio
+ *
+ */
 public abstract class AttackAbs extends ActorAbs implements Attack{
 
 	private Actor owner;
@@ -39,8 +45,9 @@ public abstract class AttackAbs extends ActorAbs implements Attack{
 		float xPos = this.direction.equals(Actor.Direction.RIGHT.toString())
 				? temp.getWorldCenter().x + this.owner.getLength() / 2 
 				: temp.getWorldCenter().x - this.owner.getLength() / 2;	
-		float yPos = this.getBody().getWorldCenter().y;
+		float yPos = temp.getWorldCenter().y;
 		this.getBody().setTransform(new Vec2(xPos, yPos), 0f);
+		System.out.println(this.getBody().getWorldCenter());
 	}
 	
 	private void filtering() {
@@ -54,16 +61,25 @@ public abstract class AttackAbs extends ActorAbs implements Attack{
 		}
 	}
 	
+	/**
+	 * This will move just in the give direction without caring at your input
+	 */
 	@Override
 	public void move(String d) throws NullPointerException {
 		super.move(this.direction);
 	}
 
+	/**
+	 * @throws IllegalArgumentException Can't perform anything (at the moment)
+	 */
 	@Override
 	public void performAction(String action) {
 		ExceptionThrower.checkIllegalArgument(this, x -> true);
 	}
 	
+	/**
+	 * {@inheritDoc Attack}
+	 */
 	@Override
 	public Actor getOwner() {
 		return this.owner;

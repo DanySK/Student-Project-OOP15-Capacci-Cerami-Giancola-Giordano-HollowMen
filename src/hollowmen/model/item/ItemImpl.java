@@ -160,40 +160,65 @@ public class ItemImpl implements Item{
 		
 	}
 	
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public Information getInfo() {
 		return this.info;
 	}
 
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public ItemState getState() {
 		return this.state;
 	}
 	
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public void setState(ItemState state) {
 		this.state = state;
 	}
+	
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public Multimap<String, Modifier> getModifiers() {
 		return this.mod;
 	}
 
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public int getGoldValue() {
 		return this.goldValue;
 	} 
 
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public int getRarity() {
 		return this.rarity;
 	}
 
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public String getSlot() {
 		return this.slot;
 	}
 
+	/**
+	 * {@inheritDoc Item}
+	 */
 	@Override
 	public String getHeroClassEquippable() {
 		return this.heroClassEquippable;

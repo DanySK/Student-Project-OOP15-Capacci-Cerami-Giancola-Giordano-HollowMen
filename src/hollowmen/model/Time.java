@@ -13,11 +13,11 @@ import java.util.function.Consumer;
 public interface Time  extends LimitedCounter{
 
 	/**
-	 * This method adds the given <b>event</b> to this {@code Time} and when
-	 * its duration finished {@code trigger()} will be invoked 
+	 * This method apply the <b>action</b> on the
+	 * <b>subj</b> after <b>duration</b> in seconds
 	 * 
 	 * @param subj who will be consumed by the action
-	 * @param duration after this time
+	 * @param duration after this time express in seconds
 	 * @param action the action
 	 */
 	public <T> void register(T subj, double duration, Consumer<T> action);

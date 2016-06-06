@@ -13,7 +13,8 @@ import hollowmen.utilities.RandomSelector;
 /**
  * This class holds every {@link Item} in the game.<br>
  * Each time anyone needs an {@code Item} it can refers to this class.<br>
- * This class follow the Singleton Pattern and can get his instance with {@code getInstance()} method
+ * This class gives always a clone of an {@code Item}<br>
+ * This class is a Singleton
  * @author pigio
  *
  */
@@ -29,7 +30,7 @@ public class ItemPool {
 	
 	/**
 	 * 
-	 * @return the unique instance for this class
+	 * @return {@link ItemPool} unique instance
 	 */
 	public static ItemPool getInstance() {
 		return Holder.INSTANCE;
@@ -65,7 +66,8 @@ public class ItemPool {
 	
 	/**
 	 * This method give a <u>copy</u> of a random {@code Item}
-	 * @returna <u>copy</u> of an {@code Item} inside the Pool
+	 * @return a <u>copy</u> of an {@link Item} inside the Pool or null if no {@code Item}
+	 * was added to the pool
 	 */
 	public Item getCompletelyRandom() {
 		return (Item) RandomSelector.getAnyFrom(itemInGame.toArray());

@@ -9,6 +9,11 @@ import hollowmen.model.Information;
 import hollowmen.model.Parameter;
 import hollowmen.model.SkillTree;
 
+/**
+ * This class implements {@link HeroClass}
+ * @author pigio
+ *
+ */
 public class HeroClassImpl implements HeroClass{
 
 	private Information info;
@@ -27,21 +32,33 @@ public class HeroClassImpl implements HeroClass{
 		this.challenge = challenge;
 	}
 
+	/**
+	 * {@inheritDoc HeroClass}
+	 */
 	@Override
 	public Information getInfo() {
 		return this.info;
 	}
 
+	/**
+	 * {@inheritDoc HeroClass}
+	 */
 	@Override
 	public SkillTree getSkillTree() {
 		return this.skillTree;
 	}
 
+	/**
+	 * {@inheritDoc HeroClass}
+	 */
 	@Override
 	public Collection<Parameter> getBaseParam() {
 		return Collections.unmodifiableCollection(this.param);
 	}
 
+	/**
+	 * {@inheritDoc HeroClass}
+	 */
 	@Override
 	public Challenge getChallenge() {
 		return this.challenge;

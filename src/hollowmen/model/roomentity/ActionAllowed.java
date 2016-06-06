@@ -11,7 +11,7 @@ public interface ActionAllowed {
 	
 	/**
 	 * 
-	 * @return An unmodifiable Map of String and TypeAction
+	 * @return Map of String and function to run
 	 */
 	public Map<String, Runnable> getActionAllowed();
 }

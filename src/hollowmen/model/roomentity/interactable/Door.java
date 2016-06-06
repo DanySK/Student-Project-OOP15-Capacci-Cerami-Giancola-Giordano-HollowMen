@@ -14,6 +14,18 @@ import hollowmen.model.roomentity.UselessInteractable;
 import hollowmen.model.utils.Constants;
 import hollowmen.model.utils.Box2DUtils;
 
+/**
+ * This class extends {@link UselessInteractable}<br>
+ * This class Override {@code isInteractAllowed()} so that it returns {@code false} until every {@code Enemy}
+ * inside the current {@code Room} have been slaying, then return {@code super.isInteractAllowed()}
+ * <br>
+ * This class Override {@code interact()} method and calls Dungeon's {@code changeRoom()}
+ * using his doorNumber as input
+ * 
+ * 
+ * @author pigio
+ *
+ */
 public class Door extends UselessInteractable{
 
 	private int roomNumber;
@@ -23,18 +35,29 @@ public class Door extends UselessInteractable{
 		this.roomNumber = doorNumber;
 	}
 	
+	/**
+	 * @return {@code false} until every {@code Enemy}
+	 * inside the current {@code Room} have been slaying, then return {@code super.isInteractAllowed()}
+	 */
 	@Override
 	public boolean isInteractAllowed() {
 		return DungeonSingleton.getInstance().getCurrentRoom().getEnemies().isEmpty() ? 
 				false : super.isInteractAllowed();
 	}
 	
+	/**
+	 * This method will change the current {@code Room} based on this doorNumber
+	 */
 	@Override
 	public void interact() throws IllegalStateException {
 		super.interact();
 		DungeonSingleton.getInstance().changeRoom(roomNumber);		
 	}
 
+	/**
+	 * This method gives this doorNumber
+	 * @return {@code int} this doorNumber
+	 */
 	public int getRoomNumber() {
 		return roomNumber;
 	}

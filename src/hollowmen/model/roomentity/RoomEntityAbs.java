@@ -16,6 +16,12 @@ import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class implements {@link RoomEntity}<br>
+ * It define the general behavior of any {@code RoomEntity}
+ * @author pigio
+ *
+ */
 public abstract class RoomEntityAbs implements RoomEntity{
 
 	private Information info;
@@ -23,7 +29,7 @@ public abstract class RoomEntityAbs implements RoomEntity{
 	private float length;
 	private float height;
 	
-	protected RoomEntityAbs(Information info2, Pair<Float, Float> size) {
+	public RoomEntityAbs(Information info2, Pair<Float, Float> size) {
 		this.info = new InfoImpl(info2);
 		this.length = size.getX();
 		this.height = size.getY();
@@ -33,35 +39,65 @@ public abstract class RoomEntityAbs implements RoomEntity{
 		this.getBody().setUserData(this);
 	}
 	
+	/**
+	 * This method defines the {@link BodyDef} of this {@code RoomEntity}
+	 * @return {@link BodyDef}
+	 */
 	public abstract BodyDef defBody();
 	
+	/**
+	 * This method defines the {@link FixtureDef} of this {@code RoomEntity}
+	 * @return {@link FixtureDef}
+	 */
 	public abstract Collection<FixtureDef> defFixture();
 	
+	/**
+	 * {@inheritDoc RoomEntity}
+	 */
 	@Override
 	public Information getInfo() {
 		return info;
 	}
 
+	/**
+	 * {@inheritDoc RoomEntity}
+	 */
 	@Override
 	public Body getBody() {
 		return body;
 	}
 
+	/**
+	 * {@inheritDoc RoomEntity}
+	 */
+	@Override
 	public void dispose() {
 		DungeonSingleton.getInstance().addToDisposeList(this);
 	}
 	
-	
+	/**
+	 * {@inheritDoc RoomEntity}
+	 */
 	@Override
 	public float getLength() {
 		return this.length;
 	}
 
+	/**
+	 * {@inheritDoc RoomEntity}
+	 */
 	@Override
 	public float getHeight() {
 		return this.height;
 	}
 	
+	/**
+	 * This method is a simple way to create a rectangular {@code FixtureDef}
+	 * based on {@code getLength()} and {@code getHeight()}
+	 * @param filter {@link Filter} to apply on {@code FixtureDef}
+	 * @param sensor {@code true} if need to be a sensor, {@code false} otherwise
+	 * @return a rectangular {@link FixtureDef}
+	 */
 	public Collection<FixtureDef> generateRectangleFix(Filter filter, boolean sensor) {
 		PolygonShape shape = new PolygonShape();
 		float halfLength = (float) (this.getLength() / 2);

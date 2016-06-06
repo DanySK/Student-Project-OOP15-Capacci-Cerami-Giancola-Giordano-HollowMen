@@ -5,6 +5,11 @@ import java.util.Collection;
 import hollowmen.model.Enemy;
 import hollowmen.model.Parameter;
 
+/**
+ * This interface is used for building an {@link Enemy}
+ * @author pigio
+ *
+ */
 public interface EnemyBuilder {
 
 	/**
@@ -16,7 +21,7 @@ public interface EnemyBuilder {
 	
 	/**
 	 * 
-	 * @param level {@code int} from 0 to 3
+	 * @param level {@code int} from 0 to 20
 	 * @return this
 	 */
 	public EnemyBuilder level(int level);

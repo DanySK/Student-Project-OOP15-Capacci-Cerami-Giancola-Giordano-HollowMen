@@ -11,6 +11,11 @@ import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class represents an attack that can move in one direction until collide with an enemy/hero or a wall
+ * @author pigio
+ *
+ */
 public class Bullet extends AttackAbs implements Attack{
 	
 	

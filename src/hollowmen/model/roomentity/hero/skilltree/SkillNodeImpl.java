@@ -4,6 +4,14 @@ import hollowmen.model.Information;
 import hollowmen.model.SkillNode;
 import hollowmen.model.utils.SimpleLimitedCounter;
 
+/**
+ * This class extends {@link SimpleLimitedCounter} and implements {@link SkillNode}<br>
+ * This class hold the behavior of any {@code SkillNode}<br>
+ * New SkillNode should extends this class and Override {@code addToValue()} and {@code subToValue} calling
+ * {@code super.*ToValue()} and then adding their code
+ * @author pigio
+ *
+ */
 public class SkillNodeImpl extends SimpleLimitedCounter implements SkillNode{
 
 	private Information info;
@@ -22,28 +30,25 @@ public class SkillNodeImpl extends SimpleLimitedCounter implements SkillNode{
 		this(info, tag, level, 1);
 	}
 	
+	/**
+	 * {@inheritDoc SkillNode}
+	 */
 	@Override
 	public Information getInfo() {
 		return info;
 	}
 
+	/**
+	 * {@inheritDoc SkillNode}
+	 */
 	@Override
 	public int getLevel() {
 		return this.nodeLevel;
 	}
 
-	@Override
-	public void addToValue(double value) throws IllegalArgumentException, IllegalStateException {
-		super.addToValue(value);
-		//TODO do something based on the node
-	}
-
-	@Override
-	public void subToValue(double value) throws IllegalArgumentException, IllegalStateException {
-		super.subToValue(value);
-		//TODO do something based on the node
-	}
-
+	/**
+	 * {@inheritDoc SkillNode}
+	 */
 	@Override
 	public String getTag() {
 		return this.tag;

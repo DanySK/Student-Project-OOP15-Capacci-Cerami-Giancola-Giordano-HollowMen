@@ -14,6 +14,12 @@ import hollowmen.model.roomentity.EnemyAbs;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 
+/**
+ * This class represents an {@link Enemy} called puppet<br>
+ * This class provides a Builder instead of Constructors
+ * @author pigio
+ *
+ */
 public class Puppet extends EnemyAbs{
 
 	private Puppet(Information info, Collection<Parameter> param, int power, String title) {

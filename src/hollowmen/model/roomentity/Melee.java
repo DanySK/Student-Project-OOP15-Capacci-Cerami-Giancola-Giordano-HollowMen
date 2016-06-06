@@ -10,6 +10,12 @@ import hollowmen.model.dungeon.time.TimerSingleton;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class extends {@link AttackAbs} and represent a static attack that can't move but his
+ * length is determinate by the owner {@code Parameter} ATTACKRANGE
+ * @author pigio
+ *
+ */
 public class Melee extends AttackAbs{
 
 	private static final float HEIGHT = 50f;

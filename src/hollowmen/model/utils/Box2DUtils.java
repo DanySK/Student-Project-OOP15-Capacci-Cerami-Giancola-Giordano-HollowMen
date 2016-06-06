@@ -73,6 +73,7 @@ public class Box2DUtils {
 		public BodyDefBuilder() {
 			def.fixedRotation = true;
 			def.setGravityScale(1);
+			def.setLinearDamping(0f);
 		}
 		
 		public BodyDefBuilder type(BodyType bodyType) {

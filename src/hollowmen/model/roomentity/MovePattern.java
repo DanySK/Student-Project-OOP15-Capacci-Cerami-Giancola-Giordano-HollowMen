@@ -7,6 +7,10 @@ package hollowmen.model.roomentity;
  */
 public interface MovePattern {
 
+	/**
+	 * This method give a {@code String} represents the direction to move
+	 * @return {@code String} represents the direction to move
+	 */
 	public String getDirection();
 	
 }

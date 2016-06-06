@@ -23,6 +23,12 @@ import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class extends {@link RoomEntityAbs} and implements {@link Actor}<br>
+ * Classes that extends this class know how to jump and attack
+ * @author pigio
+ *
+ */
 public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 
 	
@@ -45,6 +51,9 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		actionAllowed.getActionAllowed().put(Actor.Action.ATTACK.toString(), () -> this.attack());
 	}
 
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	@Override
 	public void performAction(String action) throws NullPointerException {
 		ExceptionThrower.checkNullPointer(action);
@@ -52,6 +61,9 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		actionAllowed.getActionAllowed().get(action).run();
 	}
 
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	public void move(String d) {
 		changeFacing(d);
 		float speedX = (float) this.getParameters().get(ParamName.MOVSPEED.toString()).getValue() * Constants.MAXSPEED
@@ -70,27 +82,41 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		}
 	}
 	
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	@Override
 	public Map<String, Parameter> getParameters() {
 		return this.parameters;
 	}
 
-	
-	
+	/**
+	 * This method set the facing
+	 * @param b {@code true} facing right, {@code false} otherwise
+	 */
 	public void setFacingRight(boolean b) {
 		this.facingRight = b;
 	}
 	
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	@Override
 	public boolean isFacingRight() {
 		return facingRight;
 	}
 
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	@Override
 	public String getState() {
 		return this.state;
 	}
 
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	@Override
 	public void setState(String state) {
 		this.state = state;
@@ -100,16 +126,24 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		return this.actionAllowed;
 	}
 	
+	/**
+	 * {@inheritDoc Actor}
+	 */
 	@Override
 	public Collection<Information> getStatus() {
 		return this.status;
 	}
 		
-	
+	/**
+	 * This method is used by {@link GameCollisionListener} for tell this {@code Actor} he's on the ground
+	 */
 	public void addGroundContact(){
 		this.jumpability ++;
 	}
 	
+	/**
+	 * This method is used by {@link GameCollisionListener} for tell this {@code Actor} he isn't on the ground
+	 */
 	public void removeGroundContact() {
 		this.jumpability --;
 	}

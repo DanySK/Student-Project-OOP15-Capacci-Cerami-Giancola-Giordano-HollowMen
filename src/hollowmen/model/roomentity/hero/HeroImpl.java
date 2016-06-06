@@ -37,6 +37,11 @@ import hollowmen.model.utils.SimpleLimitedCounter;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class extends {@link ActorAbs} and implements {@link Hero}
+ * @author pigio
+ *
+ */
 public class HeroImpl extends ActorAbs implements Hero{
 
 	private final static Pair<Float, Float> BODY_PROP = new Pair<>(0.4f, 0.45f);
@@ -84,6 +89,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 		}
 	}
 	
+	
 	private Collection<Parameter> upgradableParam(HeroClass heroClass) {
 		Collection<String> list = new LinkedList<>();
 		list.add(Parameter.ParamName.HPMAX.toString());
@@ -94,6 +100,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 				.collect(Collectors.toList());
 	}
 	
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public void equipItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
@@ -109,6 +118,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 		itemFrom.getModifiers().entries().forEach(e -> Actors.addModifier(this, e.getValue()));
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public void unequipItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
@@ -121,6 +133,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 	}
 
 	
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public void sellItem(Item item) throws IllegalStateException, IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
@@ -132,6 +147,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.gold += item.getGoldValue();
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public void buyItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
@@ -140,31 +158,49 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.gold -= item.getGoldValue();
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public Pair<Integer, Integer> getExp() {
 		return new Pair<Integer, Integer>((int)this.exp.getValue(), (int)this.exp.getLimit());
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public int getLevel() {
 		return this.level;
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public int getGold() {
 		return this.gold;
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public Inventory getInventory() {
 		return this.inventory;
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public HeroClass getHeroClass() {
 		return this.heroClass;
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public void pick(Lootable loot) throws NullPointerException {
 		ExceptionThrower.checkNullPointer(loot);
@@ -187,6 +223,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.heroClass.getSkillTree().addPoint(Constants.SKILLPOINTS_ONLEVELUP);;
 	}
 
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public TargetPointSystem<Parameter> getUpgradableParameter() {
 		return this.uppableParam;
@@ -222,7 +261,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 		return retValue;
 	}
 
-	
+	/**
+	 * {@inheritDoc Hero}
+	 */
 	@Override
 	public Collection<Item> getEquippedItem() {
 		return this.slots.entrySet().stream()

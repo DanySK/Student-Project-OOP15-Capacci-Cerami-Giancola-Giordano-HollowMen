@@ -27,6 +27,17 @@ import hollowmen.model.roomentity.hero.skilltree.SkillNodeModifier;
 import hollowmen.model.roomentity.hero.skilltree.SkillTreeImpl;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class can be instantiate for setting:<br>
+ * °{@link ItemPool}<br>
+ * °{@link EnemyPool}<br>
+ * °{@link Hero} directly to the {@link Dungeon}<br>
+ * °{@link Dungeon} settings {@link Shop}, {@link Pokedex} and unlocked floor
+ * <br><br>
+ * This class was made for testing the application without any saving files
+ * @author pigio
+ *
+ */
 public class Initializer {
 
 	public Initializer() {
@@ -101,7 +112,7 @@ public class Initializer {
 	}
 
 
-	public Modifier genMod(String s, double value, boolean isADD) {
+	private Modifier genMod(String s, double value, boolean isADD) {
 		return new ModifierImpl(s, value, (isADD ? Modifier.Operation.ADD : Modifier.Operation.MUL));
 	}
 	

@@ -4,6 +4,14 @@ import java.util.Optional;
 
 import hollowmen.model.Information;
 
+
+/**
+ * This class represents a generic {@link Information}<br>
+ * This class is used by any {@link InformationUser} and it's useful
+ * for holds a name and a description of any object
+ * @author pigio
+ *
+ */
 public class InfoImpl implements Information{
 
 	private String name;
@@ -25,11 +33,17 @@ public class InfoImpl implements Information{
 		this.description = info.getDescription();
 	}
 	
+	/**
+	 * {@inheritDoc Information}
+	 */
 	@Override
 	public String getName() {
 		return this.name;
 	}
-
+	
+	/**
+	 * {@inheritDoc Information}
+	 */
 	@Override
 	public Optional<String> getDescription() {
 		return this.description;
@@ -44,6 +58,10 @@ public class InfoImpl implements Information{
 		return result;
 	}
 
+	/**
+	 * Two {@code Information} are equals if their name field are
+	 * equals
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

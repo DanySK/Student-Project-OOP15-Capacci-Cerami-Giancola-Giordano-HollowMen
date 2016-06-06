@@ -7,8 +7,11 @@ import hollowmen.model.utils.GameOverException;
 import hollowmen.utilities.Pair;
 
 /**
- * A {@code Dungeon} has a sequence of {@link Floor}, a single {@code Floor} can be selected if it's unlocked.
- * For unlock a {@code Floor} the player has to complete the previous {@code Floor}.<br>
+ * A {@code Dungeon} has a sequence of floor, a single floor can be selected if it's unlocked.
+ * For unlock a floor the player has to complete the previous one.
+ * For complete a floor the player need to pass all the {@link Room} that compose that floor.
+ * It holds methods for update the game
+ * <br>
  * <br>
  * A {@code Dungeon} has a {@link Difficulty} which influence some parameter in the game
  * @author pigio
@@ -101,19 +104,19 @@ public interface Dungeon {
 	public void changeRoom(int choice);
 	
 	/**
-	 * 
+	 * This method gives the {@code Pokedex}
 	 * @return {@link Pokedex}
 	 */
 	public Pokedex getPokedex();
 	
 	/**
-	 * 
+	 * This method gives the {@code World}
 	 * @return {@link World}
 	 */
 	public World getWorld();
 	
 	/**
-	 * 
+	 * This method gives the {@code Time}
 	 * @return {@link Time}
 	 */
 	public Time getTimer();

@@ -13,6 +13,11 @@ import hollowmen.model.utils.Algorithms;
 import hollowmen.model.utils.Box2DUtils;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class extends {@link ActorAbs} and implements {@link Enemy}
+ * @author pigio
+ *
+ */
 public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
 	protected MovePattern pattern;
@@ -26,32 +31,53 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		this.combatLevel = power;
 		this.title = title;
 		pattern = movePattern();
+		this.loot = genLoot();
 	}
 	
-	private MovePattern movePattern() {
+	/**
+	 * This method can be overridden by the final classes for change their move path
+	 * @return {@link MovePatter}
+	 */
+	protected MovePattern movePattern() {
 		return new DumbMovePattern(this);
 	}
 
+	/**
+	 * This method moves this {@code Enemy} based on his {@code MovePattern} without caring at input
+	 */
 	@Override
 	public void move(String s) {
 		super.move(pattern.getDirection());
 	}
 
+	/**
+	 * {@inheritDoc Enemy}
+	 */
 	@Override
 	public Lootable getLoot() {
 		return this.loot;
 	}
 	
+	/**
+	 * {@inheritDoc Enemy}
+	 */
 	@Override
 	public int getLevel() {
 		return this.combatLevel;
 	}
 
+	/**
+	 * {@inheritDoc Enemy}
+	 */
 	@Override
 	public String getTitle() {
 		return this.title;
 	}
 	
+	/**
+	 * This utility method give a standard {@link Filter} for each {@code Enemy}
+	 * @return
+	 */
 	public Filter standardEnemyFilter() {
 		return Box2DUtils.filterBuilder()
 				.addCategory(FilterType.ENEMY.getValue())
@@ -62,8 +88,12 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 				.build();
 	}
 	
-	public void autoGenLoot() {
-		this.loot = Algorithms.genLootEnemy(this);
+	/**
+	 * This method can be overridden for determinate what Loot this {@code Enemy} have
+	 * @return {@link Lootable}
+	 */
+	protected Lootable genLoot() {
+		return Algorithms.genLootEnemy(this);
 	}
 
 	
@@ -93,10 +123,18 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 		return true;
 	}
 
+	/**
+	 * This method is used by {@link MovePattern}
+	 * @return {@code true} if this {@code Enemy} is hitting a wall, {@code false} otherwise
+	 */
 	public boolean isHittingWall() {
 		return hitWall;
 	}
 
+	/**
+	 * This method is  used by {@link GameCollisionListener} for tell this {@code Enemy} that he's hitting a wall or not
+	 * @param hitWall
+	 */
 	public void setHitWall(boolean hitWall) {
 		this.hitWall = hitWall;
 	}

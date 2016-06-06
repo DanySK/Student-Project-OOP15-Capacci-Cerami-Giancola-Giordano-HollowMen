@@ -14,6 +14,12 @@ import hollowmen.model.utils.Counter;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class implements {@link SkillTree}<br>
+ * NOTE: not in game but tested and work correctly
+ * @author pigio
+ *
+ */
 public class SkillTreeImpl implements SkillTree{
 	
 	private int skillPointUnspent;
@@ -29,14 +35,22 @@ public class SkillTreeImpl implements SkillTree{
 	//the sum of all skill point for the branch in the level
 	private Map<Pair<String, Integer>, Counter> pointsOnBranchLevel = new HashMap<>();
 	
-	
+	/**
+	 * This constructor build and empty {@code TargetPointSystem} with the given <b>allSkillNode</b>
+	 * @param allSkillNode
+	 */
 	public SkillTreeImpl(Collection<SkillNode> allSkillNode) {
 		this.initMaps(allSkillNode);
 		allSkillNode.stream().forEach(s -> this.checkNewTargets(s));
 		this.skillPointUnspent = 0;
 	}
 		
-	
+	/**
+	 * This constructor build a {@code TargetPointSystem} with the given <b>allSkillNodeAndPoints</b> and set
+	 * his unspent point using <b>pointUnspent</b>
+	 * @param allSkillNodeAndPoints
+	 * @param pointUnspent
+	 */
 	public SkillTreeImpl(Collection<Pair<SkillNode, Integer>> allSkillNodeAndPoints, int pointUnspent) {
 		this(allSkillNodeAndPoints.stream().map(p -> p.getX()).collect(Collectors.toList()));
 		allSkillNodeAndPoints.stream()
@@ -48,6 +62,9 @@ public class SkillTreeImpl implements SkillTree{
 		});
 	}
 	
+	/**
+	 * {@inheritDoc TargetPointSystem}
+	 */
 	@Override
 	public Collection<SkillNode> getTargets() {
 		return this.allTargets.entrySet().stream()
@@ -55,17 +72,25 @@ public class SkillTreeImpl implements SkillTree{
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * {@inheritDoc TargetPointSystem}
+	 */
 	@Override
 	public int getUnspentPoint() {
 		return this.skillPointUnspent;
 	}
 
+	/**
+	 * {@inheritDoc TargetPointSystem}
+	 */
 	@Override
 	public void addPoint(int pointToAdd) {
 		this.skillPointUnspent += pointToAdd;
 	}
 
-	
+	/**
+	 * {@inheritDoc TargetPointSystem}
+	 */
 	@Override
 	public Collection<SkillNode> getSkillNodes() {
 		List<SkillNode> list = new LinkedList<>();
@@ -75,7 +100,9 @@ public class SkillTreeImpl implements SkillTree{
 		return list;	
 	}
 
-	
+	/**
+	 * {@inheritDoc TargetPointSystem}
+	 */
 	@Override
 	public void retrievePointFrom(SkillNode target) throws IllegalArgumentException {
 		ExceptionThrower.checkIllegalArgument(target, t -> !this.allTargets.containsKey(t.getInfo().getName()));
@@ -143,6 +170,9 @@ public class SkillTreeImpl implements SkillTree{
 			});
 	}
 	
+	/**
+	 * {@inheritDoc TargetPointSystem}
+	 */
 	@Override
 	public void spendPointOn(SkillNode target) throws IllegalStateException, IllegalArgumentException {
 		ExceptionThrower.checkIllegalArgument(target, t -> !this.allTargets.containsKey(t.getInfo().getName()));

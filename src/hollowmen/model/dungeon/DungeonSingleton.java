@@ -31,6 +31,13 @@ import hollowmen.model.utils.UpperLimitReachException;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
 
+/**
+ * This class is the core part of the Model, it implements {@link Dungeon} interface<br>
+ * This class use Singleton Pattern so that any other class can call it
+ * <br>
+ * @author pigio
+ *
+ */
 public class DungeonSingleton implements Dungeon{
 
 	private final float GRAVITY = 0.1f;
@@ -66,6 +73,9 @@ public class DungeonSingleton implements Dungeon{
 		this.world.setContactListener(new GameCollisionListener());
 	};
 	
+	/**
+	 * @return {@link DungeonSingleton} unique instance
+	 */
 	public static DungeonSingleton getInstance() {
 		return Holder.Instance;
 	}
@@ -74,6 +84,9 @@ public class DungeonSingleton implements Dungeon{
 		public static DungeonSingleton Instance =  new DungeonSingleton();
 	}
 	
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public void update(long deltaTime) throws GameOverException {
 		this.disposeList.stream().forEach(r -> {
@@ -94,16 +107,26 @@ public class DungeonSingleton implements Dungeon{
 		world.step(deltaTime, ITERATION_VELOCITY, ITERATION_POSITION);
 	}
 	
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public int getFloorNumber() {
 		return this.floorNumber;
 	}
-
+	
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Room getCurrentRoom() {
 		return (this.floorNumber == 0)?this.lobby:this.currentRoom;
 	}
-
+	
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
+	@Override
 	public void changeRoom(int newRoomNumber) {
 		Box2DUtils.centerPosition(this.hero);
 		if(newRoomNumber < 0) {
@@ -120,6 +143,9 @@ public class DungeonSingleton implements Dungeon{
 		this.poke.checkNewEnemy(this.currentRoom);
 	}
 	
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public void goTo(int floorNumber) throws IllegalStateException {
 		ExceptionThrower.checkIllegalState(floorNumber, f -> f > this.unlockedFloors.getValue());
@@ -130,11 +156,17 @@ public class DungeonSingleton implements Dungeon{
 		Box2DUtils.centerPosition(this.hero);
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Pair<Integer, Integer> getFloors() {
 		return new Pair<>((int) this.unlockedFloors.getValue(), (int) this.unlockedFloors.getLimit());
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public void endRun() {
 		if(this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT
@@ -146,28 +178,43 @@ public class DungeonSingleton implements Dungeon{
 		Actors.regenerate(this.hero);
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Difficulty getDifficulty() {
 		return this.diff;
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Shop getShop() {
 		return this.shop;
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Hero getHero() {
 		return this.hero;
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public World getWorld() {
 		return this.world;
 	}
 	
 	
-	
+	/**
+	 * This method launches {@link GameOverException} on the next
+	 * {@code update()} call
+	 */
 	public void gameOver() {
 		this.gameOver = true;
 	}
@@ -225,39 +272,72 @@ public class DungeonSingleton implements Dungeon{
 		polygonShape.setAsBox( THICKNESS, halfHeight+THICKNESS, new Vec2(halfLength+THICKNESS, 0), 0);
 		body.createFixture(wallFix);
 		//flyLine
-		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS);
+		polygonShape.setAsBox(halfLength+THICKNESS, THICKNESS, new Vec2(0, 80), 0);
 		body.createFixture(airLine);
 	}
 	
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Pokedex getPokedex() {
 		return this.poke;
 	}
 	
+	/**
+	 * This method set the {@code Difficulty}
+	 * @param diff {@link Difficulty}
+	 */
 	public void setDifficulty(Difficulty diff) {
 		this.diff = diff;
 	}
 	
+	/**
+	 * This method set the {@code Hero}
+	 * @param hero {@link Hero}
+	 */
 	public void setHero(Hero hero) {
 		this.hero = hero;
 	}
 	
+	/**
+	 * @param lastUnlock last floor number reached 
+	 * @param maxFloor max floor number reachable
+	 */
 	public void setUnlockedFloor(int lastUnlock, int maxFloor) {
 		this.unlockedFloors = new SimpleLimitedCounter(lastUnlock, maxFloor);
 	}
 	
+	/**
+	 * 
+	 * @param poke {@link Pokedex}
+	 */
 	public void setPokedex(Pokedex poke) {
 		this.poke = poke;
 	}
 
+	/**
+	 * This method adds <b>re</b> to the dispose list<br>
+	 *  each update cycle
+	 * the {@code Dungeon} will remove all the {@code RoomEntity} inside the
+	 * dispose list which means remove them from the current {@code Room} and their
+	 * {@code Body} from the {@code World} 
+	 * @param re {@link RoomEntity}
+	 */
 	public void addToDisposeList(RoomEntity re) {
 		this.disposeList.add(re);
 	}
 
+	/**
+	 * @param shop {@link Shop}
+	 */
 	public void setShop(Shop shop) {
 		this.shop = shop;
 	}
 
+	/**
+	 * {@inheritDoc Dungeon}
+	 */
 	@Override
 	public Time getTimer() {
 		return TimerSingleton.getInstance();

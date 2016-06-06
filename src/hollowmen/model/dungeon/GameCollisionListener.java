@@ -15,6 +15,12 @@ import hollowmen.model.roomentity.EnemyAbs;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Algorithms;
 
+/**
+ * This class is used to determinate what to do when two
+ * {@link Fixture}s collide
+ * @author pigio
+ *
+ */
 public class GameCollisionListener implements ContactListener{
 
 	@Override
@@ -40,31 +46,41 @@ public class GameCollisionListener implements ContactListener{
 			System.out.println("Collisione LOOTABLE <-> HERO");
 		}
 		
-		if(typeA == FilterType.WALL.getValue()) {
-			wallAction(contact, false);
+		if(typeA == FilterType.WALL.getValue() && (typeB == FilterType.ENEMY.getValue() 
+				|| typeB == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
+			((EnemyAbs)contact.getFixtureB().getBody().getUserData()).setHitWall(true);
+			System.out.println("Collisione ENEMY <-> WALL");
 		}
-		if(typeB == FilterType.WALL.getValue()) {
-			wallAction(contact, true);
-		}	
-		
-		if((typeA == FilterType.ENEMYATTACK.getValue() || typeA == FilterType.HEROATTACK.getValue())
-				&& (typeB == FilterType.ENEMY.getValue() || typeB == FilterType.HERO.getValue())) {
-			attack((Attack) contact.getFixtureA().getBody().getUserData(), contact, false);
-			System.out.println("Collisione ENEMYATTACK/HEROATTACK <-> HERO/ENEMY");
-		}
-		if((typeA == FilterType.ENEMYATTACK.getValue() || typeA == FilterType.HEROATTACK.getValue())
-				&& (typeB == FilterType.ENEMY.getValue() || typeB == FilterType.HERO.getValue())) {
-			attack((Attack) contact.getFixtureB().getBody().getUserData(), contact, true);
-			System.out.println("Collisione ENEMYATTACK/HEROATTACK <-> HERO/ENEMY");
+		if(typeB == FilterType.WALL.getValue() && (typeA == FilterType.ENEMY.getValue() 
+				|| typeA == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
+			((EnemyAbs)contact.getFixtureA().getBody().getUserData()).setHitWall(true);
+			System.out.println("Collisione ENEMY <-> WALL");
 		}
 		
-		if(typeA == FilterType.HERO.getValue() && typeB == FilterType.ENEMY.getValue()) {
+		if(typeA == FilterType.HEROATTACK.getValue()
+				&& (typeB == FilterType.ENEMY.getValue() 
+				|| typeB == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
+			Algorithms.combat((Attack)contact.getFixtureA().getBody().getUserData(), 
+					(Enemy) contact.getFixtureB().getBody().getUserData());
+			System.out.println("Collisione ENEMYATTACK/HEROATTACK <-> HERO/ENEMY");
+		}
+		if(typeB == FilterType.HEROATTACK.getValue()
+				&& (typeA == FilterType.ENEMY.getValue() 
+				|| typeA == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
+			Algorithms.combat((Attack)contact.getFixtureB().getBody().getUserData(), 
+					(Enemy) contact.getFixtureA().getBody().getUserData());
+			System.out.println("Collisione ENEMYATTACK/HEROATTACK <-> HERO/ENEMY");
+		}
+		
+		if(typeA == FilterType.HERO.getValue() && (typeB == FilterType.ENEMY.getValue() 
+				|| typeB == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
 			Algorithms.combat((Enemy)contact.getFixtureB().getBody().getUserData(), 
 					(Hero) contact.getFixtureA().getBody().getUserData());
 			System.out.println("Collisione HERO <-> ENEMY");
 			}
 		
-		if(typeB == FilterType.HERO.getValue() && typeA == FilterType.ENEMY.getValue()) {
+		if(typeB == FilterType.HERO.getValue() && (typeA == FilterType.ENEMY.getValue() 
+				|| typeA == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
 			Algorithms.combat((Enemy)contact.getFixtureA().getBody().getUserData(), 
 					(Hero) contact.getFixtureB().getBody().getUserData());
 			System.out.println("Collisione HERO <-> ENEMY");
@@ -98,16 +114,18 @@ public class GameCollisionListener implements ContactListener{
 			System.out.println("Fine collisione GROUND <-> JUMP");
 		}
 		
-		if(typeA == FilterType.WALL.getValue() && typeB == FilterType.ENEMY.getValue()) {
+		if(typeA == FilterType.WALL.getValue() && (typeB == FilterType.ENEMY.getValue() 
+				|| typeB == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
 			((EnemyAbs)contact.getFixtureB().getBody().getUserData()).setHitWall(false);
 			System.out.println("Fine collisione ENEMY <-> WALL");
 		}
-		if(typeB == FilterType.LOOTABLE.getValue() && typeA == FilterType.ENEMY.getValue()) {
+		if(typeB == FilterType.WALL.getValue() && (typeA == FilterType.ENEMY.getValue() 
+				|| typeA == FilterType.ENEMY.getValue() + FilterType.FLY.getValue())) {
 			((EnemyAbs)contact.getFixtureA().getBody().getUserData()).setHitWall(false);
 			System.out.println("Fine collisione ENEMY <-> WALL");
 
-			}
-		
+		}
+
 	}
 
 	@Override
@@ -122,44 +140,9 @@ public class GameCollisionListener implements ContactListener{
 		
 	}
 	
-	
 	private void interactableAction(Interactable userData, int unknownEntity) {
 		if(unknownEntity == FilterType.HERO.getValue()) {
 			userData.changeInteract();
 		}
-	}
-	
-	private void attack(Attack userData, Contact contact, boolean doYouCheckA) {
-		boolean userIsEnemy = doYouCheckA ? contact.getFixtureB().getFilterData().categoryBits == FilterType.ENEMY.getValue()
-				: contact.getFixtureA().getFilterData().categoryBits == FilterType.ENEMY.getValue(); 
-		if(userIsEnemy) {
-			Algorithms.combat(userData, (Hero) ((doYouCheckA) ? contact.getFixtureA().getBody().getUserData()
-					: contact.getFixtureB().getBody().getUserData()));
-		} else {
-			Algorithms.combat(userData, (Enemy) ((doYouCheckA) ? contact.getFixtureA().getBody().getUserData()
-					: contact.getFixtureB().getBody().getUserData()));
-		}
-	}
-	
-	private void wallAction(Contact contact,boolean checkA){
-		int unknownEntity = this.unknownCategory(contact, checkA);
-		if(unknownEntity == FilterType.ENEMY.getValue()) {
-			EnemyAbs e = (EnemyAbs) ((checkA) ? contact.getFixtureA().getBody().getUserData()
-					 : contact.getFixtureB().getBody().getUserData());
-			e.setHitWall(true);
-			System.out.println("Collisione ENEMY <-> WALL");
-		}
-		if(unknownEntity == FilterType.ENEMYATTACK.getValue() 
-				|| unknownEntity == FilterType.HEROATTACK.getValue()) {
-			Attack b = (Attack)((checkA) ? contact.getFixtureA().getBody().getUserData()
-					: contact.getFixtureB().getBody().getUserData());
-			b.dispose();
-			System.out.println("Collisione ATTACK <-> WALL");
-		}
-	}
-
-	private int unknownCategory(Contact contact, boolean checkA) {
-		return checkA ? contact.getFixtureA().getFilterData().categoryBits
-				: contact.getFixtureB().getFilterData().categoryBits;
 	}
 }

@@ -11,6 +11,16 @@ import hollowmen.model.Parameter;
 import hollowmen.model.dungeon.ParamImpl;
 import hollowmen.utilities.ExceptionThrower;
 
+/**
+ * This abstract class implements {@link EnemyBuilder}
+ * <br>
+ * The abstract method is the name of the {@link Enemy} to build
+ * <br>
+ * This class has a method for checking if the methods were called
+ *  with the right input
+ * @author pigio
+ *
+ */
 public abstract class EnemyBuilderImpl implements EnemyBuilder{
 
 	protected String descritpion;
@@ -31,7 +41,9 @@ public abstract class EnemyBuilderImpl implements EnemyBuilder{
 	}
 	
 	
-	
+	/**
+	 * {@inheritDoc EnemyBuilder}
+	 */
 	@Override
 	public EnemyBuilder description(String description) {
 		this.descritpion = description;
@@ -39,19 +51,27 @@ public abstract class EnemyBuilderImpl implements EnemyBuilder{
 	}
 
 	
-
+	/**
+	 * {@inheritDoc EnemyBuilder}
+	 */
 	@Override
 	public EnemyBuilder level(int level) {
 		this.level = level;
 		return this;
 	}
 
+	/**
+	 * {@inheritDoc EnemyBuilder}
+	 */
 	@Override
 	public EnemyBuilder title(String title) {
 		this.title = title;
 		return this;
 	}
 
+	/**
+	 * {@inheritDoc EnemyBuilder}
+	 */
 	@Override
 	public EnemyBuilder param(Collection<Parameter> parameters) {
 		this.parameters = new LinkedList<>();
@@ -59,6 +79,12 @@ public abstract class EnemyBuilderImpl implements EnemyBuilder{
 		return this;
 	}
 
+	/**
+	 * This method is useful for checking if the {@code Enemy} built
+	 * is suitable for the game
+	 * @param e {@link Enemy}
+	 * @throws IllegalStateException
+	 */
 	public void standardException(Enemy e) throws IllegalStateException{
 		ExceptionThrower.checkIllegalState(e.getLevel(), l -> l <= 0 || l >= 20);
 		ExceptionThrower.checkIllegalState(e.getParameters(), p -> !p.containsKey(ParamName.HPMAX.toString()) 
@@ -71,7 +97,9 @@ public abstract class EnemyBuilderImpl implements EnemyBuilder{
 		ExceptionThrower.checkIllegalState(e.getParameters(), p -> !p.containsKey(ParamName.MOVSPEED.toString()));
 		ExceptionThrower.checkIllegalState(e.getTitle(), c -> !c.contains(this.title));
 	}
-	
+	/**
+	 * {@inheritDoc EnemyBuilder}
+	 */
 	@Override
 	public abstract Enemy build() throws IllegalStateException;
 

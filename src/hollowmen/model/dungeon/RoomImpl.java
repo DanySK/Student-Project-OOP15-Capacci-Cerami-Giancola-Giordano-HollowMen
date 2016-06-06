@@ -19,6 +19,13 @@ import hollowmen.enumerators.RoomEntityName;
 import hollowmen.model.Attack;
 import hollowmen.model.Enemy;
 
+/**
+ * This class implements {@link Room}<br>
+ * This class use the Compose pattern to track all the {@code Room}s
+ * already visited
+ * @author pigio
+ *
+ */
 public class RoomImpl implements Room{
 	
 	private boolean needToGenerate = true;
@@ -50,6 +57,9 @@ public class RoomImpl implements Room{
 		this.roomNumber = roomNumber;
 	};
 	
+	/**
+	 * This method must be called or the {@code Room} will be empty
+	 */
 	public void autoPopulate() {
 		if(this.needToGenerate) {
 			this.needToGenerate = false;
@@ -67,12 +77,18 @@ public class RoomImpl implements Room{
 		}
 	}
 
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public Room getParentRoom() {
 		return this.parentRoom;
 	}
 
 
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public Room getChildRoom(int choice) throws IllegalArgumentException {
 		ExceptionThrower.<Integer>checkIllegalArgument(choice, i -> i < 0 || i > this.childNumber);
@@ -93,7 +109,9 @@ public class RoomImpl implements Room{
 		return roomToRet;
 	}
 	
-	
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public Collection<RoomEntity> getAllEntities() {
 		Collection<RoomEntity> coll = new LinkedList<>();
@@ -103,27 +121,41 @@ public class RoomImpl implements Room{
 		return coll;
 	}
 
-
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public Collection<Interactable> getInteractable() {
 		return Collections.unmodifiableCollection(interactables);
 	}
 	
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public Collection<Enemy> getEnemies() {
 		return Collections.unmodifiableCollection(enemies);
 	}
 
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public Collection<Attack> getBullets() {
 		return Collections.unmodifiableCollection(bullets);
 	}
 
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public int getRoomNumber() {
 		return roomNumber;
 	}
 
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public void addEntity(RoomEntity roomEntity) {
 		if(roomEntity instanceof Attack) {
@@ -137,6 +169,9 @@ public class RoomImpl implements Room{
 		}
 	}
 
+	/**
+	 * {@inheritDoc Room}
+	 */
 	@Override
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
 		if(roomEntity instanceof Attack) {

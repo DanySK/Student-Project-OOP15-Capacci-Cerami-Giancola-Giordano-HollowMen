@@ -14,6 +14,13 @@ import hollowmen.model.utils.SimpleLimitedCounter;
 import hollowmen.model.utils.UpperLimitReachException;
 import hollowmen.utilities.ExceptionThrower;
 
+/**
+ * This class is a {@link Parameter} but use {@link Modifier} for modify his value without tracking them<br>
+ * This class use another {@code Parameter} (HPMAX) for determinate his value, changes at HPMAX will also modify
+ * this class value
+ * @author pigio
+ *
+ */
 public class HPclass extends ParamImpl{
 
 	private Parameter maxHP;
@@ -29,6 +36,9 @@ public class HPclass extends ParamImpl{
 		this.health = new SimpleLimitedCounter(maxHP.getValue(), maxHP.getValue());
 	}
 
+	/**
+	 * This method get the value but checking if HPMAX {@code Parameter} hasn't change
+	 */
 	@Override
 	public double getValue() {
 		if(lastMaxHP != maxHP.getValue()) {
@@ -45,6 +55,9 @@ public class HPclass extends ParamImpl{
 		return this.health.getValue();
 	}
 
+	/**
+	 * This method will add HP, in other words this will "Heal"
+	 */
 	@Override
 	public void addModifier(Modifier mod) throws IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(mod);
@@ -59,6 +72,9 @@ public class HPclass extends ParamImpl{
 
 	}
 
+	/**
+	 * This method will remove HP, in other words this will "Damage"
+	 */
 	@Override
 	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(mod);

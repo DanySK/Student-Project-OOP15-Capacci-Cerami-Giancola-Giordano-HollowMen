@@ -8,6 +8,12 @@ import hollowmen.model.utils.LowerLimitReachException;
 import hollowmen.model.utils.UpperLimitReachException;
 import hollowmen.utilities.ExceptionThrower;
 
+/**
+ * This class implements {@code Time}<br>
+ * This class use is a Singleton
+ * @author pigio
+ *
+ */
 public class TimerSingleton implements Time{
 
 	private class Event<T> implements Comparable<Event<?>>{
@@ -89,6 +95,9 @@ public class TimerSingleton implements Time{
 		public static TimerSingleton INSANCE = new TimerSingleton();
 	}
 	
+	/**
+	 * @return {@link TimerSingleton} unique instance
+	 */
 	public static TimerSingleton getInstance() {
 		return Holder.INSANCE;
 	}
@@ -98,6 +107,9 @@ public class TimerSingleton implements Time{
 		this.maxTime = limit;
 	}
 	
+	/**
+	 * {@inheritDoc Time}
+	 */
 	@Override
 	public <T> void register(T subj, double durationSec, Consumer<T> action) {
 		Event<T> timeEvent = new Event<T>(subj, durationSec * 1000, action);
@@ -108,16 +120,26 @@ public class TimerSingleton implements Time{
 	}
 		
 
+	/**
+	 * {@inheritDoc LimitedCounter}
+	 */
 	@Override
 	public double getValue() {
 		return this.currentTime;
 	}
 
+	/**
+	 * {@inheritDoc LimitedCounter}
+	 */
 	@Override
 	public double getLimit() {
 		return this.maxTime;
 	}
 
+	/**
+	 * {@inheritDoc LimitedCounter}<br><br>
+	 * This method also check if there's any action to perform
+	 */
 	@Override
 	public void addToValue(double value) throws IllegalArgumentException, UpperLimitReachException {
 		ExceptionThrower.checkIllegalArgument(value, v -> v < 0);
@@ -129,6 +151,9 @@ public class TimerSingleton implements Time{
 		this.checkEventTrigger();
 	}
 	
+	/**
+	 * {@inheritDoc LimitedCounter}
+	 */
 	@Override
 	public void subToValue(double value) throws IllegalArgumentException, LowerLimitReachException {
 		ExceptionThrower.checkIllegalArgument(value, v -> v < 0);
