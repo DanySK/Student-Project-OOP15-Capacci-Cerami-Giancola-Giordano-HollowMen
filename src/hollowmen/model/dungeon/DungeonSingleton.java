@@ -136,12 +136,13 @@ public class DungeonSingleton implements Dungeon{
 			this.currentRoom = this.currentRoom.getChildRoom(newRoomNumber);
 			this.currentRoom.autoPopulate();
 			System.out.println("Room Number " + this.currentRoom.getRoomNumber());
+			this.poke.checkNewEnemy(this.currentRoom);
 		}
 		if(this.currentRoom.getRoomNumber() == 0 
 				|| this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT) {
+			System.out.println("lancio GAMEOVER");
 			this.gameOver();
 		}
-		this.poke.checkNewEnemy(this.currentRoom);
 	}
 	
 	/**
@@ -150,7 +151,7 @@ public class DungeonSingleton implements Dungeon{
 	@Override
 	public void goTo(int floorNumber) throws IllegalStateException {
 		ExceptionThrower.checkIllegalState(floorNumber, f -> f > this.unlockedFloors.getValue());
-		TimerSingleton.getInstance().resetAndLimit(1000000);
+		TimerSingleton.getInstance().resetAndLimit(100000);
 		this.floorNumber = floorNumber;
 		this.currentRoom = new RoomImpl(this.lobby, Constants.CHILDROOMQUANTITY, 1);
 		this.currentRoom.autoPopulate();

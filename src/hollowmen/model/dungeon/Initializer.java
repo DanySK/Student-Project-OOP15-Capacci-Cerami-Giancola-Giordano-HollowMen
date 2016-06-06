@@ -49,7 +49,7 @@ public class Initializer {
 
 	private void generalSetting() {
 		DungeonSingleton.getInstance().setPokedex(new PokedexImpl());
-		DungeonSingleton.getInstance().setUnlockedFloor(1, 8);
+		DungeonSingleton.getInstance().setUnlockedFloor(1, 4);
 		Collection<Item> shop = new LinkedList<>();
 		shop.add(ItemPool.getInstance().getItem("woodSword"));
 		shop.add(ItemPool.getInstance().getItem("bootsBlack"));
@@ -92,10 +92,10 @@ public class Initializer {
 	
 	private void generateHero() {
 		Collection<Parameter> list = new LinkedList<>();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 100));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 200));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 10));
-		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 100));
-		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 2));
+		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 150));
+		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 10));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 20));
 
@@ -364,7 +364,7 @@ public class Initializer {
 	
 	public void generateEnemy() {
 		Collection<Parameter> list = new LinkedList<>();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 20));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 10));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 20));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -378,7 +378,7 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 50));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 30));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 70));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -392,7 +392,7 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 100));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 50));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 150));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -406,7 +406,7 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 500));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 200));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 750));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -477,7 +477,7 @@ public class Initializer {
 		
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 2));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 60));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -491,7 +491,7 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 2));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 140));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -505,7 +505,7 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 2));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 300));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -519,7 +519,7 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 5));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 4));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 500));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));

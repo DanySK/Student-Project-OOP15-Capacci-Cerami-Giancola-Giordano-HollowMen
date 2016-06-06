@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import hollowmen.model.Enemy;
+import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Room;
 import hollowmen.model.enemy.EnemyPool;
@@ -33,7 +34,7 @@ public class PokedexImpl implements Pokedex{
 	public PokedexImpl(Collection<Tris<String, Integer, String>> enemyName) {
 		super();
 		enemyName.stream()
-			.forEach(e -> enemyMet.add(EnemyPool.getInstance().getSpecificEnemy(e.getX(), e.getY(), e.getZ())));
+			.forEach(e -> enemyMet.add(this.clearHP(EnemyPool.getInstance().getSpecificEnemy(e.getX(), e.getY(), e.getZ()))));
 	}
 	
 	/**
@@ -54,7 +55,10 @@ public class PokedexImpl implements Pokedex{
 		return this.enemyMet;
 	}
 	
-	
+	private Enemy clearHP(Enemy e) {
+		e.getParameters().remove(Parameter.ParamName.HP.toString());
+		return e;
+	}
 	
 	
 }
