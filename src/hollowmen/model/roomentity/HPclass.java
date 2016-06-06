@@ -1,6 +1,7 @@
 package hollowmen.model.roomentity;
 
 import hollowmen.model.Actor;
+import hollowmen.model.Enemy;
 import hollowmen.model.LimitedCounter;
 import hollowmen.model.Modifier;
 import hollowmen.model.Parameter;
@@ -86,10 +87,12 @@ public class HPclass extends ParamImpl{
 				this.health.subToValue(mod.getOperation().apply(this.health.getValue(), mod.getParameter().getValue()));
 			}
 		} catch (LowerLimitReachException e) {
+			if(this.owner instanceof Enemy) {
+				DungeonSingleton.getInstance().getHero().pick(((Enemy) this.owner).getLoot());
+				this.owner.dispose();
+			}
 			if(this.owner.getInfo().getName().equals(RoomEntity.RoomEntityName.HERO.toString())) {
 				DungeonSingleton.getInstance().gameOver();
-			} else {
-				this.owner.dispose();
 			}
 		};
 		
