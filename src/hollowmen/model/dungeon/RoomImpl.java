@@ -63,7 +63,7 @@ public class RoomImpl implements Room{
 	public void autoPopulate() {
 		if(this.needToGenerate) {
 			this.needToGenerate = false;
-			for(int i = 0; i <= this.childNumber; i++) {
+			for(int i = 0; i < this.childNumber; i++) {
 				new Door(RoomEntityName.DOOR.toString(), i);
 			}
 			Box2DUtils.linearSpacing(this.interactables);
@@ -92,10 +92,11 @@ public class RoomImpl implements Room{
 	@Override
 	public Room getChildRoom(int choice) throws IllegalArgumentException {
 		ExceptionThrower.<Integer>checkIllegalArgument(choice, i -> i < 0 || i > this.childNumber);
-		if(childRoom.get(choice) == null) {
+		try {
+			return childRoom.get(choice);
+		} catch (IndexOutOfBoundsException e) {
 			return generateRoom(choice);
 		}
-		return childRoom.get(choice);
 	}
 
 	

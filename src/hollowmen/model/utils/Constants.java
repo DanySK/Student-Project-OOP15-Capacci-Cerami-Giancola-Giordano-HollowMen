@@ -24,8 +24,8 @@ public class Constants {
 	public static final Rectangle WORLD_SIZE = new Rectangle(800, 600);
 	
 	public static final Vec2 JUMPFORCE = new Vec2(0, -400);
-	//Counting also the zero so 0-1-2 = 3 child rooms;
-	public static final int CHILDROOMQUANTITY = 2;
+
+	public static final int CHILDROOMQUANTITY = 3;
 	
 	public static final int SKILLPOINTS_ONLEVELUP = 1;
 	

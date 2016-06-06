@@ -246,7 +246,7 @@ public class DungeonSingleton implements Dungeon{
 						.addMask(FilterType.HERO.getValue())
 						.addMask(FilterType.HEROATTACK.getValue())
 						.addMask(FilterType.JUMP.getValue())
-						.addMask(FilterType.LOOTABLE.getValue())
+						.addMask(FilterType.INTERACTABLE.getValue())
 						.addMask(FilterType.WALL.getValue())
 						.build())
 				.build();

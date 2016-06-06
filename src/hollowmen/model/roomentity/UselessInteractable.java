@@ -36,8 +36,8 @@ public abstract class UselessInteractable extends RoomEntityAbs implements Inter
 	 * {@inheritDoc Interactable}
 	 */
 	@Override
-	public void changeInteract() {
-		this.canInteract = !this.canInteract;
+	public void setInteractAllowed(boolean isAllowed) {
+		this.canInteract = isAllowed;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public abstract class UselessInteractable extends RoomEntityAbs implements Inter
 	 */
 	public Filter standardFilter(){
 		return Box2DUtils.filterBuilder()
-				.addCategory(FilterType.LOOTABLE.getValue())
+				.addCategory(FilterType.INTERACTABLE.getValue())
 				.addMask(FilterType.GROUND.getValue())
 				.addMask(FilterType.HERO.getValue())
 				.build();

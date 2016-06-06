@@ -17,9 +17,9 @@ public interface Interactable extends RoomEntity{
 	public boolean isInteractAllowed();
 	
 	/**
-	 * This method inverts the value of {@code isInteractAllowed()}
+	 * This method set the value of {@code isInteractAllowed()}
 	 */
-	public void changeInteract();
+	public void setInteractAllowed(boolean isAllowed);
 	
 	/**
 	 * This method define what happen when the player interact with this object

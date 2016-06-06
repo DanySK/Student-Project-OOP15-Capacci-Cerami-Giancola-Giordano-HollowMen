@@ -37,12 +37,12 @@ public class GameCollisionListener implements ContactListener{
 			System.out.println("Collisione GROUND <-> JUMP");
 		}
 			
-		if(typeA == FilterType.LOOTABLE.getValue() && typeB == FilterType.HERO.getValue()) {
-			((Interactable) contact.getFixtureA().getBody().getUserData()).changeInteract();
+		if(typeA == FilterType.INTERACTABLE.getValue() && typeB == FilterType.HERO.getValue()) {
+			((Interactable) contact.getFixtureA().getBody().getUserData()).setInteractAllowed(true);
 			System.out.println("Collisione LOOTABLE <-> HERO");
 		}
-		if(typeB == FilterType.LOOTABLE.getValue() && typeA == FilterType.HERO.getValue()) {
-			((Interactable) contact.getFixtureB().getBody().getUserData()).changeInteract();
+		if(typeB == FilterType.INTERACTABLE.getValue() && typeA == FilterType.HERO.getValue()) {
+			((Interactable) contact.getFixtureB().getBody().getUserData()).setInteractAllowed(true);
 			System.out.println("Collisione LOOTABLE <-> HERO");
 		}
 		
@@ -96,12 +96,12 @@ public class GameCollisionListener implements ContactListener{
 		int typeA = contact.getFixtureA().getFilterData().categoryBits;
 		int typeB = contact.getFixtureB().getFilterData().categoryBits;
 		
-		if(typeA == FilterType.LOOTABLE.getValue()) {
-			interactableAction((Interactable)contact.getFixtureA().getBody().getUserData(), typeB);
+		if(typeA == FilterType.INTERACTABLE.getValue() && typeB == FilterType.HERO.getValue()) {
+			((Interactable) contact.getFixtureA().getBody().getUserData()).setInteractAllowed(false);
 			System.out.println("Fine collisione HERO <-> LOOTABLE");
 		}
-		if(typeB == FilterType.LOOTABLE.getValue()) {
-			interactableAction((Interactable)contact.getFixtureB().getBody().getUserData(), typeA);
+		if(typeB == FilterType.INTERACTABLE.getValue() && typeA == FilterType.HERO.getValue()) {
+			((Interactable) contact.getFixtureB().getBody().getUserData()).setInteractAllowed(true);
 			System.out.println("Fine collisione HERO <-> LOOTABLE");
 		}
 		
@@ -139,10 +139,5 @@ public class GameCollisionListener implements ContactListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private void interactableAction(Interactable userData, int unknownEntity) {
-		if(unknownEntity == FilterType.HERO.getValue()) {
-			userData.changeInteract();
-		}
-	}
+
 }

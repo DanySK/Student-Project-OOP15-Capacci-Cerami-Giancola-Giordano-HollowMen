@@ -247,7 +247,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 						.addMask(FilterType.GROUND.getValue())
 						.addMask(FilterType.ENEMY.getValue())
 						.addMask(FilterType.WALL.getValue())
-						.addMask(FilterType.LOOTABLE.getValue())
+						.addMask(FilterType.INTERACTABLE.getValue())
 						.addMask(FilterType.ENEMYATTACK.getValue())
 						.build();
 		PolygonShape underBody = new PolygonShape();
@@ -286,6 +286,10 @@ public class HeroImpl extends ActorAbs implements Hero{
 			.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && !i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
 				.findFirst().ifPresent(c -> c.interact());
+			DungeonSingleton.getInstance()
+			.getCurrentRoom().getInteractable().stream().forEach(x -> System.out.println(x.getInfo() + " STATUS" + x.isInteractAllowed() 
+			+ " POSITION: " +x.getBody().getWorldCenter()));
+			System.out.println("HERO POSITION "+DungeonSingleton.getInstance().getHero().getBody().getWorldCenter());
 			System.out.println("STO CERCANDO DI INTERAGIRE");
 		});
 				

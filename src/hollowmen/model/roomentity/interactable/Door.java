@@ -42,7 +42,7 @@ public class Door extends UselessInteractable{
 	@Override
 	public boolean isInteractAllowed() {
 		return DungeonSingleton.getInstance().getCurrentRoom().getEnemies().isEmpty() ? 
-				false : super.isInteractAllowed();
+				super.isInteractAllowed() : false;
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class Door extends UselessInteractable{
 	@Override
 	public Collection<FixtureDef> defFixture() {
 		Filter filter = Box2DUtils.filterBuilder()
-							.addCategory(FilterType.LOOTABLE.getValue())
+							.addCategory(FilterType.INTERACTABLE.getValue())
 							.addMask(FilterType.GROUND.getValue())
 							.addMask(FilterType.HERO.getValue())
 							.build();
