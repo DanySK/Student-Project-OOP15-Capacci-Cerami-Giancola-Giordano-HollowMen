@@ -157,7 +157,9 @@ public class ModelImpl implements Model{
 					this.hero.equipItem(it.getX());
 				}
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void itemUnequip(InformationDealer item) {
@@ -167,7 +169,9 @@ public class ModelImpl implements Model{
 					this.hero.unequipItem(it.getX());
 				}
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void itemBuy(InformationDealer item) {
@@ -177,7 +181,9 @@ public class ModelImpl implements Model{
 					this.hero.buyItem(it.getX());
 				}
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void itemSell(InformationDealer item){
@@ -187,7 +193,9 @@ public class ModelImpl implements Model{
 					this.hero.sellItem(it.getX());
 				}
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void setDifficulty(Difficulty difficulty){
