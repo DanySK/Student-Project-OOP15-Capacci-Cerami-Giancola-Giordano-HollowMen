@@ -22,7 +22,8 @@ public enum InputCommand {
 	EQUIP("equip"),
 	UNEQUIP("unequip"),
 	BUY("buy"),
-	SELL("sell");
+	SELL("sell"),
+	BACKHERO("back");
 	
 	private String s;
 	
