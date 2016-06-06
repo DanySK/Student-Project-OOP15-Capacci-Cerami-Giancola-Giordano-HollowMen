@@ -140,14 +140,6 @@ public class Game extends JLabel implements GameInterface{
                                 }
                         }
                 }
-                System.out.println("Stampo lo storage");
-                for(Map.Entry<String,JLabel> map: this.storageGame.entrySet()){
-                	System.out.println(map.getKey());
-                }
-                System.out.println("Stampo il flipped");
-                for(Map.Entry<String,JLabel> map: this.storageFlipped.entrySet()){
-                	System.out.println(map.getKey());
-                }
                 initialSetup(this.x,this.y);
         }
         
@@ -181,45 +173,37 @@ public class Game extends JLabel implements GameInterface{
         private void addDynamicComponent(List<DrawableRoomEntity> componentList){
             JLabel labTmp;
                 for(DrawableRoomEntity elem: componentList){
-                	System.out.println(elem.getName()+elem.isFacingRight());
                 	if(elem.isFacingRight()){
                         if(elem.getName().equals("hero")){
                             switch(elem.getState()){
                                 case ATTACKING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                	labTmp=new JLabel(this.storageGame.get("hero").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case JUMPING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                	labTmp=new JLabel(this.storageGame.get("hero").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case STANDING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("hero");
+                                	labTmp=new JLabel(this.storageGame.get("hero").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case MOVING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageGame.get("warriorWalkSword");
+                                	labTmp=new JLabel(this.storageGame.get("warriorWalkSword").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
-                                default:
-                                	break;
                            }
                        }
                        else{
-                    	   labTmp=new JLabel();
-	                       labTmp=this.storageFlipped.get(elem.getName());
+                    	   labTmp=new JLabel(this.storageFlipped.get(elem.getName()).getIcon());
 	                       labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
 	                                       labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
 	                       this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
@@ -229,41 +213,33 @@ public class Game extends JLabel implements GameInterface{
                     	if(elem.getName().equals("hero")){
                     		switch(elem.getState()){
                                 case ATTACKING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                	labTmp=new JLabel(this.storageFlipped.get("hero").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case JUMPING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                	labTmp=new JLabel(this.storageFlipped.get("hero").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                      labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case STANDING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("hero");
+                                	labTmp=new JLabel(this.storageFlipped.get("hero").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
                                 case MOVING: {
-                                	labTmp=new JLabel();
-                                    labTmp=this.storageFlipped.get("warriorWalkSword");
+                                	labTmp=new JLabel(this.storageFlipped.get("warriorWalkSword").getIcon());
                                     labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
                                                     labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
                                     this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
                                     break;}
-                                default:
-                                	break;
                             }
                         }
                             else{
-                            	System.out.println(elem.getName());
-                            	labTmp=new JLabel();
-                            	labTmp=this.storageGame.get(elem.getName());
+                            	labTmp=new JLabel(this.storageGame.get(elem.getName()).getIcon());
 	                            labTmp.setBounds((int)elem.getPosition().getX(), (int)elem.getPosition().getY(), 
 	                                            labTmp.getIcon().getIconWidth(), labTmp.getIcon().getIconHeight());
 	                            this.panelGame.add(labTmp);//All the images of the game will be show inside the gamePanel.
