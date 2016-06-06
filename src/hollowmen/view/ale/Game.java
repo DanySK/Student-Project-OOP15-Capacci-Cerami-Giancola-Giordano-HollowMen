@@ -15,7 +15,6 @@ import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.enumerators.Values;
 import hollowmen.model.facade.DrawableRoomEntity;
-import hollowmen.sound.ale.CreateAudio;
 
 /**
  * The {@code Game} class implements {@link GameInterface}. It is the game panel and give some functionality.
@@ -123,11 +122,6 @@ public class Game extends JLabel implements GameInterface{
         }
         
         public void draw(List<DrawableRoomEntity> componentList){
-        	if(Values.TIMER.getValue() <= 60){ //It's a simple control to change the color of the timer text.
-                this.timerValue=new ValueManager("Timer: ", Color.RED);
-                this.timerValue.setSize(DIMX, DIMY*2);
-                this.timerValue.setLocation(LOCX, 0);
-            }
         	this.panelGame.removeAll();
             addComponent();//add all static components
             addDynamicComponent(componentList);
@@ -159,10 +153,16 @@ public class Game extends JLabel implements GameInterface{
             this.add(btnConsumable);
             this.add(btnSkillTree);
             this.add(btnInventory);
-            this.levelValue.updateValue(Values.LEVEL.getValue());
-            this.goldValue.updateValue(Values.GOLD.getValue());
-            this.floorValue.updateValue(Values.FLOOR.getValue());
-            this.timerValue.updateValue(Values.TIMER.getValue());
+            this.levelValue.updateValue(Values.LEVEL.getValue(), Color.WHITE);
+            this.goldValue.updateValue(Values.GOLD.getValue(), Color.YELLOW);
+            this.floorValue.updateValue(Values.FLOOR.getValue(), Color.WHITE);
+            /*Check to change the color of the timer text */
+            if(Values.TIMER.getValue()<60){
+            	this.timerValue.updateValue(Values.TIMER.getValue(), Color.RED);
+            }
+            else{
+            	this.timerValue.updateValue(Values.TIMER.getValue(), Color.WHITE);
+            }
             this.add(this.levelValue);
             this.add(this.goldValue);
             this.add(this.floorValue);

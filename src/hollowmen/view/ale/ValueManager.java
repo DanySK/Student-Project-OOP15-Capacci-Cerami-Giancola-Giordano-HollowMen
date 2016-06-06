@@ -26,8 +26,8 @@ public class ValueManager extends JLabel{
 			
 	}
 		
-	public void updateValue(int c){
-
+	public void updateValue(int c, Color color){
+		this.setForeground(color);
 		this.setText(this.internalText+":"+c);
 		this.setHorizontalAlignment(CENTER);
 	}
