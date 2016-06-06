@@ -17,7 +17,7 @@ public class Actors {
 	public static void addModifier(Actor subj, Modifier mod) throws IllegalArgumentException {
 		ExceptionThrower.checkIllegalArgument(subj.getParameters(), 
 				p -> !p.containsKey(mod.getParameter().getInfo().getName()));
-		subj.getParameters().get(mod.getParameter().getInfo().getName()).removeModifier(mod);
+		subj.getParameters().get(mod.getParameter().getInfo().getName()).addModifier(mod);
 	}
 	
 	public static void removeModifier(Actor subj, Modifier mod) throws IllegalArgumentException {

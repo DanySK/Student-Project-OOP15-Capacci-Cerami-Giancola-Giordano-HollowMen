@@ -77,7 +77,7 @@ public class Algorithms {
 		double titleMul = 1;
 		double titleRarity = 0;
 		double itemChance = 0;
-		EnemyTitle title = EnemyTitle.valueOf(en.getTitle());
+		EnemyTitle title = EnemyTitle.valueOf(en.getTitle().toUpperCase());
 		
 		switch(title) {
 		case ORDINARY:
