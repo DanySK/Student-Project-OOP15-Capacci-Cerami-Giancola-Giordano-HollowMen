@@ -129,11 +129,11 @@ public class HeroImpl extends ActorAbs implements Hero{
 	@Override
 	public void unequipItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
-		ExceptionThrower.checkIllegalState(item, i -> !i.getState().equals(ItemState.EQUIPPED));
 		ExceptionThrower.checkIllegalState(item, i -> !this.slots.get(i.getSlot()).isPresent());
 		System.out.println("UNEQUIP");
 		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 		Item unequipItem = this.slots.get(item.getSlot()).get();
+		ExceptionThrower.checkIllegalState(unequipItem, x -> !x.getState().equals(ItemState.EQUIPPED));
 		unequipItem.getModifiers().entries().stream().forEach(e -> Actors.removeModifier(this, e.getValue()));
 		this.inventory.addItem(unequipItem);
 		this.slots.put(item.getSlot(), Optional.empty());

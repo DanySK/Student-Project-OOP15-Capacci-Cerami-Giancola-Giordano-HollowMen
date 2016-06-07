@@ -2,6 +2,7 @@ package hollowmen.model.dungeon;
 
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
@@ -176,9 +177,10 @@ public class DungeonSingleton implements Dungeon{
 				&& this.floorNumber == this.unlockedFloors.getValue()) {
 			this.unlockedFloors.addToValue(1);
 		}
-		this.currentRoom.getEnemies().forEach(x -> {
+		Collection<Enemy> toDestroy = this.currentRoom.getEnemies().stream().collect(Collectors.toList());
+		toDestroy.stream().forEach(x -> {
 			this.currentRoom.removeEntity(x);
-			world.destroyBody(x.getBody());
+			this.world.destroyBody(x.getBody());
 		});
 		this.gameOver = false;
 		this.floorNumber = 0;

@@ -157,14 +157,15 @@ public class Inventory extends TabbedDialog {
 		.filter(x -> x.getState().equals("EQUIPPED"))
 		.filter(x -> x.getSlot().equals(slot))
 		.forEach(x -> {
+			stats = x.getStat();
 			nameF = x.getName();
 			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button.setIcon(icon);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					stats = x.getStat();
 					nameF = x.getName();
 					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
-					button.setIcon(icon);
 					setButtonState(false, true);
 					statsBox.setText(showStats(stats));
 					setLastItem(x);
