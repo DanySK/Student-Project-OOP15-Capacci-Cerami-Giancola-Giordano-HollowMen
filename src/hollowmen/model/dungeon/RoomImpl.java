@@ -34,7 +34,7 @@ public class RoomImpl implements Room{
 	
 	private int childNumber;
 		
-	private List<Room> childRoom = new ArrayList<>();
+	private Room[] childRoom = new Room[Constants.CHILDROOMQUANTITY];
 	
 	private Collection<Interactable> interactables = new LinkedList<>();
 	
@@ -44,7 +44,7 @@ public class RoomImpl implements Room{
 	
 	private int roomNumber;
 	
-	private final int roomNumberWithChild = RandomSelector.getIntFromRange(0, Constants.CHILDROOMQUANTITY); 
+	private final int roomNumberWithChild; 
 	
 	/**
 	 * @param parentRoom {@link Room} that is this one's parents
@@ -55,6 +55,7 @@ public class RoomImpl implements Room{
 		this.parentRoom = parentRoom;
 		this.childNumber = childNumber;
 		this.roomNumber = roomNumber;
+		this.roomNumberWithChild = RandomSelector.getIntFromRange(0, Constants.CHILDROOMQUANTITY - 1);
 	};
 	
 	/**
@@ -92,11 +93,7 @@ public class RoomImpl implements Room{
 	@Override
 	public Room getChildRoom(int choice) throws IllegalArgumentException {
 		ExceptionThrower.<Integer>checkIllegalArgument(choice, i -> i < 0 || i > this.childNumber);
-		try {
-			return childRoom.get(choice);
-		} catch (IndexOutOfBoundsException e) {
-			return generateRoom(choice);
-		}
+			return this.childRoom[choice] == null ? generateRoom(choice) : this.childRoom[choice]; 
 	}
 
 	
@@ -107,6 +104,7 @@ public class RoomImpl implements Room{
 		} else {
 			roomToRet = new RoomImpl(this, 0, this.getRoomNumber() + 1);
 		}
+		this.childRoom[choice] =  roomToRet;
 		return roomToRet;
 	}
 	
@@ -179,7 +177,9 @@ public class RoomImpl implements Room{
 			bullets.remove((Attack) roomEntity);
 		}
 		if(roomEntity instanceof Enemy) {
-			enemies.remove((Enemy) roomEntity);
+			
+			this.getEnemies().stream().filter(x -> x.getBody().getWorldCenter().equals(roomEntity.getBody().getWorldCenter())).forEach(System.out::println);
+			this.enemies.remove(roomEntity);
 		}
 		if(roomEntity instanceof Interactable) {
 			interactables.remove((Interactable)roomEntity);

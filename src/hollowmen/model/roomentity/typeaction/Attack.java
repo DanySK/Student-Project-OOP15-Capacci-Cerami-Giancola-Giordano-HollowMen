@@ -31,7 +31,7 @@ public class Attack implements TypeAction{
 	
 	@Override
 	public void doAction(Actor subject) throws NullPointerException {
-		if(!subject.getStatus().contains(StatusName.RECHARGE.toString())
+		if(subject.getStatus().contains(new InfoImpl(StatusName.RECHARGE.toString()))
 				|| !subject.getState().equals(ActorState.ATTACKING.toString())) {
 			if(subject.getParameters().get(ParamName.ATTACKRANGE.toString()).getValue() <= 0) {
 				createProjectile(subject);

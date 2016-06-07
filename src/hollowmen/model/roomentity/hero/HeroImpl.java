@@ -29,6 +29,7 @@ import hollowmen.model.TargetPointSystem;
 import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.InfoImpl;
+import hollowmen.model.item.ItemPool;
 import hollowmen.model.roomentity.ActorAbs;
 import hollowmen.model.utils.Actors;
 import hollowmen.model.utils.Box2DUtils;
@@ -119,6 +120,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.slots.put(itemFrom.getSlot(), Optional.of(itemFrom));
 		itemFrom.getModifiers().entries().forEach(e -> Actors.addModifier(this, e.getValue()));
 		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
+		this.getEquippedItem().stream().forEach(System.out::println);
 	}
 
 	/**
@@ -150,6 +152,7 @@ public class HeroImpl extends ActorAbs implements Hero{
 		if(item.getState().equals(ItemState.EQUIPPED)) {
 			this.unequipItem(item);
 		}
+		System.out.println("Vendo " + item + " miei soldi "+ this.gold + " il costo è "+ item.getGoldValue());
 		this.inventory.removeItem(item);
 		this.gold += item.getGoldValue();
 	}
@@ -160,8 +163,9 @@ public class HeroImpl extends ActorAbs implements Hero{
 	@Override
 	public void buyItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
-		ExceptionThrower.checkIllegalState(item, i -> (i.getGoldValue() - this.getGold()) < 0);
-		this.inventory.addItem(item);
+		ExceptionThrower.checkIllegalState(item, i -> (i.getGoldValue() - this.getGold()) > 0);
+		System.out.println("Compro " + item + " miei soldi "+ this.gold + " il costo è "+ item.getGoldValue());
+		this.inventory.addItem(ItemPool.getInstance().getItem(item.getInfo().getName()));
 		this.gold -= item.getGoldValue();
 	}
 
@@ -285,14 +289,12 @@ public class HeroImpl extends ActorAbs implements Hero{
 			.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
 				.findFirst().ifPresent(c -> c.interact());
-			System.out.println("STO CERCANDO DI BACKARE");
 		});
 		super.actionAllowed.getActionAllowed().put(Actor.Action.INTERACT.toString(), () -> {
 			DungeonSingleton.getInstance()
 			.getCurrentRoom().getInteractable().stream()
 				.filter(i -> i.isInteractAllowed() && !i.getInfo().getName().equals(RoomEntity.RoomEntityName.DOOR_BACK.toString()))
 				.findFirst().ifPresent(c -> c.interact());
-			System.out.println("STO CERCANDO DI INTERAGIRE");
 		});
 				
 		super.actionAllowed.getActionAllowed().put(Actor.Action.ABILITY1.toString(), () -> {});

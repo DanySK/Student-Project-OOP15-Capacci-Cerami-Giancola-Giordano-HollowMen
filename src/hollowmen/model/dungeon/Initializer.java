@@ -92,7 +92,7 @@ public class Initializer {
 	
 	private void generateHero() {
 		Collection<Parameter> list = new LinkedList<>();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 200));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 100));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 10));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 150));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
@@ -138,7 +138,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 20, true));
+		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 25, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("bootsBlue", "They're Blue...quite fashion"))
 				.rarity(2)
@@ -150,7 +150,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 40, true));
+		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 50, true));
 		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("bootsBrown", "They're Brown... and old."))
@@ -204,7 +204,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.1, false));
+		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.9, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("glovesBlack", "Because black is my happy color."))
 				.rarity(1)
@@ -216,7 +216,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.2, false));
+		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.8, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("glovesBlue", "Blue!"))
 				.rarity(2)
@@ -228,7 +228,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.4, false));
+		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.6, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 1.05, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("glovesGrey", "Mmh... nice."))
@@ -305,7 +305,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.3, false));
+		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.7, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 150, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("redSword", "From the iron to the iron... but with fashionable red details."))
@@ -332,7 +332,7 @@ public class Initializer {
 		
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.75, false));
+		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.25, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 400, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("scimitar", "From the iron to the iron... heavier."))
@@ -345,7 +345,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.5, false));
+		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.5, false));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 1000, true));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 2, false));
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 1.5, false));

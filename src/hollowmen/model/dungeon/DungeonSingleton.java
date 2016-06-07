@@ -8,12 +8,12 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 
 import hollowmen.enumerators.Difficulty;
 import hollowmen.model.Dungeon;
+import hollowmen.model.Enemy;
 import hollowmen.model.Hero;
 import hollowmen.model.LimitedCounter;
 import hollowmen.model.Pokedex;
@@ -90,8 +90,8 @@ public class DungeonSingleton implements Dungeon{
 	@Override
 	public void update(long deltaTime) throws GameOverException {
 		this.disposeList.stream().forEach(r -> {
-			world.destroyBody(r.getBody());
 			this.currentRoom.removeEntity(r);
+			world.destroyBody(r.getBody());
 		});
 		this.disposeList.clear();
 		if(gameOver) {
@@ -135,14 +135,13 @@ public class DungeonSingleton implements Dungeon{
 		} else {
 			this.currentRoom = this.currentRoom.getChildRoom(newRoomNumber);
 			this.currentRoom.autoPopulate();
-			System.out.println("Room Number " + this.currentRoom.getRoomNumber());
 			this.poke.checkNewEnemy(this.currentRoom);
 		}
 		if(this.currentRoom.getRoomNumber() == 0 
 				|| this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT) {
-			System.out.println("lancio GAMEOVER");
 			this.gameOver();
 		}
+		System.out.println("Room Number " + this.currentRoom.getRoomNumber());
 	}
 	
 	/**
@@ -158,6 +157,7 @@ public class DungeonSingleton implements Dungeon{
 		this.poke.checkNewEnemy(this.currentRoom);
 		Box2DUtils.centerPosition(this.hero);
 	}
+
 
 	/**
 	 * {@inheritDoc Dungeon}
@@ -176,6 +176,10 @@ public class DungeonSingleton implements Dungeon{
 				&& this.floorNumber == this.unlockedFloors.getValue()) {
 			this.unlockedFloors.addToValue(1);
 		}
+		this.currentRoom.getEnemies().forEach(x -> {
+			this.currentRoom.removeEntity(x);
+			world.destroyBody(x.getBody());
+		});
 		this.gameOver = false;
 		this.floorNumber = 0;
 		Actors.regenerate(this.hero);

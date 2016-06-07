@@ -5,20 +5,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Filter;
-import org.jbox2d.dynamics.FixtureDef;
 
 import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.ParamName;
 import hollowmen.model.Actor;
 import hollowmen.model.Information;
 import hollowmen.model.Parameter;
-import hollowmen.model.dungeon.FilterType;
 import hollowmen.model.dungeon.time.TimerSingleton;
 import hollowmen.model.roomentity.typeaction.Attack;
-import hollowmen.model.utils.Box2DUtils;
 import hollowmen.model.utils.Constants;
 import hollowmen.utilities.ExceptionThrower;
 import hollowmen.utilities.Pair;
@@ -72,6 +67,9 @@ public abstract class ActorAbs extends RoomEntityAbs implements Actor{
 		this.getBody().applyForceToCenter(new Vec2(this.isFacingRight() ? speedX : -speedX, speedY));
 		if(this.jumpability > 0) {
 			this.getBody().setGravityScale(1f);
+		}
+		if(this.state.equals(ActorState.STANDING.toString())) {
+			this.setState(ActorState.MOVING.toString());
 		}
 	}
 

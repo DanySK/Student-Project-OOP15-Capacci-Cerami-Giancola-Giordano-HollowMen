@@ -13,9 +13,9 @@ public class Constants {
 	
 	public static final double GHOST_TIME = 2;
 	
-	public static final int ROOM_TO_VISIT = 8;
+	public static final int ROOM_TO_VISIT = 4;
 	
-	public static final double ATTACK_DURATION = 0.783;
+	public static final double ATTACK_DURATION = 0.3;
 	
 	public static final float MAXSPEED = 50;
 	

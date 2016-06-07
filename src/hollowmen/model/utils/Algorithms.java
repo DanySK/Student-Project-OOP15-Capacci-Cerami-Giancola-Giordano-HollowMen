@@ -68,7 +68,7 @@ public class Algorithms {
 					RandomSelector.getIntFromRange(Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL, Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL)
 					: RandomSelector.getIntFromRange((int)(Constants.WORLD_SIZE.getWidth() - Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL),
 							(int) Constants.WORLD_SIZE.getWidth() - Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL),
-					200f), 0);
+					300f), 0);
 		}
 		return retValue;
 	}
