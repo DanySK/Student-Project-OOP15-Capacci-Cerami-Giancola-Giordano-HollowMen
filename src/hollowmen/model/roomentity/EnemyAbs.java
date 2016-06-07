@@ -108,7 +108,9 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
 	@Override
 	public boolean equals(Object obj) {
-		super.equals(obj);
+		if(!super.equals(obj)) {
+			return false;
+		}
 		if (!(obj instanceof Enemy)) {
 			return false;
 		}
@@ -128,6 +130,7 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 			return false;
 		}
 		return true;
+		);
 	}
 
 	/**
