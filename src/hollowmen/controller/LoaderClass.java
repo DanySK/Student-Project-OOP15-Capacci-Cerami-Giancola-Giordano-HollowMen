@@ -111,6 +111,8 @@ public class LoaderClass {
 		nameList.add("res/images/gameButtons/coinBag.png");
 		nameList.add("res/images/gameButtons/inventoryLobby.png");
 		nameList.add("res/images/gameButtons/skillTreeLobby.png");
+		nameList.add("res/images/mobs/batBoss.gif");
+		nameList.add("res/images/mobs/puppetBoss.gif");
 		return nameList;
 	}
 	

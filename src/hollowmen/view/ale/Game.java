@@ -15,6 +15,7 @@ import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
 import hollowmen.enumerators.Values;
 import hollowmen.model.facade.DrawableRoomEntity;
+import hollowmen.sound.ale.CreateAudio;
 
 /**
  * The {@code Game} class implements {@link GameInterface}. It is the game panel and give some functionality.
@@ -68,8 +69,8 @@ public class Game extends JLabel implements GameInterface{
         
         
         public Game(int x, int y, ViewObserver observer){
-        	this.x=x;
-        	this.y=y;
+            this.x=x;
+            this.y=y;
             this.observer=observer;
             this.inputChooser=new InputChooser(this.observer);
             this.setLayout(null);//It's important 'cause if it isn't it doesn't show anything
@@ -82,9 +83,9 @@ public class Game extends JLabel implements GameInterface{
         }
 
         private void initialSetup(int x, int y){ 
-        	this.setIcon(this.storageGame.get("game").getIcon());
-        	this.setLayout(null);
-        	this.setBounds(0,0,x,y+GAP);
+            this.setIcon(this.storageGame.get("game").getIcon());
+            this.setLayout(null);
+            this.setBounds(0,0,x,y+GAP);
             this.panelGame=new JLabel();
             this.panelGame.setLayout(null);
             this.panelGame.setBounds(0, GAP/2-20, x, y);

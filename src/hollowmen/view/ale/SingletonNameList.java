@@ -20,8 +20,10 @@ public class SingletonNameList {
 		nameList.add("bat1");
 		nameList.add("bat2");
 		nameList.add("bat3");
+		nameList.add("batBoss");
 		nameList.add("slimeBossSecret");
 		nameList.add("puppet1");
+		nameList.add("puppetBoss");
 		nameList.add("puppet2");
 		nameList.add("puppet3");
 		nameList.add("slime2");
