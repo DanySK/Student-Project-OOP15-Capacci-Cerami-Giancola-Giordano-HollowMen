@@ -84,8 +84,10 @@ public class Shop extends TabbedDialog {
 			name = ((JButton) e.getSource()).getText();
 			if(name.equals("BUY")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.BUY, getLastItem());
+				dispose();
 			} else if (name.equals("SELL")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.SELL, getLastItem());
+				dispose();
 			} else {
 				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();

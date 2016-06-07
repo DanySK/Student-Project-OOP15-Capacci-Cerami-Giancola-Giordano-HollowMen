@@ -194,8 +194,10 @@ public class Inventory extends TabbedDialog {
 			name = ((JButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.EQUIP, getLastItem());
+				dispose();
 			} else if (name.equals("UNEQUIP")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.UNEQUIP, getLastItem());
+				dispose();
 			} else {
 				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();

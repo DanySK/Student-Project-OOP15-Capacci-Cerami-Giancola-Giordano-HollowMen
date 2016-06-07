@@ -67,6 +67,7 @@ public class ClassChoice extends OptionDialog {
 		mage.addActionListener(classL);
 		assassin.addActionListener(classL);
 		
+		select.setEnabled(false);
 		mage.setEnabled(false);
 		assassin.setEnabled(false);
 		

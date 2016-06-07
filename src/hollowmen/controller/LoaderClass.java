@@ -47,6 +47,7 @@ public class LoaderClass {
 		nameList.add("res/images/mobs/puppet2.gif");
 		nameList.add("res/images/mobs/puppet1.gif");
 		nameList.add("res/images/mobs/slimeBossSecret.gif");
+		nameList.add("res/images/mobs/slimeBoss.gif");
 		nameList.add("res/images/mobs/bat3.gif");
 		nameList.add("res/images/mobs/bat2.gif");
 		nameList.add("res/images/mobs/bat1.gif");
