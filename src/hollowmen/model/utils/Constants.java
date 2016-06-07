@@ -11,6 +11,8 @@ import hollowmen.utilities.Pair;
 
 public class Constants {
 	
+	public static final int FLY_LINE_HEIGHT = 300;
+	
 	public static final double GHOST_TIME = 2;
 	
 	public static final int ROOM_TO_VISIT = 4;

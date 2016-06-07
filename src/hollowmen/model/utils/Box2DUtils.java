@@ -10,18 +10,29 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Filter;
 import org.jbox2d.dynamics.FixtureDef;
 
+import hollowmen.model.Enemy;
 import hollowmen.model.RoomEntity;
+import hollowmen.model.dungeon.FilterType;
 import hollowmen.utilities.RandomSelector;
 
 public class Box2DUtils {
 
-	public static void lowerCorner(RoomEntity re) {
+	public static void lowerCorner(RoomEntity re, boolean fly) {
 		float halfHeight = re.getHeight() / 2;
 		float halfLength = re.getLength() / 2;
-		re.getBody().setTransform(new Vec2((float) (RandomSelector.getIntFromRange(0, 1) == 0 ? halfLength
-				: Constants.WORLD_SIZE.getWidth() - halfLength), Constants.WORLD_SIZE.height - halfHeight), 0);
+		re.getBody().setTransform(new Vec2((float) (RandomSelector.getIntFromRange(0, 1) == 0 ? halfLength + RandomSelector.getIntFromRange(0, 300)
+				: Constants.WORLD_SIZE.getWidth() - halfLength - RandomSelector.getIntFromRange(0, 300)),
+				fly ? Constants.WORLD_SIZE.height - halfHeight - Constants.FLY_LINE_HEIGHT : Constants.WORLD_SIZE.height - halfHeight), 0);
 	}
 	
+	
+	public static void enemyPositioning(Enemy e) {
+		if(e.getInfo().getName().equals(RoomEntity.RoomEntityName.BAT.toString())) {
+			Box2DUtils.lowerCorner(e, true);
+		} else {
+			Box2DUtils.lowerCorner(e, false);
+		}
+	}
 	
 	public static void linearSpacing(Collection<? extends RoomEntity> entity) {
 		int i = 1;
