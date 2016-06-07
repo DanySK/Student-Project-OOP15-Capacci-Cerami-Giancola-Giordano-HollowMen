@@ -25,6 +25,7 @@ public abstract class MessageDialog extends CustomDialog {
 	protected void setPreferences() {
 		this.setSize(500, 200);
 		this.setUndecorated(true);
+		this.setResizable(false);
 		this.setLocationRelativeTo(SingletonFrame.getInstance());
 		this.setModal(true);
 		getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));

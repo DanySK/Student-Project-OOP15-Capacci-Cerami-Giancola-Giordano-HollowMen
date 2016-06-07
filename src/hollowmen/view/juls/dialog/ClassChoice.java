@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -37,6 +38,7 @@ public class ClassChoice extends OptionDialog {
 	private IconButton assassin = new IconButton("ASSASSIN", a);
 	private PaintedButton close = new PaintedButton("CLOSE");
 	private PaintedButton select = new PaintedButton("SELECT");
+	private String classSelected;
 	private JPanel classC = PanelBuilder.getBuilder()
 							.layout(1, 3, 50, 0)
 							.bound(100, 160, 450, 200)
@@ -79,9 +81,9 @@ public class ClassChoice extends OptionDialog {
 	
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			name = ((PaintedButton) e.getSource()).getText();
+			name = ((JButton) e.getSource()).getText();
 			if(name.equals("SELECT")) {
-				UtilitySingleton.getInstance().getObserver().addInput(ClassType.WARRIOR);
+				UtilitySingleton.getInstance().getObserver().addInput(ClassType.valueOf(classSelected));
 				dispose();
 			} else {
 				dispose();
@@ -91,8 +93,9 @@ public class ClassChoice extends OptionDialog {
 	
 	ActionListener classL = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			name = ((JButton) e.getSource()).getText();
 			select.setEnabled(true);
-			
+			classSelected = name;
 		}
 	};
 

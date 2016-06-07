@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -55,7 +56,7 @@ public class PauseMenu extends MessageDialog {
 	
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			name = ((PaintedButton) e.getSource()).getText();
+			name = ((JButton) e.getSource()).getText();
 			if(name.equals("TO MAIN")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.MAIN);
 				dispose();

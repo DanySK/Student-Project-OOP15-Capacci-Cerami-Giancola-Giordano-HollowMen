@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JButton;
 
 import hollowmen.enumerators.InputCommand;
 import hollowmen.enumerators.InputMenu;
@@ -66,6 +67,9 @@ public class Shop extends TabbedDialog {
 		label.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.add(label);
 		
+		amount.setBounds(420, 230, 70, 20);
+		this.add(amount);
+		
 		desc.setBounds(420, 360, 280, 60);
 		this.add(desc);
 		
@@ -77,7 +81,7 @@ public class Shop extends TabbedDialog {
 	
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			name = ((PaintedButton) e.getSource()).getText();
+			name = ((JButton) e.getSource()).getText();
 			if(name.equals("BUY")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.BUY, getLastItem());
 			} else if (name.equals("SELL")) {
@@ -97,6 +101,7 @@ public class Shop extends TabbedDialog {
 			stats = x.getStat();
 			nameF = x.getName();
 			description = x.getDescription();
+			quantity = x.getAmount();
 			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
@@ -109,6 +114,7 @@ public class Shop extends TabbedDialog {
 					setLastItem(x);
 					label.setIcon(showImage((ImageIcon) icon));
 					statsBox.setText(showStats(stats));
+					amount.setText("Amount:  " + quantity);
 				}
 			});
 			panel.add(button);
@@ -141,6 +147,7 @@ public class Shop extends TabbedDialog {
 					setLastItem(x);
 					label.setIcon(showImage((ImageIcon) icon));
 					statsBox.setText(showStats(stats));
+					amount.setText("Amount:  X");
 				}
 			});
 			panel.add(button);

@@ -15,7 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+//import hollowmen.enumerators.InputCommand;
 import hollowmen.model.facade.InformationDealer;
+//import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
@@ -88,7 +90,7 @@ public class Achievements extends GridDialog {
 		public void actionPerformed(ActionEvent e) {
 			name = ((PaintedButton) e.getSource()).getText();
 			if(name.equals("REDEEM")) {
-				//observer.addInput(InputCommand.REDEEM, getLastItem());
+				//UtilitySingleton.getInstance().getObserver().addInput(InputCommand.REDEEM, getLastItem());
 			}else {
 				dispose();
 			}

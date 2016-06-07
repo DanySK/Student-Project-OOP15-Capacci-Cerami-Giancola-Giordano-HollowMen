@@ -72,7 +72,7 @@ public class HelpMenu extends OptionDialog {
 
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME); // PROBLEMA RESUME
+				UtilitySingleton.getInstance().getObserver().addInput(InputMenu.RESUME);
 				dispose();
 			}		
 		});		

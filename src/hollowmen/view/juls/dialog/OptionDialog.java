@@ -24,6 +24,7 @@ public abstract class OptionDialog extends CustomDialog {
 	protected void setPreferences() {
 		this.setSize(700, 500);
 		this.setUndecorated(true);
+		this.setResizable(false);
 		this.setLocationRelativeTo(SingletonFrame.getInstance());
 		this.setModal(false);
 		this.getRootPane().setBorder(BorderFactory.createLineBorder(Color.WHITE));

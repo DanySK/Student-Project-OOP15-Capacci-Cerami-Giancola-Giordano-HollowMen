@@ -40,9 +40,11 @@ public abstract class GridDialog extends MenuDialog {
 	protected static final int HEIGHT = 320;
 	protected JTextArea statsBox = new JTextArea();
 	protected JTextArea desc = new JTextArea();
+	protected JTextArea amount = new JTextArea();
 	private ImageIcon portrait;
 	protected IconButton button;
 	protected String nameF, description;
+	protected int quantity;
 	protected Icon icon;
 	protected ViewObserver observer;
 	protected ViewImpl view;
@@ -58,14 +60,11 @@ public abstract class GridDialog extends MenuDialog {
 	public GridDialog(Frame frame) {
 		super(frame);
 		gridPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		statsBox.setEditable(false);
-		statsBox.setLineWrap(true);
-		statsBox.setOpaque(false);
-		statsBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		desc.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		desc.setEditable(false);
-		desc.setOpaque(false);		
-		desc.setLineWrap(true);
+		
+		prepareArea(statsBox);
+		prepareArea(desc);
+		prepareArea(amount);
+		
 		this.add(gridPanel);
 	}
 	
@@ -108,7 +107,27 @@ public abstract class GridDialog extends MenuDialog {
 		return portrait;
 	}
 	
+	/**
+	 * This method draws the image passed as parameter in its real dimension.
+	 * @param image
+	 */
 	protected ImageIcon showMobPortrait(ImageIcon image) {
 		return this.portrait = image;
+	}
+	
+	/**
+	 * This method sets the preferences for a custom version of JTextArea. <br>
+	 * The preferences are: <br>
+	 * - opacity (false) <br>
+	 * - edit (false)<br>
+	 * - line wrap (true) <br>
+	 * @param t - the JTextArea to custom
+	 */
+	private JTextArea prepareArea(JTextArea t) {
+		t.setEditable(false);
+		t.setLineWrap(true);
+		t.setOpaque(false);
+		t.setBorder(BorderFactory.createLineBorder(Color.BLACK));	
+		return t;
 	}
 }

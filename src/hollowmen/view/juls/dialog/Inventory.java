@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -190,7 +191,7 @@ public class Inventory extends TabbedDialog {
 	
 	ActionListener paintedL = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			name = ((PaintedButton) e.getSource()).getText();
+			name = ((JButton) e.getSource()).getText();
 			if(name.equals("EQUIP")) {
 				UtilitySingleton.getInstance().getObserver().addInput(InputCommand.EQUIP, getLastItem());
 			} else if (name.equals("UNEQUIP")) {

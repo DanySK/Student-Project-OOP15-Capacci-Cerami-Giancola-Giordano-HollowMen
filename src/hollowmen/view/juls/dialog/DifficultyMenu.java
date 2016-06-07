@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -89,7 +90,7 @@ public class DifficultyMenu  extends MessageDialog {
 	
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			name = ((PaintedButton) e.getSource()).getText();
+			name = ((JButton) e.getSource()).getText();
 			if(name.equals("EASY") || name.equals("NORMAL") || name.equals("HARD")) {
 				confirm.setEnabled(true);
 				selection.setText(name);

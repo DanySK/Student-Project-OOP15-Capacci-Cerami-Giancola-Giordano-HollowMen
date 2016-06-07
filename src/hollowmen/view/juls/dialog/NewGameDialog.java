@@ -5,6 +5,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import hollowmen.view.SingletonFrame;
@@ -45,7 +46,7 @@ public class NewGameDialog extends MessageDialog {
 
 	ActionListener listener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			name = ((PaintedButton) e.getSource()).getText();
+			name = ((JButton) e.getSource()).getText();
 			if(name.equals("NO")) {
 				dispose();
 			} else if (name.equals("YES")) {
