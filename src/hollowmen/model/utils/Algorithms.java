@@ -36,7 +36,7 @@ public class Algorithms {
 	
 	public static void populateRoom(Room room) {
 		Interactable chest = new TreasureChest();
-		Box2DUtils.lowerCorner(chest);
+		Box2DUtils.lowerCorner(chest, false);
 	}
 	
 	public static Lootable treasureLoot() {
@@ -56,7 +56,9 @@ public class Algorithms {
 		int maxPower = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
 		Collection<Enemy> retValue = new LinkedList<>();
 		if(DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() == Constants.ROOM_TO_VISIT) {
-			retValue.add(EnemyPool.getInstance().getRandomForTitle(p -> p.equals(EnemyTitle.BOSS.toString())));
+			Enemy boss = EnemyPool.getInstance().getRandomForTitle(p -> p.equals(EnemyTitle.BOSS.toString()));
+			retValue.add(boss);
+			Box2DUtils.enemyPositioning(boss);
 			return retValue;
 		}
 		while(maxPower > 0) {
@@ -64,11 +66,12 @@ public class Algorithms {
 					s -> s.equals(EnemyTitle.ORDINARY.toString()));
 			maxPower -= e.getLevel();
 			retValue.add(e);
-			e.getBody().setTransform(new Vec2(RandomSelector.getIntFromRange(0, 1) == 0 ?
-					RandomSelector.getIntFromRange(Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL, Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL)
-					: RandomSelector.getIntFromRange((int)(Constants.WORLD_SIZE.getWidth() - Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL),
-							(int) Constants.WORLD_SIZE.getWidth() - Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL),
-					300f), 0);
+			Box2DUtils.enemyPositioning(e);
+//			e.getBody().setTransform(new Vec2(RandomSelector.getIntFromRange(0, 1) == 0 ?
+//					RandomSelector.getIntFromRange(Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL, Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL)
+//					: RandomSelector.getIntFromRange((int)(Constants.WORLD_SIZE.getWidth() - Algorithms.MAX_ENEMY_DISTANCE_FROM_WALL),
+//							(int) Constants.WORLD_SIZE.getWidth() - Algorithms.MIN_ENEMY_DISTANCE_FROM_WALL),
+//					300f), 0);
 		}
 		return retValue;
 	}
