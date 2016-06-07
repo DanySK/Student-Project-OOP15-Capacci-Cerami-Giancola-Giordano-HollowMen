@@ -74,8 +74,13 @@ public class ModelImpl implements Model{
 		        this.hero.isFacingRight(),
 		        sta));
 		for(Enemy re: this.dungeon.getCurrentRoom().getEnemies()){
+			name=new String(re.getInfo().getName());
+			if(re.getLevel()<5){
+				name+=re.getLevel();
+			}else{
+				name+="Boss";
+			}
 			
-			name=new String(re.getInfo().getName()+re.getLevel());
 			drawable.add(new DrawableRoomEntityImpl(
 					name,
 					new Point2DImpl((int)(re.getBody().getWorldCenter().x-re.getLength()/2),
