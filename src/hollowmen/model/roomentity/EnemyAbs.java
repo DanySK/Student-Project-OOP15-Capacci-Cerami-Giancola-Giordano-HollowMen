@@ -130,7 +130,6 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 			return false;
 		}
 		return true;
-		);
 	}
 
 	/**
