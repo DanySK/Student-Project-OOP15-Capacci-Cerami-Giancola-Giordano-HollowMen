@@ -134,6 +134,18 @@ public class ModelImpl implements Model{
 					it.getY(),
 					it.getX().getSlot()));
 		}
+		for(Item it:this.hero.getEquippedItem()){
+			param=new HashMap<>();
+		    for(Modifier m:it.getModifiers().values()){
+				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
+			}
+		    info.add(new InformationDealerImpl(it.getInfo().getName(),
+		    		it.getInfo().getDescription().orElse(""),
+		    		param,
+		    		it.getState().name(),
+		    		1,
+		    		it.getSlot()));
+		}
 		return info;
 	}
 	
