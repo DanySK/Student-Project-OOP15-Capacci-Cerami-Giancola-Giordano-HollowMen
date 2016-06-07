@@ -109,7 +109,7 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 	@Override
 	public boolean equals(Object obj) {
 		super.equals(obj);
-		if (!(this instanceof Enemy)) {
+		if (!(obj instanceof Enemy)) {
 			return false;
 		}
 		Enemy other = (Enemy) obj;

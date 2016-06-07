@@ -128,15 +128,16 @@ public abstract class RoomEntityAbs implements RoomEntity{
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof RoomEntity))
 			return false;
-		RoomEntityAbs other = (RoomEntityAbs) obj;
+		RoomEntity other = (RoomEntity) obj;
 		if (info == null) {
-			if (other.info != null)
+			if (other.getInfo() != null)
 				return false;
-		} else if (!info.equals(other.info))
+		} else if (!info.equals(other.getInfo()))
 			return false;
-		if (this.getBody().getWorldCenter().equals(other.getBody().getWorldCenter()))
+		if (this.getBody().getWorldCenter().x == other.getBody().getWorldCenter().x
+				&& this.getBody().getWorldCenter().y == other.getBody().getWorldCenter().y)
 			return true;
 		return true;
 	}
