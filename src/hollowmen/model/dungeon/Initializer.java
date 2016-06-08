@@ -49,7 +49,7 @@ public class Initializer {
 
 	private void generalSetting() {
 		DungeonSingleton.getInstance().setPokedex(new PokedexImpl());
-		DungeonSingleton.getInstance().setUnlockedFloor(1, 4);
+		DungeonSingleton.getInstance().setUnlockedFloor(1, 8);
 		Collection<Item> shop = new LinkedList<>();
 		shop.add(ItemPool.getInstance().getItem("woodSword"));
 		shop.add(ItemPool.getInstance().getItem("bootsBlack"));

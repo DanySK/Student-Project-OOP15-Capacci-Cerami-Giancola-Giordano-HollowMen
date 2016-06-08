@@ -43,15 +43,9 @@ public class HPclass extends ParamImpl{
 	@Override
 	public double getValue() {
 		if(lastMaxHP != maxHP.getValue()) {
-			if(maxHP.getValue() - this.lastMaxHP < 0) {
-				this.removeModifier(new ModifierImpl(ParamName.HP.toString(),
-						this.lastMaxHP - maxHP.getValue(), Modifier.Operation.ADD));
-				this.lastMaxHP = maxHP.getValue();
-			} else {
-				this.addModifier(new ModifierImpl(ParamName.HP.toString(),
-						 maxHP.getValue() - this.lastMaxHP, Modifier.Operation.ADD));
-				this.lastMaxHP = maxHP.getValue();
-			} 
+			this.health = new SimpleLimitedCounter(this.health.getLimit() + (maxHP.getValue() - lastMaxHP),
+					this.health.getLimit() + (maxHP.getValue() - lastMaxHP));
+			this.lastMaxHP = maxHP.getValue();
 		}
 		return this.health.getValue();
 	}
@@ -69,7 +63,9 @@ public class HPclass extends ParamImpl{
 			} else {
 				this.health.addToValue(mod.getOperation().apply(this.health.getValue(), mod.getParameter().getValue()));
 			}
-		} catch (UpperLimitReachException e) {};
+		} catch (UpperLimitReachException e) {
+			System.out.println("ho superato la vita max...la vita attuale --> "+this.getValue());
+		};
 
 	}
 
