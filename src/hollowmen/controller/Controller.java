@@ -90,6 +90,7 @@ public class Controller implements ViewObserver {
 		}case POKEDEX:{
 			this.view.drawMenu(InputMenu.POKEDEX, Optional.of(model.getPokedex()));
 			this.inputMenuList.clear();
+			menuInputLoop();
 			break;
 		}case SHOP:{
 			List<InformationDealer> shop=new LinkedList<>();
