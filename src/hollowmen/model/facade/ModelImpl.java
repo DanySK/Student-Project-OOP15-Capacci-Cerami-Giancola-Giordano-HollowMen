@@ -129,13 +129,15 @@ public class ModelImpl implements Model{
 	public List<InformationDealer> getInventory() {
 		List<InformationDealer> info=new LinkedList<>();
 		Map<String,Double> param;
+		String desc;
 		for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
 		    param=new HashMap<>();
 		    for(Modifier m:it.getX().getModifiers().values()){
 				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
 			}
+		    desc=it.getX().getInfo().getDescription().orElse("")+" Values: "+it.getX().getGoldValue();
 			info.add(new InformationDealerImpl(it.getX().getInfo().getName(),
-					it.getX().getInfo().getDescription().orElse(""),
+					desc,
 					param,
 					it.getX().getState().name(),
 					it.getY(),
@@ -146,8 +148,9 @@ public class ModelImpl implements Model{
 		    for(Modifier m:it.getModifiers().values()){
 				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
 			}
+		    desc=it.getInfo().getDescription().orElse("")+" Values: "+it.getGoldValue();
 		    info.add(new InformationDealerImpl(it.getInfo().getName(),
-		    		it.getInfo().getDescription().orElse(""),
+		    		desc,
 		    		param,
 		    		it.getState().name(),
 		    		1,
@@ -159,13 +162,15 @@ public class ModelImpl implements Model{
 	public List<InformationDealer> getShop() {
 		List<InformationDealer> info=new LinkedList<>();
 		Map<String,Double> param;
+		String desc;
 		for(Item it: this.dungeon.getShop().getShopItem()){
 		    param=new HashMap<>();
 		    for(Modifier m:it.getModifiers().values()){
 				param.put(m.getParameter().getInfo().getName(),m.getParameter().getValue());
 			}
+		    desc=it.getInfo().getDescription().orElse("")+" Values: "+it.getGoldValue();
 			info.add(new InformationDealerImpl(it.getInfo().getName(),
-					it.getInfo().getDescription().orElse(""),
+					desc,
 					param,
 					it.getState().name(),
 					1,
