@@ -96,7 +96,6 @@ public class DungeonSingleton implements Dungeon{
 		});
 		this.disposeList.clear();
 		if(gameOver) {
-			System.out.println("GAME OVER");
 			endRun();
 			throw new GameOverException();
 		}
@@ -185,7 +184,6 @@ public class DungeonSingleton implements Dungeon{
 		}
 		Collection<Enemy> toDestroy = this.currentRoom.getEnemies().stream().collect(Collectors.toList());
 		toDestroy.stream().forEach(x -> {
-			System.out.println(x);
 			this.currentRoom.removeEntity(x);
 			this.world.destroyBody(x.getBody());
 		});

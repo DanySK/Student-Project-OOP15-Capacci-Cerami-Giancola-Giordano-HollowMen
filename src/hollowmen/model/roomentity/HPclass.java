@@ -73,10 +73,6 @@ public class HPclass extends ParamImpl{
 	public void removeModifier(Modifier mod) throws IllegalArgumentException, NullPointerException {
 		ExceptionThrower.checkNullPointer(mod);
 		ExceptionThrower.checkIllegalArgument(mod, m -> this.getInfo().getName().equals(m));
-		if(this.owner.getInfo().getName().equals(RoomEntity.RoomEntityName.HERO.toString())) {
-			System.out.println("STO PER PRENDERMI -->" +mod.getParameter().getValue()+ " Danni");
-			System.out.println("LA mia vita era..."+this.health.getValue());
-		}
 		try {
 			if(mod.getOperation().equals(Modifier.Operation.ADD.getOp())) {
 				this.health.subToValue(mod.getParameter().getValue());
@@ -89,7 +85,6 @@ public class HPclass extends ParamImpl{
 				this.owner.dispose();
 			}
 			if(this.owner.getInfo().getName().equals(RoomEntity.RoomEntityName.HERO.toString())) {
-				System.out.println("Vita Hero -->" + this.health.getValue());
 				DungeonSingleton.getInstance().gameOver();
 			}
 		};
