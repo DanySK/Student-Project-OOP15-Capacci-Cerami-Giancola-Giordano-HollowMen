@@ -112,7 +112,7 @@ public class Controller implements ViewObserver {
 		}case START:{
 			this.last=InputMenu.START;
 			this.inputMenuList.clear();
-			this.model.goTo(1);
+			this.model.goTo();
 			gameLoop();
 			break;
 		}case ACHIEVEMENTS:{
