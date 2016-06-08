@@ -3,7 +3,6 @@ package hollowmen.view;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,13 +35,15 @@ public class ViewImpl implements View {
 	private ViewObserver observer;
 	private BasicMenuImpl basic = new BasicMenuImpl();
 	private ComplexMenuImpl complex = new ComplexMenuImpl();
+	static final ClassLoader loader = ViewImpl.class.getClassLoader();
 	
 	public ViewImpl(int x, int y, ViewObserver observer){
 		this.observer = observer;
 		//try-catch to register the font into a GraphicsEnvironment
 		try{
+		    
 			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("res/CHILLER.ttf")));
+			ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, loader.getResourceAsStream("CHILLER.ttf")));
 		}catch(IOException e){
 			e.printStackTrace();
 		}catch(FontFormatException e){

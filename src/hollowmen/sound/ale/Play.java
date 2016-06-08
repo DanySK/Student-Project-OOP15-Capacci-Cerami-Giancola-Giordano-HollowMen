@@ -1,12 +1,11 @@
 package hollowmen.sound.ale;
 
 import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class Play implements PlayInterface{
-        
+    static final ClassLoader loader = Play.class.getClassLoader();
         /**
          * The {@code sketchPath} method is used to transform a fileName into an absolute path
          * 
@@ -27,11 +26,9 @@ public class Play implements PlayInterface{
          */
         public InputStream createInput(final String fileName){
                 InputStream input=null;
-                try{
-                 input=new BufferedInputStream(new FileInputStream(this.sketchPath(fileName)));
-                }catch(FileNotFoundException e){
-                        System.out.println("FILE NON TROVATO!!");
-                }
+                
+                 input=new BufferedInputStream(loader.getResourceAsStream("sound/glory.mp3"));
+                
                 return input;
         }
         
