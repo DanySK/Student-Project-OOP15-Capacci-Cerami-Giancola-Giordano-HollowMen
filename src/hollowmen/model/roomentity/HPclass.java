@@ -63,9 +63,7 @@ public class HPclass extends ParamImpl{
 			} else {
 				this.health.addToValue(mod.getOperation().apply(this.health.getValue(), mod.getParameter().getValue()));
 			}
-		} catch (UpperLimitReachException e) {
-			System.out.println("ho superato la vita max...la vita attuale --> "+this.getValue());
-		};
+		} catch (UpperLimitReachException e) {};
 
 	}
 

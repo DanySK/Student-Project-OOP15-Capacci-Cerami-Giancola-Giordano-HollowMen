@@ -36,6 +36,7 @@ public class Actors {
 	
 	public static void regenerate(Actor subj) {
 		subj.getStatus().clear();
+		subj.getBody().setGravityScale(1f);
 		subj.setState(ActorState.STANDING.toString());
 		double maxHP = subj.getParameters().get(ParamName.HPMAX.toString()).getValue();
 		Actors.addModifier(subj, new ModifierImpl(ParamName.HP.toString(), maxHP, Modifier.Operation.ADD));
