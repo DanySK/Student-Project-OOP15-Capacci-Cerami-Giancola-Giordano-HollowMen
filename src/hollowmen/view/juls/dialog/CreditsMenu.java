@@ -3,14 +3,11 @@ package hollowmen.view.juls.dialog;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.panel.PanelBuilder;
 
@@ -53,10 +50,6 @@ public class CreditsMenu extends OptionDialog {
 	}
 
 	protected void loadImages() {
-		try {
-			credits.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/credits.png"))));			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		credits.setIcon(UtilitySingleton.getInstance().getStorage().get("credits"));
 	}
 }

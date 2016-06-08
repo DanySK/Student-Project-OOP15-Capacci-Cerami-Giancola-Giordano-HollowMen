@@ -1,11 +1,9 @@
 package hollowmen.view.juls.buttons;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Image;
 
-import javax.imageio.ImageIO;
+import hollowmen.view.UtilitySingleton;
 
 /**
  * The {@code ArrowButton} allows to draw on screen a button "arrow-shaped"
@@ -15,7 +13,12 @@ import javax.imageio.ImageIO;
 public class ArrowButton extends TranslucentButton {
 
 	private static final long serialVersionUID = 2261116517867429353L;
-	private BufferedImage rArrow, rArrowOver, rArrowNA, lArrow, lArrowOver, lArrowNA;
+	private Image rArrow;
+	private Image rArrowOver;
+	private Image rArrowNA;
+	private Image lArrow;
+	private Image lArrowOver;
+	private Image lArrowNA;
 	private Direction direction;
 	
 	public ArrowButton(Direction d) {
@@ -26,16 +29,12 @@ public class ArrowButton extends TranslucentButton {
 	
 	@Override
 	protected void loadImages() {
-		try {
-			rArrow = ImageIO.read(new File("res/images/buttons/RArrow.png"));
-			rArrowOver = ImageIO.read(new File("res/images/buttons/RArrowOver.png"));
-			rArrowNA = ImageIO.read(new File("res/images/buttons/RArrowNA.png"));
-			lArrow = ImageIO.read(new File("res/images/buttons/LArrow.png"));
-			lArrowOver = ImageIO.read(new File("res/images/buttons/LArrowOver.png"));
-			lArrowNA = ImageIO.read(new File("res/images/buttons/LArrowNA.png"));
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		rArrow = UtilitySingleton.getInstance().getStorage().get("RArrow").getImage();
+		rArrowOver = UtilitySingleton.getInstance().getStorage().get("RArrowOver").getImage();
+		rArrowNA = UtilitySingleton.getInstance().getStorage().get("RArrowNA").getImage();
+		lArrow = UtilitySingleton.getInstance().getStorage().get("LArrow").getImage();
+		lArrowOver = UtilitySingleton.getInstance().getStorage().get("LArrowOver").getImage();
+		lArrowNA = UtilitySingleton.getInstance().getStorage().get("LArrowNA").getImage();
 	}
 	
 	/**

@@ -24,7 +24,7 @@ public class LoaderClass {
 		nameList.add("images/titles/skilltree.png");
 		nameList.add("images/titles/shop.png");
 		nameList.add("images/titles/pauseMenu.png");
-		nameList.add("images/titles/inventory.png");
+		nameList.add("images/titles/inventoryT.png");
 		nameList.add("images/titles/helpSheet2.png");
 		nameList.add("images/titles/helpSheet1.png");
 		nameList.add("images/titles/help.png");

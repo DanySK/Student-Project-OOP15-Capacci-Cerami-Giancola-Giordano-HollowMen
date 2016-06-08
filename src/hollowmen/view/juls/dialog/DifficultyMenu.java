@@ -7,13 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -111,11 +107,7 @@ public class DifficultyMenu  extends MessageDialog {
 	};
 	
 	private void loadImage() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/difficulty.png"))));			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("difficulty"));
 	}
 
 }

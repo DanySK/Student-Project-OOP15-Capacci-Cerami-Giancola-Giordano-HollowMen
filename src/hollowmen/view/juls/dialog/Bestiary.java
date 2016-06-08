@@ -4,11 +4,8 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -81,10 +78,6 @@ public class Bestiary extends GridDialog {
 	}
 	
 	private void loadImages() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/bestiary.png"))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("bestiary"));
 	}
 }

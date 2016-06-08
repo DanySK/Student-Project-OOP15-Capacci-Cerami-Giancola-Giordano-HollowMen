@@ -1,11 +1,9 @@
 package hollowmen.view.juls.buttons;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Image;
 
-import javax.imageio.ImageIO;
+import hollowmen.view.UtilitySingleton;
 
 /**
  * The {@code NodeButton} class allows to graphically represent the nodes
@@ -17,7 +15,10 @@ import javax.imageio.ImageIO;
 public class NodeButton extends TranslucentButton {
 	
 	private static final long serialVersionUID = 7681825185715821047L;
-	private BufferedImage nodeOver, nodeUnlocked, nodeNA, nodeAvailable;
+	private Image nodeOver;
+	private Image nodeUnlocked;
+	private Image nodeNA;
+	private Image nodeAvailable;
 
 	
 	public NodeButton() {
@@ -26,14 +27,10 @@ public class NodeButton extends TranslucentButton {
 	}
 	
 	public void loadImages() {
-		try {
-			nodeOver = ImageIO.read(new File("res/images/buttons/nodeOver.png"));
-			nodeUnlocked = ImageIO.read(new File("res/images/buttons/nodeUnlocked.png"));
-			nodeNA = ImageIO.read(new File("res/images/buttons/nodeNA.png"));
-			nodeAvailable = ImageIO.read(new File("res/images/buttons/nodeAvailable.png"));
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		nodeOver = UtilitySingleton.getInstance().getStorage().get("nodeOver").getImage();
+		nodeUnlocked = UtilitySingleton.getInstance().getStorage().get("nodeUnlocked").getImage();
+		nodeNA = UtilitySingleton.getInstance().getStorage().get("nodeNA").getImage();
+		nodeAvailable = UtilitySingleton.getInstance().getStorage().get("nodeAvailable").getImage();
 	}
 
 	@Override

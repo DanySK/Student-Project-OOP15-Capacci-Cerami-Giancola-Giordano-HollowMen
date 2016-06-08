@@ -3,11 +3,8 @@ package hollowmen.view.juls.dialog;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -30,9 +27,9 @@ public class Inventory extends TabbedDialog {
 
 	private static final long serialVersionUID = 1157519982974148320L;
 	private JLabel body = new JLabel();
-	private ImageIcon s1 = new ImageIcon("res/images/items/spell1.png");
-	private ImageIcon s2 = new ImageIcon("res/images/items/spell2.png");
-	private ImageIcon s3 = new ImageIcon("res/images/items/spell3.png");
+	private ImageIcon s1 = UtilitySingleton.getInstance().getStorage().get("spell1");
+	private ImageIcon s2 = UtilitySingleton.getInstance().getStorage().get("spell2");
+	private ImageIcon s3 = UtilitySingleton.getInstance().getStorage().get("spell3");
 
 	private PaintedButton equip = new PaintedButton("EQUIP"); //dentro buttonC
 	private PaintedButton unequip = new PaintedButton("UNEQUIP"); //dentro buttonC
@@ -173,12 +170,8 @@ public class Inventory extends TabbedDialog {
 	}
 
 	private void loadImages() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/inventory.png"))));
-			body.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/bodyTemplate.png"))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("inventoryT"));
+		body.setIcon(UtilitySingleton.getInstance().getStorage().get("bodyTemplate"));
 	}
 	
 	ActionListener paintedL = new ActionListener() {

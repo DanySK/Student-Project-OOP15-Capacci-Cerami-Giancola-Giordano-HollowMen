@@ -6,17 +6,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 //import hollowmen.enumerators.InputCommand;
 import hollowmen.model.facade.InformationDealer;
+import hollowmen.view.UtilitySingleton;
 //import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.IconButton;
 import hollowmen.view.juls.buttons.PaintedButton;
@@ -34,7 +32,7 @@ public class Achievements extends GridDialog {
 	private static final long serialVersionUID = -7374468384801676593L;
 	private IconButton button;
 	private String state;
-	private ImageIcon star = new ImageIcon("res/images/items/star.jpg");
+	private ImageIcon star = UtilitySingleton.getInstance().getStorage().get("star");
 	private PaintedButton redeem = new PaintedButton("REDEEM");
 	private JPanel buttonC = PanelBuilder.getBuilder()
 							.layout(1, 2, 40, 0)
@@ -113,10 +111,6 @@ public class Achievements extends GridDialog {
 	};
 	
 	private void loadImages() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/achievements.png"))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("achievements"));
 	}
 }

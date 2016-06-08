@@ -3,11 +3,7 @@ package hollowmen.view.juls.dialog;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -72,11 +68,7 @@ public class PauseMenu extends MessageDialog {
 	};
 	
 	private void loadImage() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/pauseMenu.png"))));			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("pauseMenu"));
 	}
 
 }

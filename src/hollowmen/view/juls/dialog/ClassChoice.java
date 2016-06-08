@@ -5,10 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,9 +26,9 @@ import hollowmen.view.juls.panel.PanelBuilder;
 public class ClassChoice extends OptionDialog {
 
 	private static final long serialVersionUID = 402941805788593572L;
-	private ImageIcon w = new ImageIcon("res/images/character/hero.png");
-	private ImageIcon m = new ImageIcon("res/images/character/mage.png");
-	private ImageIcon a = new ImageIcon("res/images/character/assassin.png");
+	private ImageIcon w = UtilitySingleton.getInstance().getStorage().get("hero");
+	private ImageIcon m = UtilitySingleton.getInstance().getStorage().get("mage");
+	private ImageIcon a = UtilitySingleton.getInstance().getStorage().get("assassin");
 	private JLabel title = new JLabel();
 	private IconButton warrior = new IconButton("WARRIOR", w);
 	private IconButton mage = new IconButton("MAGE", m);
@@ -102,11 +99,7 @@ public class ClassChoice extends OptionDialog {
 
 	@Override
 	protected void loadImages() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/class.png"))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("class"));
 	}
 
 }

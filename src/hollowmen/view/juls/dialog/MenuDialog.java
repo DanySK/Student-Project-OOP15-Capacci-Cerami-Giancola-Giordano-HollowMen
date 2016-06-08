@@ -2,16 +2,13 @@ package hollowmen.view.juls.dialog;
 
 import java.awt.Color;
 import java.awt.Frame;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
 import hollowmen.view.SingletonFrame;
+import hollowmen.view.UtilitySingleton;
 /**
  * The {@code MenuDialog} abstract class defines the preferences of 
  * some menus, such as Inventory, Skill Tree, Shop, Bestiary and Achievements.
@@ -43,12 +40,8 @@ public abstract class MenuDialog extends CustomDialog {
 	
 	@Override
 	protected void addBackground() {
-		try {
-			background.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/pergamena.jpg"))));
-			this.setContentPane(background);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+		background.setIcon(UtilitySingleton.getInstance().getStorage().get("pergamena"));
+		this.setContentPane(background);	
 	}
 	
 	/**

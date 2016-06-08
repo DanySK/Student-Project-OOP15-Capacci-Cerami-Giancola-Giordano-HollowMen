@@ -3,11 +3,7 @@ package hollowmen.view.juls.dialog;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -104,12 +100,8 @@ public class HelpMenu extends OptionDialog {
 	
 	@Override
 	protected void loadImages() {
-		try {
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/help.png"))));
-			sheet1.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/helpSheet1.png"))));
-			sheet2.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/helpSheet2.png"))));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("help"));
+		sheet1.setIcon(UtilitySingleton.getInstance().getStorage().get("helpSheet1"));
+		sheet2.setIcon(UtilitySingleton.getInstance().getStorage().get("helpSheet2"));
 	}
 }

@@ -2,11 +2,9 @@ package hollowmen.view.juls.buttons;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Image;
 
-import javax.imageio.ImageIO;
+import hollowmen.view.UtilitySingleton;
 
 /**
  * The {@link PaintedButton} Class creates customized buttons.
@@ -17,8 +15,10 @@ import javax.imageio.ImageIO;
 public class PaintedButton extends TranslucentButton {
 	
 	private static final long serialVersionUID = -4128202845780333356L;
-	private BufferedImage buttonBG, buttonOver, buttonNA;
-	
+	private Image buttonBG;
+	private Image buttonOver;
+	private Image buttonNA;
+		
 	public PaintedButton(String text) {
 		super(text);
 		super.setPreferences();
@@ -26,13 +26,9 @@ public class PaintedButton extends TranslucentButton {
 	}
 	
 	public void loadImages() {
-		try {
-			buttonBG = ImageIO.read(new File("res/images/buttons/pButton.png"));
-			buttonOver = ImageIO.read(new File("res/images/buttons/pButtonOver.png"));
-			buttonNA = ImageIO.read(new File("res/images/buttons/pButtonNA.png"));
-		} catch (IOException e){
-			e.printStackTrace();
-		}
+		buttonBG = UtilitySingleton.getInstance().getStorage().get("pButton").getImage();
+		buttonOver = UtilitySingleton.getInstance().getStorage().get("pButtonOver").getImage();
+		buttonNA = UtilitySingleton.getInstance().getStorage().get("pButtonNA").getImage();
 	}
 
 	@Override

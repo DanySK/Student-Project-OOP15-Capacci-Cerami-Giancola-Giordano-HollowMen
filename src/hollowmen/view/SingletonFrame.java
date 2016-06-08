@@ -13,13 +13,14 @@ import javax.swing.JFrame;
 public class SingletonFrame extends JFrame {
 	
 	private static final long serialVersionUID = 1310007697698107818L;
-        private final int GRID_DIMENSION_ROW=1;
-        private final int GRID_DIMENSION_COLUMN=1;
+    private final int GRID_DIMENSION_ROW=1;
+    private final int GRID_DIMENSION_COLUMN=1;
 	private static final int GAP=200;
 	private static int width;
 	private static int height;
 	
 	private SingletonFrame() {
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new GridLayout(GRID_DIMENSION_ROW,GRID_DIMENSION_COLUMN));
 		this.setSize(getWidth(), getHeight());
 		this.setBackground(Color.BLACK);

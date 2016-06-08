@@ -2,17 +2,14 @@ package hollowmen.view.juls;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hollowmen.view.SingletonFrame;
+import hollowmen.view.UtilitySingleton;
 import hollowmen.view.juls.buttons.PaintedButton;
 import hollowmen.view.juls.dialog.CreditsMenu;
 import hollowmen.view.juls.dialog.ExitDialog;
@@ -66,7 +63,7 @@ public class MainMenu {
 			if(name.equals("NEW GAME")) {
 				new NewGameDialog(SingletonFrame.getInstance());
 			} else if (name.equals("LOAD GAME")) {
-//				observer.addInput(InputCommand.LOAD);
+				
 			} else if (name.equals("HELP")) {
 				new HelpMenu(SingletonFrame.getInstance());
 			} else if (name.equals("CREDITS")) {
@@ -100,11 +97,7 @@ public class MainMenu {
 	 * The method tries to load the images needed.
 	 */
 	private void loadImages() {
-		try {
-			label.setIcon(new ImageIcon(ImageIO.read(new File("res/images/backgrounds/castleBG.jpg"))));
-			title.setIcon(new ImageIcon(ImageIO.read(new File("res/images/titles/title.png"))));			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		label.setIcon(UtilitySingleton.getInstance().getStorage().get("castleBG"));
+		title.setIcon(UtilitySingleton.getInstance().getStorage().get("title"));
 	}
 }

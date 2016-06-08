@@ -1,11 +1,7 @@
 package hollowmen.view.juls.dialog;
 
 import java.awt.Frame;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
@@ -43,11 +39,7 @@ public abstract class CustomDialog extends JDialog {
 	 * of the dialog and eventually set it.
 	 */
 	protected void addBackground() {
-		try {
-			background.setIcon(new ImageIcon(ImageIO.read(new File("res/images/dialog.jpg"))));
-			this.setContentPane(background);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+		background.setIcon(UtilitySingleton.getInstance().getStorage().get("dialog"));
+		this.setContentPane(background);	
 	}
 }
