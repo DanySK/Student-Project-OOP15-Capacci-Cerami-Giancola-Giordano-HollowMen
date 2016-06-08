@@ -55,11 +55,8 @@ public class Controller implements ViewObserver {
 			this.last=InputMenu.MAIN;
 			this.gameRunning=false;
 			this.view.drawMenu(InputMenu.MAIN, Optional.empty());
-			this.model.goTo(true);
-			try{
-			    this.model.update(1);
-			}catch(GameOverException e){}
-			this.model.setup();
+			this.model.goTo(true);//needed to reset hero life
+			this.model.setup();//needed to create new game
 			this.inputMenuList.clear();
 			break;
 		}case CLASS:{
@@ -114,9 +111,6 @@ public class Controller implements ViewObserver {
 			this.inputMenuList.clear();
 			this.view.drawLobby();
 			this.model.goTo(true);//needed to reset hero life
-			try{
-			    this.model.update(1);
-			}catch(GameOverException e){}
 			menuInputLoop();
 			break;
 		}case START:{

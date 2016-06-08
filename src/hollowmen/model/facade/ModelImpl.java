@@ -37,6 +37,9 @@ public class ModelImpl implements Model{
 	public void goTo(boolean lobby){
 	    if(lobby){
 	        this.dungeon.goTo(0);
+	        try{
+	            this.dungeon.update(1);
+	        }catch(GameOverException e){}
 	    }else{
 		this.dungeon.goTo(this.dungeon.getFloors().getX());
 	    }
