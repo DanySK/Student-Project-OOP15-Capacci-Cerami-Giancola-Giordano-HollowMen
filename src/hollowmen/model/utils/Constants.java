@@ -58,10 +58,10 @@ public class Constants {
 	
 	//TRESURE CHEST
 		
-	public static final int TREASURE_FLATFLOOR = 100;
+	public static final int TREASURE_FLATFLOOR = 50;
 	
 	public static final int TREASURE_FLATROOM = 10;
 	
-	public static final double TREASURE_ITEMCHANCE = 0.5;
+	public static final double TREASURE_ITEMCHANCE = 0.7;
 	
 }

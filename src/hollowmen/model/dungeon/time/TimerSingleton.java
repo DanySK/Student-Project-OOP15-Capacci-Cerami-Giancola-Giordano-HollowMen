@@ -29,7 +29,6 @@ public class TimerSingleton implements Time{
 		
 		public void pullTheTrigger() {
 			this.action.accept(subj);
-			System.out.println("TRIG EVENT");
 		}
 	
 		public double getTimeAtTrig() {

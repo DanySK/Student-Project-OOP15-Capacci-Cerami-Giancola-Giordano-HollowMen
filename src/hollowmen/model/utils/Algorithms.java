@@ -27,8 +27,8 @@ public class Algorithms {
 	private final static double ITEM_CHANCE_ORDINARY = 0.1 * MIN_DIGIT; 
 	private final static double ITEM_CHANCE_COMMANDER = 0.3 * MIN_DIGIT; 
 	private final static double ITEM_CHANCE_BOSS = 1 * MIN_DIGIT; 
-	private final static double FLAT_ENEMY_EXP = 100;
-	private final static double FLAT_ENEMY_GOLD = 75;
+	private final static double FLAT_ENEMY_EXP = 50;
+	private final static double FLAT_ENEMY_GOLD = 20;
 	private final static int MAX_ENEMY_DISTANCE_FROM_WALL = 255;
 	private final static int MIN_ENEMY_DISTANCE_FROM_WALL = 100;
 	private final static Vec2 FORCE_BACK = new Vec2(100f, -100f);
@@ -51,9 +51,10 @@ public class Algorithms {
 	}
 	
 	public static Collection<Enemy> generateEnemy() {
-		int maxLevel = (DungeonSingleton.getInstance().getFloorNumber() / 2) 
+		int maxLevel = (DungeonSingleton.getInstance().getFloorNumber()) 
 				+ DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() / Constants.ROOM_TO_VISIT;
-		int maxPower = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber();
+		int maxPower = DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() + 
+				DungeonSingleton.getInstance().getFloorNumber();
 		Collection<Enemy> retValue = new LinkedList<>();
 		if(DungeonSingleton.getInstance().getCurrentRoom().getRoomNumber() == Constants.ROOM_TO_VISIT) {
 			Enemy boss = EnemyPool.getInstance().getRandomForTitle(p -> p.equals(EnemyTitle.BOSS.toString()));

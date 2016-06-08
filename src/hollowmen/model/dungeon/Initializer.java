@@ -94,14 +94,16 @@ public class Initializer {
 		Collection<Parameter> list = new LinkedList<>();
 		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 100));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 10));
-		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 150));
-		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
+		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 100));
+		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1.5));
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 10));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 20));
 
 		Collection<Item> initItem = new LinkedList<>();
 		initItem.add(ItemPool.getInstance().getItem("woodSword"));
 		Inventory inventory = new InventoryImpl();
+//		inventory.addItem(ItemPool.getInstance().getItem("bootsBrown"));
+//		inventory.addItem(ItemPool.getInstance().getItem("excalibur"));
 		inventory.addItem(ItemPool.getInstance().getItem("woodSword"));
 		inventory.addItem(ItemPool.getInstance().getItem("bootsBlack"));
 		
@@ -164,8 +166,8 @@ public class Initializer {
 		
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 20, true));
-		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 20, true));
+		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 10, true));
+		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 15, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("chestBronze", "It looks like Gold at first sight! \n But actually... it's not."))
 				.rarity(1)
@@ -177,7 +179,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 50, true));
+		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 30, true));
 		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 50, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("chestSilver", "It looks like Silver at first sight... wait...it is!"))
@@ -190,8 +192,8 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 80, true));
-		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 80, true));
+		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 50, true));
+		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 100, true));
 		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("chestGold", "It looks like Gold at first sight... Holy!... It is!"))
@@ -241,7 +243,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 10, true));
+		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 5, true));
 		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 10, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("headBronze", "You are not gold..."))
@@ -254,8 +256,8 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 30, true));
-		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 15, true));
+		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 10, true));
+		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 20, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("headSilver", "You are Silver..."))
 				.rarity(2)
@@ -267,8 +269,8 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 50, true));
-		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 20, true));
+		mod.add(genMod(Parameter.ParamName.DEFENSE.toString(), 20, true));
+		mod.add(genMod(Parameter.ParamName.HPMAX.toString(), 50, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("headGold", "I can give you 5 dollars for this."))
 				.rarity(3)
@@ -293,7 +295,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 100, true));
+		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 70, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("simpleSword", "From the wood to the iron!"))
 				.rarity(2)
@@ -306,7 +308,7 @@ public class Initializer {
 		
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 0.7, false));
-		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 150, true));
+		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 100, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("redSword", "From the iron to the iron... but with fashionable red details."))
 				.rarity(3)
@@ -319,7 +321,7 @@ public class Initializer {
 		
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.ATTACKRANGE.toString(), 1.3, false));
-		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 200, true));
+		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 100, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("longSword", "From the iron to the, mh, longer iron (?)"))
 				.rarity(3)
@@ -333,7 +335,7 @@ public class Initializer {
 		
 		mod.clear();
 		mod.add(genMod(Parameter.ParamName.ATTACKSPEED.toString(), 1.25, false));
-		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 400, true));
+		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 300, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("scimitar", "From the iron to the iron... heavier."))
 				.rarity(4)
@@ -351,7 +353,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 1.5, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("excalibur", "This LEGENDARY sword has NEVER been seen in any other RPG game..."))
-				.rarity(5)
+				.rarity(1)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
 				.heroClass(HeroClass.Name.WARRIOR.toString())

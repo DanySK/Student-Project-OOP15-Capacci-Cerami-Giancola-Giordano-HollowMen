@@ -125,9 +125,9 @@ public abstract class RoomEntityAbs implements RoomEntity{
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
-			return true;
+			return true;			
 		if (obj == null)
-			return false;
+			return false;			
 		if (!(obj instanceof RoomEntity))
 			return false;
 		RoomEntity other = (RoomEntity) obj;
@@ -136,9 +136,8 @@ public abstract class RoomEntityAbs implements RoomEntity{
 				return false;
 		} else if (!info.equals(other.getInfo()))
 			return false;
-		if (this.getBody().getWorldCenter().x == other.getBody().getWorldCenter().x
-				&& this.getBody().getWorldCenter().y == other.getBody().getWorldCenter().y)
-			return true;
+		if (!this.getBody().getWorldCenter().equals(other.getBody().getWorldCenter()))
+			return false;
 		return true;
 	}
 

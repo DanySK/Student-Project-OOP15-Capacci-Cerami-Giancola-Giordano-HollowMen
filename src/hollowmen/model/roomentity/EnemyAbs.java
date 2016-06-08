@@ -108,28 +108,18 @@ public abstract class EnemyAbs extends ActorAbs implements Enemy{
 
 	@Override
 	public boolean equals(Object obj) {
-		if(!super.equals(obj)) {
-			return false;
-		}
 		if (!(obj instanceof Enemy)) {
 			return false;
 		}
 		Enemy other = (Enemy) obj;
 		if (combatLevel != other.getLevel())
 			return false;
-		if (title == null) {
+		if (title == null)
 			if (other.getTitle() != null)
 				return false;
-		} else if (!title.equals(other.getTitle())) {
+			else if (!title.equals(other.getTitle()))
 			return false;
-		}
-		if (this.getInfo() == null) {
-			if (other.getInfo() != null)
-				return false;
-		} else if (!this.getInfo().equals(other.getInfo())) {
-			return false;
-		}
-		return true;
+		return super.equals(obj);
 	}
 
 	/**

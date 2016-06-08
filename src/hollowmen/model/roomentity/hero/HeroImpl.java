@@ -111,8 +111,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 		ExceptionThrower.checkIllegalArgument(item, i -> !i.getHeroClassEquippable().equals(this.getHeroClass().getInfo().getName()));
 		ExceptionThrower.checkIllegalArgument(item, i -> !this.inventory.getAllItem().stream()
 				.map(p -> p.getX()).collect(Collectors.toList()).contains(i));
-		System.out.println("EQUIP");
-		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 		Item itemFrom = this.inventory.getItem(item.getInfo().getName());
 		this.inventory.removeItem(itemFrom);
 		itemFrom.setState(ItemState.EQUIPPED);
@@ -120,7 +118,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.slots.put(itemFrom.getSlot(), Optional.of(itemFrom));
 		itemFrom.getModifiers().entries().forEach(e -> Actors.addModifier(this, e.getValue()));
 		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
-		this.getEquippedItem().stream().forEach(System.out::println);
 	}
 
 	/**
@@ -130,15 +127,12 @@ public class HeroImpl extends ActorAbs implements Hero{
 	public void unequipItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> !this.slots.get(i.getSlot()).isPresent());
-		System.out.println("UNEQUIP");
-		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 		Item unequipItem = this.slots.get(item.getSlot()).get();
 		ExceptionThrower.checkIllegalState(unequipItem, x -> !x.getState().equals(ItemState.EQUIPPED));
 		unequipItem.getModifiers().entries().stream().forEach(e -> Actors.removeModifier(this, e.getValue()));
 		this.inventory.addItem(unequipItem);
 		this.slots.put(item.getSlot(), Optional.empty());
 		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
-
 	}
 
 	
@@ -152,7 +146,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 		if(item.getState().equals(ItemState.EQUIPPED)) {
 			this.unequipItem(item);
 		}
-		System.out.println("Vendo " + item + " miei soldi "+ this.gold + " il costo è "+ item.getGoldValue());
 		this.inventory.removeItem(item);
 		this.gold += item.getGoldValue();
 	}
@@ -164,7 +157,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 	public void buyItem(Item item) throws IllegalStateException, NullPointerException {
 		ExceptionThrower.checkNullPointer(item);
 		ExceptionThrower.checkIllegalState(item, i -> (i.getGoldValue() - this.getGold()) > 0);
-		System.out.println("Compro " + item + " miei soldi "+ this.gold + " il costo è "+ item.getGoldValue());
 		this.inventory.addItem(ItemPool.getInstance().getItem(item.getInfo().getName()));
 		this.gold -= item.getGoldValue();
 	}

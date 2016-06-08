@@ -47,7 +47,6 @@ public abstract class AttackAbs extends ActorAbs implements Attack{
 				: temp.getWorldCenter().x - this.owner.getLength() / 2;	
 		float yPos = temp.getWorldCenter().y;
 		this.getBody().setTransform(new Vec2(xPos, yPos), 0f);
-		System.out.println(this.getBody().getWorldCenter());
 	}
 	
 	private void filtering() {

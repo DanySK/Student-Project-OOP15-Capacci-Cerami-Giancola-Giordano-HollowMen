@@ -68,11 +68,9 @@ public class ParamImpl extends InformationUserImpl implements Parameter{
 		
 		if(mod.getOperation().equals(Modifier.Operation.ADD.getOp())) {
 			this.sum = mod.getOperation().apply(this.sum, mod.getParameter().getValue());
-			System.out.println("HO SOMMATO -->"+mod+" E ADESSO SUM VALE -->"+this.sum);
 		}
 		if(mod.getOperation().equals(Modifier.Operation.MUL.getOp())) {
 			this.mul = mod.getOperation().apply(this.mul, mod.getParameter().getValue());
-			System.out.println("HO MOLTIPLICATO -->"+mod+" E ADESSO MUL VALE -->"+this.mul);
 		}
 	}
 

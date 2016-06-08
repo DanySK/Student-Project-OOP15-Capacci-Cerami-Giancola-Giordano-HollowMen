@@ -9,6 +9,8 @@ import java.util.List;
 import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
+import hollowmen.model.roomentity.EnemyAbs;
+import hollowmen.model.roomentity.RoomEntityAbs;
 import hollowmen.model.roomentity.interactable.Door;
 import hollowmen.model.utils.Algorithms;
 import hollowmen.model.utils.Box2DUtils;
@@ -174,15 +176,13 @@ public class RoomImpl implements Room{
 	@Override
 	public void removeEntity(RoomEntity roomEntity) throws IllegalArgumentException {
 		if(roomEntity instanceof Attack) {
-			bullets.remove((Attack) roomEntity);
+			bullets.remove(roomEntity);
 		}
 		if(roomEntity instanceof Enemy) {
-			
-			this.getEnemies().stream().filter(x -> x.getBody().getWorldCenter().equals(roomEntity.getBody().getWorldCenter())).forEach(System.out::println);
 			this.enemies.remove(roomEntity);
 		}
 		if(roomEntity instanceof Interactable) {
-			interactables.remove((Interactable)roomEntity);
+			interactables.remove(roomEntity);
 		}
 	}
 
