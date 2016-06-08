@@ -104,12 +104,19 @@ public class ModelImpl implements Model{
 	public List<InformationDealer> getPokedex() {
 		List<InformationDealer> info=new LinkedList<>();
 		Map<String,Double> param;
+		String name;
 		for(Enemy en: this.dungeon.getPokedex().getEnemyMet()){
 		    param=new HashMap<>();
 			for(Map.Entry<String, Parameter> map:en.getParameters().entrySet()){
 				param.put(map.getKey(),(Double)map.getValue().getValue());
 			}
-			info.add(new InformationDealerImpl(en.getInfo().getName()+en.getLevel(),
+			name=new String(en.getInfo().getName());
+			if(en.getLevel()<5){
+				name+=en.getLevel();
+			}else{
+				name+="Boss";
+			}
+			info.add(new InformationDealerImpl(name,
 					en.getInfo().getDescription().orElse(""),
 					param,
 					en.getState(),
@@ -181,9 +188,9 @@ public class ModelImpl implements Model{
 	
 	public void itemUnequip(InformationDealer item) {
 		try{
-			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
-				if(it.getX().getInfo().getName()==item.getName()){
-					this.hero.unequipItem(it.getX());
+			for(Item it: this.hero.getEquippedItem()){
+				if(it.getInfo().getName()==item.getName()){
+					this.hero.unequipItem(it);
 				}
 			}
 		}catch(Exception e){
@@ -193,9 +200,9 @@ public class ModelImpl implements Model{
 	
 	public void itemBuy(InformationDealer item) {
 		try{
-			for(Pair<Item,Integer> it: this.hero.getInventory().getAllItem()){
-				if(it.getX().getInfo().getName()==item.getName()){
-					this.hero.buyItem(it.getX());
+			for(Item it: this.dungeon.getShop().getShopItem()){
+				if(it.getInfo().getName()==item.getName()){
+					this.hero.buyItem(it);
 				}
 			}
 		}catch(Exception e){
