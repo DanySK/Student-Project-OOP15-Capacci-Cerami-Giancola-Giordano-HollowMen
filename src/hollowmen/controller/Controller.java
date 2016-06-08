@@ -55,6 +55,11 @@ public class Controller implements ViewObserver {
 			this.last=InputMenu.MAIN;
 			this.gameRunning=false;
 			this.view.drawMenu(InputMenu.MAIN, Optional.empty());
+			this.model.goTo(true);
+			try{
+			    this.model.update(1);
+			}catch(GameOverException e){}
+			this.model.setup();
 			this.inputMenuList.clear();
 			break;
 		}case CLASS:{
@@ -108,12 +113,16 @@ public class Controller implements ViewObserver {
 			this.last=InputMenu.LOBBY;
 			this.inputMenuList.clear();
 			this.view.drawLobby();
+			this.model.goTo(true);//needed to reset hero life
+			try{
+			    this.model.update(1);
+			}catch(GameOverException e){}
 			menuInputLoop();
 			break;
 		}case START:{
 			this.last=InputMenu.START;
 			this.inputMenuList.clear();
-			this.model.goTo();
+			this.model.goTo(false);
 			gameLoop();
 			break;
 		}case ACHIEVEMENTS:{
@@ -165,7 +174,6 @@ public class Controller implements ViewObserver {
 					menuChoice();
 				}
 			}catch(Exception e){
-				System.out.println("menuInputManager");
 				e.printStackTrace();
 				System.exit(0);
 			}
@@ -234,7 +242,6 @@ public class Controller implements ViewObserver {
 				
 				
 			}catch(Exception e){
-				System.out.println("itemInputManager");
 				e.printStackTrace();
 				System.exit(0);
 			}
@@ -281,7 +288,6 @@ public class Controller implements ViewObserver {
 				this.inputCommandListThread.clear();
 			}
 		}catch(Exception e){
-			System.out.println("gameInputManager");
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -306,7 +312,6 @@ public class Controller implements ViewObserver {
 				this.model.update(skipTickMillisec);
 			}catch(GameOverException e){
 				this.gameRunning=false;
-				System.out.println("GameOver!");
 				this.last=InputMenu.LOBBY;
 				this.view.drawLobby();
 				menuInputLoop();
@@ -323,7 +328,6 @@ public class Controller implements ViewObserver {
 			
 		}
 		}catch(Exception e){
-			System.out.println("il gameLoop si inchioda");
 			e.printStackTrace();
 			System.exit(0);
 		}

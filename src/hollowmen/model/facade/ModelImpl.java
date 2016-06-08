@@ -34,8 +34,12 @@ public class ModelImpl implements Model{
 		this.hero=dungeon.getHero();
 	}
 	
-	public void goTo(){
+	public void goTo(boolean lobby){
+	    if(lobby){
+	        this.dungeon.goTo(0);
+	    }else{
 		this.dungeon.goTo(this.dungeon.getFloors().getX());
+	    }
 	}
 	
 	public void update(long deltaTime) throws GameOverException {
