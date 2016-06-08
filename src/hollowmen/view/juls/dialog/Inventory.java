@@ -131,18 +131,14 @@ public class Inventory extends TabbedDialog {
 		.filter(x -> x.getSlot().equals(slot))
 		.filter(x -> x.getState().equals("UNEQUIPPED"))
 		.forEach(x -> {
-			stats = x.getStat();
-			nameF = x.getName();
-			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					stats = x.getStat();
-					nameF = x.getName();
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 					setButtonState(true, false);
 					setLastItem(x);
-					statsBox.setText(showStats(stats));	
+					statsBox.setText(showStats(x.getStat()));	
 				}
 			});
 			panel.add(button);
@@ -158,17 +154,13 @@ public class Inventory extends TabbedDialog {
 		.filter(x -> x.getState().equals("EQUIPPED"))
 		.filter(x -> x.getSlot().equals(slot))
 		.forEach(x -> {
-			stats = x.getStat();
-			nameF = x.getName();
-			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 			button.setIcon(icon);
 			button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					stats = x.getStat();
-					nameF = x.getName();
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 					setButtonState(false, true);
-					statsBox.setText(showStats(stats));
+					statsBox.setText(showStats(x.getStat()));
 					setLastItem(x);
 				}
 			});
