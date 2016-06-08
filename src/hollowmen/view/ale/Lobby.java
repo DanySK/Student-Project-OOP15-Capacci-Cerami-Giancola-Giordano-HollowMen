@@ -28,8 +28,10 @@ public class Lobby extends JLabel{
 
     private static final long serialVersionUID = -986610577506284L;
     private Font fontA=new Font("Chiller",Font.PLAIN, 20);
-    private Font fontB=new Font("Chiller",Font.PLAIN, 40);
+    private Font fontShop=new Font("Chiller",Font.PLAIN, 25);
+    private Font fontB=new Font("Chiller",Font.PLAIN, 45);
     private Font fontTitle=new Font("Chiller",Font.PLAIN, 70);
+    
     private static final int DIMXPLAY=200;
     private static final int DIMXL=800;
     private static final int DIMYL=800;
@@ -42,7 +44,6 @@ public class Lobby extends JLabel{
     private static final int LOCY=230;
     private static final int LOCY2=450;
     private static final int LOCYSP=670;
-    
     private Border border=BorderFactory.createRaisedBevelBorder();//To set a border to the buttons.
     private JButton inventory;
     private JButton skillTree;
@@ -119,7 +120,7 @@ public class Lobby extends JLabel{
         this.shop.setIcon(new ImageIcon(storage.get("coinBag").getImage()));
         this.shop.setBackground(Color.darkGray);
         this.shop.setText("SHOP");
-        this.shop.setFont(fontA);
+        this.shop.setFont(fontShop);
         this.shop.setForeground(Color.WHITE);
         this.shop.setBounds(LOCX, LOCY2, DIMX, DIMY);
         this.shop.setBorder(border);
