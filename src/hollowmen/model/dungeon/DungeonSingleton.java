@@ -96,6 +96,7 @@ public class DungeonSingleton implements Dungeon{
 		});
 		this.disposeList.clear();
 		if(gameOver) {
+			System.out.println("GAME OVER");
 			endRun();
 			throw new GameOverException();
 		}
@@ -151,6 +152,7 @@ public class DungeonSingleton implements Dungeon{
 	public void goTo(int floorNumber) throws IllegalStateException {
 		if(floorNumber <= 0) {
 			this.gameOver();
+			return;
 		}
 		ExceptionThrower.checkIllegalState(floorNumber, f -> f > this.unlockedFloors.getValue());
 		TimerSingleton.getInstance().resetAndLimit(100000);
@@ -183,6 +185,7 @@ public class DungeonSingleton implements Dungeon{
 		}
 		Collection<Enemy> toDestroy = this.currentRoom.getEnemies().stream().collect(Collectors.toList());
 		toDestroy.stream().forEach(x -> {
+			System.out.println(x);
 			this.currentRoom.removeEntity(x);
 			this.world.destroyBody(x.getBody());
 		});
@@ -310,6 +313,9 @@ public class DungeonSingleton implements Dungeon{
 	 * @param hero {@link Hero}
 	 */
 	public void setHero(Hero hero) {
+		if(this.hero != null) {
+			this.world.destroyBody(this.hero.getBody());
+		}
 		this.hero = hero;
 	}
 	
