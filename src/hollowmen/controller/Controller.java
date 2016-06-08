@@ -186,24 +186,47 @@ public class Controller implements ViewObserver {
 						case EQUIP:{
 							this.model.itemEquip(this.mapInputCommand.getY());
 							this.mapInputCommand=null;
+							this.view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInventory()));
 							break;
 						}case BUY:{
 							this.model.itemBuy(this.mapInputCommand.getY());
 							this.mapInputCommand=null;
+							
+							List<InformationDealer> shop=new LinkedList<>();
+							for(InformationDealer item:model.getInventory()){
+								if(item.getState().equals("UNEQUIPPED")){
+									shop.add(item);
+								}
+							}
+							shop.addAll(model.getShop());
+							this.view.drawMenu(InputMenu.SHOP, Optional.of(shop));
+							
 							break;
 						}case UNEQUIP:{
 							this.model.itemUnequip(this.mapInputCommand.getY());
 							this.mapInputCommand=null;
+							this.view.drawMenu(InputMenu.INVENTORY, Optional.of(model.getInventory()));
 							break;
 						}case SELL:{
 							this.model.itemSell(this.mapInputCommand.getY());
 							this.mapInputCommand=null;
+							
+							List<InformationDealer> shop=new LinkedList<>();
+							for(InformationDealer item:model.getInventory()){
+								if(item.getState().equals("UNEQUIPPED")){
+									shop.add(item);
+								}
+							}
+							shop.addAll(model.getShop());
+							this.view.drawMenu(InputMenu.SHOP, Optional.of(shop));
+							
 							break;
 						}default:{
 							this.mapInputCommand=null;
 							break;
 						}
 						}
+						
 					}
 					this.mapInputCommand=null;
 				}
