@@ -205,6 +205,7 @@ public class ModelImpl implements Model{
 					this.hero.buyItem(it);
 				}
 			}
+			Values.GOLD.setValue(this.hero.getGold());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
