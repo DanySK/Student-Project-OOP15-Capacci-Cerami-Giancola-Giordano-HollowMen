@@ -149,6 +149,9 @@ public class DungeonSingleton implements Dungeon{
 	 */
 	@Override
 	public void goTo(int floorNumber) throws IllegalStateException {
+		if(floorNumber <= 0) {
+			this.gameOver();
+		}
 		ExceptionThrower.checkIllegalState(floorNumber, f -> f > this.unlockedFloors.getValue());
 		TimerSingleton.getInstance().resetAndLimit(100000);
 		this.floorNumber = floorNumber;
