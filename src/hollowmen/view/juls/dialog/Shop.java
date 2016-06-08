@@ -75,6 +75,7 @@ public class Shop extends TabbedDialog {
 		
 		statsBox.setBounds(420, 280, 280, 50);
 		this.add(statsBox);
+		
 		this.add(tabbedPane);
 		this.setVisible(true);
 	}
@@ -100,23 +101,17 @@ public class Shop extends TabbedDialog {
 		c.stream()	
 		.filter(x -> x.getState().equals("UNEQUIPPED"))
 		.forEach(x -> {
-			stats = x.getStat();
-			nameF = x.getName();
-			description = x.getDescription();
-			quantity = x.getAmount();
-			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
-					stats = x.getStat();
-					nameF = x.getName();
-					desc.setText(description = x.getDescription());
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					desc.setText(x.getDescription());
+					icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 					setButtonState(false, true);
 					setLastItem(x);
 					label.setIcon(showImage((ImageIcon) icon));
-					statsBox.setText(showStats(stats));
-					amount.setText("Amount:  " + quantity);
+					statsBox.setText(showStats(x.getStat()));
+					amount.setText("Amount:  " + x.getAmount());
 				}
 			});
 			panel.add(button);
@@ -134,21 +129,16 @@ public class Shop extends TabbedDialog {
 		c.stream()	
 		.filter(x -> x.getState().equals("BUYABLE"))
 		.forEach(x -> {
-			stats = x.getStat();
-			nameF = x.getName();
-			description = x.getDescription();
-			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
-					stats = x.getStat();
-					nameF = x.getName();
-					desc.setText(description = x.getDescription());
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					desc.setText(x.getDescription());
+					icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 					setButtonState(true, false);
 					setLastItem(x);
 					label.setIcon(showImage((ImageIcon) icon));
-					statsBox.setText(showStats(stats));
+					statsBox.setText(showStats(x.getStat()));
 					amount.setText("Amount:  X");
 				}
 			});

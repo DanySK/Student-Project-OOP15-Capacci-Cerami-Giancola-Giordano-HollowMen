@@ -35,7 +35,7 @@ public class InputChooser {
 							break;}
 		case KeyEvent.VK_D:{ this.observer.addInput(InputCommand.RIGHT);
 							break;}
-		case KeyEvent.VK_E:{ this.observer.addInput(InputCommand.EQUIP);
+		case KeyEvent.VK_E:{ this.observer.addInput(InputMenu.INVENTORY);
 							break;}
 		case KeyEvent.VK_F:{ this.observer.addInput(InputMenu.SKILL_TREE);
 							break;}

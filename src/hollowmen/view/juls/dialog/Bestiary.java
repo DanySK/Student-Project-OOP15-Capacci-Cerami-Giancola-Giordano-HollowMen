@@ -66,19 +66,14 @@ public class Bestiary extends GridDialog {
 	private void populateBestiary(Collection<InformationDealer> c) {
 		c.stream()	
 		.forEach(x -> {
-			stats = x.getStat();
-			nameF = x.getName();
-			description = x.getDescription();
-			icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+			icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 			button = new IconButton(icon);
 			button.addActionListener(new ActionListener() { 
 				public void actionPerformed(ActionEvent e) {
-					stats = x.getStat();
-					nameF = x.getName();
 					desc.setText(description = x.getDescription());
-					icon = UtilitySingleton.getInstance().getStorage().get(nameF);
+					icon = UtilitySingleton.getInstance().getStorage().get(x.getName());
 					label.setIcon(showMobPortrait((ImageIcon) icon));
-					statsBox.setText(showStats(stats));	
+					statsBox.setText(showStats(x.getStat()));	
 				}
 			});
 			gridPanel.add(button);

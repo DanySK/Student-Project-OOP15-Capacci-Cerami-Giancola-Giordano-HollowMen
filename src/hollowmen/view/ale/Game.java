@@ -77,7 +77,7 @@ public class Game extends JLabel implements GameInterface{
             this.setOpaque(true);
             this.setBackground(Color.BLACK);
             this.setBounds(0,0,x,y+GAP);
-            //new CreateAudio();
+            new CreateAudio();
             KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             manager.addKeyEventDispatcher(new KeyInput(this));
         }
