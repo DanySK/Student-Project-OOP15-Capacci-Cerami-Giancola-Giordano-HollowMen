@@ -121,7 +121,6 @@ public class EnemyPool {
 				.filter(e -> funcTit.test(e.getKey().getZ()))
 				.map(e -> e.getValue())
 				.toArray()));
-		System.out.println(en);
 		return en;
 	}
 	

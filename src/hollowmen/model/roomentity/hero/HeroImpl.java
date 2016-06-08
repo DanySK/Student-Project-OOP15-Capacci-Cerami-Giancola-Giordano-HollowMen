@@ -117,7 +117,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 		this.slots.get(itemFrom.getSlot()).ifPresent(x -> this.unequipItem(x));
 		this.slots.put(itemFrom.getSlot(), Optional.of(itemFrom));
 		itemFrom.getModifiers().entries().forEach(e -> Actors.addModifier(this, e.getValue()));
-		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 	}
 
 	/**
@@ -132,7 +131,6 @@ public class HeroImpl extends ActorAbs implements Hero{
 		unequipItem.getModifiers().entries().stream().forEach(e -> Actors.removeModifier(this, e.getValue()));
 		this.inventory.addItem(unequipItem);
 		this.slots.put(item.getSlot(), Optional.empty());
-		this.getParameters().entrySet().stream().forEach(x -> System.out.println("PARAM -->"+ x.getValue().getInfo() + " VALUE -->" + x.getValue().getValue()));
 	}
 
 	

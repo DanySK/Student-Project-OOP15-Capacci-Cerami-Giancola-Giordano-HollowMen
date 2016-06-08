@@ -4,12 +4,10 @@ import java.util.Collection;
 
 import hollowmen.model.Actor;
 import hollowmen.model.Attack;
-import hollowmen.model.Information;
 import hollowmen.model.Parameter;
 import hollowmen.model.RoomEntity;
 import hollowmen.model.dungeon.InfoImpl;
 import hollowmen.model.utils.Constants;
-import hollowmen.utilities.Pair;
 
 /**
  * This class represents an attack that can move in one direction until collide with an enemy/hero or a wall

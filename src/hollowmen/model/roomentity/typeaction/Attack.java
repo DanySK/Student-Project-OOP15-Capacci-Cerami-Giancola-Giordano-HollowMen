@@ -7,11 +7,9 @@ import hollowmen.enumerators.ActorState;
 import hollowmen.enumerators.ParamName;
 import hollowmen.enumerators.StatusName;
 import hollowmen.model.Actor;
-import hollowmen.model.Modifier;
 import hollowmen.model.Parameter;
 import hollowmen.model.TypeAction;
 import hollowmen.model.dungeon.InfoImpl;
-import hollowmen.model.dungeon.ModifierImpl;
 import hollowmen.model.dungeon.ParamImpl;
 import hollowmen.model.dungeon.time.TimerSingleton;
 import hollowmen.model.roomentity.Bullet;
@@ -44,7 +42,6 @@ public class Attack implements TypeAction{
 			TimerSingleton.getInstance().register(subject, Constants.ATTACK_DURATION,
 					x -> {
 						x.setState(ActorState.STANDING.toString());
-						System.out.println(x.getState());
 						x.getStatus().add(new InfoImpl(StatusName.RECHARGE.toString()));
 					});
 			TimerSingleton.getInstance().register(subject, Constants.ATTACK_DURATION + 

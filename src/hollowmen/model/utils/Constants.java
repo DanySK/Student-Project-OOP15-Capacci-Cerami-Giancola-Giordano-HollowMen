@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import org.jbox2d.common.Vec2;
 
 import hollowmen.model.Modifier.Operation;
-import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.utilities.Pair;
 
 

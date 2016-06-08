@@ -113,7 +113,6 @@ public class SkillTreeImpl implements SkillTree{
 	
 	private void retrieveUpdateRoutine(SkillNode target, int value) {
 		this.allTargets.get(target.getInfo().getName()).subToValue(value);
-		this.branchLevelNodes.get(keyGen(target)).stream().map(x -> x.getValue()).forEach(System.out::println);
 		this.pointsOnBranchLevel.get(keyGen(target)).sub(value);
 		this.pointsOnBranch.get(target.getTag()).sub(value);
 		this.skillPointUnspent += value;
@@ -142,8 +141,7 @@ public class SkillTreeImpl implements SkillTree{
 		this.pointsOnBranchLevel.entrySet().stream()
 				.filter(x -> x.getKey().getX().equals(target.getTag()))
 				.filter(x -> x.getKey().getY() <= target.getLevel())
-				.map(x -> x.getValue().getCount())
-				.forEach(System.out::println);
+				.map(x -> x.getValue().getCount());
 		if(sumPreviousNodePoints < (target.getLevel()+1) * Constants.SKILLPOINTS_FORUPGRADE ) {
 			this.removeAllPointsFromLevelToLimit(keyGen(target));
 		}
@@ -184,7 +182,6 @@ public class SkillTreeImpl implements SkillTree{
 	private void spendUpdateRoutine(SkillNode target, int value) {
 		this.allTargets.get(target.getInfo().getName()).addToValue(value);
 		this.pointsOnBranchLevel.get(keyGen(target)).add(value);
-		System.out.println(this.pointsOnBranchLevel.get(keyGen(target)).getCount());
 		this.pointsOnBranch.get(target.getTag()).add(value);
 		this.skillPointUnspent-= value;
 	}

@@ -12,7 +12,6 @@ import org.jbox2d.dynamics.FixtureDef;
 
 import hollowmen.model.Enemy;
 import hollowmen.model.RoomEntity;
-import hollowmen.model.dungeon.FilterType;
 import hollowmen.utilities.RandomSelector;
 
 public class Box2DUtils {

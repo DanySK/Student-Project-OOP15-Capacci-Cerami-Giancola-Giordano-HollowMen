@@ -142,7 +142,6 @@ public class DungeonSingleton implements Dungeon{
 				|| this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT) {
 			this.gameOver();
 		}
-		System.out.println("Room Number " + this.currentRoom.getRoomNumber());
 	}
 	
 	/**
@@ -175,7 +174,9 @@ public class DungeonSingleton implements Dungeon{
 	public void endRun() {
 		if(this.currentRoom.getRoomNumber() > Constants.ROOM_TO_VISIT
 				&& this.floorNumber == this.unlockedFloors.getValue()) {
-			this.unlockedFloors.addToValue(1);
+			try {
+				this.unlockedFloors.addToValue(1);
+			} catch (UpperLimitReachException e) {};
 		}
 		Collection<Enemy> toDestroy = this.currentRoom.getEnemies().stream().collect(Collectors.toList());
 		toDestroy.stream().forEach(x -> {

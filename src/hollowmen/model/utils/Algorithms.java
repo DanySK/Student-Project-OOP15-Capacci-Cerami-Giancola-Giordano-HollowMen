@@ -29,8 +29,6 @@ public class Algorithms {
 	private final static double ITEM_CHANCE_BOSS = 1 * MIN_DIGIT; 
 	private final static double FLAT_ENEMY_EXP = 50;
 	private final static double FLAT_ENEMY_GOLD = 20;
-	private final static int MAX_ENEMY_DISTANCE_FROM_WALL = 255;
-	private final static int MIN_ENEMY_DISTANCE_FROM_WALL = 100;
 	private final static Vec2 FORCE_BACK = new Vec2(100f, -100f);
 	
 	

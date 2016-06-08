@@ -1,16 +1,12 @@
 package hollowmen.model.dungeon;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 import hollowmen.model.Interactable;
 import hollowmen.model.Room;
 import hollowmen.model.RoomEntity;
-import hollowmen.model.roomentity.EnemyAbs;
-import hollowmen.model.roomentity.RoomEntityAbs;
 import hollowmen.model.roomentity.interactable.Door;
 import hollowmen.model.utils.Algorithms;
 import hollowmen.model.utils.Box2DUtils;

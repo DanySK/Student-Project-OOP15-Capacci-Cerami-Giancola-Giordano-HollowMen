@@ -5,8 +5,6 @@ import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.contacts.Contact;
 
-import hollowmen.enumerators.ActorState;
-import hollowmen.model.Actor;
 import hollowmen.model.Attack;
 import hollowmen.model.Enemy;
 import hollowmen.model.Hero;

@@ -1,10 +1,11 @@
 package hollowmen.model.dungeon;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import hollowmen.model.Enemy;
-import hollowmen.model.Parameter;
 import hollowmen.model.Pokedex;
 import hollowmen.model.Room;
 import hollowmen.model.enemy.EnemyPool;
@@ -17,13 +18,13 @@ import hollowmen.utilities.Tris;
  */
 public class PokedexImpl implements Pokedex{
 
-	private Collection<Enemy> enemyMet;
+	private Map<Tris<String, Integer, String>, Enemy> enemyMet;
 	
 	/**
 	 * This constructor creates a new empty {@code Pokedex}
 	 */
 	public PokedexImpl() {
-		enemyMet = new LinkedList<>();
+		enemyMet = new HashMap<>();
 	}
 
 	/**
@@ -34,7 +35,7 @@ public class PokedexImpl implements Pokedex{
 	public PokedexImpl(Collection<Tris<String, Integer, String>> enemyName) {
 		super();
 		enemyName.stream()
-			.forEach(e -> enemyMet.add(this.clearHP(EnemyPool.getInstance().getSpecificEnemy(e.getX(), e.getY(), e.getZ()))));
+			.forEach(e -> enemyMet.put(e, EnemyPool.getInstance().getSpecificEnemy(e.getX(), e.getY(), e.getZ())));
 	}
 	
 	/**
@@ -42,9 +43,11 @@ public class PokedexImpl implements Pokedex{
 	 */
 	@Override
 	public void checkNewEnemy(Room r) {
-		r.getEnemies().stream()
-			.filter(e -> !this.enemyMet.contains(e))
-			.forEach(e -> this.enemyMet.add(e));
+		r.getEnemies().stream().forEach(e -> {
+			if(!this.enemyMet.containsKey(genKey(e))) {
+				this.enemyMet.put(genKey(e), e);
+			}
+		});
 	}
 
 	/**
@@ -52,13 +55,13 @@ public class PokedexImpl implements Pokedex{
 	 */
 	@Override
 	public Collection<Enemy> getEnemyMet() {
-		return this.enemyMet;
+		return this.enemyMet.entrySet().stream().map(p -> p.getValue()).collect(Collectors.toList());
 	}
 	
-	private Enemy clearHP(Enemy e) {
-		e.getParameters().remove(Parameter.ParamName.HP.toString());
-		return e;
-	}
+
 	
+	private Tris<String, Integer, String> genKey(Enemy e) {
+		return new Tris<>(e.getInfo().getName(), e.getLevel(), e.getTitle());
+	}
 	
 }

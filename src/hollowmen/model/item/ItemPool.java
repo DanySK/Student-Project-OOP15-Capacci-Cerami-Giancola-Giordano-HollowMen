@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 import hollowmen.model.Item;
 import hollowmen.model.utils.Cloner;
 import hollowmen.utilities.ExceptionThrower;
-import hollowmen.utilities.Pair;
 import hollowmen.utilities.RandomSelector;
 
 /**
@@ -44,7 +43,6 @@ public class ItemPool {
 	 */
 	public void addItem(Item item) throws IllegalArgumentException, NullPointerException{
 		ExceptionThrower.checkNullPointer(item);
-		ExceptionThrower.checkIllegalArgument(new Pair<Set<Item>, Item>(itemInGame, item), p -> p.getX().contains(p.getY()));
 		itemInGame.add(item);
 	}
 	

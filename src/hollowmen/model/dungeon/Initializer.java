@@ -102,12 +102,10 @@ public class Initializer {
 		Collection<Item> initItem = new LinkedList<>();
 		initItem.add(ItemPool.getInstance().getItem("woodSword"));
 		Inventory inventory = new InventoryImpl();
-//		inventory.addItem(ItemPool.getInstance().getItem("bootsBrown"));
-//		inventory.addItem(ItemPool.getInstance().getItem("excalibur"));
 		inventory.addItem(ItemPool.getInstance().getItem("woodSword"));
 		inventory.addItem(ItemPool.getInstance().getItem("bootsBlack"));
 		
-		Hero hero =  new HeroImpl(1, 200, new Pair<>(0, 500), "You are the True Hero!",
+		Hero hero =  new HeroImpl(1, 100, new Pair<>(0, 500), "You are the True Hero!",
 				new HeroClassImpl(new InfoImpl(HeroClass.Name.WARRIOR.toString()), new SkillTreeImpl(genNode())
 						, list, new ChallengeImpl()), inventory,  initItem);
 		DungeonSingleton.getInstance().setHero(hero);
@@ -135,7 +133,7 @@ public class Initializer {
 				.slot(Item.SlotName.BOOTS.toString())
 				.state(ItemState.UNEQUIPPED)
 				.heroClass(HeroClass.Name.WARRIOR.toString())
-				.value(100)
+				.value(50)
 				.modifier(mod)
 				.build());
 		
@@ -295,7 +293,7 @@ public class Initializer {
 				.build());
 		
 		mod.clear();
-		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 70, true));
+		mod.add(genMod(Parameter.ParamName.ATTACK.toString(), 50, true));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("simpleSword", "From the wood to the iron!"))
 				.rarity(2)
@@ -315,7 +313,7 @@ public class Initializer {
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
 				.heroClass(HeroClass.Name.WARRIOR.toString())
-				.value(200)
+				.value(350)
 				.modifier(mod)
 				.build());
 		
@@ -328,7 +326,7 @@ public class Initializer {
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
 				.heroClass(HeroClass.Name.WARRIOR.toString())
-				.value(200)
+				.value(350)
 				.modifier(mod)
 				.build());
 		
@@ -353,7 +351,7 @@ public class Initializer {
 		mod.add(genMod(Parameter.ParamName.MOVSPEED.toString(), 1.5, false));
 		ItemPool.getInstance().addItem(ItemImpl.builder()
 				.info(new InfoImpl("excalibur", "This LEGENDARY sword has NEVER been seen in any other RPG game..."))
-				.rarity(1)
+				.rarity(5)
 				.slot(Item.SlotName.WEAPON.toString())
 				.state(ItemState.UNEQUIPPED)
 				.heroClass(HeroClass.Name.WARRIOR.toString())
@@ -366,11 +364,11 @@ public class Initializer {
 	
 	public void generateEnemy() {
 		Collection<Parameter> list = new LinkedList<>();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 10));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 20));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 20));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 3));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 5));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
 				.description("This cutie... will bite you!")
@@ -380,12 +378,12 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 30));
-		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 70));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 50));
+		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 50));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 10));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 15));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 20));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 30));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
 				.description("This bat will bite you hard!")
 				.level(2)
@@ -394,12 +392,12 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 50));
-		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 150));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 100));
+		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 110));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 20));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 20));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 30));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 50));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
 				.description("This bat will bite you and become Dracula.")
 				.level(3)
@@ -408,12 +406,12 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 200));
-		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 750));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 300));
+		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 250));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 40));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 70));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.BAT.toString())
 				.description("Edward Cullen -who ? BAT BOSS")
 				.level(5)
@@ -422,11 +420,11 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 60));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 50));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 10));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 30));
 		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 5));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
 				.description("This Slime is so slow and resistance... \n so watch out the time!")
@@ -440,8 +438,8 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 20));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 7));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 60));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 15));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
 				.description("This Slime is slow and more resistance... \n It's about time, mate!")
 				.level(2)
@@ -454,8 +452,8 @@ public class Initializer {
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 20));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 10));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 120));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 25));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
 				.description("A powerful slime. T-I-M-E !")
 				.level(3)
@@ -464,12 +462,12 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1000));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 750));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 50));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 0));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 1));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 300));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 5));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.SLIME.toString())
 				.description("Throw away any defense item and hit \nthis BOSS, HARD!")
 				.level(5)
@@ -480,7 +478,7 @@ public class Initializer {
 		
 		list.clear();
 		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1));
-		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 60));
+		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 50));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
 		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 100));
@@ -494,11 +492,11 @@ public class Initializer {
 		
 		list.clear();
 		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1));
-		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 140));
+		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 120));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 250));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 40));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 200));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 50));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
 				.description("This puppet is so... hollow?")
 				.level(2)
@@ -508,11 +506,11 @@ public class Initializer {
 		
 		list.clear();
 		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 1));
-		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 300));
+		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 220));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 399));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 50));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 300));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 70));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
 				.description("Don't trust this little cutiepie... ")
 				.level(3)
@@ -521,12 +519,12 @@ public class Initializer {
 				.build());
 		
 		list.clear();
-		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 4));
+		list.add(genParam(Parameter.ParamName.HPMAX.toString(), 3));
 		list.add(genParam(Parameter.ParamName.ATTACK.toString(), 500));
 		list.add(genParam(Parameter.ParamName.ATTACKRANGE.toString(), 1));
 		list.add(genParam(Parameter.ParamName.ATTACKSPEED.toString(), 1));
-		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 2000));
-		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 50));
+		list.add(genParam(Parameter.ParamName.DEFENSE.toString(), 3000));
+		list.add(genParam(Parameter.ParamName.MOVSPEED.toString(), 90));
 		EnemyPool.getInstance().addEnemy(EnemyFactory.getInstance().getBuilderFor(RoomEntity.RoomEntityName.PUPPET.toString())
 				.description("Here we are! Fight this BIG-ONE!")
 				.level(5)

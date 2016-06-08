@@ -8,7 +8,6 @@ import hollowmen.model.Parameter;
 import hollowmen.model.RoomEntity;
 import hollowmen.model.dungeon.DungeonSingleton;
 import hollowmen.model.dungeon.InfoImpl;
-import hollowmen.model.dungeon.ModifierImpl;
 import hollowmen.model.dungeon.ParamImpl;
 import hollowmen.model.utils.LowerLimitReachException;
 import hollowmen.model.utils.SimpleLimitedCounter;
@@ -43,7 +42,7 @@ public class HPclass extends ParamImpl{
 	@Override
 	public double getValue() {
 		if(lastMaxHP != maxHP.getValue()) {
-			this.health = new SimpleLimitedCounter(this.health.getLimit() + (maxHP.getValue() - lastMaxHP),
+			this.health = new SimpleLimitedCounter(this.health.getValue() + (maxHP.getValue() - lastMaxHP),
 					this.health.getLimit() + (maxHP.getValue() - lastMaxHP));
 			this.lastMaxHP = maxHP.getValue();
 		}
